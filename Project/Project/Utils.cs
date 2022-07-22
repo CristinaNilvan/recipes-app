@@ -10,7 +10,7 @@ namespace Project
     {
         public static List<Recipe> FilterByCalories(int calories, List<Recipe> recipes)
         {
-            List<Recipe> filtered = new();
+            var filtered = new List<Recipe>();
 
             foreach (Recipe recipe in recipes)
             {
@@ -23,7 +23,7 @@ namespace Project
 
         public static List<Recipe> FilterByMealType(string mealType, List<Recipe> recipes)
         {
-            List<Recipe> filtered = new();
+            var filtered = new List<Recipe>();
 
             foreach (Recipe recipe in recipes)
             {
@@ -36,7 +36,7 @@ namespace Project
 
         public static List<Recipe> FilterByServingTime(string servingTime, List<Recipe> recipes)
         {
-            List<Recipe> filtered = new();
+            var filtered = new List<Recipe>();
 
             foreach (Recipe recipe in recipes)
             {

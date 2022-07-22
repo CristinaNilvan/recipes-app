@@ -18,7 +18,7 @@ namespace Project
         public MealPlan GenerateMealPlan(string mealType, int calories)
         {
             int averageCalories = calories / 3;
-            List<Recipe> filteredRecipes = new ();
+            var filteredRecipes = new List<Recipe>();
 
             filteredRecipes.AddRange(Utils.FilterByCalories(averageCalories, _allRecipes));
             filteredRecipes.AddRange(Utils.FilterByMealType(mealType, _allRecipes));
