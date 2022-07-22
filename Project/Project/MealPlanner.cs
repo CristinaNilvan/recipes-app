@@ -12,7 +12,7 @@ namespace Project
 
         public MealPlanner(List<Recipe> allRecipes)
         {
-            _allRecipes = allRecipes;
+            _allRecipes.AddRange(allRecipes);
         }
 
         public MealPlan GenerateMealPlan(string mealType, int calories)
@@ -20,11 +20,8 @@ namespace Project
             int averageCalories = calories / 3;
             List<Recipe> filteredRecipes = new ();
 
-            foreach (Recipe recipe in _allRecipes)
-            {
-                if (recipe.Type.MealType.Equals(mealType) && recipe.Calories <= averageCalories) 
-                    filteredRecipes.Add(recipe);
-            }
+            filteredRecipes.AddRange(Utils.FilterByCalories(averageCalories, _allRecipes));
+            filteredRecipes.AddRange(Utils.FilterByMealType(mealType, _allRecipes));
 
             List<Recipe> breakfastRecipes = Utils.FilterByServingTime("breakfast", filteredRecipes);
             List<Recipe> lunchRecipes = Utils.FilterByServingTime("lunch", filteredRecipes);
