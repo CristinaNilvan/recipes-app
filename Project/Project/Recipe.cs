@@ -40,6 +40,7 @@ namespace Project
         public void AddIngredient(Ingredient ingredient)
         {
             Ingredients.Add(ingredient);
+            Calories += ingredient.Calories;
         }
     }
 }
