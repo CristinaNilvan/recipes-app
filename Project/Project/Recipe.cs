@@ -13,7 +13,7 @@ namespace Project
         private string? _author;
         private string? _description;
         private RecipeType? _type;
-        private double _calories;
+        private int _calories;
         private List<Ingredient>? _ingredients;
     }
 }

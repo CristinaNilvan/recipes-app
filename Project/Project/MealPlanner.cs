@@ -15,7 +15,7 @@ namespace Project
             _allRecipes = allRecipes;
         }
 
-        public void GenerateMealPlan(string mealType, double calories)
+        public void GenerateMealPlan(string mealType, int calories)
         {
 
         }

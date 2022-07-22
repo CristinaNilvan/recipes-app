@@ -9,7 +9,7 @@ namespace Project
     internal class MealPlan
     {
         private List<Recipe>? _meals;
-        private double calories;
+        private int calories;
         
         public MealPlan() 
         {

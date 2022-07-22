@@ -11,7 +11,7 @@ namespace Project
         private int _id;
         private string? _name;
         private string? _type;
-        private double _calories;
+        private int _calories;
         private double _quantity;
     }
 }
