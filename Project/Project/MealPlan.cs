@@ -20,13 +20,7 @@ namespace Project
         public void AddMeal(Recipe recipe)
         {
             _meals.Add(recipe);
-            _totalCalories++;
-        }
-
-        public void RemoveMeal(Recipe recipe)
-        {
-            _meals.Remove(recipe); 
-            _totalCalories--;
+            _totalCalories += recipe.Calories;
         }
     }
 }
