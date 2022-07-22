@@ -8,15 +8,15 @@ namespace Project
 {
     internal class MealPlan
     {
-        private List<Recipe>? _recipes;
+        private List<Recipe>? _meals;
         private double calories;
         
         public MealPlan() 
         {
-            _recipes = new List<Recipe>();
+            _meals = new List<Recipe>();
         }
 
-        public void AddRecipe(Recipe recipe) => _recipes.Add(recipe); // + add calories
-        public void RemoveRecipe(Recipe recipe) => _recipes.Remove(recipe); // + remove calories
+        public void AddMeal(Recipe recipe) => _meals.Add(recipe); // + add calories
+        public void RemoveMeal(Recipe recipe) => _meals.Remove(recipe); // + remove calories
     }
 }
