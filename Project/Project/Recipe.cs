@@ -25,7 +25,7 @@ namespace Project
             Description = description;
             Type = type;
             Calories = calories;
-            Ingredients = ingredients;
+            Ingredients.AddRange(ingredients);
         }
 
         public Recipe(int id, string? name, string? author, string? description, RecipeType? type)
