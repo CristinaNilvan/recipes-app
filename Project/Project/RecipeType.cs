@@ -8,10 +8,7 @@ namespace Project
 {
     internal class RecipeType
     {
-        private string? _mealType;
-        private string? _servingTime;
-
-        public string MealType => _mealType;
-        public string ServingTime => _servingTime;
+        public string? MealType { get; set; }
+        public string? ServingTime { get; set; }
     }
 }

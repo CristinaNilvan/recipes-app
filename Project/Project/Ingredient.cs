@@ -8,10 +8,10 @@ namespace Project
 {
     internal class Ingredient
     {
-        private int _id;
-        private string? _name;
-        private string? _type;
-        private int _calories;
-        private double _quantity;
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Type { get; set; }
+        public int Calories { get; set; }
+        public double Quantity { get; set; }
     }
 }

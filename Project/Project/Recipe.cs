@@ -8,15 +8,12 @@ namespace Project
 {
     internal class Recipe
     {
-        private int _id;
-        private string? _name;
-        private string? _author;
-        private string? _description;
-        private RecipeType? _type;
-        private int _calories;
-        private List<Ingredient>? _ingredients;
-
-        public int Calories => _calories;
-        public RecipeType Type => _type;
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Author { get; set; }
+        public string? Description { get; set; }
+        public RecipeType? Type { get; set; }
+        public int Calories { get; set; }
+        public List<Ingredient>? Ingredients { get; set; }
     }
 }
