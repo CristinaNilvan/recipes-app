@@ -15,5 +15,16 @@ namespace Project
         public RecipeType? Type { get; set; }
         public int Calories { get; set; }
         public List<Ingredient>? Ingredients { get; set; }
+
+        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, int calories, List<Ingredient>? ingredients)
+        {
+            Id = id;
+            Name = name;
+            Author = author;
+            Description = description;
+            Type = type;
+            Calories = calories;
+            Ingredients = ingredients;
+        }
     }
 }
