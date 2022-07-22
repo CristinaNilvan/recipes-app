@@ -15,5 +15,8 @@ namespace Project
         private RecipeType? _type;
         private int _calories;
         private List<Ingredient>? _ingredients;
+
+        public int Calories => _calories;
+        public RecipeType Type => _type;
     }
 }

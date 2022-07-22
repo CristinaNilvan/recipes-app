@@ -10,5 +10,8 @@ namespace Project
     {
         private string? _mealType;
         private string? _servingTime;
+
+        public string MealType => _mealType;
+        public string ServingTime => _servingTime;
     }
 }
