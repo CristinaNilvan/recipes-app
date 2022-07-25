@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Project
 {
     internal class RecipeType
-    {
+    {   
+        public int Id { get; set; }
         public string? MealType { get; set; }
         public string? ServingTime { get; set; }
     }
