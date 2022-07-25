@@ -8,12 +8,6 @@ namespace Project
 {
     internal class Ingredient
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Type { get; set; }
-        public int Calories { get; set; }
-        public double Quantity { get; set; }
-
         public Ingredient(int id, string? name, string? type, int calories, double quantity)
         {
             Id = id;
@@ -22,5 +16,11 @@ namespace Project
             Calories = calories;
             Quantity = quantity;
         }
+
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Type { get; set; }
+        public int Calories { get; set; }
+        public double Quantity { get; set; }
     }
 }
