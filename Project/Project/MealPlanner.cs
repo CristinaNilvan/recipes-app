@@ -15,7 +15,7 @@ namespace Project
             _allRecipes.AddRange(allRecipes);
         }
 
-        public MealPlan GenerateMealPlan(string mealType, int calories)
+        public MealPlan GenerateMealPlan(MealType mealType, int calories)
         {
             int averageCalories = calories / 3;
             var filteredRecipes = new List<Recipe>();
@@ -23,9 +23,9 @@ namespace Project
             filteredRecipes.AddRange(Utils.FilterByCalories(averageCalories, _allRecipes));
             filteredRecipes.AddRange(Utils.FilterByMealType(mealType, _allRecipes));
 
-            List<Recipe> breakfastRecipes = Utils.FilterByServingTime("breakfast", filteredRecipes);
-            List<Recipe> lunchRecipes = Utils.FilterByServingTime("lunch", filteredRecipes);
-            List<Recipe> dinnerRecipes = Utils.FilterByServingTime("dinner", filteredRecipes);
+            List<Recipe> breakfastRecipes = Utils.FilterByServingTime(ServingTime.Breakfast, filteredRecipes);
+            List<Recipe> lunchRecipes = Utils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
+            List<Recipe> dinnerRecipes = Utils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
 
             Random random = new();
             MealPlan mealPlan = new();
