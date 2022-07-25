@@ -1,6 +1,6 @@
 ﻿namespace RecipesApp.Domain.Models
 {
-    internal class MealPlan
+    public class MealPlan
     {
         private List<Recipe>? _meals;
         private int _totalCalories;

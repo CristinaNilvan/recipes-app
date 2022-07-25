@@ -1,6 +1,6 @@
 ﻿namespace RecipesApp.Domain.Models
 {
-    internal class Utils
+    public class Utils
     {
         public static List<Recipe> FilterByCalories(int calories, List<Recipe> recipes)
         {

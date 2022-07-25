@@ -1,6 +1,6 @@
 ﻿namespace RecipesApp.Domain.Models
 {
-    internal class Ingredient
+    public class Ingredient
     {
         public Ingredient(int id, string? name, string? type, int calories, double quantity)
         {
