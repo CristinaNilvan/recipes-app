@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesApp.Domain", "RecipesApp.Domain\RecipesApp.Domain.csproj", "{D338846F-37B9-4022-BFF9-CDE88C0926BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Domain", "RecipesApp.Domain\RecipesApp.Domain.csproj", "{D338846F-37B9-4022-BFF9-CDE88C0926BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesApp.Console", "RecipesApp.Console\RecipesApp.Console.csproj", "{0E79404D-FEB6-45C3-A917-DB1C186E2709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Console", "RecipesApp.Console\RecipesApp.Console.csproj", "{0E79404D-FEB6-45C3-A917-DB1C186E2709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
