@@ -9,7 +9,7 @@ namespace Project
     internal class RecipeType
     {   
         public int Id { get; set; }
-        public string? MealType { get; set; }
-        public string? ServingTime { get; set; }
+        public MealType MealType { get; set; }
+        public ServingTime ServingTime { get; set; }
     }
 }
