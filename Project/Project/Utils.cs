@@ -15,33 +15,39 @@ namespace Project
             foreach (Recipe recipe in recipes)
             {
                 if (recipe.Calories <= calories)
+                {
                     filtered.Add(recipe);
+                }
             }
 
             return filtered;
         }
 
-        public static List<Recipe> FilterByMealType(string mealType, List<Recipe> recipes)
+        public static List<Recipe> FilterByMealType(MealType mealType, List<Recipe> recipes)
         {
             var filtered = new List<Recipe>();
 
             foreach (Recipe recipe in recipes)
             {
-                if (recipe.Type.MealType.Equals(mealType))
+                if (recipe.Type.MealType == mealType)
+                {
                     filtered.Add(recipe);
+                }
             }
 
             return filtered;
         }
 
-        public static List<Recipe> FilterByServingTime(string servingTime, List<Recipe> recipes)
+        public static List<Recipe> FilterByServingTime(ServingTime servingTime, List<Recipe> recipes)
         {
             var filtered = new List<Recipe>();
 
             foreach (Recipe recipe in recipes)
             {
-                if (recipe.Type.ServingTime.Equals(servingTime))
+                if (recipe.Type.ServingTime == servingTime)
+                {
                     filtered.Add(recipe);
+                }
             }
 
             return filtered;
