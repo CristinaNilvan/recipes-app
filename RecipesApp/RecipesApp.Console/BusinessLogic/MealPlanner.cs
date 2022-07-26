@@ -1,6 +1,13 @@
-﻿namespace RecipesApp.Domain.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RecipesApp.Domain.Models;
+
+namespace RecipesApp.Console.BusinessLogic
 {
-    public class MealPlanner
+    internal class MealPlanner
     {
         private List<Recipe>? _allRecipes;
 
