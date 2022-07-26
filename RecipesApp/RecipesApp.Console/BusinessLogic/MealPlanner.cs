@@ -21,12 +21,12 @@ namespace RecipesApp.Console.BusinessLogic
             int averageCalories = calories / 3;
             var filteredRecipes = new List<Recipe>();
 
-            filteredRecipes.AddRange(Utils.FilterByCalories(averageCalories, _allRecipes));
-            filteredRecipes.AddRange(Utils.FilterByMealType(mealType, _allRecipes));
+            filteredRecipes.AddRange(MealPlannerUtils.FilterByCalories(averageCalories, _allRecipes));
+            filteredRecipes.AddRange(MealPlannerUtils.FilterByMealType(mealType, _allRecipes));
 
-            List<Recipe> breakfastRecipes = Utils.FilterByServingTime(ServingTime.Breakfast, filteredRecipes);
-            List<Recipe> lunchRecipes = Utils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
-            List<Recipe> dinnerRecipes = Utils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
+            List<Recipe> breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, filteredRecipes);
+            List<Recipe> lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
+            List<Recipe> dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
 
             var random = new Random();
             var mealPlan = new MealPlan();
