@@ -15,6 +15,17 @@
             Quantity = quantity;
         }
 
+        //Added for verification
+        public Ingredient(int id, string? name, int calories, float fats, float carbs, float proteins)
+        {
+            Id = id;
+            Name = name;
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
+        }
+
         public int Id { get; set; }
         public string? Name { get; set; }
         public IngredientCategory Category { get; set; }

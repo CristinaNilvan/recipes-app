@@ -26,6 +26,14 @@
             Type = type;
         }
 
+        //Added for verification
+        public Recipe(int id, string? name)
+        {
+            Id = id;
+            Name = name;
+            Ingredients = new List<Ingredient>();
+        }
+
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Author { get; set; }
