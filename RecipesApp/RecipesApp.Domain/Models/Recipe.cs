@@ -2,8 +2,8 @@
 {
     public class Recipe
     {
-        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, int calories,
-            List<Ingredient>? ingredients)
+        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, int calories, float fats,
+            float carbs, float proteins, List<Ingredient>? ingredients)
         {
             Id = id;
             Name = name;
@@ -11,6 +11,9 @@
             Description = description;
             Type = type;
             Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
             Ingredients.AddRange(ingredients);
         }
 
@@ -29,6 +32,9 @@
         public string? Description { get; set; }
         public RecipeType? Type { get; set; }
         public int Calories { get; set; }
+        public float Fats { get; set; }
+        public float Carbs { get; set; }
+        public float Proteins { get; set; }
         public List<Ingredient>? Ingredients { get; set; }
 
         public void AddIngredient(Ingredient ingredient)
