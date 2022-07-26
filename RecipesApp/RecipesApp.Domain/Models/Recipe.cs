@@ -41,6 +41,9 @@
         {
             Ingredients.Add(ingredient);
             Calories += ingredient.Calories;
+            Fats += ingredient.Fats;
+            Carbs += ingredient.Carbs;
+            Proteins += ingredient.Proteins;
         }
     }
 }
