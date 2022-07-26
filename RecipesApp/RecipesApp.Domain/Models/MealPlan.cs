@@ -2,19 +2,14 @@
 {
     public class MealPlan
     {
-        private List<Recipe>? _meals;
-        private int _totalCalories;
-
         public MealPlan()
         {
-            _meals = new List<Recipe>();
-            _totalCalories = 0;
+            
         }
 
-        public void AddMeal(Recipe recipe)
-        {
-            _meals.Add(recipe);
-            _totalCalories += recipe.Calories;
-        }
+        public Recipe? Breakfast { get; set; }
+        public Recipe? Lunch { get; set; }
+        public Recipe? Dinner { get; set; }
+        public int Calories { get; set; }
     }
 }

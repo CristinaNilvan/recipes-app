@@ -21,12 +21,12 @@
             List<Recipe> lunchRecipes = Utils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
             List<Recipe> dinnerRecipes = Utils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
 
-            Random random = new();
-            MealPlan mealPlan = new();
+            var random = new Random();
+            var mealPlan = new MealPlan();
 
-            mealPlan.AddMeal(breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count)));
-            mealPlan.AddMeal(lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count)));
-            mealPlan.AddMeal(dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count)));
+            mealPlan.Breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count));
+            mealPlan.Lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count));
+            mealPlan.Dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count));
 
             return mealPlan;
         }
