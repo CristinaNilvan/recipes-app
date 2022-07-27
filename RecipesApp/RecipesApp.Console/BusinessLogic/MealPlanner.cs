@@ -13,6 +13,7 @@ namespace RecipesApp.Console.BusinessLogic
 
         public MealPlanner(List<Recipe> allRecipes)
         {
+            _allRecipes = new List<Recipe>();
             _allRecipes.AddRange(allRecipes);
         }
 

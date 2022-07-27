@@ -14,6 +14,7 @@
             Fats = fats;
             Carbs = carbs;
             Proteins = proteins;
+            Ingredients = new List<Ingredient>();
             Ingredients.AddRange(ingredients);
         }
 
