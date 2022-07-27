@@ -16,22 +16,22 @@
         public float Carbs { get; set; }
         public float Proteins { get; set; }
 
-        public void SetCalories()
+        public void CalculateCalories()
         {
             Calories = Breakfast.Calories + Lunch.Calories + Dinner.Calories;
         }
 
-        public void SetFats()
+        public void CalculateFats()
         {
             Fats = Breakfast.Fats + Lunch.Fats + Dinner.Fats;
         }
 
-        public void SetCarbs()
+        public void CalculateCarbs()
         {
             Carbs = Breakfast.Carbs + Lunch.Carbs + Dinner.Carbs;
         }
 
-        public void SetProteins()
+        public void CalculateProteins()
         {
             Proteins = Breakfast.Proteins + Lunch.Proteins + Dinner.Proteins;
         }

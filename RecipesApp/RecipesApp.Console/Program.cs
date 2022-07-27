@@ -19,7 +19,7 @@ mealPlan.Breakfast = rec01;
 mealPlan.Lunch = rec02;
 mealPlan.Dinner = rec03;
 
-mealPlan.SetCalories();
+mealPlan.CalculateCalories();
 
 Console.WriteLine($"The meal plan has {mealPlan.Calories} calories.");
 Console.ReadKey();
