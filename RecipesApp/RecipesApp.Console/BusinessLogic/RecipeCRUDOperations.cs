@@ -14,5 +14,10 @@ namespace RecipesApp.Console.BusinessLogic
         {
             return new Recipe(id, name, author, description, type, calories, fats, carbs, proteins, ingredients);
         }
+
+        public static Recipe Create(int id, string? name, string? author, string? description, RecipeType? type)
+        {
+            return new Recipe(id, name, author, description, type);
+        }
     }
 }
