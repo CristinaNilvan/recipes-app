@@ -32,5 +32,24 @@
         public float Carbs { get; set; }
         public float Proteins { get; set; }
         public double Quantity { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Ingredient ingredient &&
+                   Id == ingredient.Id &&
+                   Name == ingredient.Name &&
+                   Category == ingredient.Category &&
+                   Calories == ingredient.Calories;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string? ToString()
+        {
+            return $"{Id} {Name} {Category}  {Calories}";
+        }
     }
 }
