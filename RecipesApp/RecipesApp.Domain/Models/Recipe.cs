@@ -68,7 +68,18 @@
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, Author, Description, Type, Calories, Ingredients);
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Name);
+            hash.Add(Author);
+            hash.Add(Description);
+            hash.Add(Type);
+            hash.Add(Calories);
+            hash.Add(Fats);
+            hash.Add(Carbs);
+            hash.Add(Proteins);
+            hash.Add(Ingredients);
+            return hash.ToHashCode();
         }
 
         public override string? ToString()

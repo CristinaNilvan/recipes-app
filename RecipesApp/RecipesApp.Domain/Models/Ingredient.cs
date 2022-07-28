@@ -44,7 +44,7 @@
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return HashCode.Combine(Id, Name, Category, Calories, Fats, Carbs, Proteins, Quantity);
         }
 
         public override string? ToString()
