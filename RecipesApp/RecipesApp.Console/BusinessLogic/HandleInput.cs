@@ -31,7 +31,10 @@ namespace RecipesApp.Console.BusinessLogic
 
                 if (operation == 2)
                 {
+                    HandleUpdateIngredient();
 
+                    System.Console.WriteLine("The list after the update: ");
+                    ListPrinter.PrintList(ingredients);
                 }
             }
         }
@@ -67,7 +70,15 @@ namespace RecipesApp.Console.BusinessLogic
 
         private static void HandleUpdateIngredient()
         {
+            System.Console.WriteLine("Here are the current ingredients: ");
+            ListPrinter.PrintList(ingredients);
 
+            System.Console.WriteLine("Enter the number of the element you want to update: ");
+            var number = Convert.ToInt32(System.Console.ReadLine());
+
+            var ingredient = HandleInput.HandleCreateIngredient();
+
+            IngredientCRUDOperations.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
         }
     }
 }
