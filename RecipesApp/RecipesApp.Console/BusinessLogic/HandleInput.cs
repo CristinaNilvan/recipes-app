@@ -36,6 +36,14 @@ namespace RecipesApp.Console.BusinessLogic
                     System.Console.WriteLine("The list after the update: ");
                     ListPrinter.PrintList(ingredients);
                 }
+
+                if (operation == 3)
+                {
+                    HandleDeleteIngredient();
+
+                    System.Console.WriteLine("The list after the deletion: ");
+                    ListPrinter.PrintList(ingredients);
+                }
             }
         }
 
@@ -79,6 +87,17 @@ namespace RecipesApp.Console.BusinessLogic
             var ingredient = HandleInput.HandleCreateIngredient();
 
             IngredientCRUDOperations.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
+        }
+
+        private static void HandleDeleteIngredient()
+        {
+            System.Console.WriteLine("Here are the current ingredients: ");
+            ListPrinter.PrintList(ingredients);
+
+            System.Console.WriteLine("Enter the number of the element you want to delete: ");
+            var number = Convert.ToInt32(System.Console.ReadLine());
+
+            IngredientCRUDOperations.Delete(ingredients, ingredients.ElementAt(number - 1));
         }
     }
 }
