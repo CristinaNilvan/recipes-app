@@ -46,6 +46,10 @@ namespace RecipesApp.Console.BusinessLogic
                     ListPrinter.PrintList(ingredients);
                 }
             }
+            else if (entity == 2)
+            {
+
+            }
         }
     }
 }

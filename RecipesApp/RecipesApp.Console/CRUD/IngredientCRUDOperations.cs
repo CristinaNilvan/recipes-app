@@ -1,7 +1,7 @@
 ﻿using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.BusinessLogic
+namespace RecipesApp.Console.CRUD
 {
     internal class IngredientCRUDOperations : BaseCRUDOperations<Ingredient>
     {

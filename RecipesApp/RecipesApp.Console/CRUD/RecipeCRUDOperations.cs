@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.BusinessLogic
+namespace RecipesApp.Console.CRUD
 {
     internal class RecipeCRUDOperations : BaseCRUDOperations<Recipe>
     {

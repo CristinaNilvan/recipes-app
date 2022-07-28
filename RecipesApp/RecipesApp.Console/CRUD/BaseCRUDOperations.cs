@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesApp.Console.BusinessLogic
+namespace RecipesApp.Console.CRUD
 {
     internal abstract class BaseCRUDOperations<T>
     {
