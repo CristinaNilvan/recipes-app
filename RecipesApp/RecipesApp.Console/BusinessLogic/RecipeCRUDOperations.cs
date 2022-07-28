@@ -9,9 +9,10 @@ namespace RecipesApp.Console.BusinessLogic
 {
     internal class RecipeCRUDOperations : BaseCRUDOperations<Recipe>
     {
-        public static Recipe Create()
+        public static Recipe Create(int id, string? name, string? author, string? description, RecipeType? type, int calories,
+            float fats, float carbs, float proteins, List<Ingredient>? ingredients)
         {
-
+            return new Recipe(id, name, author, description, type, calories, fats, carbs, proteins, ingredients);
         }
     }
 }
