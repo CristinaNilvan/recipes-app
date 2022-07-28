@@ -40,10 +40,15 @@ namespace RecipesApp.Console.InputHandling
             return IngredientCRUDOperations.Create(id, name, enumCategory, calories, fats, carbs, proteins);
         }
 
-        public static void HandleUpdateIngredient(List<Ingredient> ingredients)
+        public static void HandleReadIngredients(List<Ingredient> ingredients)
         {
             System.Console.WriteLine("Here are the current ingredients: ");
             ListPrinter.PrintList(ingredients);
+        }
+
+        public static void HandleUpdateIngredient(List<Ingredient> ingredients)
+        {
+            HandleReadIngredients(ingredients);
 
             System.Console.WriteLine("Enter the number of the element you want to update: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
@@ -54,8 +59,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static void HandleDeleteIngredient(List<Ingredient> ingredients)
         {
-            System.Console.WriteLine("Here are the current ingredients: ");
-            ListPrinter.PrintList(ingredients);
+            HandleReadIngredients(ingredients);
 
             System.Console.WriteLine("Enter the number of the element you want to delete: ");
             var number = Convert.ToInt32(System.Console.ReadLine());

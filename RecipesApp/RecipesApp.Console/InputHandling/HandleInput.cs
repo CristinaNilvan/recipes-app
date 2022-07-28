@@ -32,13 +32,18 @@ namespace RecipesApp.Console.InputHandling
 
                 if (operation == 2)
                 {
+                    HandleIngredientInput.HandleReadIngredients(ingredients);
+                }
+
+                if (operation == 3)
+                {
                     HandleIngredientInput.HandleUpdateIngredient(ingredients);
 
                     System.Console.WriteLine("The list after the update: ");
                     ListPrinter.PrintList(ingredients);
                 }
 
-                if (operation == 3)
+                if (operation == 4)
                 {
                     HandleIngredientInput.HandleDeleteIngredient(ingredients);
 

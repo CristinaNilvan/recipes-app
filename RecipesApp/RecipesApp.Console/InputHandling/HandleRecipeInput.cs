@@ -16,10 +16,15 @@ namespace RecipesApp.Console.InputHandling
             return null;
         }
 
-        public static void HandleUpdateRecipe(List<Recipe> recipes)
+        public static void HandleReadRecipes(List<Recipe> recipes)
         {
             System.Console.WriteLine("Here are the current recipes: ");
             ListPrinter.PrintList(recipes);
+        }
+
+        public static void HandleUpdateRecipe(List<Recipe> recipes)
+        {
+            HandleReadRecipes(recipes);
 
             System.Console.WriteLine("Enter the number of the element you want to update: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
@@ -30,8 +35,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static void HandleDeleteRecipe(List<Recipe> recipes)
         {
-            System.Console.WriteLine("Here are the current recipes: ");
-            ListPrinter.PrintList(recipes);
+            HandleReadRecipes(recipes);
 
             System.Console.WriteLine("Enter the number of the element you want to delete: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
