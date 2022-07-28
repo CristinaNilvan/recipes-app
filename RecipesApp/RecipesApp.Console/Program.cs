@@ -1,5 +1,5 @@
 ﻿using RecipesApp.Domain.Models;
-using RecipesApp.Console.BusinessLogic;
+using RecipesApp.Console.InputHandling;
 
 var entities = "1 - Ingredient; 2 - Recipe";
 var operations = "1 - Create; 2 - Update; 3 - Delete";

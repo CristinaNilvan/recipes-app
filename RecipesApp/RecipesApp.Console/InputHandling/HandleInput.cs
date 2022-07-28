@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.BusinessLogic
+namespace RecipesApp.Console.InputHandling
 {
     internal class HandleInput
     {

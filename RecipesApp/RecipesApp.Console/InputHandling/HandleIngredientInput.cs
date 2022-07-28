@@ -7,7 +7,7 @@ using RecipesApp.Console.CRUD;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.BusinessLogic
+namespace RecipesApp.Console.InputHandling
 {
     internal class HandleIngredientInput
     {
@@ -47,7 +47,7 @@ namespace RecipesApp.Console.BusinessLogic
 
             System.Console.WriteLine("Enter the number of the element you want to update: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
-            var ingredient = HandleIngredientInput.HandleCreateIngredient();
+            var ingredient = HandleCreateIngredient();
 
             IngredientCRUDOperations.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
         }
