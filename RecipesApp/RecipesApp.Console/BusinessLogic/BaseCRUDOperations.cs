@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipesApp.Console.BusinessLogic
 {
-    internal class BaseCRUDOperations<T>
+    internal abstract class BaseCRUDOperations<T>
     {
         public static void Update(List<T> list, T firstElement, T secondElement)
         {
