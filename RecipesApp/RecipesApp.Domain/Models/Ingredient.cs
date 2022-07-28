@@ -2,8 +2,7 @@
 {
     public class Ingredient
     {
-        public Ingredient(int id, string? name, IngredientCategory category, int calories, float fats, float carbs, float proteins,
-            double quantity)
+        public Ingredient(int id, string? name, IngredientCategory category, int calories, float fats, float carbs, float proteins)
         {
             Id = id;
             Name = name;
@@ -12,7 +11,6 @@
             Fats = fats;
             Carbs = carbs;
             Proteins = proteins;
-            Quantity = quantity;
         }
 
         //Added for verification
