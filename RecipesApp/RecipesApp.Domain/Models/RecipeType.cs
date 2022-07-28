@@ -1,4 +1,6 @@
-﻿namespace RecipesApp.Domain.Models
+﻿using RecipesApp.Domain.Enums;
+
+namespace RecipesApp.Domain.Models
 {
     public class RecipeType
     {

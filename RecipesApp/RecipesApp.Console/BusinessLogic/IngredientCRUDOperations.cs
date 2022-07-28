@@ -1,4 +1,5 @@
-﻿using RecipesApp.Domain.Models;
+﻿using RecipesApp.Domain.Enums;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.BusinessLogic
 {

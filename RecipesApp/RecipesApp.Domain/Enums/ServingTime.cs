@@ -1,4 +1,4 @@
-﻿namespace RecipesApp.Domain.Models
+﻿namespace RecipesApp.Domain.Enums
 {
     public enum ServingTime
     {
