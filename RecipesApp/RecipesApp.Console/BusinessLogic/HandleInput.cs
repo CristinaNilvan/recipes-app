@@ -9,6 +9,9 @@ namespace RecipesApp.Console.BusinessLogic
 {
     internal class HandleInput
     {
+        private static List<Ingredient> ingredients = new List<Ingredient>();
+        private static List<Recipe> recipes = new List<Recipe>();
+
         public static void HandleInputFromConsole(int entity, int operation)
         {
             if (entity == 1)
@@ -18,9 +21,17 @@ namespace RecipesApp.Console.BusinessLogic
                     var ingredient = HandleInput.HandleCreateIngredient();
 
                     if (ingredient != null)
+                    {
                         System.Console.WriteLine("Ingredient created successfully!");
+                        ingredients.Add(ingredient);
+                    }
                     else
                         System.Console.WriteLine("Something went wrong!");
+                }
+
+                if (operation == 2)
+                {
+
                 }
             }
         }
@@ -52,6 +63,11 @@ namespace RecipesApp.Console.BusinessLogic
             var proteins = float.Parse(System.Console.ReadLine());
 
             return IngredientCRUDOperations.Create(id, name, enumCategory, calories, fats, carbs, proteins);
+        }
+
+        private static void HandleUpdateIngredient()
+        {
+
         }
     }
 }
