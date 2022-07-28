@@ -4,7 +4,7 @@
     {
         public MealPlan()
         {
-            MealPlanDate = DateTime.Now;
+            MealPlanDate = DateTime.UtcNow;
         }
 
         public Recipe? Breakfast { get; set; }
