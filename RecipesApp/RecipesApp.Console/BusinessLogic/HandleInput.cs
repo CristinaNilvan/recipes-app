@@ -83,7 +83,6 @@ namespace RecipesApp.Console.BusinessLogic
 
             System.Console.WriteLine("Enter the number of the element you want to update: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
-
             var ingredient = HandleInput.HandleCreateIngredient();
 
             IngredientCRUDOperations.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
