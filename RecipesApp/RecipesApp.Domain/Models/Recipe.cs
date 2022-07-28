@@ -14,8 +14,7 @@
             Fats = fats;
             Carbs = carbs;
             Proteins = proteins;
-            Ingredients = new List<Ingredient>();
-            Ingredients.AddRange(ingredients);
+            Ingredients = new List<Ingredient>(ingredients);
         }
 
         public Recipe(int id, string? name, string? author, string? description, RecipeType? type)
@@ -53,6 +52,28 @@
             Fats += ingredient.Fats;
             Carbs += ingredient.Carbs;
             Proteins += ingredient.Proteins;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Recipe recipe &&
+                   Id == recipe.Id &&
+                   Name == recipe.Name &&
+                   Author == recipe.Author &&
+                   Description == recipe.Description &&
+                   EqualityComparer<RecipeType?>.Default.Equals(Type, recipe.Type) &&
+                   Calories == recipe.Calories &&
+                   EqualityComparer<List<Ingredient>?>.Default.Equals(Ingredients, recipe.Ingredients);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Author, Description, Type, Calories, Ingredients);
+        }
+
+        public override string? ToString()
+        {
+            return $"{Id} {Name} {Type} {Calories}";
         }
     }
 }

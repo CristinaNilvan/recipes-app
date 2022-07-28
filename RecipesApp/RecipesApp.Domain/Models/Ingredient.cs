@@ -49,7 +49,7 @@
 
         public override string? ToString()
         {
-            return $"{Id} {Name} {Category}  {Calories}";
+            return $"{Id} {Name} {Category} {Calories}";
         }
     }
 }
