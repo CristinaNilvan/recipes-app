@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class HandleInput
+    internal class HandleEntitiesInput
     {
         private static List<Ingredient> ingredients = new List<Ingredient>();
         private static List<Recipe> recipes = new List<Recipe>();
