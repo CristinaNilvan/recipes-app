@@ -8,6 +8,7 @@ while (true)
     Console.WriteLine("What would you like to do?");
     Console.WriteLine("1 - do CRUD on entities");
     Console.WriteLine("2 - find a meal plan");
+    Console.WriteLine("3 - exit");
 
     var nextOperation = Convert.ToInt32(Console.ReadLine());
     if (nextOperation == 1)
@@ -17,6 +18,10 @@ while (true)
     else if (nextOperation == 2)
     {
         FindMealPlan();
+    } 
+    else if (nextOperation == 3)
+    {
+        break;
     }
 
 }
