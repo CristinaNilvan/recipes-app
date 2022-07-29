@@ -1,7 +1,8 @@
 ﻿using RecipesApp.Domain.Models;
+using RecipesApp.Console.FileAssignment;
 using RecipesApp.Console.InputManagement;
 
-Console.WriteLine("Hello!");
+/*Console.WriteLine("Hello!");
 
 while (true)
 {
@@ -81,4 +82,18 @@ static void FindMealPlan()
 
         PlannerInputManager.HandleInputFromConsole();
     }
-}
+}*/
+
+var ingredients = new List<Ingredient>()
+{
+    new Ingredient(1, "lapte"),
+    new Ingredient(2, "ou"),
+    new Ingredient(3, "caisa"),
+    new Ingredient(4, "ulei"),
+    new Ingredient(5, "zahar"),
+};
+
+FileOperations.DoDirectorySetup();
+FileOperations.DoFileSetup();
+FileOperations.WriteIngredientsInFile(ingredients);
+FileOperations.ReadIngredientsFromFile();
