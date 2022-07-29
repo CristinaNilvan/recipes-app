@@ -9,9 +9,9 @@ Console.WriteLine("Hello!");
 while (true)
 {
     Console.WriteLine("Continue to choose an entity? yes - 1, no - 0");
-    var continueEntity = Console.ReadLine();
+    var continueToEntity = Console.ReadLine();
 
-    if (Convert.ToInt32(continueEntity) == 0)
+    if (Convert.ToInt32(continueToEntity) == 0)
     {
         break;
     }
@@ -24,9 +24,9 @@ while (true)
     while (true)
     {
         Console.WriteLine("Continue to choose an operation? yes - 1, no - 0");
-        var continueOperation = Console.ReadLine();
+        var continueToOperation = Console.ReadLine();
 
-        if (Convert.ToInt32(continueOperation) == 0)
+        if (Convert.ToInt32(continueToOperation) == 0)
         {
             break;
         }
