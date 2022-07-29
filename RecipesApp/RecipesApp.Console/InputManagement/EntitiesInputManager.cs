@@ -13,6 +13,9 @@ namespace RecipesApp.Console.InputManagement
         private static List<Ingredient> ingredients = new List<Ingredient>();
         private static List<Recipe> recipes = new List<Recipe>();
 
+        public static List<Ingredient> Ingredients => ingredients;
+        public static List<Recipe> Recipes => recipes;
+
         public static void HandleInputFromConsole(int entity, int operation)
         {
             if (entity == 1)

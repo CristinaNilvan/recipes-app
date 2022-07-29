@@ -12,7 +12,9 @@ namespace RecipesApp.Console.InputManagement
     internal class PlannerInputManager
     {
         private static List<MealPlan> mealPlans = new List<MealPlan>();
-        
+
+        public static List<MealPlan> MealPlans => mealPlans;
+
         public static void HandleInputFromConsole()
         {
             System.Console.WriteLine("Please enter the following data: ");
