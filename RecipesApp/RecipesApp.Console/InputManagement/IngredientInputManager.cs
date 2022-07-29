@@ -9,7 +9,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class HandleIngredientInput
+    internal class IngredientInputManager
     {
         public static Ingredient HandleCreateIngredient()
         {

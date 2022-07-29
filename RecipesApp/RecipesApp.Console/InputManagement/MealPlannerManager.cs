@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class MealPlannerController
+    internal class MealPlannerManager
     {
 
     }

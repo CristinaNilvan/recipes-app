@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class HandleEntitiesInput
+    internal class EntitiesInputManager
     {
         private static List<Ingredient> ingredients = new List<Ingredient>();
         private static List<Recipe> recipes = new List<Recipe>();
@@ -29,7 +29,7 @@ namespace RecipesApp.Console.InputHandling
         {
             if (operation == 1)
             {
-                var ingredient = HandleIngredientInput.HandleCreateIngredient();
+                var ingredient = IngredientInputManager.HandleCreateIngredient();
 
                 if (ingredient != null)
                 {
@@ -42,12 +42,12 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 2)
             {
-                HandleIngredientInput.HandleReadIngredients(ingredients);
+                IngredientInputManager.HandleReadIngredients(ingredients);
             }
 
             if (operation == 3)
             {
-                HandleIngredientInput.HandleUpdateIngredient(ingredients);
+                IngredientInputManager.HandleUpdateIngredient(ingredients);
 
                 System.Console.WriteLine("The list after the update: ");
                 ListPrinter.PrintList(ingredients);
@@ -55,7 +55,7 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 4)
             {
-                HandleIngredientInput.HandleDeleteIngredient(ingredients);
+                IngredientInputManager.HandleDeleteIngredient(ingredients);
 
                 System.Console.WriteLine("The list after the deletion: ");
                 ListPrinter.PrintList(ingredients);

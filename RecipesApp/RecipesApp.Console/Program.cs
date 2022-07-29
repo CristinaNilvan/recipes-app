@@ -57,7 +57,7 @@ static void DoCRUDOnEntities(string entities, string operations)
             var chosenOperation = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Chosen operation: {chosenOperation}");
 
-            HandleEntitiesInput.HandleInputFromConsole(chosenEntity, chosenOperation);
+            EntitiesInputManager.HandleInputFromConsole(chosenEntity, chosenOperation);
         }
     }
 }
