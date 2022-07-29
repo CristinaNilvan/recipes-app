@@ -74,6 +74,6 @@ static void FindMealPlan()
             break;
         }
 
-        MealPlannerInputManager.HandleInputFromConsole();
+        PlannerInputManager.HandleInputFromConsole();
     }
 }
