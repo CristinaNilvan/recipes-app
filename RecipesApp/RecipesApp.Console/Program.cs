@@ -8,10 +8,10 @@ Console.WriteLine("Hello!");
 
 while (true)
 {
-    Console.WriteLine("Continue to choose an entity? yes - 5, no - 6");
+    Console.WriteLine("Continue to choose an entity? yes - 1, no - 0");
     var continueEntity = Console.ReadLine();
 
-    if (Convert.ToInt32(continueEntity) == 6)
+    if (Convert.ToInt32(continueEntity) == 0)
     {
         break;
     }
@@ -23,10 +23,10 @@ while (true)
 
     while (true)
     {
-        Console.WriteLine("Continue to choose an operation? yes - 5, no - 6");
+        Console.WriteLine("Continue to choose an operation? yes - 1, no - 0");
         var continueOperation = Console.ReadLine();
 
-        if (Convert.ToInt32(continueOperation) == 6)
+        if (Convert.ToInt32(continueOperation) == 0)
         {
             break;
         }
