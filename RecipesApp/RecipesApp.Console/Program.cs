@@ -1,8 +1,5 @@
 ﻿using RecipesApp.Domain.Models;
-using RecipesApp.Console.InputHandling;
-
-var entities = "1 - Ingredient; 2 - Recipe";
-var operations = "1 - Create; 2 - Read; 3 - Update; 4 - Delete";
+using RecipesApp.Console.InputManagement;
 
 Console.WriteLine("Hello!");
 
@@ -15,24 +12,27 @@ while (true)
     var nextOperation = Convert.ToInt32(Console.ReadLine());
     if (nextOperation == 1)
     {
-        DoCRUDOnEntities(entities, operations);
+        DoCRUDOnEntities();
     }
     else if (nextOperation == 2)
     {
-
+        FindMealPlan();
     }
 
 }
 
 
-static void DoCRUDOnEntities(string entities, string operations)
+static void DoCRUDOnEntities()
 {
+    var entities = "1 - Ingredient; 2 - Recipe";
+    var operations = "1 - Create; 2 - Read; 3 - Update; 4 - Delete";
+
     while (true)
     {
         Console.WriteLine("Continue to choose an entity? yes - 1, no - 0");
-        var continueToEntity = Console.ReadLine();
+        var continueToEntity = Convert.ToInt32(Console.ReadLine());
 
-        if (Convert.ToInt32(continueToEntity) == 0)
+        if (continueToEntity == 0)
         {
             break;
         }
@@ -45,9 +45,9 @@ static void DoCRUDOnEntities(string entities, string operations)
         while (true)
         {
             Console.WriteLine("Continue to choose an operation? yes - 1, no - 0");
-            var continueToOperation = Console.ReadLine();
+            var continueToOperation = Convert.ToInt32(Console.ReadLine());
 
-            if (Convert.ToInt32(continueToOperation) == 0)
+            if (continueToOperation == 0)
             {
                 break;
             }
@@ -59,5 +59,21 @@ static void DoCRUDOnEntities(string entities, string operations)
 
             EntitiesInputManager.HandleInputFromConsole(chosenEntity, chosenOperation);
         }
+    }
+}
+
+static void FindMealPlan()
+{
+    while (true)
+    {
+        Console.WriteLine("Continue to find a meal plan? yes - 1, no - 0");
+        var continueToPlanner = Convert.ToInt32(Console.ReadLine());
+
+        if (continueToPlanner == 0)
+        {
+            break;
+        }
+
+        MealPlannerInputManager.HandleInputFromConsole();
     }
 }

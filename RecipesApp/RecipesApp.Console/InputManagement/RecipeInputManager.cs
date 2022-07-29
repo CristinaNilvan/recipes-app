@@ -7,7 +7,7 @@ using RecipesApp.Console.CRUD;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputManagement
 {
     internal class RecipeInputManager
     {

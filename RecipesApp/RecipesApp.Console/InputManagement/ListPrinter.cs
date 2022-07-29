@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputManagement
 {
     internal class ListPrinter
     {
