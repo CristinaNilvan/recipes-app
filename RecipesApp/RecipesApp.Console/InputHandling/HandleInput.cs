@@ -17,43 +17,48 @@ namespace RecipesApp.Console.InputHandling
         {
             if (entity == 1)
             {
-                if (operation == 1)
-                {
-                    var ingredient = HandleIngredientInput.HandleCreateIngredient();
-
-                    if (ingredient != null)
-                    {
-                        System.Console.WriteLine("Ingredient created successfully!");
-                        ingredients.Add(ingredient);
-                    }
-                    else
-                        System.Console.WriteLine("Something went wrong!");
-                }
-
-                if (operation == 2)
-                {
-                    HandleIngredientInput.HandleReadIngredients(ingredients);
-                }
-
-                if (operation == 3)
-                {
-                    HandleIngredientInput.HandleUpdateIngredient(ingredients);
-
-                    System.Console.WriteLine("The list after the update: ");
-                    ListPrinter.PrintList(ingredients);
-                }
-
-                if (operation == 4)
-                {
-                    HandleIngredientInput.HandleDeleteIngredient(ingredients);
-
-                    System.Console.WriteLine("The list after the deletion: ");
-                    ListPrinter.PrintList(ingredients);
-                }
+                DoIngredientOperation(operation);
             }
             else if (entity == 2)
             {
 
+            }
+        }
+
+        private static void DoIngredientOperation(int operation)
+        {
+            if (operation == 1)
+            {
+                var ingredient = HandleIngredientInput.HandleCreateIngredient();
+
+                if (ingredient != null)
+                {
+                    System.Console.WriteLine("Ingredient created successfully!");
+                    ingredients.Add(ingredient);
+                }
+                else
+                    System.Console.WriteLine("Something went wrong!");
+            }
+
+            if (operation == 2)
+            {
+                HandleIngredientInput.HandleReadIngredients(ingredients);
+            }
+
+            if (operation == 3)
+            {
+                HandleIngredientInput.HandleUpdateIngredient(ingredients);
+
+                System.Console.WriteLine("The list after the update: ");
+                ListPrinter.PrintList(ingredients);
+            }
+
+            if (operation == 4)
+            {
+                HandleIngredientInput.HandleDeleteIngredient(ingredients);
+
+                System.Console.WriteLine("The list after the deletion: ");
+                ListPrinter.PrintList(ingredients);
             }
         }
     }
