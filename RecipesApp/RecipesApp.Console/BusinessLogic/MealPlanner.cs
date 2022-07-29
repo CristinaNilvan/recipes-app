@@ -14,8 +14,7 @@ namespace RecipesApp.Console.BusinessLogic
 
         public MealPlanner(List<Recipe> allRecipes)
         {
-            _allRecipes = new List<Recipe>();
-            _allRecipes.AddRange(allRecipes);
+            _allRecipes = new List<Recipe>(allRecipes);
         }
 
         public MealPlan GenerateMealPlan(MealType mealType, int calories)
