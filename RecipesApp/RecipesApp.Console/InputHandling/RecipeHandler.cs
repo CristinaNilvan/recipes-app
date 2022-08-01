@@ -68,7 +68,7 @@ namespace RecipesApp.Console.InputHandling
 
         private static List<Ingredient> CreateIngredientList()
         {
-            var ingredients = new List<Ingredient>();
+            var recipeIngredients = new List<Ingredient>();
 
             System.Console.WriteLine("For the ingredients you can: add from current ingredients or create new ingredient");
 
@@ -84,15 +84,16 @@ namespace RecipesApp.Console.InputHandling
                     System.Console.WriteLine("Enter the number of the element you want to add: ");
                     var number = Convert.ToInt32(System.Console.ReadLine());
                     var element = EntitiesHandler.Ingredients.ElementAt(number - 1);
-                    ingredients.Add(element);
+                    recipeIngredients.Add(element);
                 }
                 else if (choice == 2)
                 {
                     var ingredient = IngredientHandler.HandleCreateIngredient();
-                    ingredients.Add(ingredient);
+                    recipeIngredients.Add(ingredient);
+                    EntitiesHandler.Ingredients.Add(ingredient);
                 }
 
-                System.Console.WriteLine("What do you want to do next? 1 - continue; 0 - exit");
+                System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients to recipe; 0 - exit");
                 var nextChoice = Convert.ToInt32(System.Console.ReadLine());
 
                 if (nextChoice == 0)
@@ -101,7 +102,7 @@ namespace RecipesApp.Console.InputHandling
                 }
             }
 
-            return ingredients;
+            return recipeIngredients;
         }
     }
 }
