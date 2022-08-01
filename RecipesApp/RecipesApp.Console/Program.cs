@@ -1,7 +1,7 @@
 ﻿using RecipesApp.Domain.Models;
 using RecipesApp.Console.FileAssignment;
 using RecipesApp.Console.InputManagement;
-using RecipesApp.Console.Logic;
+using RecipesApp.Console.Logic;        
 
 Console.WriteLine("Hello!");
 
