@@ -7,7 +7,7 @@ using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 using RecipesApp.Console.Logic;
 
-namespace RecipesApp.Console.InputManagement
+namespace RecipesApp.Console.InputHandling
 {
     internal class PlannerInputManager
     {

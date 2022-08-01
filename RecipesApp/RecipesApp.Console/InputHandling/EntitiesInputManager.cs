@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.InputManagement
+namespace RecipesApp.Console.InputHandling
 {
     internal class EntitiesInputManager
     {
