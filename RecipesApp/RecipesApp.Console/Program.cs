@@ -11,8 +11,8 @@ var ingredients = new List<Ingredient>()
     new Ingredient(5, "zahar"),
 };
 
-FileOperations.DoDirectorySetup();
-FileOperations.DoFileSetup();
+FileOperations.DirectorySetup();
+FileOperations.FileSetup();
 FileOperations.WriteIngredientsInFile(ingredients);
 FileOperations.ReadIngredientsFromFile();
 

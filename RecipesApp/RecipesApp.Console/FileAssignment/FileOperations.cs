@@ -13,13 +13,13 @@ namespace RecipesApp.Console.FileAssignment
         private static string? _filePath;
         private static FileStream _fileStream;
 
-        public static void DoDirectorySetup()
+        public static void DirectorySetup()
         {
             _directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "AssignmentFolder");
             Directory.CreateDirectory(_directoryPath);
         }
 
-        public static void DoFileSetup()
+        public static void FileSetup()
         {
             _filePath = Path.Combine(_directoryPath, "IngredientsFile.txt");
             _fileStream = File.Create(_filePath);
