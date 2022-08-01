@@ -24,7 +24,7 @@ namespace RecipesApp.Console.InputManagement
             }
             else if (entity == 2)
             {
-
+                DoRecipeOperation(operation);
             }
         }
 
@@ -59,6 +59,43 @@ namespace RecipesApp.Console.InputManagement
             if (operation == 4)
             {
                 IngredientInputManager.HandleDeleteIngredient(ingredients);
+
+                System.Console.WriteLine("The list after the deletion: ");
+                ListPrinter.PrintList(ingredients);
+            }
+        }
+
+        private static void DoRecipeOperation(int operation)
+        {
+            if (operation == 1)
+            {
+                var recipe = RecipeInputManager.HandleCreateRecipe();
+
+                if (recipe != null)
+                {
+                    System.Console.WriteLine("Recipe created successfully!");
+                    recipes.Add(recipe);
+                }
+                else
+                    System.Console.WriteLine("Something went wrong!");
+            }
+
+            if (operation == 2)
+            {
+                RecipeInputManager.HandleReadRecipes(recipes);
+            }
+
+            if (operation == 3)
+            {
+                RecipeInputManager.HandleUpdateRecipe(recipes);
+
+                System.Console.WriteLine("The list after the update: ");
+                ListPrinter.PrintList(recipes);
+            }
+
+            if (operation == 4)
+            {
+                RecipeInputManager.HandleDeleteRecipe(recipes);
 
                 System.Console.WriteLine("The list after the deletion: ");
                 ListPrinter.PrintList(ingredients);
