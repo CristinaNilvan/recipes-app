@@ -35,7 +35,7 @@ namespace RecipesApp.Console.InputHandling
             var servingTime = System.Console.ReadLine();
             var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
 
-            return RecipeCRUDOperations.Create(id, name, author, description, new RecipeType(enumMealType, enumServingTime),
+            return RecipeCRUD.Create(id, name, author, description, new RecipeType(enumMealType, enumServingTime),
                 CreateIngredientList());
         }
 
@@ -53,7 +53,7 @@ namespace RecipesApp.Console.InputHandling
             var number = Convert.ToInt32(System.Console.ReadLine());
             var recipe = HandleCreateRecipe();
 
-            RecipeCRUDOperations.Update(recipes, recipes.ElementAt(number - 1), recipe);
+            RecipeCRUD.Update(recipes, recipes.ElementAt(number - 1), recipe);
         }
 
         public static void HandleDeleteRecipe(List<Recipe> recipes)
@@ -63,7 +63,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Enter the number of the element you want to delete: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
 
-            RecipeCRUDOperations.Delete(recipes, recipes.ElementAt(number - 1));
+            RecipeCRUD.Delete(recipes, recipes.ElementAt(number - 1));
         }
 
         private static List<Ingredient> CreateIngredientList()

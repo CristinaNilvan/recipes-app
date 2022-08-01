@@ -7,7 +7,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.CRUD
 {
-    internal class RecipeCRUDOperations : BaseCRUDOperations<Recipe>
+    internal class RecipeCRUD : BaseCRUD<Recipe>
     {
         public static Recipe Create(int id, string? name, string? author, string? description, RecipeType? type, int calories,
             float fats, float carbs, float proteins, List<Ingredient>? ingredients)

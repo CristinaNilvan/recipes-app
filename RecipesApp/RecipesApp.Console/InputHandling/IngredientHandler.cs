@@ -37,7 +37,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Proteins: ");
             var proteins = float.Parse(System.Console.ReadLine());
 
-            return IngredientCRUDOperations.Create(id, name, enumCategory, calories, fats, carbs, proteins);
+            return IngredientCRUD.Create(id, name, enumCategory, calories, fats, carbs, proteins);
         }
 
         public static void HandleReadIngredients(List<Ingredient> ingredients)
@@ -54,7 +54,7 @@ namespace RecipesApp.Console.InputHandling
             var number = Convert.ToInt32(System.Console.ReadLine());
             var ingredient = HandleCreateIngredient();
 
-            IngredientCRUDOperations.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
+            IngredientCRUD.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
         }
 
         public static void HandleDeleteIngredient(List<Ingredient> ingredients)
@@ -64,7 +64,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Enter the number of the element you want to delete: ");
             var number = Convert.ToInt32(System.Console.ReadLine());
 
-            IngredientCRUDOperations.Delete(ingredients, ingredients.ElementAt(number - 1));
+            IngredientCRUD.Delete(ingredients, ingredients.ElementAt(number - 1));
         }
     }
 }
