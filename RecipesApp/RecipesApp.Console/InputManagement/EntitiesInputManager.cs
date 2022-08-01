@@ -98,7 +98,7 @@ namespace RecipesApp.Console.InputManagement
                 RecipeInputManager.HandleDeleteRecipe(recipes);
 
                 System.Console.WriteLine("The list after the deletion: ");
-                ListPrinter.PrintList(ingredients);
+                ListPrinter.PrintList(recipes);
             }
         }
     }
