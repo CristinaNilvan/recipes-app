@@ -2,15 +2,9 @@
 {
     public class MealPlan
     {
-        public MealPlan()
-        {
-            MealPlanDate = DateTime.UtcNow;
-        }
-
         public Recipe? Breakfast { get; set; }
         public Recipe? Lunch { get; set; }
         public Recipe? Dinner { get; set; }
-        public DateTimeOffset? MealPlanDate { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }
