@@ -10,8 +10,8 @@ namespace RecipesApp.Console.InputManagement
 {
     internal class EntitiesInputManager
     {
-        private static List<Ingredient> ingredients = new List<Ingredient>();
-        private static List<Recipe> recipes = new List<Recipe>();
+        private static List<Ingredient> ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
+        private static List<Recipe> recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
 
         public static List<Ingredient> Ingredients => ingredients;
         public static List<Recipe> Recipes => recipes;

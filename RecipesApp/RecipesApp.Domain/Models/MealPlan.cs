@@ -35,5 +35,12 @@
         {
             Proteins = Breakfast.Proteins + Lunch.Proteins + Dinner.Proteins;
         }
+
+        public override string? ToString()
+        {
+            return $"Breakfast: {Breakfast}\n" +
+                $"Lunch: {Lunch}\n" +
+                $"Dinner: {Dinner}";
+        }
     }
 }

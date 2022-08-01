@@ -27,7 +27,11 @@ namespace RecipesApp.Console.InputManagement
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
             var planner = new MealPlanner(EntitiesInputManager.Recipes);
-            mealPlans.Add(planner.GenerateMealPlan(enumMealType, calories));
+            var mealPlan = planner.GenerateMealPlan(enumMealType, calories);
+            mealPlans.Add(mealPlan);
+
+            System.Console.WriteLine("The meal plan is: ");
+            System.Console.WriteLine(mealPlan);
         }
     }
 }
