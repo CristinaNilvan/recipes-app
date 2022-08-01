@@ -17,13 +17,14 @@
             Ingredients = new List<Ingredient>(ingredients);
         }
 
-        public Recipe(int id, string? name, string? author, string? description, RecipeType? type)
+        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, List<Ingredient>? ingredients)
         {
             Id = id;
             Name = name;
             Author = author;
             Description = description;
             Type = type;
+            Ingredients = new List<Ingredient>(ingredients);
         }
 
         //Added for verification
