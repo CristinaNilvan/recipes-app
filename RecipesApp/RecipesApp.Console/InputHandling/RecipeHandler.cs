@@ -9,7 +9,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class RecipeInputManager
+    internal class RecipeHandler
     {
         public static Recipe HandleCreateRecipe()
         {
@@ -80,15 +80,15 @@ namespace RecipesApp.Console.InputHandling
 
                 if (choice == 1)
                 {
-                    IngredientInputManager.HandleReadIngredients(EntitiesInputManager.Ingredients);
+                    IngredientHandler.HandleReadIngredients(EntitiesHandler.Ingredients);
                     System.Console.WriteLine("Enter the number of the element you want to add: ");
                     var number = Convert.ToInt32(System.Console.ReadLine());
-                    var element = EntitiesInputManager.Ingredients.ElementAt(number - 1);
+                    var element = EntitiesHandler.Ingredients.ElementAt(number - 1);
                     ingredients.Add(element);
                 }
                 else if (choice == 2)
                 {
-                    var ingredient = IngredientInputManager.HandleCreateIngredient();
+                    var ingredient = IngredientHandler.HandleCreateIngredient();
                     ingredients.Add(ingredient);
                 }
 

@@ -9,7 +9,7 @@ using RecipesApp.Console.Logic;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class PlannerInputManager
+    internal class MealPlannerHandler
     {
         private static List<MealPlan> mealPlans = new List<MealPlan>();
 
@@ -26,7 +26,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Total number of calories: ");
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
-            var planner = new MealPlanner(EntitiesInputManager.Recipes);
+            var planner = new MealPlanner(EntitiesHandler.Recipes);
             var mealPlan = planner.GenerateMealPlan(enumMealType, calories);
             mealPlans.Add(mealPlan);
 

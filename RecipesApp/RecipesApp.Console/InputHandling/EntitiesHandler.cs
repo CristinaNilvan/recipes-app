@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
-    internal class EntitiesInputManager
+    internal class EntitiesHandler
     {
         private static List<Ingredient> ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
         private static List<Recipe> recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
@@ -32,7 +32,7 @@ namespace RecipesApp.Console.InputHandling
         {
             if (operation == 1)
             {
-                var ingredient = IngredientInputManager.HandleCreateIngredient();
+                var ingredient = IngredientHandler.HandleCreateIngredient();
 
                 if (ingredient != null)
                 {
@@ -45,12 +45,12 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 2)
             {
-                IngredientInputManager.HandleReadIngredients(ingredients);
+                IngredientHandler.HandleReadIngredients(ingredients);
             }
 
             if (operation == 3)
             {
-                IngredientInputManager.HandleUpdateIngredient(ingredients);
+                IngredientHandler.HandleUpdateIngredient(ingredients);
 
                 System.Console.WriteLine("The list after the update: ");
                 ListPrinter.PrintList(ingredients);
@@ -58,7 +58,7 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 4)
             {
-                IngredientInputManager.HandleDeleteIngredient(ingredients);
+                IngredientHandler.HandleDeleteIngredient(ingredients);
 
                 System.Console.WriteLine("The list after the deletion: ");
                 ListPrinter.PrintList(ingredients);
@@ -69,7 +69,7 @@ namespace RecipesApp.Console.InputHandling
         {
             if (operation == 1)
             {
-                var recipe = RecipeInputManager.HandleCreateRecipe();
+                var recipe = RecipeHandler.HandleCreateRecipe();
 
                 if (recipe != null)
                 {
@@ -82,12 +82,12 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 2)
             {
-                RecipeInputManager.HandleReadRecipes(recipes);
+                RecipeHandler.HandleReadRecipes(recipes);
             }
 
             if (operation == 3)
             {
-                RecipeInputManager.HandleUpdateRecipe(recipes);
+                RecipeHandler.HandleUpdateRecipe(recipes);
 
                 System.Console.WriteLine("The list after the update: ");
                 ListPrinter.PrintList(recipes);
@@ -95,7 +95,7 @@ namespace RecipesApp.Console.InputHandling
 
             if (operation == 4)
             {
-                RecipeInputManager.HandleDeleteRecipe(recipes);
+                RecipeHandler.HandleDeleteRecipe(recipes);
 
                 System.Console.WriteLine("The list after the deletion: ");
                 ListPrinter.PrintList(recipes);

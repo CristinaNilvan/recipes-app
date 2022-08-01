@@ -63,7 +63,7 @@ static void DoCRUDOnEntities()
             var chosenOperation = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Chosen operation: {chosenOperation}");
 
-            EntitiesInputManager.HandleInputFromConsole(chosenEntity, chosenOperation);
+            EntitiesHandler.HandleInputFromConsole(chosenEntity, chosenOperation);
         }
     }
 }
@@ -80,6 +80,6 @@ static void FindMealPlan()
             break;
         }
 
-        PlannerInputManager.HandleInputFromConsole();
+        MealPlannerHandler.HandleInputFromConsole();
     }
 }
