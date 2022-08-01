@@ -1,21 +1,7 @@
 ﻿using RecipesApp.Domain.Models;
 using RecipesApp.Console.FileAssignment;
 using RecipesApp.Console.InputManagement;
-
-/*var ingredients = new List<Ingredient>()
-{
-    new Ingredient(1, "lapte"),
-    new Ingredient(2, "ou"),
-    new Ingredient(3, "caisa"),
-    new Ingredient(4, "ulei"),
-    new Ingredient(5, "zahar"),
-};
-
-FileOperations.DirectorySetup();
-FileOperations.FileSetup();
-FileOperations.WriteIngredientsInFile(ingredients);
-FileOperations.ReadIngredientsFromFile();*/
-
+using RecipesApp.Console.Logic;
 
 Console.WriteLine("Hello!");
 
