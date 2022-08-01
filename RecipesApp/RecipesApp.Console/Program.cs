@@ -2,7 +2,7 @@
 using RecipesApp.Console.FileAssignment;
 using RecipesApp.Console.InputManagement;
 
-var ingredients = new List<Ingredient>()
+/*var ingredients = new List<Ingredient>()
 {
     new Ingredient(1, "lapte"),
     new Ingredient(2, "ou"),
@@ -14,10 +14,10 @@ var ingredients = new List<Ingredient>()
 FileOperations.DirectorySetup();
 FileOperations.FileSetup();
 FileOperations.WriteIngredientsInFile(ingredients);
-FileOperations.ReadIngredientsFromFile();
+FileOperations.ReadIngredientsFromFile();*/
 
 
-/*Console.WriteLine("Hello!");
+Console.WriteLine("Hello!");
 
 while (true)
 {
@@ -34,7 +34,7 @@ while (true)
     else if (nextOperation == 2)
     {
         FindMealPlan();
-    } 
+    }
     else if (nextOperation == 3)
     {
         break;
@@ -97,4 +97,4 @@ static void FindMealPlan()
 
         PlannerInputManager.HandleInputFromConsole();
     }
-}*/
+}
