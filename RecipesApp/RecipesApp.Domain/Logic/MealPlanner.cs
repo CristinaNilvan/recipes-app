@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.Logic
+namespace RecipesApp.Domain.Logic
 {
-    internal class MealPlanner
+    public class MealPlanner
     {
         private List<Recipe>? _allRecipes;
 

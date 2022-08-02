@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesApp.Console.CRUD
+namespace RecipesApp.Domain.CRUD
 {
-    internal abstract class BaseCRUD<T>
+    public abstract class BaseCRUD<T>
     {
         public static void Update(List<T> list, T firstElement, T secondElement)
         {

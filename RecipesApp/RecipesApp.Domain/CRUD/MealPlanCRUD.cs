@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.CRUD
+namespace RecipesApp.Domain.CRUD
 {
-    internal class MealPlanCRUD : BaseCRUD<MealPlan>
+    public class MealPlanCRUD : BaseCRUD<MealPlan>
     {
         public static MealPlan Create()
         {

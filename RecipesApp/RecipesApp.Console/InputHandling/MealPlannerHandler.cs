@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
-using RecipesApp.Console.Logic;
+using RecipesApp.Domain.Logic;
 
 namespace RecipesApp.Console.InputHandling
 {
