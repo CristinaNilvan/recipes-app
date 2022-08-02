@@ -56,7 +56,7 @@
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
-        public List<Ingredient>? Ingredients { get; set; }
+        public List<Ingredient>? Ingredients { get; private set; }
 
         public void AddIngredient(Ingredient ingredient)
         {
@@ -65,6 +65,15 @@
             Fats += ingredient.Fats;
             Carbs += ingredient.Carbs;
             Proteins += ingredient.Proteins;
+        }
+
+        public void RemoveIngredient(Ingredient ingredient)
+        {
+            Ingredients.Remove(ingredient);
+            Calories -= ingredient.Calories;
+            Fats -= ingredient.Fats;
+            Carbs -= ingredient.Carbs;
+            Proteins -= ingredient.Proteins;
         }
 
         public override bool Equals(object? obj)
