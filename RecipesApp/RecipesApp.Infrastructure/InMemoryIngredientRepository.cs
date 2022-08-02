@@ -40,6 +40,7 @@ namespace RecipesApp.Infrastructure
         {
             var ingredient = _ingredients.FirstOrDefault(x => x.Id == ingredientId);
             var index = _ingredients.IndexOf(ingredient);
+            newIngredient.Id = ingredientId;
             _ingredients[index] = newIngredient;
         }
     }

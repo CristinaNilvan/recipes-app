@@ -6,17 +6,56 @@ using System.Threading.Tasks;
 using RecipesApp.Domain.CRUD;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
+using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Console.InputHandling
 {
     internal class IngredientHandler
     {
-        public static Ingredient HandleCreateIngredient()
+        private static InMemoryIngredientRepository _repository = new InMemoryIngredientRepository();
+
+        public static void HandleCreateIngredient()
+        {
+            _repository.CreateIngredient(CreateIngredientFromInput());
+        }
+
+        public static void HandleReadIngredient()
+        {
+            System.Console.WriteLine("Please enter the id: ");
+            var id = Convert.ToInt32(System.Console.ReadLine());
+            System.Console.WriteLine(_repository.GetIngredient(id));
+        }
+
+        public static void HandleUpdateIngredient()
+        {
+            HandleReadIngredients();
+
+            System.Console.WriteLine("Enter the id of the element you want to update: ");
+            var id = Convert.ToInt32(System.Console.ReadLine());
+            var ingredient = CreateIngredientFromInput();
+
+            _repository.UpdateIngredient(id, ingredient);
+        }
+
+        public static void HandleDeleteIngredient()
+        {
+            HandleReadIngredients();
+
+            System.Console.WriteLine("Enter the id of the element you want to delete: ");
+            var id = Convert.ToInt32(System.Console.ReadLine());
+
+            _repository.DeleteIngredient(id);
+        }
+
+        public static void HandleReadIngredients()
+        {
+            System.Console.WriteLine("Here are the current ingredients: ");
+            ListPrinter.PrintList(_repository.Ingredients);
+        }
+
+        private static Ingredient CreateIngredientFromInput()
         {
             System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Id: ");
-            var id = Convert.ToInt32(System.Console.ReadLine());
 
             System.Console.WriteLine("Name: ");
             var name = System.Console.ReadLine();
@@ -37,34 +76,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Proteins: ");
             var proteins = float.Parse(System.Console.ReadLine());
 
-            return IngredientCRUD.Create(id, name, enumCategory, calories, fats, carbs, proteins);
-        }
-
-        public static void HandleReadIngredients(List<Ingredient> ingredients)
-        {
-            System.Console.WriteLine("Here are the current ingredients: ");
-            ListPrinter.PrintList(ingredients);
-        }
-
-        public static void HandleUpdateIngredient(List<Ingredient> ingredients)
-        {
-            HandleReadIngredients(ingredients);
-
-            System.Console.WriteLine("Enter the number of the element you want to update: ");
-            var number = Convert.ToInt32(System.Console.ReadLine());
-            var ingredient = HandleCreateIngredient();
-
-            IngredientCRUD.Update(ingredients, ingredients.ElementAt(number - 1), ingredient);
-        }
-
-        public static void HandleDeleteIngredient(List<Ingredient> ingredients)
-        {
-            HandleReadIngredients(ingredients);
-
-            System.Console.WriteLine("Enter the number of the element you want to delete: ");
-            var number = Convert.ToInt32(System.Console.ReadLine());
-
-            IngredientCRUD.Delete(ingredients, ingredients.ElementAt(number - 1));
+            return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
         }
     }
 }

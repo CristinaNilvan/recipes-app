@@ -80,7 +80,7 @@ namespace RecipesApp.Console.InputHandling
 
                 if (choice == 1)
                 {
-                    IngredientHandler.HandleReadIngredients(EntitiesHandler.Ingredients);
+                    //IngredientHandler.HandleReadIngredients(EntitiesHandler.Ingredients);
                     System.Console.WriteLine("Enter the number of the element you want to add: ");
                     var number = Convert.ToInt32(System.Console.ReadLine());
                     var element = EntitiesHandler.Ingredients.ElementAt(number - 1);
@@ -88,9 +88,9 @@ namespace RecipesApp.Console.InputHandling
                 }
                 else if (choice == 2)
                 {
-                    var ingredient = IngredientHandler.HandleCreateIngredient();
+                   /* var ingredient = IngredientHandler.HandleCreateIngredient();
                     recipeIngredients.Add(ingredient);
-                    EntitiesHandler.Ingredients.Add(ingredient);
+                    EntitiesHandler.Ingredients.Add(ingredient);*/
                 }
 
                 System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients to recipe; 0 - exit");

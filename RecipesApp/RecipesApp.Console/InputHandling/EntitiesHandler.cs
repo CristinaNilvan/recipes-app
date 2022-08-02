@@ -30,38 +30,26 @@ namespace RecipesApp.Console.InputHandling
 
         private static void DoIngredientOperation(int operation)
         {
-            if (operation == 1)
+            switch (operation)
             {
-                var ingredient = IngredientHandler.HandleCreateIngredient();
-
-                if (ingredient != null)
-                {
-                    System.Console.WriteLine("Ingredient created successfully!");
-                    ingredients.Add(ingredient);
-                }
-                else
-                    System.Console.WriteLine("Something went wrong!");
-            }
-
-            if (operation == 2)
-            {
-                IngredientHandler.HandleReadIngredients(ingredients);
-            }
-
-            if (operation == 3)
-            {
-                IngredientHandler.HandleUpdateIngredient(ingredients);
-
-                System.Console.WriteLine("The list after the update: ");
-                ListPrinter.PrintList(ingredients);
-            }
-
-            if (operation == 4)
-            {
-                IngredientHandler.HandleDeleteIngredient(ingredients);
-
-                System.Console.WriteLine("The list after the deletion: ");
-                ListPrinter.PrintList(ingredients);
+                case 1:
+                    IngredientHandler.HandleCreateIngredient();
+                    break;
+                case 2:
+                    IngredientHandler.HandleReadIngredient();
+                    break;
+                case 3:
+                    IngredientHandler.HandleUpdateIngredient();
+                    break;
+                case 4:
+                    IngredientHandler.HandleDeleteIngredient();
+                    break;
+                case 5:
+                    IngredientHandler.HandleReadIngredients();
+                    break;
+                default:
+                    System.Console.WriteLine("Invalid number for operation!");
+                    break;
             }
         }
 
