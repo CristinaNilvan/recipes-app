@@ -11,10 +11,10 @@ namespace RecipesApp.Application
     {
         void CreateRecipe(Recipe recipe);
         Recipe GetRecipe(int recipeId);
-        void UpdateRecipe(int recipeId, Recipe recipe);
+        void UpdateRecipe(int recipeId, Recipe newRecipe);
         void DeleteRecipe(int recipeId);
         void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
-        void DeleteIngredientFromRecipe(int recipeId, Ingredient ingredient);
-        IEnumerable<Recipe> GetIngredients();
+        void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
+        IEnumerable<Recipe> GetRecipes();
     }
 }
