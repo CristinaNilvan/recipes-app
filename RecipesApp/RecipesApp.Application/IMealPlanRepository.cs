@@ -11,7 +11,7 @@ namespace RecipesApp.Application
     {
         void CreateMealPlan(MealPlan mealPlan);
         MealPlan GetMealPlan(int mealPlanId);
-        void UpdateMealPlan(int mealPlanId, MealPlan mealPlan);
+        void UpdateMealPlan(int mealPlanId, MealPlan newMealPlan);
         void DeleteMealPlan(int mealPlanId);
         IEnumerable<MealPlan> GetMealPlans();
     }
