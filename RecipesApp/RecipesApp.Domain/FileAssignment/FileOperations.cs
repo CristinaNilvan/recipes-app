@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RecipesApp.Domain.Models;
+﻿using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.FileAssignment
+namespace RecipesApp.Domain.FileAssignment
 {
     internal class FileOperations
     {
@@ -49,7 +44,7 @@ namespace RecipesApp.Console.FileAssignment
                     if (string.IsNullOrEmpty(line))
                         read = false;
                     else 
-                        System.Console.WriteLine(line);
+                        Console.WriteLine(line);
                 }
             }
         }
