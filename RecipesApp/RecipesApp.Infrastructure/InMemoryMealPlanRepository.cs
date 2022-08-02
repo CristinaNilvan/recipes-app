@@ -40,6 +40,7 @@ namespace RecipesApp.Infrastructure
         {
             var mealPlan = _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
             var index = _mealPlans.IndexOf(mealPlan);
+            mealPlan.Id = mealPlanId;
             _mealPlans[index] = newMealPlan;
         }
     }

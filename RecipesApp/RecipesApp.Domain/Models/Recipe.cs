@@ -39,6 +39,15 @@
             Ingredients = new List<Ingredient>(ingredients);
         }
 
+        public Recipe(string? name, string? author, string? description, RecipeType? type, List<Ingredient>? ingredients)
+        {
+            Name = name;
+            Author = author;
+            Description = description;
+            Type = type;
+            Ingredients = new List<Ingredient>(ingredients);
+        }
+
         //Added for verification
         public Recipe(int id, string? name)
         {

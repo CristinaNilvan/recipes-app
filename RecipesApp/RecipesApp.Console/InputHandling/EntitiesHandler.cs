@@ -10,12 +10,6 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class EntitiesHandler
     {
-        private static List<Ingredient> ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
-        private static List<Recipe> recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
-
-        public static List<Ingredient> Ingredients => ingredients;
-        public static List<Recipe> Recipes => recipes;
-
         public static void HandleInputFromConsole(int entity, int operation)
         {
             if (entity == 1)
@@ -55,38 +49,26 @@ namespace RecipesApp.Console.InputHandling
 
         private static void DoRecipeOperation(int operation)
         {
-            if (operation == 1)
+            switch (operation)
             {
-                var recipe = RecipeHandler.HandleCreateRecipe();
-
-                if (recipe != null)
-                {
-                    System.Console.WriteLine("Recipe created successfully!");
-                    recipes.Add(recipe);
-                }
-                else
-                    System.Console.WriteLine("Something went wrong!");
-            }
-
-            if (operation == 2)
-            {
-                RecipeHandler.HandleReadRecipes(recipes);
-            }
-
-            if (operation == 3)
-            {
-                RecipeHandler.HandleUpdateRecipe(recipes);
-
-                System.Console.WriteLine("The list after the update: ");
-                ListPrinter.PrintList(recipes);
-            }
-
-            if (operation == 4)
-            {
-                RecipeHandler.HandleDeleteRecipe(recipes);
-
-                System.Console.WriteLine("The list after the deletion: ");
-                ListPrinter.PrintList(recipes);
+                case 1:
+                    RecipeHandler.HandleCreateRecipe();
+                    break;
+                case 2:
+                    RecipeHandler.HandleReadRecipe();
+                    break;
+                case 3:
+                    RecipeHandler.HandleUpdateRecipe();
+                    break;
+                case 4:
+                    RecipeHandler.HandleDeleteRecipe();
+                    break;
+                case 5:
+                    RecipeHandler.HandleReadRecipes();
+                    break;
+                default:
+                    System.Console.WriteLine("Invalid number for operation!");
+                    break;
             }
         }
     }

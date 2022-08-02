@@ -52,7 +52,8 @@ namespace RecipesApp.Infrastructure
         public void UpdateRecipe(int recipeId, Recipe newRecipe)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
-            var index = _recipes.IndexOf(newRecipe);
+            var index = _recipes.IndexOf(recipe);
+            newRecipe.Id = recipeId;
             _recipes[index] = newRecipe;
         }
     }

@@ -17,7 +17,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static void HandleInputFromConsole()
         {
-            System.Console.WriteLine("Please enter the following data: ");
+            /*System.Console.WriteLine("Please enter the following data: ");
 
             System.Console.WriteLine("Meal Type [Normal, Vegetarian, Vegan]: ");
             var readMealType = System.Console.ReadLine();
@@ -31,7 +31,7 @@ namespace RecipesApp.Console.InputHandling
             mealPlans.Add(mealPlan);
 
             System.Console.WriteLine("The meal plan is: ");
-            System.Console.WriteLine(mealPlan);
+            System.Console.WriteLine(mealPlan);*/
         }
     }
 }

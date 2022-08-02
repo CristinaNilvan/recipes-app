@@ -14,6 +14,8 @@ namespace RecipesApp.Console.InputHandling
     {
         private static InMemoryIngredientRepository _repository = new InMemoryIngredientRepository();
 
+        public static InMemoryIngredientRepository IngredientRepository => _repository;
+
         public static void HandleCreateIngredient()
         {
             _repository.CreateIngredient(CreateIngredientFromInput());
@@ -53,7 +55,7 @@ namespace RecipesApp.Console.InputHandling
             ListPrinter.PrintList(_repository.Ingredients);
         }
 
-        private static Ingredient CreateIngredientFromInput()
+        public static Ingredient CreateIngredientFromInput()
         {
             System.Console.WriteLine("Please enter the following data: ");
 
