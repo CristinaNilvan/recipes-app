@@ -13,6 +13,6 @@ namespace RecipesApp.Application
         Ingredient GetIngredient(int ingredientId);
         void UpdateIngredient(int ingredientId, Ingredient newIngredient);
         void DeleteIngredient(int ingredientId);
-        IEnumerable<Ingredient> GetIngredients();
+        List<Ingredient> GetIngredients();
     }
 }

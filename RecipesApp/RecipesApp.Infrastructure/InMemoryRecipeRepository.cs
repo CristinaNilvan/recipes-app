@@ -39,14 +39,14 @@ namespace RecipesApp.Infrastructure
             _recipes.Remove(recipe);
         }
 
-        public IEnumerable<Recipe> GetRecipes()
-        {
-            return _recipes;
-        }
-
         public Recipe GetRecipe(int recipeId)
         {
             return _recipes.FirstOrDefault(x => x.Id == recipeId);
+        }
+
+        public List<Recipe> GetRecipes()
+        {
+            return _recipes;
         }
 
         public void UpdateRecipe(int recipeId, Recipe newRecipe)

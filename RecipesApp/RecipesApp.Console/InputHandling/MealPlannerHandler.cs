@@ -17,7 +17,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static void HandleInputFromConsole()
         {
-            /*System.Console.WriteLine("Please enter the following data: ");
+            System.Console.WriteLine("Please enter the following data: ");
 
             System.Console.WriteLine("Meal Type [Normal, Vegetarian, Vegan]: ");
             var readMealType = System.Console.ReadLine();
@@ -26,12 +26,12 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Total number of calories: ");
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
-            var planner = new MealPlanner(EntitiesHandler.Recipes);
+            var planner = new MealPlanner(RecipeHandler.RecipeRepository.GetRecipes());
             var mealPlan = planner.GenerateMealPlan(enumMealType, calories);
             mealPlans.Add(mealPlan);
 
             System.Console.WriteLine("The meal plan is: ");
-            System.Console.WriteLine(mealPlan);*/
+            System.Console.WriteLine(mealPlan);
         }
     }
 }

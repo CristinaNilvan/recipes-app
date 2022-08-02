@@ -31,7 +31,7 @@ namespace RecipesApp.Infrastructure
             return _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
         }
 
-        public IEnumerable<MealPlan> GetMealPlans()
+        public List<MealPlan> GetMealPlans()
         {
             return _mealPlans;
         }

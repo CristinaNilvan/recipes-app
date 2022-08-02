@@ -31,7 +31,7 @@ namespace RecipesApp.Infrastructure
             return _ingredients.FirstOrDefault(x => x.Id == ingredientId);
         }
 
-        public IEnumerable<Ingredient> GetIngredients()
+        public List<Ingredient> GetIngredients()
         {
             return _ingredients;
         }

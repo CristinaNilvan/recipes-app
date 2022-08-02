@@ -13,6 +13,6 @@ namespace RecipesApp.Application
         MealPlan GetMealPlan(int mealPlanId);
         void UpdateMealPlan(int mealPlanId, MealPlan newMealPlan);
         void DeleteMealPlan(int mealPlanId);
-        IEnumerable<MealPlan> GetMealPlans();
+        List<MealPlan> GetMealPlans();
     }
 }

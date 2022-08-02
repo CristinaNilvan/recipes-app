@@ -15,6 +15,6 @@ namespace RecipesApp.Application
         void DeleteRecipe(int recipeId);
         void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
         void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
-        IEnumerable<Recipe> GetRecipes();
+        List<Recipe> GetRecipes();
     }
 }

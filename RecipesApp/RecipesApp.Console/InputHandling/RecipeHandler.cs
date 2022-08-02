@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RecipesApp.Domain.CRUD;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure;
@@ -13,6 +12,8 @@ namespace RecipesApp.Console.InputHandling
     internal class RecipeHandler
     {
         private static InMemoryRecipeRepository _repository = new InMemoryRecipeRepository();
+
+        public static InMemoryRecipeRepository RecipeRepository => _repository;
 
         public static void HandleCreateRecipe()
         {
