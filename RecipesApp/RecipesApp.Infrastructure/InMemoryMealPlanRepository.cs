@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Infrastructure
 {
-    internal class InMemoryMealPlanRepository : IMealPlanRepository
+    public class InMemoryMealPlanRepository : IMealPlanRepository
     {
         private List<MealPlan> _mealPlans = new();
 

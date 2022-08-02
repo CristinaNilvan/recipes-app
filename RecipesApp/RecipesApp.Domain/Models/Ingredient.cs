@@ -15,6 +15,16 @@ namespace RecipesApp.Domain.Models
             Proteins = proteins;
         }
 
+        public Ingredient(string? name, IngredientCategory category, int calories, float fats, float carbs, float proteins)
+        {
+            Name = name;
+            Category = category;
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
+        }
+
         //Added for verification
         public Ingredient(int id, string? name, int calories, float fats, float carbs, float proteins)
         {

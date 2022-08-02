@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Infrastructure
 {
-    internal class InMemoryIngredientRepository : IIngredientRepository
+    public class InMemoryIngredientRepository : IIngredientRepository
     {
         private List<Ingredient> _ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
 
