@@ -31,7 +31,7 @@ while (true)
 static void DoCRUDOnEntities()
 {
     var entities = "1 - Ingredient; 2 - Recipe";
-    var operations = "1 - Create; 2 - Read; 3 - Update; 4 - Delete";
+    var operations = "1 - Create; 2 - Read; 3 - Update; 4 - Delete; 5 - Read all";
 
     while (true)
     {

@@ -12,6 +12,8 @@ namespace RecipesApp.Infrastructure
     {
         private List<Ingredient> _ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
 
+        public List<Ingredient> Ingredients => _ingredients;
+
         public void CreateIngredient(Ingredient ingredient)
         {
             ingredient.Id = _ingredients.Count + 1;
