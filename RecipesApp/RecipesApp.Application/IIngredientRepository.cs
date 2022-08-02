@@ -11,7 +11,7 @@ namespace RecipesApp.Application
     {
         void CreateIngredient(Ingredient ingredient);
         Ingredient GetIngredient(int ingredientId);
-        void UpdateIngredient(int ingredientId, Ingredient ingredient);
+        void UpdateIngredient(int ingredientId, Ingredient newIngredient);
         void DeleteIngredient(int ingredientId);
         IEnumerable<Ingredient> GetIngredients();
     }
