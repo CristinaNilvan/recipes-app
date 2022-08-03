@@ -1,7 +1,16 @@
 ﻿using RecipesApp.Assignments.CreationalPatterns.Singleton;
+using RecipesApp.Assignments.CreationalPatterns.FactoryMethod;
 
+//Singleton
 var firstInstance = SingleInMemoryIngredientRepository.Instance;
 var secondInstance = SingleInMemoryIngredientRepository.Instance;
+
+//Factory Method
+var firstHandler = InputHandlerFactory.GetHandler("ingredient");
+var secondHandler = InputHandlerFactory.GetHandler("recipe");
+
+firstHandler.HandleCreate();
+secondHandler.HandleCreate();
 
 /*using RecipesApp.Console.InputHandling;
 
