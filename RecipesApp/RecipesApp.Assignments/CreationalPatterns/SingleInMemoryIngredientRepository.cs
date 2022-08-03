@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RecipesApp.Application;
+﻿using RecipesApp.Application;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns
@@ -11,7 +6,7 @@ namespace RecipesApp.Assignments.CreationalPatterns
     internal class SingleInMemoryIngredientRepository : IIngredientRepository
     {
         private static SingleInMemoryIngredientRepository _ingredientRepository;
-        private List<Ingredient> _ingredients = new List<Ingredient>();
+        private List<Ingredient> _ingredients = new();
 
         private SingleInMemoryIngredientRepository()
         {
