@@ -1,6 +1,6 @@
 ﻿using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Domain.FileAssignment
+namespace RecipesApp.Assignments.FileSystemAndStreams
 {
     internal class FileOperations
     {
@@ -43,7 +43,7 @@ namespace RecipesApp.Domain.FileAssignment
 
                     if (string.IsNullOrEmpty(line))
                         read = false;
-                    else 
+                    else
                         Console.WriteLine(line);
                 }
             }
