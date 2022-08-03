@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecipesApp.Application\RecipesApp.Application.csproj" />
+    <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
