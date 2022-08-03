@@ -1,4 +1,4 @@
-﻿using RecipesApp.Assignments.CreationalPatterns;
+﻿using RecipesApp.Assignments.CreationalPatterns.Singleton;
 
 var firstInstance = SingleInMemoryIngredientRepository.Instance;
 var secondInstance = SingleInMemoryIngredientRepository.Instance;

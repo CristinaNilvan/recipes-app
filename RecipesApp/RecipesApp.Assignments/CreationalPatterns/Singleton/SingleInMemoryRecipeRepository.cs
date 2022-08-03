@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RecipesApp.Application;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Assignments.CreationalPatterns
+namespace RecipesApp.Assignments.CreationalPatterns.Singleton
 {
     public class SingleInMemoryRecipeRepository : IRecipeRepository
     {
