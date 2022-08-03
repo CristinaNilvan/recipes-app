@@ -3,20 +3,21 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns
 {
-    internal class SingleInMemoryIngredientRepository : IIngredientRepository
+    public class SingleInMemoryIngredientRepository : IIngredientRepository
     {
         private static SingleInMemoryIngredientRepository _ingredientRepository;
         private List<Ingredient> _ingredients = new();
 
         private SingleInMemoryIngredientRepository()
         {
-
+            Console.WriteLine("Constructor called");
         }
 
-        public SingleInMemoryIngredientRepository Instance
+        public static SingleInMemoryIngredientRepository Instance
         {
             get
             {
+                Console.WriteLine("Instance called");
                 if (_ingredientRepository == null)
                     _ingredientRepository = new SingleInMemoryIngredientRepository();
 

@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns
 {
-    internal class SingleInMemoryRecipeRepository : IRecipeRepository
+    public class SingleInMemoryRecipeRepository : IRecipeRepository
     {
         private static SingleInMemoryRecipeRepository _recipeRepository;
         private List<Recipe> _recipes = new();

@@ -1,6 +1,9 @@
-﻿using RecipesApp.Domain.Models;
-using RecipesApp.Console.InputHandling;
-using RecipesApp.Domain.Logic;        
+﻿using RecipesApp.Assignments.CreationalPatterns;
+
+var firstInstance = SingleInMemoryIngredientRepository.Instance;
+var secondInstance = SingleInMemoryIngredientRepository.Instance;
+
+/*using RecipesApp.Console.InputHandling;
 
 Console.WriteLine("Hello!");
 
@@ -81,4 +84,4 @@ static void FindMealPlan()
 
         MealPlannerHandler.HandleInputFromConsole();
     }
-}
+}*/

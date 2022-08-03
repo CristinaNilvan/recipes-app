@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
     <ProjectReference Include="..\RecipesApp.Infrastructure\RecipesApp.Infrastructure.csproj" />
+	<ProjectReference Include="..\RecipesApp.Assignments\RecipesApp.Assignments.csproj" />
   </ItemGroup>
 
 </Project>
