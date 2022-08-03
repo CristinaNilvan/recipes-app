@@ -15,13 +15,14 @@ namespace RecipesApp.Assignments.CreationalPatterns
 
         private SingleInMemoryMealPlanRepository()
         {
-            Console.WriteLine("Constructor call");
+            Console.WriteLine("Constructor called");
         }
 
         public static SingleInMemoryMealPlanRepository Instance
         {
             get
             {
+                Console.WriteLine("Instance called");
                 if (_mealPlanRepository == null)
                     _mealPlanRepository = new SingleInMemoryMealPlanRepository();
 

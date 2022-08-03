@@ -15,13 +15,14 @@ namespace RecipesApp.Assignments.CreationalPatterns
 
         private SingleInMemoryRecipeRepository()
         {
-
+            Console.WriteLine("Constructor called");
         }
 
         public SingleInMemoryRecipeRepository Instance
         {
             get
             {
+                Console.WriteLine("Instance called");
                 if (_recipeRepository == null)
                     _recipeRepository = new SingleInMemoryRecipeRepository();
 
