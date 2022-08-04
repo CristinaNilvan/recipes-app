@@ -11,6 +11,7 @@ namespace RecipesApp.Application.Abstractions
     {
         void CreateRecipe(Recipe recipe);
         Recipe GetRecipeById(int recipeId);
+        Recipe GetRecipeByName(string recipeName);
         void UpdateRecipe(int recipeId, Recipe newRecipe);
         void DeleteRecipe(int recipeId);
         void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
