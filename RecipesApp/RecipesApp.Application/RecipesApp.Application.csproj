@@ -7,11 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Ingredient\**" />
+    <EmbeddedResource Remove="Ingredient\**" />
+    <None Remove="Ingredient\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ingredients\Commands\" />
+    <Folder Include="Ingredients\CommandHandlers\" />
+    <Folder Include="Ingredients\QuaryHandlers\" />
+    <Folder Include="Ingredients\Queries\" />
+    <Folder Include="MealPlanners\" />
+    <Folder Include="Recipes\" />
   </ItemGroup>
 
 </Project>
