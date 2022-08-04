@@ -10,9 +10,9 @@ namespace RecipesApp.Application.Abstractions
     public interface IMealPlanRepository
     {
         void CreateMealPlan(MealPlan mealPlan);
-        MealPlan GetMealPlan(int mealPlanId);
+        MealPlan GetMealPlanById(int mealPlanId);
         void UpdateMealPlan(int mealPlanId, MealPlan newMealPlan);
         void DeleteMealPlan(int mealPlanId);
-        List<MealPlan> GetMealPlans();
+        List<MealPlan> GetAllMealPlans();
     }
 }

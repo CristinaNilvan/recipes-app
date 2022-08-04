@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ingredients\Commands\" />
-    <Folder Include="Ingredients\CommandHandlers\" />
     <Folder Include="Ingredients\QuaryHandlers\" />
     <Folder Include="Ingredients\Queries\" />
     <Folder Include="MealPlanners\" />

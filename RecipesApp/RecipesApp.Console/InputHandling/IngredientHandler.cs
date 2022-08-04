@@ -24,7 +24,7 @@ namespace RecipesApp.Console.InputHandling
         {
             System.Console.WriteLine("Please enter the id: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
-            System.Console.WriteLine(_repository.GetIngredient(id));
+            System.Console.WriteLine(_repository.GetIngredientById(id));
         }
 
         public static void HandleUpdateIngredient()

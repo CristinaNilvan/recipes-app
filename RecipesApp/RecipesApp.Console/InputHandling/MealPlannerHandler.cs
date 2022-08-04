@@ -26,7 +26,7 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Total number of calories: ");
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
-            var planner = new MealPlanner(RecipeHandler.RecipeRepository.GetRecipes());
+            var planner = new MealPlanner(RecipeHandler.RecipeRepository.GetAllRecipes());
             var mealPlan = planner.GenerateMealPlan(enumMealType, calories);
             mealPlans.Add(mealPlan);
 

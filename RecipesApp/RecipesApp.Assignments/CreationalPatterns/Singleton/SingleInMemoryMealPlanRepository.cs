@@ -46,12 +46,12 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
             _mealPlans.Remove(mealPlan);
         }
 
-        public MealPlan GetMealPlan(int mealPlanId)
+        public MealPlan GetMealPlanById(int mealPlanId)
         {
             return _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
         }
 
-        public List<MealPlan> GetMealPlans()
+        public List<MealPlan> GetAllMealPlans()
         {
             return _mealPlans;
         }

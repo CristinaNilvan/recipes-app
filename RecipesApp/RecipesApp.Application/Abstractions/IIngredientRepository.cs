@@ -10,9 +10,9 @@ namespace RecipesApp.Application.Abstractions
     public interface IIngredientRepository
     {
         void CreateIngredient(Ingredient ingredient);
-        Ingredient GetIngredient(int ingredientId);
+        Ingredient GetIngredientById(int ingredientId);
         void UpdateIngredient(int ingredientId, Ingredient newIngredient);
         void DeleteIngredient(int ingredientId);
-        List<Ingredient> GetIngredients();
+        List<Ingredient> GetAllIngredients();
     }
 }

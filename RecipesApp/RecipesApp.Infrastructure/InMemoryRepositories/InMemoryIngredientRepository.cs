@@ -26,12 +26,12 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             _ingredients.Remove(ingredient);
         }
 
-        public Ingredient GetIngredient(int ingredientId)
+        public Ingredient GetIngredientById(int ingredientId)
         {
             return _ingredients.FirstOrDefault(x => x.Id == ingredientId);
         }
 
-        public List<Ingredient> GetIngredients()
+        public List<Ingredient> GetAllIngredients()
         {
             return _ingredients;
         }

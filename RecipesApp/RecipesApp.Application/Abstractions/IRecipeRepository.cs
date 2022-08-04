@@ -10,11 +10,11 @@ namespace RecipesApp.Application.Abstractions
     public interface IRecipeRepository
     {
         void CreateRecipe(Recipe recipe);
-        Recipe GetRecipe(int recipeId);
+        Recipe GetRecipeById(int recipeId);
         void UpdateRecipe(int recipeId, Recipe newRecipe);
         void DeleteRecipe(int recipeId);
         void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
         void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
-        List<Recipe> GetRecipes();
+        List<Recipe> GetAllRecipes();
     }
 }

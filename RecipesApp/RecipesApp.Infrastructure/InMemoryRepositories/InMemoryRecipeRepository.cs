@@ -39,12 +39,12 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             _recipes.Remove(recipe);
         }
 
-        public Recipe GetRecipe(int recipeId)
+        public Recipe GetRecipeById(int recipeId)
         {
             return _recipes.FirstOrDefault(x => x.Id == recipeId);
         }
 
-        public List<Recipe> GetRecipes()
+        public List<Recipe> GetAllRecipes()
         {
             return _recipes;
         }
