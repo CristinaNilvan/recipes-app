@@ -48,13 +48,12 @@ namespace RecipesApp.Domain.Models
                    Calories == ingredient.Calories &&
                    Fats == ingredient.Fats &&
                    Carbs == ingredient.Carbs &&
-                   Proteins == ingredient.Proteins &&
-                   Quantity == ingredient.Quantity;
+                   Proteins == ingredient.Proteins;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, Category, Calories, Fats, Carbs, Proteins, Quantity);
+            return HashCode.Combine(Id, Name, Category, Calories, Fats, Carbs, Proteins);
         }
     }
 }

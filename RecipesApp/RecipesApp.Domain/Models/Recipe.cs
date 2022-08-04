@@ -66,7 +66,7 @@ namespace RecipesApp.Domain.Models
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
-        public List<Ingredient>? Ingredients { get; private set; }
+        public List<Ingredient>? Ingredients { get; set; }
 
         public void AddIngredient(Ingredient ingredient)
         {
