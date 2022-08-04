@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MealPlanners\" />
-    <Folder Include="Recipes\QueryHandlers\" />
+    <Folder Include="MealPlannerFeature\Commands\" />
+    <Folder Include="MealPlannerFeature\CommandHandlers\" />
   </ItemGroup>
 
 </Project>
