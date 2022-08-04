@@ -1,4 +1,4 @@
-﻿using RecipesApp.Assignments.CreationalPatterns.Singleton;
+﻿/*using RecipesApp.Assignments.CreationalPatterns.Singleton;
 using RecipesApp.Assignments.CreationalPatterns.FactoryMethod;
 
 //Singleton
@@ -10,9 +10,10 @@ var firstHandler = InputHandlerFactory.GetHandler("ingredient");
 var secondHandler = InputHandlerFactory.GetHandler("recipe");
 
 firstHandler.HandleCreate();
-secondHandler.HandleCreate();
+secondHandler.HandleCreate();*/
 
-/*using RecipesApp.Console.InputHandling;
+
+using RecipesApp.Console.InputHandling;
 
 Console.WriteLine("Hello!");
 
@@ -93,4 +94,4 @@ static void FindMealPlan()
 
         MealPlannerHandler.HandleInputFromConsole();
     }
-}*/
+}

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application
+namespace RecipesApp.Application.Abstractions
 {
     public interface IRecipeRepository
     {

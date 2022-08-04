@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RecipesApp.Application;
+using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns.Singleton
