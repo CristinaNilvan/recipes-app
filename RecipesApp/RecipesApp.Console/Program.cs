@@ -95,3 +95,16 @@ static void FindMealPlan()
         MealPlannerHandler.HandleInputFromConsole();
     }
 }
+
+/*using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Abstractions;
+using RecipesApp.Application.Abstractions;
+using RecipesApp.Infrastructure.InMemoryRepositories;
+
+var diContainer = new ServiceCollection()
+                .AddMediatR(typeof(IIngredientRepository).Assembly)
+                .AddMediatR(typeof(IRecipeRepository).Assembly)
+                .AddScoped<IIngredientRepository, InMemoryIngredientRepository>()
+                .AddScoped<IRecipeRepository, InMemoryRecipeRepository>()
+                .BuildServiceProvider();*/
