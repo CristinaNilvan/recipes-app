@@ -9,9 +9,9 @@ namespace RecipesApp.Domain.Logic
             => recipes.Where(recipe => recipe.Calories <= calories).ToList();
 
         public static List<Recipe> FilterByMealType(MealType mealType, List<Recipe> recipes)
-            => recipes.Where(recipe => recipe.Type.MealType == mealType).ToList();
+            => recipes.Where(recipe => recipe.MealType == mealType).ToList();
 
         public static List<Recipe> FilterByServingTime(ServingTime servingTime, List<Recipe> recipes)
-            => recipes.Where(recipe => recipe.Type.ServingTime == servingTime).ToList();
+            => recipes.Where(recipe => recipe.ServingTime == servingTime).ToList();
     }
 }

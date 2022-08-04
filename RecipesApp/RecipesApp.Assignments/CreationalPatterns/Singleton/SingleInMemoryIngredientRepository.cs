@@ -46,6 +46,11 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
             return _ingredients.FirstOrDefault(x => x.Id == ingredientId);
         }
 
+        public Ingredient GetIngredientByName(string ingredientName)
+        {
+            return _ingredients.FirstOrDefault(x => x.Name == ingredientName);
+        }
+
         public List<Ingredient> GetAllIngredients()
         {
             return _ingredients;

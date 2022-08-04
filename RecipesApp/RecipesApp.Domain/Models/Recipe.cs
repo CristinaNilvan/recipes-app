@@ -1,15 +1,18 @@
-﻿namespace RecipesApp.Domain.Models
+﻿using RecipesApp.Domain.Enums;
+
+namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
-        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, int calories, float fats,
-            float carbs, float proteins, List<Ingredient>? ingredients)
+        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
+            int calories, float fats, float carbs, float proteins, List<Ingredient>? ingredients)
         {
             Id = id;
             Name = name;
             Author = author;
             Description = description;
-            Type = type;
+            MealType = mealType;
+            ServingTime = servingTime;
             Calories = calories;
             Fats = fats;
             Carbs = carbs;
@@ -17,50 +20,48 @@
             Ingredients = new List<Ingredient>(ingredients);
         }
 
-        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, List<Ingredient>? ingredients,
-            int calories)
+        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
+            List<Ingredient>? ingredients, int calories)
         {
             Id = id;
             Name = name;
             Author = author;
             Description = description;
-            Type = type;
+            MealType = mealType;
+            ServingTime = servingTime;
             Calories = calories;
             Ingredients = new List<Ingredient>(ingredients);
         }
 
-        public Recipe(int id, string? name, string? author, string? description, RecipeType? type, List<Ingredient>? ingredients)
+        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
+            List<Ingredient>? ingredients)
         {
             Id = id;
             Name = name;
             Author = author;
             Description = description;
-            Type = type;
+            MealType = mealType;
+            ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
         }
 
-        public Recipe(string? name, string? author, string? description, RecipeType? type, List<Ingredient>? ingredients)
+        public Recipe(string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
+            List<Ingredient>? ingredients)
         {
             Name = name;
             Author = author;
             Description = description;
-            Type = type;
+            MealType = mealType;
+            ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
-        }
-
-        //Added for verification
-        public Recipe(int id, string? name)
-        {
-            Id = id;
-            Name = name;
-            Ingredients = new List<Ingredient>();
         }
 
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }
-        public RecipeType? Type { get; set; }
+        public MealType MealType { get; set; }
+        public ServingTime ServingTime { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }
@@ -85,6 +86,11 @@
             Proteins -= ingredient.Proteins;
         }
 
+        public override string? ToString()
+        {
+            return $"{Id} {Name} {MealType}-{ServingTime} {Calories}";
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Recipe recipe &&
@@ -92,8 +98,12 @@
                    Name == recipe.Name &&
                    Author == recipe.Author &&
                    Description == recipe.Description &&
-                   EqualityComparer<RecipeType?>.Default.Equals(Type, recipe.Type) &&
+                   MealType == recipe.MealType &&
+                   ServingTime == recipe.ServingTime &&
                    Calories == recipe.Calories &&
+                   Fats == recipe.Fats &&
+                   Carbs == recipe.Carbs &&
+                   Proteins == recipe.Proteins &&
                    EqualityComparer<List<Ingredient>?>.Default.Equals(Ingredients, recipe.Ingredients);
         }
 
@@ -104,18 +114,14 @@
             hash.Add(Name);
             hash.Add(Author);
             hash.Add(Description);
-            hash.Add(Type);
+            hash.Add(MealType);
+            hash.Add(ServingTime);
             hash.Add(Calories);
             hash.Add(Fats);
             hash.Add(Carbs);
             hash.Add(Proteins);
             hash.Add(Ingredients);
             return hash.ToHashCode();
-        }
-
-        public override string? ToString()
-        {
-            return $"{Id} {Name} {Type} {Calories}";
         }
     }
 }

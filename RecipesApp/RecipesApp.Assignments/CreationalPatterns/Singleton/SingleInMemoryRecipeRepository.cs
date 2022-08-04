@@ -64,6 +64,11 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
             return _recipes.FirstOrDefault(x => x.Id == recipeId);
         }
 
+        public Recipe GetRecipeByName(string recipeName)
+        {
+            return _recipes.FirstOrDefault(x => x.Name == recipeName);
+        }
+
         public List<Recipe> GetAllRecipes()
         {
             return _recipes;
