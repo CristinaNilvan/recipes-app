@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="MealPlanners\" />
-    <Folder Include="Recipes\CommandHandlers\" />
     <Folder Include="Recipes\QueryHandlers\" />
     <Folder Include="Recipes\Queries\" />
   </ItemGroup>
