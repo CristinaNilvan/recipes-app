@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
-using RecipesApp.Domain.Models;
 using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Application.Ingredients.Commands
 {
-    public class CreateIngredient : IRequest<Ingredient>
+    public class CreateIngredient : IRequest
     {
         public string? Name { get; set; }
         public IngredientCategory Category { get; set; }

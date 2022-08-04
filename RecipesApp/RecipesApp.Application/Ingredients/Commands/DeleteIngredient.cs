@@ -8,7 +8,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Ingredients.Commands
 {
-    public class DeleteIngredient : IRequest<Ingredient>
+    public class DeleteIngredient : IRequest
     {
         public int IngredientId { get; set; }
     }

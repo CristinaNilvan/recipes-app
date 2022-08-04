@@ -9,7 +9,7 @@ using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Application.Ingredients.Commands
 {
-    public class UpdateIngredient : IRequest<Ingredient>
+    public class UpdateIngredient : IRequest
     {
         public int IngredientId { get; set; }
         public string? Name { get; set; }
