@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace RecipesApp.Application.Ingredients.Commands
+namespace RecipesApp.Application.Recipes.Commands
 {
-    public class DeleteIngredient : IRequest
+    public class DeleteRecipe : IRequest
     {
-        public int IngredientId { get; set; }
     }
 }

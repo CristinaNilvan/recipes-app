@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ingredients\QuaryHandlers\" />
-    <Folder Include="Ingredients\Queries\" />
     <Folder Include="MealPlanners\" />
     <Folder Include="Recipes\" />
   </ItemGroup>
