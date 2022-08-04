@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Infrastructure
+namespace RecipesApp.Infrastructure.InMemoryRepositories
 {
     public class InMemoryIngredientRepository : IIngredientRepository
     {
@@ -16,7 +16,7 @@ namespace RecipesApp.Infrastructure
 
         public void CreateIngredient(Ingredient ingredient)
         {
-            ingredient.Id = _ingredients.Count + 1;
+            ingredient.Id = _ingredients.ElementAt(_ingredients.Count - 1).Id + 1;
             _ingredients.Add(ingredient);
         }
 

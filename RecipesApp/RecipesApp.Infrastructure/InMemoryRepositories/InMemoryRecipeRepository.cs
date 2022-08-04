@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Infrastructure
+namespace RecipesApp.Infrastructure.InMemoryRepositories
 {
     public class InMemoryRecipeRepository : IRecipeRepository
     {
@@ -22,7 +22,7 @@ namespace RecipesApp.Infrastructure
 
         public void CreateRecipe(Recipe recipe)
         {
-            recipe.Id = _recipes.Count + 1;
+            recipe.Id = _recipes.ElementAt(_recipes.Count - 1).Id + 1;
             _recipes.Add(recipe);
         }
 

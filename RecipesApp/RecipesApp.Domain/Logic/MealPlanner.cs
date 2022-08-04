@@ -20,7 +20,6 @@ namespace RecipesApp.Domain.Logic
             filteredRecipes.AddRange(MealPlannerUtils.FilterByCalories(averageCalories, _allRecipes));
             filteredRecipes.AddRange(MealPlannerUtils.FilterByMealType(mealType, _allRecipes));
 
-            //private field, param de intrare la constr
             List<Recipe> breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, filteredRecipes);
             List<Recipe> lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
             List<Recipe> dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
