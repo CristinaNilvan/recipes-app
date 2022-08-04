@@ -15,12 +15,14 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
     {
         private readonly IMealPlanRepository _mealPlanRepository;
         private readonly IRecipeRepository _recipeRepository;
-        private MealPlanner _mealPlanner;
+        private readonly MealPlanner _mealPlanner;
 
-        public GenerateMealPlanHandler(IMealPlanRepository mealPlanRepository, IRecipeRepository recipeRepository)
+        public GenerateMealPlanHandler(IMealPlanRepository mealPlanRepository, IRecipeRepository recipeRepository, 
+            MealPlanner mealPlanner)
         {
             _mealPlanRepository = mealPlanRepository;
             _recipeRepository = recipeRepository;
+            _mealPlanner = mealPlanner;
         }
 
         public Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
