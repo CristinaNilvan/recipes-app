@@ -31,6 +31,11 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return _ingredients.FirstOrDefault(x => x.Id == ingredientId);
         }
 
+        public Ingredient GetIngredientByName(string ingredientName)
+        {
+            return _ingredients.FirstOrDefault(x => x.Name == ingredientName);
+        }
+
         public List<Ingredient> GetAllIngredients()
         {
             return _ingredients;
