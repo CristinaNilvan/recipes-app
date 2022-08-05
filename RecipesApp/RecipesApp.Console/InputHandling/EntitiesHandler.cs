@@ -39,7 +39,7 @@ namespace RecipesApp.Console.InputHandling
                     IngredientHandler.HandleDeleteIngredient();
                     break;
                 case 5:
-                    IngredientHandler.HandleReadIngredients();
+                    IngredientHandler.HandleReadAllIngredients();
                     break;
                 default:
                     System.Console.WriteLine("Invalid number for operation!");

@@ -92,7 +92,7 @@ namespace RecipesApp.Console.InputHandling
 
                 if (choice == 1)
                 {
-                    IngredientHandler.HandleReadIngredients();
+                    IngredientHandler.HandleReadAllIngredients();
                     System.Console.WriteLine("Enter the id of the element you want to add: ");
 
                     var id = Convert.ToInt32(System.Console.ReadLine());
