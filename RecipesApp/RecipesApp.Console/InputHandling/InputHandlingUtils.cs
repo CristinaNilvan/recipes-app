@@ -1,4 +1,5 @@
-﻿using RecipesApp.Domain.Enums;
+﻿using MediatR;
+using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace RecipesApp.Console.InputHandling
                 }
                 else if (choice == 2)
                 {
-                    var ingredient = InputHandlingUtils.CreateIngredientFromInput();
+                    var ingredient = CreateIngredientFromInput();
                     recipeIngredients.Add(ingredient);
                     IngredientHandler.IngredientRepository.CreateIngredient(ingredient);
                 }
