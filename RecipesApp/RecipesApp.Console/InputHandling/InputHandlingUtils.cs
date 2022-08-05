@@ -35,5 +35,46 @@ namespace RecipesApp.Console.InputHandling
 
             return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
         }
+
+        public static List<Ingredient> CreateIngredientList()
+        {
+            var recipeIngredients = new List<Ingredient>();
+
+            System.Console.WriteLine("For the ingredients you can: ");
+
+            while (true)
+            {
+                System.Console.WriteLine("1 - add from current ingredients");
+                System.Console.WriteLine("2 - create new ingredient");
+                var choice = Convert.ToInt32(System.Console.ReadLine());
+
+                if (choice == 1)
+                {
+                    IngredientHandler.HandleReadAllIngredients();
+                    System.Console.WriteLine("Enter the id of the element you want to add: ");
+
+                    var id = Convert.ToInt32(System.Console.ReadLine());
+                    var element = IngredientHandler.IngredientRepository.GetIngredientById(id);
+
+                    recipeIngredients.Add(element);
+                }
+                else if (choice == 2)
+                {
+                    var ingredient = InputHandlingUtils.CreateIngredientFromInput();
+                    recipeIngredients.Add(ingredient);
+                    IngredientHandler.IngredientRepository.CreateIngredient(ingredient);
+                }
+
+                System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients to recipe; 0 - exit");
+                var nextChoice = Convert.ToInt32(System.Console.ReadLine());
+
+                if (nextChoice == 0)
+                {
+                    break;
+                }
+            }
+
+            return recipeIngredients;
+        }
     }
 }
