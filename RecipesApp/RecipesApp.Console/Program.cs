@@ -1,19 +1,4 @@
-﻿/*using RecipesApp.Assignments.CreationalPatterns.Singleton;
-using RecipesApp.Assignments.CreationalPatterns.FactoryMethod;
-
-//Singleton
-var firstInstance = SingleInMemoryIngredientRepository.Instance;
-var secondInstance = SingleInMemoryIngredientRepository.Instance;
-
-//Factory Method
-var firstHandler = InputHandlerFactory.GetHandler("ingredient");
-var secondHandler = InputHandlerFactory.GetHandler("recipe");
-
-firstHandler.HandleCreate();
-secondHandler.HandleCreate();*/
-
-
-using RecipesApp.Console.InputHandling;
+﻿using RecipesApp.Console.InputHandling;
 
 Console.WriteLine("Hello!");
 
@@ -98,13 +83,16 @@ static void FindMealPlan()
 
 /*using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Abstractions;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Infrastructure.InMemoryRepositories;
 
 var diContainer = new ServiceCollection()
-                .AddMediatR(typeof(IIngredientRepository).Assembly)
-                .AddMediatR(typeof(IRecipeRepository).Assembly)
+                .AddMediatR(typeof(IIngredientRepository))
+                .AddMediatR(typeof(IRecipeRepository))
+                .AddMediatR(typeof(IMealPlanRepository))
                 .AddScoped<IIngredientRepository, InMemoryIngredientRepository>()
                 .AddScoped<IRecipeRepository, InMemoryRecipeRepository>()
-                .BuildServiceProvider();*/
+                .AddScoped<IMealPlanRepository, InMemoryMealPlanRepository>()
+                .BuildServiceProvider();
+
+var mediator = diContainer.GetRequiredService<IMediator>();*/
