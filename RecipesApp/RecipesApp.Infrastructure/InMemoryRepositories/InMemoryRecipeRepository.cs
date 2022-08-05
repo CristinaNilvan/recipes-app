@@ -22,7 +22,7 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
 
         public void CreateRecipe(Recipe recipe)
         {
-            recipe.Id = _recipes.ElementAt(_recipes.Count - 1).Id + 1;
+            recipe.Id = _recipes.Count > 0 ? _recipes.ElementAt(_recipes.Count - 1).Id + 1 : 1;
             _recipes.Add(recipe);
         }
 

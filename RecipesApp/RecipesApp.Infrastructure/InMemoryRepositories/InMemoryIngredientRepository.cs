@@ -16,7 +16,7 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
 
         public void CreateIngredient(Ingredient ingredient)
         {
-            ingredient.Id = _ingredients.ElementAt(_ingredients.Count - 1).Id + 1;
+            ingredient.Id = _ingredients.Count > 0 ? _ingredients.ElementAt(_ingredients.Count - 1).Id + 1 : 1;
             _ingredients.Add(ingredient);
         }
 
