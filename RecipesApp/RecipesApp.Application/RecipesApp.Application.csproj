@@ -20,9 +20,4 @@
     <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MealPlannerFeature\Commands\" />
-    <Folder Include="MealPlannerFeature\CommandHandlers\" />
-  </ItemGroup>
-
 </Project>
