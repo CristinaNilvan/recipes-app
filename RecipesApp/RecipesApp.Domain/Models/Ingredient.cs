@@ -36,7 +36,7 @@ namespace RecipesApp.Domain.Models
 
         public override string? ToString()
         {
-            return $"{Id} {Name} {Category} {Calories}";
+            return $"{Id} {Name} {Category}";
         }
 
         public override bool Equals(object? obj)
