@@ -21,5 +21,15 @@ namespace RecipesApp.Console.InputHandling
 
             return diContainer.GetRequiredService<IMediator>();
         }
+
+        public static IMediator GetMediatorForRecipe()
+        {
+            var diContainer = new ServiceCollection()
+                .AddMediatR(typeof(IRecipeRepository))
+                .AddScoped<IRecipeRepository, InMemoryRecipeRepository>()
+                .BuildServiceProvider();
+
+            return diContainer.GetRequiredService<IMediator>();
+        }
     }
 }
