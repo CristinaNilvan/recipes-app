@@ -64,7 +64,7 @@ namespace RecipesApp.Console.InputHandling
                     RecipeHandler.HandleDeleteRecipe();
                     break;
                 case 5:
-                    RecipeHandler.HandleReadRecipes();
+                    RecipeHandler.HandleReadAllRecipes();
                     break;
                 default:
                     System.Console.WriteLine("Invalid number for operation!");
