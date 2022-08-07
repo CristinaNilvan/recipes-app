@@ -4,6 +4,7 @@ namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
+        //?
         public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
             int calories, float fats, float carbs, float proteins, List<Ingredient>? ingredients)
         {
@@ -20,6 +21,7 @@ namespace RecipesApp.Domain.Models
             Ingredients = new List<Ingredient>(ingredients);
         }
 
+        //?
         public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
             List<Ingredient>? ingredients, int calories)
         {
@@ -43,6 +45,7 @@ namespace RecipesApp.Domain.Models
             MealType = mealType;
             ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
+            CalculateNutritionalValuesForRecipe();
         }
 
         public Recipe(string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
@@ -54,6 +57,7 @@ namespace RecipesApp.Domain.Models
             MealType = mealType;
             ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
+            CalculateNutritionalValuesForRecipe();
         }
 
         public int Id { get; set; }
@@ -88,7 +92,7 @@ namespace RecipesApp.Domain.Models
 
         public override string? ToString()
         {
-            return $"{Id} {Name} {MealType}-{ServingTime} {Calories}";
+            return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";
         }
 
         public override bool Equals(object? obj)
@@ -122,6 +126,17 @@ namespace RecipesApp.Domain.Models
             hash.Add(Proteins);
             hash.Add(Ingredients);
             return hash.ToHashCode();
+        }
+
+        private void CalculateNutritionalValuesForRecipe()
+        {
+            foreach (var ingredient in Ingredients)
+            {
+                Calories += ingredient.Calories;
+                Fats += ingredient.Fats;
+                Carbs += ingredient.Carbs;
+                Proteins += ingredient.Proteins;
+            }
         }
     }
 }
