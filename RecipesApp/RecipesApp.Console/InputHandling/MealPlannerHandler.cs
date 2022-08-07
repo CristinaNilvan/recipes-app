@@ -13,10 +13,6 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class MealPlannerHandler
     {
-        private static List<MealPlan> mealPlans = new List<MealPlan>();
-
-        public static List<MealPlan> MealPlans => mealPlans;
-
         public static async void HandleInputFromConsole()
         {
             System.Console.WriteLine("Please enter the following data: ");

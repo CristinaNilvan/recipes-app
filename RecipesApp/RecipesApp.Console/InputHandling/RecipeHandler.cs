@@ -17,10 +17,7 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class RecipeHandler
     {
-        private static InMemoryRecipeRepository _repository = new InMemoryRecipeRepository(); //?
-        private static IMediator _mediator = MediatorSetup.GetMediatorForRecipe();
-
-        public static InMemoryRecipeRepository RecipeRepository => _repository; //?
+        private static readonly IMediator _mediator = MediatorSetup.GetMediatorForRecipe();
 
         public static void HandleCreateRecipe()
         {
