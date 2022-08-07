@@ -19,6 +19,10 @@ namespace RecipesApp.Console.InputHandling
             else if (entity == 2)
             {
                 DoRecipeOperation(operation);
+            } 
+            else
+            {
+                return;
             }
         }
 
