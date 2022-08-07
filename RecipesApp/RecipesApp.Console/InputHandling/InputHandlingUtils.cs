@@ -1,11 +1,13 @@
-﻿using MediatR;
-using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
+using RecipesApp.Application.Ingredients.Commands;
+using RecipesApp.Application.Ingredients.Queries;
+using RecipesApp.Domain.Enums;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Console.InputHandling
 {
@@ -37,8 +39,9 @@ namespace RecipesApp.Console.InputHandling
             return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
         }
 
-        public static List<Ingredient> CreateIngredientList()
+        public static async Task<List<Ingredient>> CreateIngredientList()
         {
+            var mediator = MediatorSetup.GetMediatorForIngredient();
             var recipeIngredients = new List<Ingredient>();
 
             System.Console.WriteLine("For the ingredients you can: ");
@@ -52,18 +55,37 @@ namespace RecipesApp.Console.InputHandling
                 if (choice == 1)
                 {
                     IngredientHandler.HandleReadAllIngredients();
-                    System.Console.WriteLine("Enter the id of the element you want to add: ");
 
+                    System.Console.WriteLine("Enter the id of the element you want to add: ");
                     var id = Convert.ToInt32(System.Console.ReadLine());
-                    var element = IngredientHandler.IngredientRepository.GetIngredientById(id);
+
+                    var element = await mediator.Send(new GetIngredientById()
+                    {
+                        IngredientId = id
+                    });
 
                     recipeIngredients.Add(element);
                 }
                 else if (choice == 2)
                 {
                     var ingredient = CreateIngredientFromInput();
-                    recipeIngredients.Add(ingredient);
-                    IngredientHandler.IngredientRepository.CreateIngredient(ingredient);
+
+                    await mediator.Send(new CreateIngredient()
+                    {
+                        Name = ingredient.Name,
+                        Category = ingredient.Category,
+                        Calories = ingredient.Calories,
+                        Fats = ingredient.Fats,
+                        Carbs = ingredient.Carbs,
+                        Proteins = ingredient.Proteins
+                    });
+
+                    var ingredientFromRepository = await mediator.Send(new GetIngredientByName() 
+                    {
+                        IngredientName = ingredient.Name
+                    });
+
+                    recipeIngredients.Add(ingredientFromRepository);
                 }
 
                 System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients to recipe; 0 - exit");

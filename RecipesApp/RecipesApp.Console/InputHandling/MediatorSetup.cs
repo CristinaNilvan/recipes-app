@@ -12,24 +12,37 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class MediatorSetup
     {
+        private static IMediator _ingredientMediator;
+        private static IMediator _recipeMediator;
+
         public static IMediator GetMediatorForIngredient()
         {
-            var diContainer = new ServiceCollection()
+            if (_ingredientMediator == null)
+            {
+                var diContainer = new ServiceCollection()
                 .AddMediatR(typeof(IIngredientRepository))
                 .AddScoped<IIngredientRepository, InMemoryIngredientRepository>()
                 .BuildServiceProvider();
 
-            return diContainer.GetRequiredService<IMediator>();
+                _ingredientMediator =  diContainer.GetRequiredService<IMediator>();
+            }
+
+            return _ingredientMediator;
         }
 
         public static IMediator GetMediatorForRecipe()
         {
-            var diContainer = new ServiceCollection()
+            if (_recipeMediator == null)
+            {
+                var diContainer = new ServiceCollection()
                 .AddMediatR(typeof(IRecipeRepository))
                 .AddScoped<IRecipeRepository, InMemoryRecipeRepository>()
                 .BuildServiceProvider();
 
-            return diContainer.GetRequiredService<IMediator>();
+                _recipeMediator = diContainer.GetRequiredService<IMediator>();
+            }
+
+            return _recipeMediator;
         }
     }
 }

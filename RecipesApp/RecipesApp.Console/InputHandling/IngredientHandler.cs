@@ -14,10 +14,10 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class IngredientHandler
     {
-        private static InMemoryIngredientRepository _repository = new InMemoryIngredientRepository(); //?
+        //private static InMemoryIngredientRepository _repository = new InMemoryIngredientRepository(); //?
         private static IMediator _mediator = MediatorSetup.GetMediatorForIngredient();
 
-        public static InMemoryIngredientRepository IngredientRepository => _repository; //?
+        //public static InMemoryIngredientRepository IngredientRepository => _repository; //?
 
         public static async void HandleCreateIngredient()
         {
