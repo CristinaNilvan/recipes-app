@@ -68,21 +68,21 @@ namespace RecipesApp.Console.InputHandling
                 }
                 else if (choice == 2)
                 {
-                    var ingredient = CreateIngredientFromInput();
+                    var ingredientFromInput = CreateIngredientFromInput();
 
                     await mediator.Send(new CreateIngredient()
                     {
-                        Name = ingredient.Name,
-                        Category = ingredient.Category,
-                        Calories = ingredient.Calories,
-                        Fats = ingredient.Fats,
-                        Carbs = ingredient.Carbs,
-                        Proteins = ingredient.Proteins
+                        Name = ingredientFromInput.Name,
+                        Category = ingredientFromInput.Category,
+                        Calories = ingredientFromInput.Calories,
+                        Fats = ingredientFromInput.Fats,
+                        Carbs = ingredientFromInput.Carbs,
+                        Proteins = ingredientFromInput.Proteins
                     });
 
                     var ingredientFromRepository = await mediator.Send(new GetIngredientByName() 
                     {
-                        IngredientName = ingredient.Name
+                        IngredientName = ingredientFromInput.Name
                     });
 
                     recipeIngredients.Add(ingredientFromRepository);
