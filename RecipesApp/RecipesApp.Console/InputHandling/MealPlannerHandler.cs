@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 using RecipesApp.Domain.Logic;
+using RecipesApp.Application.MealPlannerFeature.Commands;
+using RecipesApp.Application.Recipes.Queries;
 
 namespace RecipesApp.Console.InputHandling
 {
@@ -15,7 +17,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static List<MealPlan> MealPlans => mealPlans;
 
-        public static void HandleInputFromConsole()
+        public static async void HandleInputFromConsole()
         {
             System.Console.WriteLine("Please enter the following data: ");
 
@@ -26,9 +28,16 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Total number of calories: ");
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
-            var planner = new MealPlanner(RecipeHandler.RecipeRepository.GetAllRecipes());
-            var mealPlan = planner.GenerateMealPlan(enumMealType, calories);
-            mealPlans.Add(mealPlan);
+            var recipeMediator = MediatorSetup.GetMediatorForRecipe();
+            var allRecipes = await recipeMediator.Send(new GetAllRecipes());
+
+            var mealPlanMediator = MediatorSetup.GetMediatorForMealPlan();
+            var mealPlan = await mealPlanMediator.Send(new GenerateMealPlan()
+            {
+                MealType = enumMealType,
+                Calories = calories,
+                Recipes = allRecipes
+            });
 
             System.Console.WriteLine("The meal plan is: ");
             System.Console.WriteLine(mealPlan);

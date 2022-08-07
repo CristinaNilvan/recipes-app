@@ -13,7 +13,6 @@ namespace RecipesApp.Application.MealPlannerFeature.Commands
     {
         public MealType MealType { get; set; }
         public int Calories { get; set; }
-
         public List<Recipe> Recipes { get; set; }
     }
 }

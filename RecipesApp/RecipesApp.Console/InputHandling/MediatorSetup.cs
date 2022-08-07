@@ -14,7 +14,7 @@ namespace RecipesApp.Console.InputHandling
     {
         private static IMediator _ingredientMediator;
         private static IMediator _recipeMediator;
-
+        private static IMediator _mealPlanMediator;
         public static IMediator GetMediatorForIngredient()
         {
             if (_ingredientMediator == null)
@@ -43,6 +43,21 @@ namespace RecipesApp.Console.InputHandling
             }
 
             return _recipeMediator;
+        }
+
+        public static IMediator GetMediatorForMealPlan()
+        {
+            if (_mealPlanMediator == null)
+            {
+                var diContainer = new ServiceCollection()
+                .AddMediatR(typeof(IMealPlanRepository))
+                .AddScoped<IMealPlanRepository, InMemoryMealPlanRepository>()
+                .BuildServiceProvider();
+
+                _mealPlanMediator = diContainer.GetRequiredService<IMediator>();
+            }
+
+            return _mealPlanMediator;
         }
     }
 }

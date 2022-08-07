@@ -14,7 +14,6 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
     public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
     {
         private readonly IMealPlanRepository _mealPlanRepository;
-        private IRecipeRepository _recipeRepository;
         private MealPlanner _mealPlanner;
 
         public GenerateMealPlanHandler(IMealPlanRepository mealPlanRepository)
