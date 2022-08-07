@@ -35,7 +35,7 @@ namespace RecipesApp.Infrastructure
                 new Recipe(2, "rec2", "auth2", "desc2", MealType.Normal, ServingTime.Breakfast, PopulateIngredients(), 490),
                 new Recipe(3, "rec3", "auth3", "desc3", MealType.Normal, ServingTime.Breakfast, PopulateIngredients(), 350),
                 new Recipe(4, "rec4", "auth4", "desc4", MealType.Normal, ServingTime.Lunch, PopulateIngredients(), 600),
-                new Recipe(5, "rec5", "auth5", "desc5", MealType.Normal, ServingTime.Lunch, PopulateIngredients(), 470),
+                new Recipe(5, "rec5", "auth5", "desc5", MealType.Normal, ServingTime.Lunch, PopulateIngredients(), 370),
                 new Recipe(6, "rec6", "auth6", "desc6", MealType.Normal, ServingTime.Lunch, PopulateIngredients(), 500),
                 new Recipe(7, "rec7", "auth7", "desc7", MealType.Normal, ServingTime.Dinner, PopulateIngredients(), 600),
                 new Recipe(8, "rec8", "auth8", "desc8", MealType.Normal, ServingTime.Dinner, PopulateIngredients(), 380),

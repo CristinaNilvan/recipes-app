@@ -5,24 +5,26 @@ namespace RecipesApp.Domain.Logic
 {
     public class MealPlanner
     {
-        private List<Recipe>? _allRecipes;
+        private readonly List<Recipe>? _allRecipes;
+        private readonly List<Recipe>? _breakfastRecipes;
+        private readonly List<Recipe>? _lunchRecipes;
+        private readonly List<Recipe>? _dinnerRecipes;
 
         public MealPlanner(List<Recipe> allRecipes)
         {
             _allRecipes = new List<Recipe>(allRecipes);
+            _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
+            _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
+            _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);
         }
 
         public MealPlan GenerateMealPlan(MealType mealType, int calories)
         {
             int averageCalories = calories / 3;
-            var filteredRecipes = new List<Recipe>();
 
-            filteredRecipes.AddRange(MealPlannerUtils.FilterByCalories(averageCalories, _allRecipes));
-            filteredRecipes.AddRange(MealPlannerUtils.FilterByMealType(mealType, _allRecipes));
-
-            List<Recipe> breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, filteredRecipes);
-            List<Recipe> lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, filteredRecipes);
-            List<Recipe> dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, filteredRecipes);
+            var breakfastRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _breakfastRecipes);
+            var lunchRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _lunchRecipes);
+            var dinnerRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _dinnerRecipes);
 
             var random = new Random();
             var mealPlan = new MealPlan();
