@@ -1,7 +1,7 @@
 ﻿using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Domain.Logic
+namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 {
     public class MealPlannerUtils
     {
