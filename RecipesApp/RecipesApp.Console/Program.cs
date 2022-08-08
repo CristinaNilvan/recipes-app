@@ -1,14 +1,19 @@
 ﻿using RecipesApp.Console.InputHandling;
+using System.Text;
+
+var appOptions = new StringBuilder();
+appOptions = appOptions.Append("What would you like to do?\n");
+appOptions = appOptions.Append("1 - do CRUD on entities\n");
+appOptions = appOptions.Append("2 - find a meal plan\n");
+appOptions = appOptions.Append("3 - find a recipe by ingredients\n");
+appOptions = appOptions.Append("4 - approve recipes\n");
+appOptions = appOptions.Append("5 - exit\n");
 
 Console.WriteLine("Hello!");
 
 while (true)
 {
-    Console.WriteLine("What would you like to do?");
-    Console.WriteLine("1 - do CRUD on entities");
-    Console.WriteLine("2 - find a meal plan");
-    Console.WriteLine("3 - find a recipe by ingredients");
-    Console.WriteLine("4 - exit");
+    Console.WriteLine(appOptions.ToString());
 
     var nextOperation = Convert.ToInt32(Console.ReadLine());
     if (nextOperation == 1)
@@ -24,6 +29,10 @@ while (true)
         FindRecipeByIngredients();
     }
     else if (nextOperation == 4)
+    {
+        ApproveRecipes();
+    }
+    else if (nextOperation == 5)
     {
         break;
     }
@@ -99,5 +108,21 @@ static void FindRecipeByIngredients()
         }
 
         RecipeFinderHandler.HandleInputFromConsole();
+    }
+}
+
+static void ApproveRecipes()
+{
+    while (true)
+    {
+        Console.WriteLine("Continue to approve a recipe? yes - 1, no - 0");
+        var continueToFind = Convert.ToInt32(Console.ReadLine());
+
+        if (continueToFind == 0)
+        {
+            break;
+        }
+
+        RecipeApproverHandler.HandleInputFromConsole();
     }
 }
