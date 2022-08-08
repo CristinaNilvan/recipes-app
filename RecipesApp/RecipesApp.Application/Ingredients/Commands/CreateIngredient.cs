@@ -5,7 +5,7 @@ namespace RecipesApp.Application.Ingredients.Commands
 {
     public class CreateIngredient : IRequest
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public IngredientCategory Category { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
