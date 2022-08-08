@@ -3,9 +3,9 @@
     public class MealPlan
     {
         public int Id { get; set; }
-        public Recipe? Breakfast { get; set; }
-        public Recipe? Lunch { get; set; }
-        public Recipe? Dinner { get; set; }
+        public Recipe Breakfast { get; set; }
+        public Recipe Lunch { get; set; }
+        public Recipe Dinner { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }
@@ -31,7 +31,7 @@
             Proteins = Breakfast.Proteins + Lunch.Proteins + Dinner.Proteins;
         }
 
-        public override string? ToString()
+        public override string ToString()
         {
             return $"Breakfast: {Breakfast}\n" +
                 $"Lunch: {Lunch}\n" +

@@ -5,8 +5,8 @@ namespace RecipesApp.Domain.Models
     public class Recipe
     {
         //?
-        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
-            int calories, float fats, float carbs, float proteins, List<Ingredient>? ingredients)
+        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
+            int calories, float fats, float carbs, float proteins, List<Ingredient> ingredients)
         {
             Id = id;
             Name = name;
@@ -22,8 +22,8 @@ namespace RecipesApp.Domain.Models
         }
 
         //?
-        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
-            List<Ingredient>? ingredients, int calories)
+        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
+            List<Ingredient> ingredients, int calories)
         {
             Id = id;
             Name = name;
@@ -35,8 +35,8 @@ namespace RecipesApp.Domain.Models
             Ingredients = new List<Ingredient>(ingredients);
         }
 
-        public Recipe(int id, string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
-            List<Ingredient>? ingredients)
+        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
+            List<Ingredient> ingredients)
         {
             Id = id;
             Name = name;
@@ -48,8 +48,8 @@ namespace RecipesApp.Domain.Models
             CalculateNutritionalValuesForRecipe();
         }
 
-        public Recipe(string? name, string? author, string? description, MealType mealType, ServingTime servingTime,
-            List<Ingredient>? ingredients)
+        public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
+            List<Ingredient> ingredients)
         {
             Name = name;
             Author = author;
@@ -61,16 +61,16 @@ namespace RecipesApp.Domain.Models
         }
 
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Author { get; set; }
-        public string? Description { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string Description { get; set; }
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
-        public List<Ingredient>? Ingredients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
 
         public void AddIngredient(Ingredient ingredient)
         {
@@ -90,12 +90,12 @@ namespace RecipesApp.Domain.Models
             Proteins -= ingredient.Proteins;
         }
 
-        public override string? ToString()
+        public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is Recipe recipe &&
                    Id == recipe.Id &&
