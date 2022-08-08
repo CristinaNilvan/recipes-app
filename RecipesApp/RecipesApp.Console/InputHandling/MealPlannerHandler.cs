@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Models;
-using RecipesApp.Domain.Logic;
-using RecipesApp.Application.MealPlannerFeature.Commands;
+﻿using RecipesApp.Application.MealPlannerFeature.Commands;
 using RecipesApp.Application.Recipes.Queries;
+using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Console.InputHandling
 {

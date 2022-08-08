@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Models;
-using RecipesApp.Infrastructure.InMemoryRepositories;
 
 namespace RecipesApp.Console.InputHandling
 {
