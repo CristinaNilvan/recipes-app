@@ -14,6 +14,12 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine("The unapproved recipes are: ");
             ListPrinter.PrintList(unapprovedRecipes);
 
+            if (unapprovedRecipes.Count == 0)
+            {
+                System.Console.WriteLine("No recipes to approve!");
+                return;
+            }
+
             System.Console.WriteLine("Enter the id of the recipe you want to approve: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
