@@ -2,7 +2,6 @@
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Console.InputHandling.Utils;
-using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Console.InputHandling.Handlers
 {
@@ -12,35 +11,16 @@ namespace RecipesApp.Console.InputHandling.Handlers
 
         public static void HandleCreateRecipe()
         {
-            System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Name: ");
-            var name = System.Console.ReadLine();
-
-            System.Console.WriteLine("Author: ");
-            var author = System.Console.ReadLine();
-
-            System.Console.WriteLine("Decription: ");
-            var description = System.Console.ReadLine();
-
-            System.Console.WriteLine("Meal Type [Normal, Vegetarian, Vegan]: ");
-            var mealType = System.Console.ReadLine();
-            var enumMealType = (MealType)Enum.Parse(typeof(MealType), mealType, true);
-
-            System.Console.WriteLine("Serving Time [Breakfast, Lunch, Dinner]: ");
-            var servingTime = System.Console.ReadLine();
-            var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
-
-            var ingredientList = InputHandlingUtils.CreateIngredientListForRecipe().Result;
+            var recipe = InputHandlingUtils.CreateRecipeFromInput();
 
             _mediator.Send(new CreateRecipe()
             {
-                Name = name,
-                Author = author,
-                Description = description,
-                MealType = enumMealType,
-                ServingTime = enumServingTime,
-                Ingredients = ingredientList
+                Name = recipe.Name,
+                Author = recipe.Author,
+                Description = recipe.Description,
+                MealType = recipe.MealType,
+                ServingTime = recipe.ServingTime,
+                Ingredients = recipe.Ingredients
             });
         }
 
@@ -64,36 +44,17 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine("Enter the id of the element you want to update: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
-            System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Name: ");
-            var name = System.Console.ReadLine();
-
-            System.Console.WriteLine("Author: ");
-            var author = System.Console.ReadLine();
-
-            System.Console.WriteLine("Decription: ");
-            var description = System.Console.ReadLine();
-
-            System.Console.WriteLine("Meal Type [Normal, Vegetarian, Vegan]: ");
-            var mealType = System.Console.ReadLine();
-            var enumMealType = (MealType)Enum.Parse(typeof(MealType), mealType, true);
-
-            System.Console.WriteLine("Serving Time [Breakfast, Lunch, Dinner]: ");
-            var servingTime = System.Console.ReadLine();
-            var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
-
-            var ingredientList = InputHandlingUtils.CreateIngredientListForRecipe().Result;
+            var recipe = InputHandlingUtils.CreateRecipeFromInput();
 
             await _mediator.Send(new UpdateRecipe()
             {
                 RecipeId = id,
-                Name = name,
-                Author = author,
-                Description = description,
-                MealType = enumMealType,
-                ServingTime = enumServingTime,
-                Ingredients = ingredientList
+                Name = recipe.Name,
+                Author = recipe.Author,
+                Description = recipe.Description,
+                MealType = recipe.MealType,
+                ServingTime = recipe.ServingTime,
+                Ingredients = recipe.Ingredients
             });
         }
 

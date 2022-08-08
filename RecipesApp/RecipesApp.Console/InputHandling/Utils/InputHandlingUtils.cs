@@ -34,6 +34,32 @@ namespace RecipesApp.Console.InputHandling.Utils
             return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
         }
 
+        public static Recipe CreateRecipeFromInput()
+        {
+            System.Console.WriteLine("Please enter the following data: ");
+
+            System.Console.WriteLine("Name: ");
+            var name = System.Console.ReadLine();
+
+            System.Console.WriteLine("Author: ");
+            var author = System.Console.ReadLine();
+
+            System.Console.WriteLine("Decription: ");
+            var description = System.Console.ReadLine();
+
+            System.Console.WriteLine("Meal Type [Normal, Vegetarian, Vegan]: ");
+            var mealType = System.Console.ReadLine();
+            var enumMealType = (MealType)Enum.Parse(typeof(MealType), mealType, true);
+
+            System.Console.WriteLine("Serving Time [Breakfast, Lunch, Dinner]: ");
+            var servingTime = System.Console.ReadLine();
+            var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
+
+            var ingredientList = CreateIngredientListForRecipe().Result;
+
+            return new Recipe(name, author, description, enumMealType, enumServingTime, ingredientList);
+        }
+
         public static async Task<List<Ingredient>> CreateIngredientListForRecipe()
         {
             var mediator = MediatorSetup.GetMediator();
