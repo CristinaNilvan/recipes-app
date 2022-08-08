@@ -7,8 +7,6 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<Ingredient> _ingredients = new List<Ingredient>(PopulateLists.PopulateIngredients());
 
-        public List<Ingredient> Ingredients => _ingredients;
-
         public void CreateIngredient(Ingredient ingredient)
         {
             ingredient.Id = _ingredients.Count > 0 ? _ingredients.ElementAt(_ingredients.Count - 1).Id + 1 : 1;

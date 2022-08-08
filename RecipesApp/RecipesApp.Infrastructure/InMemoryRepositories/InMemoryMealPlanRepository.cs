@@ -7,8 +7,6 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<MealPlan> _mealPlans = new();
 
-        public List<MealPlan> MealPlans => _mealPlans;
-
         public void CreateMealPlan(MealPlan mealPlan)
         {
             mealPlan.Id = _mealPlans.Count > 0 ? _mealPlans.ElementAt(_mealPlans.Count - 1).Id + 1 : 1;

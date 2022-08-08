@@ -7,8 +7,6 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<Recipe> _recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
 
-        public List<Recipe> Recipes => _recipes;
-
         public void AddIngredientToRecipe(int recipeId, Ingredient ingredient)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
