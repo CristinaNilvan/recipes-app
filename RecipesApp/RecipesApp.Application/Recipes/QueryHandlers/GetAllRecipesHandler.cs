@@ -5,7 +5,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.QueryHandlers
 {
-    public class GetAllRecipesHandler : IRequestHandler<GetApprovedRecipes, List<Recipe>>
+    public class GetAllRecipesHandler : IRequestHandler<GetAllRecipes, List<Recipe>>
     {
         private readonly IRecipeRepository _repository;
 
@@ -14,7 +14,7 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
             _repository = repository;
         }
 
-        public Task<List<Recipe>> Handle(GetApprovedRecipes request, CancellationToken cancellationToken)
+        public Task<List<Recipe>> Handle(GetAllRecipes request, CancellationToken cancellationToken)
         {
             return Task.FromResult(_repository.GetAllRecipes());
         }

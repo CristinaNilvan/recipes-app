@@ -12,35 +12,16 @@ namespace RecipesApp.Console.InputHandling.Handlers
 
         public static async void HandleCreateIngredient()
         {
-            System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Name: ");
-            var name = System.Console.ReadLine();
-
-            System.Console.WriteLine("Category [Meat, Dairy, Fruit, Vegetable, Herbs, Others]: ");
-            var category = System.Console.ReadLine();
-            var enumCategory = (IngredientCategory)Enum.Parse(typeof(IngredientCategory), category, true);
-
-            System.Console.WriteLine("Calories: ");
-            var calories = Convert.ToInt32(System.Console.ReadLine());
-
-            System.Console.WriteLine("Fats: ");
-            var fats = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Carbs: ");
-            var carbs = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Proteins: ");
-            var proteins = float.Parse(System.Console.ReadLine());
+            var ingredient = InputHandlingUtils.CreateIngredientFromInput();
 
             await _mediator.Send(new CreateIngredient()
             {
-                Name = name,
-                Category = enumCategory,
-                Calories = calories,
-                Fats = fats,
-                Carbs = carbs,
-                Proteins = proteins
+                Name = ingredient.Name,
+                Category = ingredient.Category,
+                Calories = ingredient.Calories,
+                Fats = ingredient.Fats,
+                Carbs = ingredient.Carbs,
+                Proteins = ingredient.Proteins
             });
         }
 
@@ -64,36 +45,17 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine("Enter the id of the element you want to update: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
-            System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Name: ");
-            var name = System.Console.ReadLine();
-
-            System.Console.WriteLine("Category [Meat, Dairy, Fruit, Vegetable, Herbs, Others]: ");
-            var category = System.Console.ReadLine();
-            var enumCategory = (IngredientCategory)Enum.Parse(typeof(IngredientCategory), category, true);
-
-            System.Console.WriteLine("Calories: ");
-            var calories = Convert.ToInt32(System.Console.ReadLine());
-
-            System.Console.WriteLine("Fats: ");
-            var fats = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Carbs: ");
-            var carbs = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Proteins: ");
-            var proteins = float.Parse(System.Console.ReadLine());
+            var ingredient = InputHandlingUtils.CreateIngredientFromInput();
 
             await _mediator.Send(new UpdateIngredient()
             {
                 IngredientId = id,
-                Name = name,
-                Category = enumCategory,
-                Calories = calories,
-                Fats = fats,
-                Carbs = carbs,
-                Proteins = proteins
+                Name = ingredient.Name,
+                Category = ingredient.Category,
+                Calories = ingredient.Calories,
+                Fats = ingredient.Fats,
+                Carbs = ingredient.Carbs,
+                Proteins = ingredient.Proteins
             });
         }
 

@@ -3,7 +3,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.Queries
 {
-    public class GetApprovedRecipes : IRequest<List<Recipe>>
+    public class GetAllRecipes : IRequest<List<Recipe>>
     {
     }
 }

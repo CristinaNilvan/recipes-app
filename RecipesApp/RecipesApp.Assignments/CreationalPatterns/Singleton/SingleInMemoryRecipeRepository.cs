@@ -91,5 +91,10 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
         {
             throw new NotImplementedException();
         }
+
+        public List<Recipe> GetApprovedRecipes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

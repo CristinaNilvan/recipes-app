@@ -5,7 +5,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.QueryHandlers
 {
-    internal class GetApprovedRecipesHandler : IRequestHandler<GetApprovedRecipes, List<Recipe>>
+    public class GetApprovedRecipesHandler : IRequestHandler<GetApprovedRecipes, List<Recipe>>
     {
         private readonly IRecipeRepository _repository;
 
