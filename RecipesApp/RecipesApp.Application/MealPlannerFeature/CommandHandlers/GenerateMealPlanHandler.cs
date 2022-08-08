@@ -39,11 +39,12 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             var dinnerRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _dinnerRecipes);
 
             var random = new Random();
-            var mealPlan = new MealPlan();
-
-            mealPlan.Breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count));
-            mealPlan.Lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count));
-            mealPlan.Dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count));
+            var mealPlan = new MealPlan
+            {
+                Breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count)),
+                Lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count)),
+                Dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count))
+            };
 
             return mealPlan;
         }
