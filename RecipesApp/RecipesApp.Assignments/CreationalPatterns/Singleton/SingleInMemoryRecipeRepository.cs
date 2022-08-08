@@ -81,5 +81,15 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateRecipeStatus(int recipeId, bool status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Recipe> GetUnapprovedRecipes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
