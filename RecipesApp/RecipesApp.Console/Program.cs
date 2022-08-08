@@ -7,7 +7,8 @@ while (true)
     Console.WriteLine("What would you like to do?");
     Console.WriteLine("1 - do CRUD on entities");
     Console.WriteLine("2 - find a meal plan");
-    Console.WriteLine("3 - exit");
+    Console.WriteLine("3 - find a recipe by ingredients");
+    Console.WriteLine("4 - exit");
 
     var nextOperation = Convert.ToInt32(Console.ReadLine());
     if (nextOperation == 1)
@@ -19,6 +20,10 @@ while (true)
         FindMealPlan();
     }
     else if (nextOperation == 3)
+    {
+        FindRecipeByIngredients();
+    }
+    else if (nextOperation == 4)
     {
         break;
     }
@@ -78,5 +83,21 @@ static void FindMealPlan()
         }
 
         MealPlannerHandler.HandleInputFromConsole();
+    }
+}
+
+static void FindRecipeByIngredients()
+{
+    while (true)
+    {
+        Console.WriteLine("Continue to find a recipe? yes - 1, no - 0");
+        var continueToFind = Convert.ToInt32(Console.ReadLine());
+
+        if (continueToFind == 0)
+        {
+            break;
+        }
+
+        RecipeFinderHandler.HandleInputFromConsole();
     }
 }

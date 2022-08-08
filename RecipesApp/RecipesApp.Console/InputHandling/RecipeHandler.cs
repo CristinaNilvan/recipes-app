@@ -30,7 +30,7 @@ namespace RecipesApp.Console.InputHandling
             var servingTime = System.Console.ReadLine();
             var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
 
-            var ingredientList = InputHandlingUtils.CreateIngredientList().Result;
+            var ingredientList = InputHandlingUtils.CreateIngredientListForRecipe().Result;
 
             _mediator.Send(new CreateRecipe()
             {
@@ -82,7 +82,7 @@ namespace RecipesApp.Console.InputHandling
             var servingTime = System.Console.ReadLine();
             var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
 
-            var ingredientList = InputHandlingUtils.CreateIngredientList().Result;
+            var ingredientList = InputHandlingUtils.CreateIngredientListForRecipe().Result;
 
             await _mediator.Send(new UpdateRecipe()
             {

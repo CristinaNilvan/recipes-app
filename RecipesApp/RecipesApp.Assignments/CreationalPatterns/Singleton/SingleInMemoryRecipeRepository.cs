@@ -76,5 +76,10 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
             newRecipe.Id = recipeId;
             _recipes[index] = newRecipe;
         }
+
+        public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

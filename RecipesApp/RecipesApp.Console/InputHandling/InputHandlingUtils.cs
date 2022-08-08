@@ -7,33 +7,7 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class InputHandlingUtils
     {
-        public static Ingredient CreateIngredientFromInput()
-        {
-            System.Console.WriteLine("Please enter the following data: ");
-
-            System.Console.WriteLine("Name: ");
-            var name = System.Console.ReadLine();
-
-            System.Console.WriteLine("Category [Meat, Dairy, Fruit, Vegetable, Herbs, Others]: ");
-            var category = System.Console.ReadLine();
-            var enumCategory = (IngredientCategory)Enum.Parse(typeof(IngredientCategory), category, true);
-
-            System.Console.WriteLine("Calories: ");
-            var calories = Convert.ToInt32(System.Console.ReadLine());
-
-            System.Console.WriteLine("Fats: ");
-            var fats = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Carbs: ");
-            var carbs = float.Parse(System.Console.ReadLine());
-
-            System.Console.WriteLine("Proteins: ");
-            var proteins = float.Parse(System.Console.ReadLine());
-
-            return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
-        }
-
-        public static async Task<List<Ingredient>> CreateIngredientList()
+        public static async Task<List<Ingredient>> CreateIngredientListForRecipe()
         {
             var mediator = MediatorSetup.GetMediator();
             var recipeIngredients = new List<Ingredient>();
@@ -92,6 +66,65 @@ namespace RecipesApp.Console.InputHandling
             }
 
             return recipeIngredients;
+        }
+
+        public static async Task<List<Ingredient>> CreateIngredientListForRecipeFinder()
+        {
+            var mediator = MediatorSetup.GetMediator();
+            var ingredients = new List<Ingredient>();
+
+            System.Console.WriteLine("Choose the ingredients you have: ");
+
+            while (true)
+            {
+                IngredientHandler.HandleReadAllIngredients();
+
+                System.Console.WriteLine("Enter the id of the element you want to add: ");
+                var id = Convert.ToInt32(System.Console.ReadLine());
+
+                var element = await mediator.Send(new GetIngredientById()
+                {
+                    IngredientId = id
+                });
+
+                ingredients.Add(element);
+
+                System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients; 0 - exit");
+                var nextChoice = Convert.ToInt32(System.Console.ReadLine());
+
+                if (nextChoice == 0)
+                {
+                    break;
+                }
+            }
+
+            return ingredients;
+        }
+
+        private static Ingredient CreateIngredientFromInput()
+        {
+            System.Console.WriteLine("Please enter the following data: ");
+
+            System.Console.WriteLine("Name: ");
+            var name = System.Console.ReadLine();
+
+            System.Console.WriteLine("Category [Meat, Dairy, Fruit, Vegetable, Herbs, Others]: ");
+            var category = System.Console.ReadLine();
+            var enumCategory = (IngredientCategory)Enum.Parse(typeof(IngredientCategory), category, true);
+
+            System.Console.WriteLine("Calories: ");
+            var calories = Convert.ToInt32(System.Console.ReadLine());
+
+            System.Console.WriteLine("Fats: ");
+            var fats = float.Parse(System.Console.ReadLine());
+
+            System.Console.WriteLine("Carbs: ");
+            var carbs = float.Parse(System.Console.ReadLine());
+
+            System.Console.WriteLine("Proteins: ");
+            var proteins = float.Parse(System.Console.ReadLine());
+
+            return new Ingredient(name, enumCategory, calories, fats, carbs, proteins);
         }
     }
 }

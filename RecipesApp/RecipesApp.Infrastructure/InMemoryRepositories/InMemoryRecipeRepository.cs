@@ -44,6 +44,23 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return _recipes.FirstOrDefault(x => x.Name == recipeName);
         }
 
+        public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
+        {
+            var recipes = new List<Recipe>();
+
+            foreach (var recipe in _recipes)
+            {
+                var containsAll = CheckIfRecipeContainsAllIngredients(recipe.Ingredients, ingredients);
+
+                if (containsAll)
+                {
+                    recipes.Add(recipe);
+                }    
+            }
+
+            return recipes;
+        }
+
         public List<Recipe> GetAllRecipes()
         {
             return _recipes;
@@ -55,6 +72,11 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             var index = _recipes.IndexOf(recipe);
             newRecipe.Id = recipeId;
             _recipes[index] = newRecipe;
+        }
+
+        private bool CheckIfRecipeContainsAllIngredients(List<Ingredient> recipeIngredientList, List<Ingredient> givenIngredientList)
+        {
+            return givenIngredientList.All(x => recipeIngredientList.Any(y => x.Id == y.Id));
         }
     }
 }
