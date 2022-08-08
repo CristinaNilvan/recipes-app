@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
+using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Enums;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class IngredientHandler
     {
@@ -37,7 +38,7 @@ namespace RecipesApp.Console.InputHandling
                 Name = name,
                 Category = enumCategory,
                 Calories = calories,
-                Fats = fats,    
+                Fats = fats,
                 Carbs = carbs,
                 Proteins = proteins
             });

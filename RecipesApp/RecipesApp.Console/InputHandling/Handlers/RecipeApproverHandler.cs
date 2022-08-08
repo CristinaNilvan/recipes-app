@@ -1,7 +1,8 @@
 ﻿using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.Recipes.Queries;
+using RecipesApp.Console.InputHandling.Utils;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class RecipeApproverHandler
     {

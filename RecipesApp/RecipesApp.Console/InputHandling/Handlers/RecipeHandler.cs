@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
+using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Enums;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class RecipeHandler
     {

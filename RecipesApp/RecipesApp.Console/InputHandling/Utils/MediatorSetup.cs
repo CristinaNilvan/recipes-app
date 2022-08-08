@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Infrastructure.InMemoryRepositories;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Utils
 {
     internal class MediatorSetup
     {

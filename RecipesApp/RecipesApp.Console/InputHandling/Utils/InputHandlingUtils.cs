@@ -1,9 +1,10 @@
 ﻿using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
+using RecipesApp.Console.InputHandling.Handlers;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Utils
 {
     internal class InputHandlingUtils
     {
@@ -48,7 +49,7 @@ namespace RecipesApp.Console.InputHandling
                         Proteins = ingredientFromInput.Proteins
                     });
 
-                    var ingredientFromRepository = await mediator.Send(new GetIngredientByName() 
+                    var ingredientFromRepository = await mediator.Send(new GetIngredientByName()
                     {
                         IngredientName = ingredientFromInput.Name
                     });

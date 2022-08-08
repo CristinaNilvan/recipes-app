@@ -1,4 +1,4 @@
-﻿namespace RecipesApp.Console.InputHandling
+﻿namespace RecipesApp.Console.InputHandling.Utils
 {
     internal class ListPrinter
     {

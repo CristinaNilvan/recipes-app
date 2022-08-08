@@ -1,4 +1,4 @@
-﻿namespace RecipesApp.Console.InputHandling
+﻿namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class EntitiesHandler
     {
@@ -11,7 +11,7 @@
             else if (entity == 2)
             {
                 DoRecipeOperation(operation);
-            } 
+            }
             else
             {
                 return;

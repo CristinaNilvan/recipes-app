@@ -1,4 +1,4 @@
-﻿using RecipesApp.Console.InputHandling;
+﻿using RecipesApp.Console.InputHandling.Handlers;
 using System.Text;
 
 var appOptions = new StringBuilder();

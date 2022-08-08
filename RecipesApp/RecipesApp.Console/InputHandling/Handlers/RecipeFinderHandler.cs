@@ -1,11 +1,12 @@
 ﻿using RecipesApp.Application.Recipes.Queries;
+using RecipesApp.Console.InputHandling.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesApp.Console.InputHandling
+namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class RecipeFinderHandler
     {
