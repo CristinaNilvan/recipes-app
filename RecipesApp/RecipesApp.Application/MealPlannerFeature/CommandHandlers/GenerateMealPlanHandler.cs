@@ -10,10 +10,10 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
     {
         private readonly IMealPlanRepository _mealPlanRepository;
 
-        private List<Recipe>? _allRecipes;
-        private List<Recipe>? _breakfastRecipes;
-        private List<Recipe>? _lunchRecipes;
-        private List<Recipe>? _dinnerRecipes;
+        private List<Recipe> _allRecipes;
+        private List<Recipe> _breakfastRecipes;
+        private List<Recipe> _lunchRecipes;
+        private List<Recipe> _dinnerRecipes;
 
         public GenerateMealPlanHandler(IMealPlanRepository mealPlanRepository)
         {
