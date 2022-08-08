@@ -4,8 +4,8 @@ namespace RecipesApp.Assignments.FileSystemAndStreams
 {
     internal class FileOperations
     {
-        private static string? _directoryPath;
-        private static string? _filePath;
+        private static string _directoryPath;
+        private static string _filePath;
         private static FileStream _fileStream;
 
         public static void DirectorySetup()
