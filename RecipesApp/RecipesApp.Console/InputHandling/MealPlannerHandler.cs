@@ -17,11 +17,10 @@ namespace RecipesApp.Console.InputHandling
             System.Console.WriteLine("Total number of calories: ");
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
-            var recipeMediator = MediatorSetup.GetMediator();
-            var allRecipes = await recipeMediator.Send(new GetAllRecipes());
+            var mediator = MediatorSetup.GetMediator();
+            var allRecipes = await mediator.Send(new GetAllRecipes());
 
-            var mealPlanMediator = MediatorSetup.GetMediator();
-            var mealPlan = await mealPlanMediator.Send(new GenerateMealPlan()
+            var mealPlan = await mediator.Send(new GenerateMealPlan()
             {
                 MealType = enumMealType,
                 Calories = calories,
