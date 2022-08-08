@@ -59,6 +59,11 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return recipes;
         }
 
+        public List<Recipe> GetUnapprovedRecipes()
+        {
+            return _recipes.Where(x => x.Approved == false).ToList();
+        }
+
         public List<Recipe> GetAllRecipes()
         {
             return _recipes;
@@ -70,6 +75,12 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             var index = _recipes.IndexOf(recipe);
             newRecipe.Id = recipeId;
             _recipes[index] = newRecipe;
+        }
+
+        public void UpdateRecipeStatus(int recipeId, bool status)
+        {
+            var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
+            recipe.Approved = status;
         }
 
         private bool CheckIfRecipeContainsAllIngredients(List<Ingredient> recipeIngredientList, List<Ingredient> givenIngredientList)

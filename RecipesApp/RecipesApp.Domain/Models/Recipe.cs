@@ -19,6 +19,7 @@ namespace RecipesApp.Domain.Models
             Carbs = carbs;
             Proteins = proteins;
             Ingredients = new List<Ingredient>(ingredients);
+            Approved = false;
         }
 
         //?
@@ -33,6 +34,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Calories = calories;
             Ingredients = new List<Ingredient>(ingredients);
+            Approved = false;
         }
 
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
@@ -46,6 +48,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
+            Approved = false;
         }
 
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
@@ -58,6 +61,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
+            Approved = false;
         }
 
         public int Id { get; set; }
@@ -71,6 +75,7 @@ namespace RecipesApp.Domain.Models
         public float Carbs { get; set; }
         public float Proteins { get; set; }
         public List<Ingredient> Ingredients { get; set; }
+        public bool Approved { get; set; }
 
         public void AddIngredient(Ingredient ingredient)
         {
