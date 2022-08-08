@@ -41,7 +41,7 @@ namespace RecipesApp.Console.InputHandling
 
         public static async Task<List<Ingredient>> CreateIngredientList()
         {
-            var mediator = MediatorSetup.GetMediatorForIngredient();
+            var mediator = MediatorSetup.GetMediator();
             var recipeIngredients = new List<Ingredient>();
 
             System.Console.WriteLine("For the ingredients you can: ");

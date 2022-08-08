@@ -12,52 +12,24 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class MediatorSetup
     {
-        private static IMediator _ingredientMediator;
-        private static IMediator _recipeMediator;
-        private static IMediator _mealPlanMediator;
-        public static IMediator GetMediatorForIngredient()
+        private static IMediator _mediator;
+
+        public static IMediator GetMediator()
         {
-            if (_ingredientMediator == null)
+
+            if (_mediator == null)
             {
                 var diContainer = new ServiceCollection()
                 .AddMediatR(typeof(IIngredientRepository))
                 .AddScoped<IIngredientRepository, InMemoryIngredientRepository>()
-                .BuildServiceProvider();
-
-                _ingredientMediator =  diContainer.GetRequiredService<IMediator>();
-            }
-
-            return _ingredientMediator;
-        }
-
-        public static IMediator GetMediatorForRecipe()
-        {
-            if (_recipeMediator == null)
-            {
-                var diContainer = new ServiceCollection()
-                .AddMediatR(typeof(IRecipeRepository))
                 .AddScoped<IRecipeRepository, InMemoryRecipeRepository>()
-                .BuildServiceProvider();
-
-                _recipeMediator = diContainer.GetRequiredService<IMediator>();
-            }
-
-            return _recipeMediator;
-        }
-
-        public static IMediator GetMediatorForMealPlan()
-        {
-            if (_mealPlanMediator == null)
-            {
-                var diContainer = new ServiceCollection()
-                .AddMediatR(typeof(IMealPlanRepository))
                 .AddScoped<IMealPlanRepository, InMemoryMealPlanRepository>()
                 .BuildServiceProvider();
 
-                _mealPlanMediator = diContainer.GetRequiredService<IMediator>();
+                _mediator = diContainer.GetRequiredService<IMediator>();
             }
 
-            return _mealPlanMediator;
+            return _mediator;
         }
     }
 }

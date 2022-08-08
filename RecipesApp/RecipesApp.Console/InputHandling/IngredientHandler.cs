@@ -14,7 +14,7 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class IngredientHandler
     {
-        private static readonly IMediator _mediator = MediatorSetup.GetMediatorForIngredient();
+        private static readonly IMediator _mediator = MediatorSetup.GetMediator();
 
         public static async void HandleCreateIngredient()
         {
