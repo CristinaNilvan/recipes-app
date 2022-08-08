@@ -19,7 +19,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var calories = Convert.ToInt32(System.Console.ReadLine());
 
             var mediator = MediatorSetup.GetMediator();
-            var allRecipes = await mediator.Send(new GetAllRecipes());
+            var allRecipes = await mediator.Send(new GetApprovedRecipes());
 
             var mealPlan = await mediator.Send(new GenerateMealPlan()
             {

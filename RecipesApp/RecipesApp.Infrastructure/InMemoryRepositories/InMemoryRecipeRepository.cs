@@ -42,6 +42,21 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return _recipes.FirstOrDefault(x => x.Name == recipeName);
         }
 
+        public List<Recipe> GetAllRecipes()
+        {
+            return _recipes;
+        }
+
+        public List<Recipe> GetApprovedRecipes()
+        {
+            return _recipes.Where(x => x.Approved == true).ToList();
+        }
+
+        public List<Recipe> GetUnapprovedRecipes()
+        {
+            return _recipes.Where(x => x.Approved == false).ToList();
+        }
+
         public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
         {
             var recipes = new List<Recipe>();
@@ -53,20 +68,10 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
                 if (containsAll)
                 {
                     recipes.Add(recipe);
-                }    
+                }
             }
 
             return recipes;
-        }
-
-        public List<Recipe> GetUnapprovedRecipes()
-        {
-            return _recipes.Where(x => x.Approved == false).ToList();
-        }
-
-        public List<Recipe> GetAllRecipes()
-        {
-            return _recipes;
         }
 
         public void UpdateRecipe(int recipeId, Recipe newRecipe)

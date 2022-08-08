@@ -15,5 +15,6 @@ namespace RecipesApp.Application.Abstractions
         List<Recipe> GetAllRecipes();
         List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients);
         List<Recipe> GetUnapprovedRecipes();
+        List<Recipe> GetApprovedRecipes();
     }
 }
