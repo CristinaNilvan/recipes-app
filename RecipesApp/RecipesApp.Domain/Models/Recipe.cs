@@ -22,7 +22,7 @@ namespace RecipesApp.Domain.Models
             Approved = false;
         }
 
-        //?
+        //for dummy data
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
             List<Ingredient> ingredients, int calories)
         {
@@ -34,7 +34,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Calories = calories;
             Ingredients = new List<Ingredient>(ingredients);
-            Approved = false;
+            Approved = true;
         }
 
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
