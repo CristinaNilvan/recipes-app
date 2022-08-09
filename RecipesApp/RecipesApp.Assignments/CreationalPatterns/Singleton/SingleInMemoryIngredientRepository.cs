@@ -1,4 +1,4 @@
-﻿using RecipesApp.Application.Abstractions;
+﻿/*using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns.Singleton
@@ -65,3 +65,4 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
         }
     }
 }
+*/

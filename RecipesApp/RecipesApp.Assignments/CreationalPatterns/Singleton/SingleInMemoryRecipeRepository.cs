@@ -1,4 +1,4 @@
-﻿using RecipesApp.Application.Abstractions;
+﻿/*using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Assignments.CreationalPatterns.Singleton
@@ -76,30 +76,6 @@ namespace RecipesApp.Assignments.CreationalPatterns.Singleton
             newRecipe.Id = recipeId;
             _recipes[index] = newRecipe;
         }
-
-        public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateRecipeStatus(int recipeId, bool status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Recipe> GetUnapprovedRecipes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Recipe> GetApprovedRecipes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Recipe> GetRecipesByApprovedStatus(bool isApproved)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
+*/
