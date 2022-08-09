@@ -4,6 +4,7 @@ namespace RecipesApp.Domain.Models
 {
     public class Ingredient
     {
+        //for dummy data
         public Ingredient(int id, string name, IngredientCategory category, int calories, float fats, float carbs, float proteins)
         {
             Id = id;
@@ -13,6 +14,7 @@ namespace RecipesApp.Domain.Models
             Fats = fats;
             Carbs = carbs;
             Proteins = proteins;
+            Approved = true;
         }
 
         public Ingredient(string name, IngredientCategory category, int calories, float fats, float carbs, float proteins)
@@ -23,6 +25,7 @@ namespace RecipesApp.Domain.Models
             Fats = fats;
             Carbs = carbs;
             Proteins = proteins;
+            Approved = false;
         }
 
         public int Id { get; set; }
@@ -33,6 +36,7 @@ namespace RecipesApp.Domain.Models
         public float Carbs { get; set; }
         public float Proteins { get; set; }
         public float Quantity { get; set; }
+        public bool Approved { get; set; } = false;
 
         public override string ToString()
         {
