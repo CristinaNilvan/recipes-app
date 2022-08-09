@@ -8,7 +8,8 @@ appOptions = appOptions.Append("2 - find a meal plan\n");
 appOptions = appOptions.Append("3 - find a recipes by ingredients\n");
 appOptions = appOptions.Append("4 - find a best match recipes based on your ingredient\n");
 appOptions = appOptions.Append("5 - approve recipes\n");
-appOptions = appOptions.Append("6 - exit\n");
+appOptions = appOptions.Append("6 - approve ingredients\n");
+appOptions = appOptions.Append("7 - exit\n");
 
 Console.WriteLine("Recipes App");
 
@@ -39,6 +40,10 @@ while (true)
         ApproveRecipes();
     }
     else if (nextOperation == 6)
+    {
+        ApproveIngredients();
+    }
+    else if (nextOperation == 7)
     {
         break;
     }
@@ -151,5 +156,21 @@ static void ApproveRecipes()
         }
 
         RecipeApproverHandler.HandleInputFromConsole();
+    }
+}
+
+static void ApproveIngredients()
+{
+    while (true)
+    {
+        Console.WriteLine("Continue to approve an ingredient? yes - 1, no - 0");
+        var continueToFind = Convert.ToInt32(Console.ReadLine());
+
+        if (continueToFind == 0)
+        {
+            break;
+        }
+
+        IngredientApproverHandler.HandleInputFromConsole();
     }
 }

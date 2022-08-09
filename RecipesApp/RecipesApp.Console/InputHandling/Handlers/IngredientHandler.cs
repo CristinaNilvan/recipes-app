@@ -75,7 +75,11 @@ namespace RecipesApp.Console.InputHandling.Handlers
         public static async void HandleReadAllIngredients()
         {
             System.Console.WriteLine("Here are the current ingredients: ");
-            var ingredients = await _mediator.Send(new GetAllIngredients());
+            var ingredients = await _mediator.Send(new GetIngredientsByApprovedStatus()
+            {
+                ApprovedStatus = true
+            });
+
             ListPrinter.PrintList(ingredients);
         }
     }
