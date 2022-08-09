@@ -42,6 +42,11 @@ while (true)
     {
         break;
     }
+    else
+    {
+        Console.WriteLine("Invalid operation number!");
+        break;
+    }
 }
 
 

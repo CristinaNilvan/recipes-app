@@ -47,19 +47,14 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return _recipes;
         }
 
-        public List<Recipe> GetApprovedRecipes()
+        public List<Recipe> GetRecipesByApprovedStatus(bool isApproved)
         {
-            return _recipes.Where(x => x.Approved == true).ToList();
-        }
-
-        public List<Recipe> GetUnapprovedRecipes()
-        {
-            return _recipes.Where(x => x.Approved == false).ToList();
+            return _recipes.Where(x => x.Approved == isApproved).ToList();
         }
 
         public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
         {
-            var approvedRecipes = GetApprovedRecipes();
+            var approvedRecipes = GetRecipesByApprovedStatus(true);
             var filteredRecipes = new List<Recipe>();
 
             foreach (var recipe in approvedRecipes)

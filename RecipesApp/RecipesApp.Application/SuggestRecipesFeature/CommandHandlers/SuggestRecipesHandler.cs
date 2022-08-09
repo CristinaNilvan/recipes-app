@@ -16,7 +16,7 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
 
         public Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
-            var recipes = _repository.GetApprovedRecipes();
+            var recipes = _repository.GetRecipesByApprovedStatus(true);
             var filteredByIngredientName = RecipesSuggesterUtils.FilterByIngredientName(request.IngredientName, recipes);
             var filteredByIngredientQuantity = RecipesSuggesterUtils.FilterByIngredientQuantity(request.Quantity, filteredByIngredientName);
 

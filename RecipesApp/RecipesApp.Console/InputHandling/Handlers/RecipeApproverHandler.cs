@@ -9,7 +9,10 @@ namespace RecipesApp.Console.InputHandling.Handlers
         public static async void HandleInputFromConsole()
         {
             var mediator = MediatorSetup.GetMediator();
-            var unapprovedRecipes = await mediator.Send(new GetUnapprovedRecipes());
+            var unapprovedRecipes = await mediator.Send(new GetRecipesByApprovedStatus()
+            {
+                ApprovedStatus = false
+            });
 
             System.Console.WriteLine("The unapproved recipes are: ");
             ListPrinter.PrintList(unapprovedRecipes);

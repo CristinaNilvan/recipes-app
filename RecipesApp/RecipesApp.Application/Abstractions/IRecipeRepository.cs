@@ -13,8 +13,7 @@ namespace RecipesApp.Application.Abstractions
         void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
         void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
         List<Recipe> GetAllRecipes();
+        List<Recipe> GetRecipesByApprovedStatus(bool isApproved);
         List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients);
-        List<Recipe> GetUnapprovedRecipes();
-        List<Recipe> GetApprovedRecipes();
     }
 }
