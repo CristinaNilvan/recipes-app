@@ -39,7 +39,7 @@ namespace RecipesApp.Domain.Models
             return $"Id : {Id}; Name : {Name}; Category : {Category}; Calories : {Calories}";
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is Ingredient ingredient &&
                    Id == ingredient.Id &&
