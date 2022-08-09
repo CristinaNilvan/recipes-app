@@ -17,17 +17,19 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
         public Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
             var recipes = _repository.GetRecipesByApprovedStatus(true);
-            var filteredByIngredientName = RecipesSuggesterUtils.FilterByIngredientName(request.IngredientName, recipes);
-            var filteredByIngredientQuantity = RecipesSuggesterUtils.FilterByIngredientQuantity(request.Quantity, filteredByIngredientName);
+            var allPossibilities = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName, 
+                request.Quantity, recipes);
+            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, request.Quantity, 
+                allPossibilities);
 
-            if (filteredByIngredientQuantity.Count == 0)
+            if (bestMatches.Count != 0)
             {
-                return Task.FromResult(filteredByIngredientName);
-            }
+                return Task.FromResult(bestMatches);
+            } 
             else
             {
-                return Task.FromResult(filteredByIngredientQuantity);
-            }
+                return Task.FromResult(allPossibilities);
+            }    
         }
     }
 }
