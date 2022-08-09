@@ -9,32 +9,32 @@ appOptions = appOptions.Append("3 - find a recipe by ingredients\n");
 appOptions = appOptions.Append("4 - approve recipes\n");
 appOptions = appOptions.Append("5 - exit\n");
 
-Console.WriteLine("Hello!");
+Console.WriteLine("Recipes App");
 
 while (true)
 {
     Console.WriteLine(appOptions.ToString());
 
     var nextOperation = Convert.ToInt32(Console.ReadLine());
-    if (nextOperation == 1)
+    switch (nextOperation)
     {
-        DoCRUDOnEntities();
-    }
-    else if (nextOperation == 2)
-    {
-        FindMealPlan();
-    }
-    else if (nextOperation == 3)
-    {
-        FindRecipeByIngredients();
-    }
-    else if (nextOperation == 4)
-    {
-        ApproveRecipes();
-    }
-    else if (nextOperation == 5)
-    {
-        break;
+        case 1:
+            DoCRUDOnEntities();
+            break;
+        case 2:
+            FindMealPlan();
+            break;
+        case 3:
+            FindRecipeByIngredients();
+            break;
+        case 4:
+            ApproveRecipes();
+            break;
+        case 5:
+            break;
+        default:
+            Console.WriteLine("Invalid number for operation!");
+            break;
     }
 }
 
