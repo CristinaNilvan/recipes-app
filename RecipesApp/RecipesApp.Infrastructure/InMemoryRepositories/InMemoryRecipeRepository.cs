@@ -59,19 +59,20 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
 
         public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
         {
-            var recipes = new List<Recipe>();
+            var approvedRecipes = GetApprovedRecipes();
+            var filteredRecipes = new List<Recipe>();
 
-            foreach (var recipe in _recipes)
+            foreach (var recipe in approvedRecipes)
             {
                 var containsAll = CheckIfRecipeContainsAllIngredients(recipe.Ingredients, ingredients);
 
                 if (containsAll)
                 {
-                    recipes.Add(recipe);
+                    filteredRecipes.Add(recipe);
                 }
             }
 
-            return recipes;
+            return filteredRecipes;
         }
 
         public void UpdateRecipe(int recipeId, Recipe newRecipe)
