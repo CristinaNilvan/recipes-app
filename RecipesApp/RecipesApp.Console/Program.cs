@@ -5,9 +5,10 @@ var appOptions = new StringBuilder();
 appOptions = appOptions.Append("What would you like to do?\n");
 appOptions = appOptions.Append("1 - do CRUD on entities\n");
 appOptions = appOptions.Append("2 - find a meal plan\n");
-appOptions = appOptions.Append("3 - find a recipe by ingredients\n");
-appOptions = appOptions.Append("4 - approve recipes\n");
-appOptions = appOptions.Append("5 - exit\n");
+appOptions = appOptions.Append("3 - find a recipes by ingredients\n");
+appOptions = appOptions.Append("4 - find a best match recipes based on your ingredient\n");
+appOptions = appOptions.Append("5 - approve recipes\n");
+appOptions = appOptions.Append("6 - exit\n");
 
 Console.WriteLine("Recipes App");
 
@@ -31,9 +32,13 @@ while (true)
     }
     else if (nextOperation == 4)
     {
-        ApproveRecipes();
+        FindBestMatchRecipesForIngredient();
     }
     else if (nextOperation == 5)
+    {
+        ApproveRecipes();
+    }
+    else if (nextOperation == 6)
     {
         break;
     }
@@ -100,7 +105,7 @@ static void FindRecipeByIngredients()
 {
     while (true)
     {
-        Console.WriteLine("Continue to find a recipe? yes - 1, no - 0");
+        Console.WriteLine("Continue to find recipes? yes - 1, no - 0");
         var continueToFind = Convert.ToInt32(Console.ReadLine());
 
         if (continueToFind == 0)
@@ -109,6 +114,22 @@ static void FindRecipeByIngredients()
         }
 
         RecipeFinderHandler.HandleInputFromConsole();
+    }
+}
+
+static void FindBestMatchRecipesForIngredient()
+{
+    while (true)
+    {
+        Console.WriteLine("Continue to find recipes? yes - 1, no - 0");
+        var continueToFind = Convert.ToInt32(Console.ReadLine());
+
+        if (continueToFind == 0)
+        {
+            break;
+        }
+
+        RecipeSuggesterHandler.HandleInputFromConsole();
     }
 }
 
