@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.ApproveRecipeFeature.Commands
 {
