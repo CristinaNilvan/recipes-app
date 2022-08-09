@@ -16,25 +16,26 @@ while (true)
     Console.WriteLine(appOptions.ToString());
 
     var nextOperation = Convert.ToInt32(Console.ReadLine());
-    switch (nextOperation)
+
+    if (nextOperation == 1)
     {
-        case 1:
-            DoCRUDOnEntities();
-            break;
-        case 2:
-            FindMealPlan();
-            break;
-        case 3:
-            FindRecipeByIngredients();
-            break;
-        case 4:
-            ApproveRecipes();
-            break;
-        case 5:
-            break;
-        default:
-            Console.WriteLine("Invalid number for operation!");
-            break;
+        DoCRUDOnEntities();
+    }
+    else if (nextOperation == 2)
+    {
+        FindMealPlan();
+    }
+    else if (nextOperation == 3)
+    {
+        FindRecipeByIngredients();
+    }
+    else if (nextOperation == 4)
+    {
+        ApproveRecipes();
+    }
+    else if (nextOperation == 5)
+    {
+        break;
     }
 }
 
