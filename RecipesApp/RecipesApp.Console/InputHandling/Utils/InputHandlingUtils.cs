@@ -81,7 +81,7 @@ namespace RecipesApp.Console.InputHandling.Utils
                     var id = Convert.ToInt32(System.Console.ReadLine());
 
                     System.Console.WriteLine("Enter the quantity of the ingredient: ");
-                    var quantity = Convert.ToInt32(System.Console.ReadLine());
+                    var quantity = float.Parse(System.Console.ReadLine());
 
                     var element = await mediator.Send(new GetIngredientById()
                     {
@@ -107,7 +107,7 @@ namespace RecipesApp.Console.InputHandling.Utils
                     });
 
                     System.Console.WriteLine("Enter the quantity of the ingredient: ");
-                    var quantity = Convert.ToInt32(System.Console.ReadLine());
+                    var quantity = float.Parse(System.Console.ReadLine());
 
                     var ingredientFromRepository = await mediator.Send(new GetIngredientByName()
                     {

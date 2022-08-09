@@ -32,7 +32,7 @@ namespace RecipesApp.Domain.Models
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
-        public double Quantity { get; set; }
+        public float Quantity { get; set; }
 
         public override string ToString()
         {
