@@ -13,11 +13,11 @@ namespace RecipesApp.Application.ApproveIngredientFeature.CommandHandlers
             _repository = repository;
         }
 
-        public Task<Unit> Handle(ApproveIngredient request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ApproveIngredient request, CancellationToken cancellationToken)
         {
-            _repository.UpdateIngredientStatus(request.IngredientId, true);
+            await _repository.UpdateIngredientStatus(request.IngredientId, true);
 
-            return Task.FromResult(Unit.Value);
+            return new Unit();
         }
     }
 }
