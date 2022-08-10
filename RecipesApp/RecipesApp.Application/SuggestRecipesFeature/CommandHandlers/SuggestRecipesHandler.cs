@@ -16,10 +16,10 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
-            var recipes = _repository.GetRecipesByApprovedStatus(true).Result;
+            var recipes = await _repository.GetRecipesByApprovedStatus(true);
             var allPossibilities = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName, 
-                request.Quantity, recipes);
-            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, request.Quantity, 
+                request.IngredientQuantity, recipes);
+            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, request.IngredientQuantity, 
                 allPossibilities);
 
             if (bestMatches.Count != 0)

@@ -19,7 +19,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var recipes = await mediator.Send(new SuggestRecipes()
             {
                 IngredientName = name,
-                Quantity = quantity
+                IngredientQuantity = quantity
             });
 
             System.Console.WriteLine("The best matches are: ");
