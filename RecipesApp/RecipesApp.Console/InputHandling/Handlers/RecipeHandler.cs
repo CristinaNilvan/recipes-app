@@ -9,11 +9,11 @@ namespace RecipesApp.Console.InputHandling.Handlers
     {
         private static readonly IMediator _mediator = MediatorSetup.GetMediator();
 
-        public static void HandleCreateRecipe()
+        public async static void HandleCreateRecipe()
         {
             var recipe = InputHandlingUtils.CreateRecipeFromInput();
 
-            _mediator.Send(new CreateRecipe()
+            await _mediator.Send(new CreateRecipe()
             {
                 Name = recipe.Name,
                 Author = recipe.Author,
