@@ -29,7 +29,7 @@ while (true)
     }
     else if (nextOperation == 3)
     {
-        FindRecipeByIngredients();
+        FindRecipesByIngredients();
     }
     else if (nextOperation == 4)
     {
@@ -111,7 +111,7 @@ static void FindMealPlan()
     }
 }
 
-static void FindRecipeByIngredients()
+static void FindRecipesByIngredients()
 {
     while (true)
     {
