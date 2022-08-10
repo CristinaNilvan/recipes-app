@@ -7,29 +7,29 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<MealPlan> _mealPlans = new();
 
-        public void CreateMealPlan(MealPlan mealPlan)
+        public async Task CreateMealPlan(MealPlan mealPlan)
         {
             mealPlan.Id = _mealPlans.Count > 0 ? _mealPlans.ElementAt(_mealPlans.Count - 1).Id + 1 : 1;
             _mealPlans.Add(mealPlan);
         }
 
-        public void DeleteMealPlan(int mealPlanId)
+        public async Task DeleteMealPlan(int mealPlanId)
         {
             var mealPlan = _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
             _mealPlans.Remove(mealPlan);
         }
 
-        public MealPlan GetMealPlanById(int mealPlanId)
+        public async Task<MealPlan> GetMealPlanById(int mealPlanId)
         {
             return _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
         }
 
-        public List<MealPlan> GetAllMealPlans()
+        public async Task<List<MealPlan>> GetAllMealPlans()
         {
             return _mealPlans;
         }
 
-        public void UpdateMealPlan(int mealPlanId, MealPlan newMealPlan)
+        public async Task UpdateMealPlan(int mealPlanId, MealPlan newMealPlan)
         {
             var mealPlan = _mealPlans.FirstOrDefault(x => x.Id == mealPlanId);
             var index = _mealPlans.IndexOf(mealPlan);

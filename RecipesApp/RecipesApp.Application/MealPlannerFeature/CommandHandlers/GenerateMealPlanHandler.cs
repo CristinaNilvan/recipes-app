@@ -20,12 +20,12 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             _mealPlanRepository = mealPlanRepository;
         }
 
-        public Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
+        public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
         {
             var mealPlan = GenerateMealPlan(request.MealType, request.Calories, request.Recipes);
-            _mealPlanRepository.CreateMealPlan(mealPlan);
+            await _mealPlanRepository.CreateMealPlan(mealPlan);
 
-            return Task.FromResult(mealPlan);
+            return mealPlan;
         }
 
         private MealPlan GenerateMealPlan(MealType mealType, int calories, List<Recipe> recipes)
