@@ -14,14 +14,14 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             _repository = repository;
         }
 
-        public Task<Unit> Handle(CreateRecipe request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateRecipe request, CancellationToken cancellationToken)
         {
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
                 request.Ingredients);
 
-            _repository.CreateRecipe(recipe);
+            await _repository.CreateRecipe(recipe);
 
-            return Task.FromResult(Unit.Value);
+            return new Unit();
         }
     }
 }

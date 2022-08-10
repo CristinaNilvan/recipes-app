@@ -4,16 +4,14 @@ namespace RecipesApp.Application.Abstractions
 {
     public interface IRecipeRepository
     {
-        void CreateRecipe(Recipe recipe);
-        Recipe GetRecipeById(int recipeId);
-        Recipe GetRecipeByName(string recipeName);
-        void UpdateRecipe(int recipeId, Recipe newRecipe);
-        void UpdateRecipeStatus(int recipeId, bool status);
-        void DeleteRecipe(int recipeId);
-        void AddIngredientToRecipe(int recipeId, Ingredient ingredient);
-        void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
-        List<Recipe> GetAllRecipes();
-        List<Recipe> GetRecipesByApprovedStatus(bool isApproved);
-        List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients);
+        Task CreateRecipe(Recipe recipe);
+        Task<Recipe> GetRecipeById(int recipeId);
+        Task<Recipe> GetRecipeByName(string recipeName);
+        Task UpdateRecipe(int recipeId, Recipe newRecipe);
+        Task UpdateRecipeStatus(int recipeId, bool status);
+        Task DeleteRecipe(int recipeId);
+        Task<List<Recipe>> GetAllRecipes();
+        Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved);
+        Task<List<Recipe>> GetRecipesByIngredients(List<Ingredient> ingredients);
     }
 }

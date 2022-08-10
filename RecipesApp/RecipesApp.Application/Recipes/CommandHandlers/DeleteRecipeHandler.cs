@@ -13,11 +13,11 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             _repository = repository;
         }
 
-        public Task<Unit> Handle(DeleteRecipe request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteRecipe request, CancellationToken cancellationToken)
         {
-            _repository.DeleteRecipe(request.RecipeId);
+            await _repository.DeleteRecipe(request.RecipeId);
 
-            return Task.FromResult(Unit.Value);
+            return new Unit();
         }
     }
 }

@@ -7,54 +7,41 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<Recipe> _recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
 
-        public void AddIngredientToRecipe(int recipeId, Ingredient ingredient)
-        {
-            var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
-            recipe.AddIngredient(ingredient);
-        }
-
-        public void CreateRecipe(Recipe recipe)
+        public async Task CreateRecipe(Recipe recipe)
         {
             recipe.Id = _recipes.Count > 0 ? _recipes.ElementAt(_recipes.Count - 1).Id + 1 : 1;
             _recipes.Add(recipe);
         }
 
-        public void DeleteIngredientFromRecipe(int recipeId, int ingredientId)
-        {
-            var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
-            var ingredientToDelete = recipe.Ingredients.FirstOrDefault(x => x.Id == ingredientId);
-            recipe.RemoveIngredient(ingredientToDelete);
-        }
-
-        public void DeleteRecipe(int recipeId)
+        public async Task DeleteRecipe(int recipeId)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             _recipes.Remove(recipe);
         }
 
-        public Recipe GetRecipeById(int recipeId)
+        public async Task<Recipe> GetRecipeById(int recipeId)
         {
             return _recipes.FirstOrDefault(x => x.Id == recipeId);
         }
 
-        public Recipe GetRecipeByName(string recipeName)
+        public async Task<Recipe> GetRecipeByName(string recipeName)
         {
             return _recipes.FirstOrDefault(x => x.Name == recipeName);
         }
 
-        public List<Recipe> GetAllRecipes()
+        public async Task<List<Recipe>> GetAllRecipes()
         {
             return _recipes;
         }
 
-        public List<Recipe> GetRecipesByApprovedStatus(bool isApproved)
+        public async Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved)
         {
             return _recipes.Where(x => x.Approved == isApproved).ToList();
         }
 
-        public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
+        public async Task<List<Recipe>> GetRecipesByIngredients(List<Ingredient> ingredients)
         {
-            var approvedRecipes = GetRecipesByApprovedStatus(true);
+            var approvedRecipes = GetRecipesByApprovedStatus(true).Result;
             var filteredRecipes = new List<Recipe>();
 
             foreach (var recipe in approvedRecipes)
@@ -70,7 +57,7 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return filteredRecipes;
         }
 
-        public void UpdateRecipe(int recipeId, Recipe newRecipe)
+        public async Task UpdateRecipe(int recipeId, Recipe newRecipe)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             var index = _recipes.IndexOf(recipe);
@@ -78,7 +65,7 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             _recipes[index] = newRecipe;
         }
 
-        public void UpdateRecipeStatus(int recipeId, bool status)
+        public async Task UpdateRecipeStatus(int recipeId, bool status)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             recipe.Approved = status;

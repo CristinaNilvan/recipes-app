@@ -14,9 +14,9 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
             _repository = repository;
         }
 
-        public Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
+        public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
-            var recipes = _repository.GetRecipesByApprovedStatus(true);
+            var recipes = _repository.GetRecipesByApprovedStatus(true).Result;
             var allPossibilities = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName, 
                 request.Quantity, recipes);
             var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, request.Quantity, 
@@ -24,11 +24,11 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
 
             if (bestMatches.Count != 0)
             {
-                return Task.FromResult(bestMatches);
+                return bestMatches;
             } 
             else
             {
-                return Task.FromResult(allPossibilities);
+                return allPossibilities;
             }    
         }
     }
