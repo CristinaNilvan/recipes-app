@@ -13,11 +13,11 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             _repository = repository;
         }
 
-        public Task<Unit> Handle(DeleteIngredient request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteIngredient request, CancellationToken cancellationToken)
         {
-            _repository.DeleteIngredient(request.IngredientId);
-            
-            return Task.FromResult(Unit.Value);
+            await _repository.DeleteIngredient(request.IngredientId);
+
+            return new Unit();
         }
     }
 }

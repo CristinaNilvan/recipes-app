@@ -14,9 +14,9 @@ namespace RecipesApp.Application.Ingredients.QueryHandlers
             _repository = repository;
         }
 
-        public Task<Ingredient> Handle(GetIngredientByName request, CancellationToken cancellationToken)
+        public async Task<Ingredient> Handle(GetIngredientByName request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_repository.GetIngredientByName(request.IngredientName));
+            return await _repository.GetIngredientByName(request.IngredientName);
         }
     }
 }
