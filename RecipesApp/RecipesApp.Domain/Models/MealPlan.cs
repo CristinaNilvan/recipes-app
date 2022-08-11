@@ -2,32 +2,28 @@
 {
     public class MealPlan
     {
+        public MealPlan(Recipe breakfast, Recipe lunch, Recipe dinner)
+        {
+            Breakfast = breakfast;
+            Lunch = lunch;
+            Dinner = dinner;
+            CalculateNutritionalValues();
+        }
+
         public int Id { get; set; }
         public Recipe Breakfast { get; set; }
         public Recipe Lunch { get; set; }
         public Recipe Dinner { get; set; }
-        public float Calories { get; set; }
-        public float Fats { get; set; }
-        public float Carbs { get; set; }
-        public float Proteins { get; set; }
+        public float Calories { get; set; } = 0;
+        public float Fats { get; set; } = 0;
+        public float Carbs { get; set; } = 0;
+        public float Proteins { get; set; } = 0;
 
-        public void CalculateCalories()
+        private void CalculateNutritionalValues()
         {
             Calories = Breakfast.Calories + Lunch.Calories + Dinner.Calories;
-        }
-
-        public void CalculateFats()
-        {
             Fats = Breakfast.Fats + Lunch.Fats + Dinner.Fats;
-        }
-
-        public void CalculateCarbs()
-        {
             Carbs = Breakfast.Carbs + Lunch.Carbs + Dinner.Carbs;
-        }
-
-        public void CalculateProteins()
-        {
             Proteins = Breakfast.Proteins + Lunch.Proteins + Dinner.Proteins;
         }
 
@@ -35,7 +31,8 @@
         {
             return $"Breakfast: {Breakfast}\n" +
                 $"Lunch: {Lunch}\n" +
-                $"Dinner: {Dinner}";
+                $"Dinner: {Dinner}\n" +
+                $"Total calories: {Calories}";
         }
     }
 }

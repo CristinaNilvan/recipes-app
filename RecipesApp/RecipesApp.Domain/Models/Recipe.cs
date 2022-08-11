@@ -57,10 +57,10 @@ namespace RecipesApp.Domain.Models
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
         public float Servings { get; set; }
-        public float Calories { get; set; }
-        public float Fats { get; set; }
-        public float Carbs { get; set; }
-        public float Proteins { get; set; }
+        public float Calories { get; set; } = 0;
+        public float Fats { get; set; } = 0;
+        public float Carbs { get; set; } = 0; 
+        public float Proteins { get; set; } = 0;
         public List<Ingredient> Ingredients { get; set; }
         public bool Approved { get; set; } = false;
 
@@ -104,10 +104,13 @@ namespace RecipesApp.Domain.Models
 
         private void CalculateNutritionalValuesForRecipe()
         {
-            Calories = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Calories));
-            Fats = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Fats));
-            Carbs = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Carbs));
-            Proteins = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Proteins));
+            foreach (var ingredient in Ingredients)
+            {
+                Calories += ModelUtils.CalculateNutritionalValue(ingredient.Calories, ingredient.Quantity);
+                Fats += ModelUtils.CalculateNutritionalValue(ingredient.Fats, ingredient.Quantity);
+                Carbs += ModelUtils.CalculateNutritionalValue(ingredient.Carbs, ingredient.Quantity);
+                Proteins += ModelUtils.CalculateNutritionalValue(ingredient.Proteins, ingredient.Quantity);
+            }
         }
     }
 }
