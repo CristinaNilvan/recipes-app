@@ -51,7 +51,7 @@ namespace RecipesApp.Console.InputHandling.Utils
             var mealType = System.Console.ReadLine();
             var enumMealType = (MealType)Enum.Parse(typeof(MealType), mealType, true);
 
-            System.Console.WriteLine("Serving Time [Breakfast, Lunch, Dinner]: ");
+            System.Console.WriteLine("Serving Time [Breakfast, Lunch, Dinner, Others]: ");
             var servingTime = System.Console.ReadLine();
             var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
 

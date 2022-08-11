@@ -4,6 +4,7 @@
     {
         Breakfast,
         Lunch,
-        Dinner
+        Dinner,
+        Others
     }
 }
