@@ -3,6 +3,8 @@ using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.MealPlannerFeature.Commands;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
+using System.Reflection;
+using System;
 
 namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 {
@@ -39,12 +41,12 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             var dinnerRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _dinnerRecipes);
 
             var random = new Random();
-            var mealPlan = new MealPlan
-            {
-                Breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count)),
-                Lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count)),
-                Dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count))
-            };
+
+            var breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count));
+            var lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count));
+            var dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count));
+
+            var mealPlan = new MealPlan(breakfast, lunch, dinner);
 
             return mealPlan;
         }
