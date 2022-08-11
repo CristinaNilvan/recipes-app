@@ -4,24 +4,6 @@ namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
-        //?
-        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            int calories, float fats, float carbs, float proteins, List<Ingredient> ingredients)
-        {
-            Id = id;
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Calories = calories;
-            Fats = fats;
-            Carbs = carbs;
-            Proteins = proteins;
-            Ingredients = new List<Ingredient>(ingredients);
-            Approved = false;
-        }
-
         //for dummy data
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
             List<Ingredient> ingredients, int calories)
@@ -80,24 +62,6 @@ namespace RecipesApp.Domain.Models
         public float Proteins { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public bool Approved { get; set; } = false;
-
-        public void AddIngredient(Ingredient ingredient)
-        {
-            Ingredients.Add(ingredient);
-            Calories += ingredient.Calories;
-            Fats += ingredient.Fats;
-            Carbs += ingredient.Carbs;
-            Proteins += ingredient.Proteins;
-        }
-
-        public void RemoveIngredient(Ingredient ingredient)
-        {
-            Ingredients.Remove(ingredient);
-            Calories -= ingredient.Calories;
-            Fats -= ingredient.Fats;
-            Carbs -= ingredient.Carbs;
-            Proteins -= ingredient.Proteins;
-        }
 
         public override string ToString()
         {
