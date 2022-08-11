@@ -117,7 +117,7 @@ namespace RecipesApp.Console.InputHandling.Utils
                         IngredientName = ingredientFromInput.Name
                     });
 
-                    ingredientFromRepository.Quantity = quantity;  
+                    ingredientFromRepository.Quantity = quantity;
 
                     recipeIngredients.Add(ingredientFromRepository);
                 }

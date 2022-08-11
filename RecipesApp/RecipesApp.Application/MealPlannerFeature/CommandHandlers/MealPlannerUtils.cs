@@ -5,7 +5,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 {
     public class MealPlannerUtils
     {
-        public static float CalculateTwoDecimalFloat(float number) 
+        public static float CalculateTwoDecimalFloat(float number)
             => (float)Math.Round(number * 100f) / 100f;
 
         public static List<Recipe> FilterByCaloriesAndMealType(float calories, MealType mealType, List<Recipe> recipes)

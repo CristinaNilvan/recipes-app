@@ -7,11 +7,11 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
         public static float CalculateTwoDecimalFloat(float number)
             => (float)Math.Round(number * 100f) / 100f;
 
-        public static List<Recipe> FilterByIngredientAndQuantity(string ingredientName, float ingredientQuantity, 
+        public static List<Recipe> FilterByIngredientAndQuantity(string ingredientName, float ingredientQuantity,
             List<Recipe> recipes)
         {
             var filteredRecipes = new List<Recipe>();
-            
+
             foreach (var recipe in recipes)
             {
                 var found = false;

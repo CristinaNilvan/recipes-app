@@ -76,8 +76,8 @@ namespace RecipesApp.Console.InputHandling.Handlers
         public static async void HandleReadAllRecipes()
         {
             System.Console.WriteLine("Here are the current recipes: ");
-            var recipes = await _mediator.Send(new GetRecipesByApprovedStatus() 
-            { 
+            var recipes = await _mediator.Send(new GetRecipesByApprovedStatus()
+            {
                 ApprovedStatus = true
             });
 

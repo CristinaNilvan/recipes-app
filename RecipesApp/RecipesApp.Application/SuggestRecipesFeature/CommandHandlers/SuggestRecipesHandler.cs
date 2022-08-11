@@ -21,7 +21,7 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
             var allRecipes = await _repository.GetRecipesByApprovedStatus(true);
             var recipesWithIngredient = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName,
                 quantityTwoDecimals, allRecipes);
-            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, quantityTwoDecimals, 
+            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, quantityTwoDecimals,
                 recipesWithIngredient);
 
             if (bestMatches.Count != 0)

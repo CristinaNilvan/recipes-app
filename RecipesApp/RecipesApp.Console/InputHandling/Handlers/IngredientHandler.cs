@@ -2,7 +2,6 @@
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Console.InputHandling.Utils;
-using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Console.InputHandling.Handlers
 {
