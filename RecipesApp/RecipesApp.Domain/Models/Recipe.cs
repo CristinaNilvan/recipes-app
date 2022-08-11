@@ -1,4 +1,5 @@
 ﻿using RecipesApp.Domain.Enums;
+using RecipesApp.Domain.Utils;
 
 namespace RecipesApp.Domain.Models
 {
@@ -6,7 +7,7 @@ namespace RecipesApp.Domain.Models
     {
         //for dummy data
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            List<Ingredient> ingredients, int calories)
+            List<Ingredient> ingredients, float calories)
         {
             Id = id;
             Name = name;
@@ -14,7 +15,7 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
-            Calories = calories;
+            Calories = ModelUtils.CalculateTwoDecimalFloat(calories);
             Servings = 4;
             Ingredients = new List<Ingredient>(ingredients);
             Approved = true;
@@ -29,7 +30,7 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
-            Servings = servings;
+            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
             Approved = false;
@@ -43,7 +44,7 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
-            Servings = servings;
+            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
             Approved = false;
@@ -56,7 +57,7 @@ namespace RecipesApp.Domain.Models
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
         public float Servings { get; set; }
-        public int Calories { get; set; }
+        public float Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
@@ -103,13 +104,10 @@ namespace RecipesApp.Domain.Models
 
         private void CalculateNutritionalValuesForRecipe()
         {
-            foreach (var ingredient in Ingredients)
-            {
-                Calories += ingredient.Calories;
-                Fats += ingredient.Fats;
-                Carbs += ingredient.Carbs;
-                Proteins += ingredient.Proteins;
-            }
+            Calories = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Calories));
+            Fats = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Fats));
+            Carbs = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Carbs));
+            Proteins = ModelUtils.CalculateTwoDecimalFloat(Ingredients.Sum(x => x.Proteins));
         }
     }
 }

@@ -16,10 +16,12 @@ namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
+            var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
+
             var allRecipes = await _repository.GetRecipesByApprovedStatus(true);
-            var recipesWithIngredient = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName, 
-                request.IngredientQuantity, allRecipes);
-            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, request.IngredientQuantity, 
+            var recipesWithIngredient = RecipesSuggesterUtils.FilterByIngredientAndQuantity(request.IngredientName,
+                quantityTwoDecimals, allRecipes);
+            var bestMatches = RecipesSuggesterUtils.FilterByBestMatch(request.IngredientName, quantityTwoDecimals, 
                 recipesWithIngredient);
 
             if (bestMatches.Count != 0)

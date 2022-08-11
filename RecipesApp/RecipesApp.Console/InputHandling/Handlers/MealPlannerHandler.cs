@@ -16,7 +16,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var enumMealType = (MealType)Enum.Parse(typeof(MealType), readMealType, true);
 
             System.Console.WriteLine("Total number of calories: ");
-            var calories = Convert.ToInt32(System.Console.ReadLine());
+            var calories = float.Parse(System.Console.ReadLine());
 
             var mediator = MediatorSetup.GetMediator();
             var allRecipes = await mediator.Send(new GetRecipesByApprovedStatus()

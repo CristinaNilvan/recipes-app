@@ -20,7 +20,7 @@ namespace RecipesApp.Console.InputHandling.Utils
             var enumCategory = (IngredientCategory)Enum.Parse(typeof(IngredientCategory), category, true);
 
             System.Console.WriteLine("Calories: ");
-            var calories = Convert.ToInt32(System.Console.ReadLine());
+            var calories = float.Parse(System.Console.ReadLine());
 
             System.Console.WriteLine("Fats: ");
             var fats = float.Parse(System.Console.ReadLine());

@@ -28,11 +28,11 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             return mealPlan;
         }
 
-        private MealPlan GenerateMealPlan(MealType mealType, int calories, List<Recipe> recipes)
+        private MealPlan GenerateMealPlan(MealType mealType, float calories, List<Recipe> recipes)
         {
             InitializeLists(recipes);
 
-            int averageCalories = calories / 3;
+            float averageCalories = MealPlannerUtils.CalculateTwoDecimalFloat(calories / 3);
 
             var breakfastRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _breakfastRecipes);
             var lunchRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _lunchRecipes);
