@@ -33,12 +33,13 @@ namespace RecipesApp.Domain.Models
             MealType = mealType;
             ServingTime = servingTime;
             Calories = calories;
+            Servings = 4;
             Ingredients = new List<Ingredient>(ingredients);
             Approved = true;
         }
 
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            List<Ingredient> ingredients)
+            float servings, List<Ingredient> ingredients)
         {
             Id = id;
             Name = name;
@@ -46,19 +47,21 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
+            Servings = servings;
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
             Approved = false;
         }
 
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
-            List<Ingredient> ingredients)
+            float servings, List<Ingredient> ingredients)
         {
             Name = name;
             Author = author;
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
+            Servings = servings;
             Ingredients = new List<Ingredient>(ingredients);
             CalculateNutritionalValuesForRecipe();
             Approved = false;
@@ -70,6 +73,7 @@ namespace RecipesApp.Domain.Models
         public string Description { get; set; }
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
+        public float Servings { get; set; }
         public int Calories { get; set; }
         public float Fats { get; set; }
         public float Carbs { get; set; }

@@ -55,9 +55,12 @@ namespace RecipesApp.Console.InputHandling.Utils
             var servingTime = System.Console.ReadLine();
             var enumServingTime = (ServingTime)Enum.Parse(typeof(ServingTime), servingTime, true);
 
+            System.Console.WriteLine("Number of servings: ");
+            var servings = float.Parse(System.Console.ReadLine());
+
             var ingredientList = CreateIngredientListForRecipe().Result;
 
-            return new Recipe(name, author, description, enumMealType, enumServingTime, ingredientList);
+            return new Recipe(name, author, description, enumMealType, enumServingTime, servings, ingredientList);
         }
 
         public static async Task<List<Ingredient>> CreateIngredientListForRecipe()

@@ -20,6 +20,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
                 Description = recipe.Description,
                 MealType = recipe.MealType,
                 ServingTime = recipe.ServingTime,
+                Servings = recipe.Servings,
                 Ingredients = recipe.Ingredients
             });
         }
@@ -54,6 +55,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
                 Description = recipe.Description,
                 MealType = recipe.MealType,
                 ServingTime = recipe.ServingTime,
+                Servings = recipe.Servings,
                 Ingredients = recipe.Ingredients
             });
         }

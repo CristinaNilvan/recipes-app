@@ -12,10 +12,7 @@ namespace RecipesApp.Application.Recipes.Commands
         public string Description { get; set; }
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
-        public int Calories { get; set; }
-        public float Fats { get; set; }
-        public float Carbs { get; set; }
-        public float Proteins { get; set; }
+        public float Servings { get; set; }
         public List<Ingredient> Ingredients { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
         public async Task<Unit> Handle(UpdateRecipe request, CancellationToken cancellationToken)
         {
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
-                request.Ingredients);
+                request.Servings, request.Ingredients);
 
             await _repository.UpdateRecipe(request.RecipeId, recipe);
 
