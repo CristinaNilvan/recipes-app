@@ -36,9 +36,9 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
             float averageCalories = MealPlannerUtils.CalculateTwoDecimalFloat(calories / 3);
 
-            var breakfastRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _breakfastRecipes);
-            var lunchRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _lunchRecipes);
-            var dinnerRecipes = MealPlannerUtils.FilterByCaloriesAndMealType(averageCalories, mealType, _dinnerRecipes);
+            var breakfastRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _breakfastRecipes);
+            var lunchRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _lunchRecipes);
+            var dinnerRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _dinnerRecipes);
 
             var random = new Random();
 
