@@ -12,6 +12,5 @@ namespace RecipesApp.Application.Abstractions
         Task DeleteRecipe(int recipeId);
         Task<List<Recipe>> GetAllRecipes();
         Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved);
-        Task<List<Recipe>> GetRecipesByIngredients(List<Ingredient> ingredients);
     }
 }

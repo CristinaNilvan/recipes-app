@@ -1,4 +1,4 @@
-﻿using RecipesApp.Application.Recipes.Queries;
+﻿using RecipesApp.Application.FindRecipesByIngredientsFeature.Commands;
 using RecipesApp.Console.InputHandling.Utils;
 
 namespace RecipesApp.Console.InputHandling.Handlers
@@ -9,7 +9,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
         {
             var ingredients = InputHandlingUtils.CreateIngredientListForRecipeFinder().Result;
             var mediator = MediatorSetup.GetMediator();
-            var recipes = await mediator.Send(new GetRecipesByIngredients()
+            var recipes = await mediator.Send(new FindRecipesByIngredients()
             {
                 Ingredients = ingredients
             });

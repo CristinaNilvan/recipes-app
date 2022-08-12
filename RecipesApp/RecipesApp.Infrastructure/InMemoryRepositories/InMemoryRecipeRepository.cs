@@ -39,24 +39,6 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return _recipes.Where(x => x.Approved == isApproved).ToList();
         }
 
-        public async Task<List<Recipe>> GetRecipesByIngredients(List<Ingredient> ingredients)
-        {
-            var approvedRecipes = GetRecipesByApprovedStatus(true).Result;
-            var filteredRecipes = new List<Recipe>();
-
-            foreach (var recipe in approvedRecipes)
-            {
-                var containsAll = CheckIfRecipeContainsAllIngredients(recipe.Ingredients, ingredients);
-
-                if (containsAll)
-                {
-                    filteredRecipes.Add(recipe);
-                }
-            }
-
-            return filteredRecipes;
-        }
-
         public async Task UpdateRecipe(int recipeId, Recipe newRecipe)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
@@ -69,11 +51,6 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             recipe.Approved = status;
-        }
-
-        private bool CheckIfRecipeContainsAllIngredients(List<Ingredient> recipeIngredientList, List<Ingredient> givenIngredientList)
-        {
-            return givenIngredientList.All(x => recipeIngredientList.Any(y => x.Id == y.Id));
         }
     }
 }
