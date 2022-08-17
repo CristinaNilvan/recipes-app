@@ -1,4 +1,4 @@
-﻿using RecipesApp.Console.InputHandling.Handlers;
+﻿/*using RecipesApp.Console.InputHandling.Handlers;
 using System.Text;
 
 var appOptions = new StringBuilder();
@@ -173,4 +173,19 @@ static void ApproveIngredients()
 
         IngredientApproverHandler.HandleInputFromConsole();
     }
-}
+}*/
+
+using Microsoft.EntityFrameworkCore;
+using RecipesApp.Infrastructure;
+
+await using var context = new DataContext();
+
+context.Database.EnsureDeleted();
+context.Database.EnsureCreated();
+
+Seeder.SeedData();
+
+var ingredientNamesOrdered = await context.Ingredients
+    .OrderBy(i => i.Calories)
+    .Select(s => s.Name)
+    .ToListAsync();
