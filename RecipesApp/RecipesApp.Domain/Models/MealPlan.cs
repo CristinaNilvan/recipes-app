@@ -2,6 +2,11 @@
 {
     public class MealPlan
     {
+        public MealPlan()
+        {
+
+        }
+
         public MealPlan(Recipe breakfast, Recipe lunch, Recipe dinner)
         {
             Breakfast = breakfast;

@@ -5,6 +5,11 @@ namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
+        public Recipe()
+        {
+
+        }
+
         //for dummy data
         public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
             List<Ingredient> ingredients, float calories)
