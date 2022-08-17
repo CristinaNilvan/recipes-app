@@ -1,5 +1,7 @@
-﻿using RecipesApp.Domain.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Domain.Models
 {
@@ -56,18 +58,33 @@ namespace RecipesApp.Domain.Models
         }
 
         public int Id { get; set; }
+
+        [MaxLength(100)]
         public string Name { get; set; }
+
+        [MaxLength(70)]
         public string Author { get; set; }
+
+        [MaxLength(500)]
         public string Description { get; set; }
+
         public MealType MealType { get; set; }
+
         public ServingTime ServingTime { get; set; }
+
         public float Servings { get; set; }
+
         public float Calories { get; set; } = 0;
+
         public float Fats { get; set; } = 0;
-        public float Carbs { get; set; } = 0; 
+
+        public float Carbs { get; set; } = 0;
+
         public float Proteins { get; set; } = 0;
-        public List<Ingredient> Ingredients { get; set; }
+
         public bool Approved { get; set; } = false;
+
+        public List<Ingredient> Ingredients { get; set; }
 
         public override string ToString()
         {
