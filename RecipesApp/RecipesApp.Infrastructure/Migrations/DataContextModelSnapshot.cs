@@ -46,12 +46,10 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("Proteins")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Quantity")
                         .HasColumnType("real");
 
                     b.Property<int?>("RecipeId")
@@ -116,7 +114,8 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<float>("Calories")
                         .HasColumnType("real");
@@ -125,7 +124,8 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<float>("Fats")
                         .HasColumnType("real");
@@ -134,7 +134,8 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<float>("Proteins")
                         .HasColumnType("real");

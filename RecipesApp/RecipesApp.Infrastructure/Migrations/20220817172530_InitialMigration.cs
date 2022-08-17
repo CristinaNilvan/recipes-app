@@ -14,9 +14,9 @@ namespace RecipesApp.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Author = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     MealType = table.Column<int>(type: "int", nullable: false),
                     ServingTime = table.Column<int>(type: "int", nullable: false),
                     Servings = table.Column<float>(type: "real", nullable: false),
@@ -37,13 +37,12 @@ namespace RecipesApp.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Category = table.Column<int>(type: "int", nullable: false),
                     Calories = table.Column<float>(type: "real", nullable: false),
                     Fats = table.Column<float>(type: "real", nullable: false),
                     Carbs = table.Column<float>(type: "real", nullable: false),
                     Proteins = table.Column<float>(type: "real", nullable: false),
-                    Quantity = table.Column<float>(type: "real", nullable: false),
                     Approved = table.Column<bool>(type: "bit", nullable: false),
                     RecipeId = table.Column<int>(type: "int", nullable: true)
                 },
