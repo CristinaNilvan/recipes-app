@@ -1,7 +1,7 @@
 ﻿using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Infrastructure
+namespace RecipesApp.Infrastructure.InMemoryRepositories
 {
     internal class PopulateLists
     {
