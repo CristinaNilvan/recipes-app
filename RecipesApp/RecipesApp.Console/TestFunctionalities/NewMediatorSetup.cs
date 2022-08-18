@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace RecipesApp.Console.TestFunctionalities
                 var diContainer = new ServiceCollection()
                     .AddDbContext<DataContext>(options =>
                         options.UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesApplicationDB;User Id=admin;Password=admin"))
-                    .AddMediatR(typeof(GetAllIngredients))
+                    .AddMediatR(typeof(CreateIngredient))
                     .BuildServiceProvider();
 
                 _mediator = diContainer.GetRequiredService<IMediator>();

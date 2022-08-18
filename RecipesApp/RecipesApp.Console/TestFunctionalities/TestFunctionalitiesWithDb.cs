@@ -1,4 +1,5 @@
-﻿using RecipesApp.Application.Ingredients.Queries;
+﻿using RecipesApp.Application.Ingredients.Commands;
+using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Console.InputHandling.Utils;
 
 namespace RecipesApp.Console.TestFunctionalities
@@ -8,13 +9,18 @@ namespace RecipesApp.Console.TestFunctionalities
         public static void TestGetAllIngredientsWithNewMediator()
         {
             var mediator = NewMediatorSetup.GetMediator();
-            var ingredientList = mediator.Send(new GetAllIngredients()).Result;
-            ListPrinter.PrintList(ingredientList);
+            var ingredient = mediator.Send(new UpdateIngredient()
+            {
+                IngredientId = 16,
+                Name = "Ing14",
+                Category = Domain.Enums.IngredientCategory.Fruit,
+                Calories = 80,
+                Fats = 50,
+                Carbs = 50,
+                Proteins = 50
+            }).Result;
 
-            System.Console.WriteLine();
-
-            var ingredientList2 = mediator.Send(new GetIngredientsByApprovedStatus() { ApprovedStatus = true }).Result;
-            ListPrinter.PrintList(ingredientList2);
+            System.Console.WriteLine(ingredient);
         }
     }
 }
