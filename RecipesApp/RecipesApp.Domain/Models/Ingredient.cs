@@ -55,6 +55,8 @@ namespace RecipesApp.Domain.Models
 
         public float Quantity { get; set; }
 
+        public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
+
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Category : {Category}; Calories : {Calories}";

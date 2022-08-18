@@ -86,6 +86,8 @@ namespace RecipesApp.Domain.Models
 
         public List<Ingredient> Ingredients { get; set; }
 
+        public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
+
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";
