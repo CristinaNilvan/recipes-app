@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Application", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Infrastructure", "RecipesApp.Infrastructure\RecipesApp.Infrastructure.csproj", "{3D526E06-1ABC-4F53-BFDC-B63008F2A258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesApp.Assignments", "RecipesApp.Assignments\RecipesApp.Assignments.csproj", "{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Assignments", "RecipesApp.Assignments\RecipesApp.Assignments.csproj", "{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesApp.InMemoryInfrastructure", "RecipesApp.InMemoryInfrastructure\RecipesApp.InMemoryInfrastructure.csproj", "{DD8745E4-3076-49A8-BF21-B76EDDF88F7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8745E4-3076-49A8-BF21-B76EDDF88F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8745E4-3076-49A8-BF21-B76EDDF88F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8745E4-3076-49A8-BF21-B76EDDF88F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8745E4-3076-49A8-BF21-B76EDDF88F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

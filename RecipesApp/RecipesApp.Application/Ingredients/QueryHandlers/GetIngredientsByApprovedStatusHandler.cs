@@ -1,22 +1,24 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Domain.Models;
+using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Ingredients.QueryHandlers
 {
     public class GetIngredientsByApprovedStatusHandler : IRequestHandler<GetIngredientsByApprovedStatus, List<Ingredient>>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly DataContext _dataContext;
 
-        public GetIngredientsByApprovedStatusHandler(IIngredientRepository repository)
+        public GetIngredientsByApprovedStatusHandler(DataContext dataContext)
         {
-            _repository = repository;
+            _dataContext = dataContext;
         }
 
         public async Task<List<Ingredient>> Handle(GetIngredientsByApprovedStatus request, CancellationToken cancellationToken)
         {
-            return await _repository.GetIngredientsByApprovedStatus(request.ApprovedStatus);
+            return await _dataContext.Ingredients.Where(x => x.Approved == request.ApprovedStatus).ToListAsync();
         }
     }
 }

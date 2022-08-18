@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
+    <ProjectReference Include="..\RecipesApp.Infrastructure\RecipesApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
