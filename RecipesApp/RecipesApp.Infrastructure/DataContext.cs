@@ -6,6 +6,16 @@ namespace RecipesApp.Infrastructure
 {
     public class DataContext : DbContext
     {
+        public DataContext()
+        {
+
+        }
+
+        public DataContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
         public DbSet<Ingredient> Ingredients => Set<Ingredient>();
         public DbSet<Recipe> Recipes => Set<Recipe>();
         public DbSet<MealPlan> MealPlans => Set<MealPlan>();
