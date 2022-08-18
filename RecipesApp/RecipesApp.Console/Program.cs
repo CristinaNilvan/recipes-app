@@ -175,7 +175,7 @@ static void ApproveIngredients()
     }
 }*/
 
-using Microsoft.EntityFrameworkCore;
+/*using Microsoft.EntityFrameworkCore;
 using RecipesApp.Infrastructure;
 
 await using var context = new DataContext();
@@ -188,4 +188,8 @@ Seeder.SeedData();
 var ingredientNamesOrdered = await context.Ingredients
     .OrderBy(i => i.Calories)
     .Select(s => s.Name)
-    .ToListAsync();
+    .ToListAsync();*/
+
+using RecipesApp.Console.TestFunctionalities;
+
+TestFunctionalitiesWithDb.TestGetAllIngredientsWithNewMediator();
