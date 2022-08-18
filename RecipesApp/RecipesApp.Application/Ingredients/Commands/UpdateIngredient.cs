@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using RecipesApp.Domain.Enums;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Ingredients.Commands
 {
-    public class UpdateIngredient : IRequest
+    public class UpdateIngredient : IRequest<Ingredient>
     {
         public int IngredientId { get; set; }
         public string Name { get; set; }

@@ -1,23 +1,34 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Commands;
+using RecipesApp.Domain.Models;
+using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Ingredients.CommandHandlers
 {
-    public class DeleteIngredientHandler : IRequestHandler<DeleteIngredient>
+    public class DeleteIngredientHandler : IRequestHandler<DeleteIngredient, Ingredient>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly DataContext _dataContext;
 
-        public DeleteIngredientHandler(IIngredientRepository repository)
+        public DeleteIngredientHandler(DataContext dataContext)
         {
-            _repository = repository;
+            _dataContext = dataContext;
         }
 
-        public async Task<Unit> Handle(DeleteIngredient request, CancellationToken cancellationToken)
+        public async Task<Ingredient> Handle(DeleteIngredient request, CancellationToken cancellationToken)
         {
-            await _repository.DeleteIngredient(request.IngredientId);
+            var ingredient = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == request.IngredientId);
 
-            return new Unit();
+            if (ingredient == null)
+            {
+                return null;
+            }
+
+            _dataContext.Ingredients.Remove(ingredient);
+            await _dataContext.SaveChangesAsync();
+
+            return ingredient;
         }
     }
 }

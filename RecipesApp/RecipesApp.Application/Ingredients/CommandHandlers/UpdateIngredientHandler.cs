@@ -1,27 +1,35 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Domain.Models;
+using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Ingredients.CommandHandlers
 {
-    public class UpdateIngredientHandler : IRequestHandler<UpdateIngredient>
+    public class UpdateIngredientHandler : IRequestHandler<UpdateIngredient, Ingredient>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly DataContext _dataContext;
 
-        public UpdateIngredientHandler(IIngredientRepository repository)
+        public UpdateIngredientHandler(DataContext dataContext)
         {
-            _repository = repository;
+            _dataContext = dataContext;
         }
 
-        public async Task<Unit> Handle(UpdateIngredient request, CancellationToken cancellationToken)
+        public async Task<Ingredient> Handle(UpdateIngredient request, CancellationToken cancellationToken)
         {
-            var ingredient = new Ingredient(request.Name, request.Category, request.Calories, request.Fats, request.Carbs,
-                request.Proteins);
+            var ingredient = new Ingredient(request.IngredientId, request.Name, request.Category, request.Calories,
+                request.Fats, request.Carbs, request.Proteins);
 
-            await _repository.UpdateIngredient(request.IngredientId, ingredient);
+            if (ingredient == null)
+            {
+                return null;
+            }
 
-            return new Unit();
+            _dataContext.Ingredients.Update(ingredient);
+            await _dataContext.SaveChangesAsync();
+
+            return ingredient;
         }
     }
 }
