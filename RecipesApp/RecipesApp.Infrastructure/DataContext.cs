@@ -16,14 +16,14 @@ namespace RecipesApp.Infrastructure
 
         }
 
-        public DbSet<Ingredient> Ingredients => Set<Ingredient>();
-        public DbSet<Recipe> Recipes => Set<Recipe>();
-        public DbSet<MealPlan> MealPlans => Set<MealPlan>();
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<MealPlan> MealPlans { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-            .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesApplicationDB;User Id=admin;Password=admin")
+            .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesAppsDB;User Id=admin;Password=admin")
             .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
             .EnableSensitiveDataLogging();
         }
@@ -32,6 +32,9 @@ namespace RecipesApp.Infrastructure
         {
             modelBuilder.Entity<Ingredient>()
                 .Ignore(ingredient => ingredient.Quantity);
+
+            modelBuilder.Entity<Recipe>()
+                .Ignore(recipe => recipe.Ingredients);
         }
     }
 }
