@@ -1,22 +1,24 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Domain.Models;
+using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Recipes.QueryHandlers
 {
     public class GetAllRecipesHandler : IRequestHandler<GetAllRecipes, List<Recipe>>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly DataContext _dataContext;
 
-        public GetAllRecipesHandler(IRecipeRepository repository)
+        public GetAllRecipesHandler(DataContext dataContext)
         {
-            _repository = repository;
+            _dataContext = dataContext;
         }
 
         public async Task<List<Recipe>> Handle(GetAllRecipes request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllRecipes();
+            return await _dataContext.Recipes.ToListAsync();
         }
     }
 }
