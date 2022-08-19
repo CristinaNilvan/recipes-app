@@ -3,22 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Domain.Models;
-using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Ingredients.QueryHandlers
 {
     public class GetIngredientByNameHandler : IRequestHandler<GetIngredientByName, Ingredient>
     {
-        private readonly DataContext _dataContext;
+        private readonly IIngredientRepository _repository;
 
-        public GetIngredientByNameHandler(DataContext dataContext)
+        public GetIngredientByNameHandler(IIngredientRepository repository)
         {
-            _dataContext = dataContext;
+            _repository = repository;
         }
 
         public async Task<Ingredient> Handle(GetIngredientByName request, CancellationToken cancellationToken)
         {
-            return await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Name == request.IngredientName);
+            return await _repository.GetIngredientByName(request.IngredientName);
         }
     }
 }

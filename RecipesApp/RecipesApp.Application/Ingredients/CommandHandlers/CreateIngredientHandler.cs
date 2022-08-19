@@ -2,17 +2,16 @@
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Domain.Models;
-using RecipesApp.Infrastructure;
 
 namespace RecipesApp.Application.Ingredients.CommandHandlers
 {
     public class CreateIngredientHandler : IRequestHandler<CreateIngredient, Ingredient>
     {
-        private readonly DataContext _dataContext;
+        private readonly IIngredientRepository _repository;
 
-        public CreateIngredientHandler(DataContext dataContext)
+        public CreateIngredientHandler(IIngredientRepository repository)
         {
-            _dataContext = dataContext;
+            _repository = repository;
         }
 
         public async Task<Ingredient> Handle(CreateIngredient request, CancellationToken cancellationToken)
@@ -20,10 +19,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             var ingredient = new Ingredient(request.Name, request.Category, request.Calories, request.Fats, request.Carbs,
                 request.Proteins);
 
-            _dataContext.Ingredients.Add(ingredient);
-            await _dataContext.SaveChangesAsync();
-
-            return ingredient;
+            return await _repository.CreateIngredient(ingredient);
         }
     }
 }
