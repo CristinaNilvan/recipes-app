@@ -10,13 +10,23 @@ namespace RecipesApp.Console.TestFunctionalities
         public static void TestGetAllIngredientsWithNewMediator()
         {
             var mediator = NewMediatorSetup.GetMediator();
-            var recipes = mediator.Send(new GetRecipesByApprovedStatus() { ApprovedStatus = true }).Result;
 
-            var recipe = mediator.Send(new GetRecipeByName() { RecipeName = "Rec2" }).Result;
-
+            var recipes = mediator.Send(new GetIngredientsByApprovedStatus() { ApprovedStatus = true }).Result;
             ListPrinter.PrintList(recipes);
-            System.Console.WriteLine();
-            System.Console.WriteLine(recipe);
+
+            /*var ing = mediator.Send(new UpdateIngredient()
+            {
+                IngredientId = 13,
+                Name = "Ing13",
+                Category = Domain.Enums.IngredientCategory.Meat,
+                Calories = 100,
+                Fats  = 50,
+                Carbs = 50,
+                Proteins = 50
+            }).Result;*/
+
+            /*var ings = mediator.Send(new GetAllIngredients()).Result;
+            ListPrinter.PrintList(ings);*/
         }
     }
 }

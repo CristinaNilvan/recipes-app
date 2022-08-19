@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.Application.Abstractions;
-using RecipesApp.InMemoryInfrastructure.InMemoryRepositories;
+using RecipesApp.Infrastructure.InMemoryRepositories;
 
 namespace RecipesApp.Console.InputHandling.Utils
 {
