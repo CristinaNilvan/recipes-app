@@ -9,7 +9,7 @@ namespace RecipesApp.Application.Abstractions
         Task<Recipe> GetRecipeByName(string recipeName);
         Task UpdateRecipe(Recipe newRecipe);
         Task UpdateRecipe(int recipeId, Recipe newRecipe);
-        Task UpdateRecipeStatus(int recipeId, bool status);
+        Task<Recipe> UpdateRecipeStatus(int recipeId, bool status);
         Task DeleteRecipe(int recipeId);
         Task<List<Recipe>> GetAllRecipes();
         Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved);

@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.ApproveIngredientFeature.CommandHandlers
 {
-    public class ApproveIngredientHandler : IRequestHandler<ApproveIngredient>
+    public class ApproveIngredientHandler : IRequestHandler<ApproveIngredient, Ingredient>
     {
         private readonly IIngredientRepository _repository;
 
@@ -13,11 +14,9 @@ namespace RecipesApp.Application.ApproveIngredientFeature.CommandHandlers
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(ApproveIngredient request, CancellationToken cancellationToken)
+        public async Task<Ingredient> Handle(ApproveIngredient request, CancellationToken cancellationToken)
         {
-            await _repository.UpdateIngredientStatus(request.IngredientId, true);
-
-            return new Unit();
+            return await _repository.UpdateIngredientStatus(request.IngredientId, true);
         }
     }
 }

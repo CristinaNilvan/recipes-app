@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
 {
-    public class ApproveRecipeHandler : IRequestHandler<ApproveRecipe>
+    public class ApproveRecipeHandler : IRequestHandler<ApproveRecipe, Recipe>
     {
         private readonly IRecipeRepository _repository;
 
@@ -13,11 +14,9 @@ namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(ApproveRecipe request, CancellationToken cancellationToken)
+        public async Task<Recipe> Handle(ApproveRecipe request, CancellationToken cancellationToken)
         {
-            await _repository.UpdateRecipeStatus(request.RecipeId, true);
-
-            return new Unit();
+            return await _repository.UpdateRecipeStatus(request.RecipeId, true);
         }
     }
 }

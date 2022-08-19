@@ -8,7 +8,7 @@ namespace RecipesApp.Application.Abstractions
         Task<Ingredient> GetIngredientById(int ingredientId);
         Task<Ingredient> GetIngredientByName(string ingredientName);
         Task<Ingredient> UpdateIngredient(Ingredient newIngredient);
-        Task UpdateIngredientStatus(int ingredientId, bool status); 
+        Task<Ingredient> UpdateIngredientStatus(int ingredientId, bool status); 
         Task<Ingredient> DeleteIngredient(int ingredientId);
         Task<List<Ingredient>> GetAllIngredients();
         Task<List<Ingredient>> GetIngredientsByApprovedStatus(bool isApproved);
