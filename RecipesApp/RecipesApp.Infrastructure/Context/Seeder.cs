@@ -2,7 +2,7 @@
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Infrastructure
+namespace RecipesApp.Infrastructure.Context
 {
     public class Seeder
     {
@@ -27,7 +27,7 @@ namespace RecipesApp.Infrastructure
         {
             var ingredientNames = new List<string>()
             {
-                "Ing1", 
+                "Ing1",
                 "Ing2",
                 "Ing3",
                 "Ing4",

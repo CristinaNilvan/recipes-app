@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Infrastructure
+namespace RecipesApp.Infrastructure.Context
 {
     public class DataContext : DbContext
     {
@@ -30,11 +30,8 @@ namespace RecipesApp.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ingredient>()
-                .Ignore(ingredient => ingredient.Quantity);
-
-            modelBuilder.Entity<Recipe>()
-                .Ignore(recipe => recipe.Ingredients);
+            /*modelBuilder.Entity<Ingredient>()
+                .Ignore(ingredient => ingredient.Quantity);*/
         }
     }
 }

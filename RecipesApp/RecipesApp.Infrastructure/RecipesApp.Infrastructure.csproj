@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RecipesApp.Domain\RecipesApp.Domain.csproj" />
+	<ProjectReference Include="..\RecipesApp.Application\RecipesApp.Application.csproj" />
   </ItemGroup>
 
 </Project>
