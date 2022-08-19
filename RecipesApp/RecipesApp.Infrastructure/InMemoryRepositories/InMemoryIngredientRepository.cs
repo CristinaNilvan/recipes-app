@@ -53,10 +53,12 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             return newIngredient;
         }
 
-        public async Task UpdateIngredientStatus(int ingredientId, bool status)
+        public async Task<Ingredient> UpdateIngredientStatus(int ingredientId, bool status)
         {
             var ingredient = _ingredients.FirstOrDefault(x => x.Id == ingredientId);
             ingredient.Approved = status;
+
+            return ingredient;
         }
     }
 }

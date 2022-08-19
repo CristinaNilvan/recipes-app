@@ -47,10 +47,12 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
             _recipes[index] = newRecipe;
         }
 
-        public async Task UpdateRecipeStatus(int recipeId, bool status)
+        public async Task<Recipe> UpdateRecipeStatus(int recipeId, bool status)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             recipe.Approved = status;
+
+            return recipe;
         }
 
         public Task UpdateRecipe(Recipe newRecipe)
