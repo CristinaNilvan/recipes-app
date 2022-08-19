@@ -86,44 +86,9 @@ namespace RecipesApp.Domain.Models
 
         public List<Ingredient> Ingredients { get; set; }
 
-        public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
-
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Recipe recipe &&
-                   Id == recipe.Id &&
-                   Name == recipe.Name &&
-                   Author == recipe.Author &&
-                   Description == recipe.Description &&
-                   MealType == recipe.MealType &&
-                   ServingTime == recipe.ServingTime &&
-                   Calories == recipe.Calories &&
-                   Fats == recipe.Fats &&
-                   Carbs == recipe.Carbs &&
-                   Proteins == recipe.Proteins &&
-                   EqualityComparer<List<Ingredient>?>.Default.Equals(Ingredients, recipe.Ingredients);
-        }
-
-        public override int GetHashCode()
-        {
-            HashCode hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Name);
-            hash.Add(Author);
-            hash.Add(Description);
-            hash.Add(MealType);
-            hash.Add(ServingTime);
-            hash.Add(Calories);
-            hash.Add(Fats);
-            hash.Add(Carbs);
-            hash.Add(Proteins);
-            hash.Add(Ingredients);
-            return hash.ToHashCode();
         }
 
         private void CalculateNutritionalValuesForRecipe()

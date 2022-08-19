@@ -53,30 +53,14 @@ namespace RecipesApp.Domain.Models
 
         public bool Approved { get; set; } = false;
 
+        //remove
         public float Quantity { get; set; }
 
-        public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
+        public List<Recipe> Recipes { get; set; }
 
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Category : {Category}; Calories : {Calories}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Ingredient ingredient &&
-                   Id == ingredient.Id &&
-                   Name == ingredient.Name &&
-                   Category == ingredient.Category &&
-                   Calories == ingredient.Calories &&
-                   Fats == ingredient.Fats &&
-                   Carbs == ingredient.Carbs &&
-                   Proteins == ingredient.Proteins;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Name, Category, Calories, Fats, Carbs, Proteins);
         }
     }
 }
