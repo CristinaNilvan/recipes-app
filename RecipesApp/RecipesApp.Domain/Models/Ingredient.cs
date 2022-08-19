@@ -56,7 +56,11 @@ namespace RecipesApp.Domain.Models
         //remove
         public float Quantity { get; set; }
 
-        public List<Recipe> Recipes { get; set; }
+        //public List<Recipe> Recipes { get; set; }
+
+        public List<RecipeIngredient> RecipeIngredients { get; set; }
+
+        public List<RecipeIngredients> Recipes { get; set; }
 
         public override string ToString()
         {
