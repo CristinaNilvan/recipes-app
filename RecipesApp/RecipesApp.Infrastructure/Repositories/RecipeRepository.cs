@@ -55,9 +55,14 @@ namespace RecipesApp.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateRecipeStatus(int recipeId, bool status)
+        public async Task<Recipe> UpdateRecipeStatus(int recipeId, bool status)
         {
-            throw new NotImplementedException();
+            var recipe = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipeId);
+
+            recipe.Approved = status;
+            await _dataContext.SaveChangesAsync();
+
+            return recipe;
         }
     }
 }

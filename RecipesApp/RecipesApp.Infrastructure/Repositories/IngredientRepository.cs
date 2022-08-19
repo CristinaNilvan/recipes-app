@@ -71,9 +71,14 @@ namespace RecipesApp.Infrastructure.Repositories
             return newIngredient;
         }
 
-        public Task UpdateIngredientStatus(int ingredientId, bool status)
+        public async Task<Ingredient> UpdateIngredientStatus(int ingredientId, bool status)
         {
-            throw new NotImplementedException();
+            var ingredient = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredientId);
+
+            ingredient.Approved = status;
+            await _dataContext.SaveChangesAsync();
+
+            return ingredient;
         }
     }
 }
