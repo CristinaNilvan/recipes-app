@@ -15,9 +15,11 @@ namespace RecipesApp.Infrastructure.Context
 
             var ingredients = GetPreconfiguredIngredients().ToList();
             var recipes = GetPreconfiguredRecipes().ToList();
+            var recipeIngredients = GetPreconfiguredRecipeIngredients();
 
             context.Ingredients.AddRange(ingredients);
             context.Recipes.AddRange(recipes);
+            context.RecipeIngredients.AddRange(recipeIngredients);
 
             context.SaveChanges();
         }
@@ -87,6 +89,38 @@ namespace RecipesApp.Infrastructure.Context
                 .RuleFor(recipe => recipe.Approved, faker => faker.Random.Bool())
                 .Generate()
                 );
+        }
+
+        public static List<RecipeIngredient> GetPreconfiguredRecipeIngredients()
+        {
+            return new List<RecipeIngredient>()
+            {
+                new RecipeIngredient()
+                {
+                    Quantity = 500,
+                    IngredientId = 3
+                },
+                new RecipeIngredient()
+                {
+                    Quantity = 300,
+                    IngredientId = 3
+                },
+                new RecipeIngredient()
+                {
+                    Quantity = 200,
+                    IngredientId = 2
+                },
+                new RecipeIngredient()
+                {
+                    Quantity = 100,
+                    IngredientId = 5
+                },
+                new RecipeIngredient()
+                {
+                    Quantity = 600,
+                    IngredientId = 8
+                }
+            };
         }
 
         /*public static IEnumerable<MealPlan> GetPreconfiguredMealPlans()

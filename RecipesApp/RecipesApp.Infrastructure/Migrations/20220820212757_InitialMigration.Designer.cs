@@ -12,7 +12,7 @@ using RecipesApp.Infrastructure.Context;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220819134705_InitialMigration")]
+    [Migration("20220820212757_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,9 +52,6 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("Proteins")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Quantity")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -169,10 +166,10 @@ namespace RecipesApp.Infrastructure.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredient");
+                    b.ToTable("RecipeIngredients");
                 });
 
-            modelBuilder.Entity("RecipesApp.Domain.Models.RecipeIngredients", b =>
+            modelBuilder.Entity("RecipesApp.Domain.Models.RecipeWithRecipeIngredient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -180,19 +177,19 @@ namespace RecipesApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IngredientId")
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("RecipeIngredientId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientId");
-
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeIngredients");
+                    b.HasIndex("RecipeIngredientId");
+
+                    b.ToTable("RecipeWithRecipeIngredients");
                 });
 
             modelBuilder.Entity("RecipesApp.Domain.Models.MealPlan", b =>
@@ -227,35 +224,38 @@ namespace RecipesApp.Infrastructure.Migrations
                     b.Navigation("Ingredient");
                 });
 
-            modelBuilder.Entity("RecipesApp.Domain.Models.RecipeIngredients", b =>
+            modelBuilder.Entity("RecipesApp.Domain.Models.RecipeWithRecipeIngredient", b =>
                 {
-                    b.HasOne("RecipesApp.Domain.Models.Ingredient", "Ingredient")
-                        .WithMany("Recipes")
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RecipesApp.Domain.Models.Recipe", "Recipe")
-                        .WithMany("RecipeIngredients")
+                        .WithMany("RecipeWithRecipeIngredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ingredient");
+                    b.HasOne("RecipesApp.Domain.Models.RecipeIngredient", "RecipeIngredient")
+                        .WithMany("RecipeWithRecipeIngredients")
+                        .HasForeignKey("RecipeIngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Recipe");
+
+                    b.Navigation("RecipeIngredient");
                 });
 
             modelBuilder.Entity("RecipesApp.Domain.Models.Ingredient", b =>
                 {
                     b.Navigation("RecipeIngredients");
-
-                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("RecipesApp.Domain.Models.Recipe", b =>
                 {
-                    b.Navigation("RecipeIngredients");
+                    b.Navigation("RecipeWithRecipeIngredients");
+                });
+
+            modelBuilder.Entity("RecipesApp.Domain.Models.RecipeIngredient", b =>
+                {
+                    b.Navigation("RecipeWithRecipeIngredients");
                 });
 #pragma warning restore 612, 618
         }

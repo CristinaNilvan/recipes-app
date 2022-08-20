@@ -32,6 +32,12 @@ namespace RecipesApp.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /*modelBuilder.Entity<RecipeIngredient>()
+                .HasKey(x => new { x.Id, x.Quantity, x.IngredientId });
+
+            modelBuilder.Entity<RecipeWithRecipeIngredient>()
+                .HasKey(x => new { x.Id, x.RecipeId, x.RecipeIngredientId });*/
+
             //until further updates
             modelBuilder.Entity<Ingredient>()
                 .Ignore(ingredient => ingredient.Quantity);
