@@ -15,14 +15,45 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public Task CreateRecipe(Recipe recipe)
+        public async Task<Recipe> CreateRecipe(Recipe recipe, List<RecipeIngredient> recipeIngredients)
         {
-            throw new NotImplementedException();
+            _dataContext.Recipes.Add(recipe);
+            await _dataContext.SaveChangesAsync();
+
+            var recipeAfterInsertion = await GetRecipeByName(recipe.Name);
+
+            foreach (var recipeIngredient in recipeIngredients)
+            {
+                var auxRecipeIng = _dataContext.RecipeIngredients.Find(recipeIngredient.Id);
+
+                var recipeWithRecipeIngredient = new RecipeWithRecipeIngredient
+                {
+                    RecipeId = recipeAfterInsertion.Id,
+                    Recipe = recipe,
+                    RecipeIngredientId = auxRecipeIng.Id,
+                    RecipeIngredient = auxRecipeIng
+                };
+
+                _dataContext.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
+                await _dataContext.SaveChangesAsync();
+            }
+
+            return recipe;
         }
 
-        public Task DeleteRecipe(int recipeId)
+        public async Task<Recipe> DeleteRecipe(int recipeId)
         {
-            throw new NotImplementedException();
+            var recipe = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipeId);
+
+            if (recipe == null)
+            {
+                return null;
+            }
+
+            _dataContext.Recipes.Remove(recipe);
+            await _dataContext.SaveChangesAsync();
+
+            return recipe;
         }
 
         public async Task<List<Recipe>> GetAllRecipes()
