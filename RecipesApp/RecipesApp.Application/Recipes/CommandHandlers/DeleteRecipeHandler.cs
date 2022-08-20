@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Recipes.Commands;
+using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.CommandHandlers
 {
-    public class DeleteRecipeHandler : IRequestHandler<DeleteRecipe>
+    public class DeleteRecipeHandler : IRequestHandler<DeleteRecipe, Recipe>
     {
         private readonly IRecipeRepository _repository;
 
@@ -13,11 +14,9 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(DeleteRecipe request, CancellationToken cancellationToken)
+        public async Task<Recipe> Handle(DeleteRecipe request, CancellationToken cancellationToken)
         {
-            await _repository.DeleteRecipe(request.RecipeId);
-
-            return new Unit();
+            return await _repository.DeleteRecipe(request.RecipeId);
         }
     }
 }

@@ -4,7 +4,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.Commands
 {
-    public class CreateRecipe : IRequest
+    public class CreateRecipe : IRequest<Recipe>
     {
         public string Name { get; set; }
         public string Author { get; set; }
@@ -12,6 +12,9 @@ namespace RecipesApp.Application.Recipes.Commands
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
         public float Servings { get; set; }
+        public List<RecipeIngredient> RecipeIngredients { get; set; }
+
+        //until further updates
         public List<Ingredient> Ingredients { get; set; }
     }
 }
