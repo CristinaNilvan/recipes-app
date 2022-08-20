@@ -86,7 +86,7 @@ namespace RecipesApp.Domain.Models
 
         public List<Ingredient> Ingredients { get; set; }
 
-        public List<RecipeIngredients> RecipeIngredients { get; set; }
+        public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
         public override string ToString()
         {

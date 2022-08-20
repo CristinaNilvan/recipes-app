@@ -60,8 +60,6 @@ namespace RecipesApp.Domain.Models
 
         public List<RecipeIngredient> RecipeIngredients { get; set; }
 
-        public List<RecipeIngredients> Recipes { get; set; }
-
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Category : {Category}; Calories : {Calories}";
