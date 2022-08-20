@@ -7,16 +7,20 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
     {
         private List<Recipe> _recipes = new List<Recipe>(PopulateLists.PopulateRecipes());
 
-        public async Task CreateRecipe(Recipe recipe)
+        public async Task<Recipe> CreateRecipe(Recipe recipe)
         {
             recipe.Id = _recipes.Count > 0 ? _recipes.ElementAt(_recipes.Count - 1).Id + 1 : 1;
             _recipes.Add(recipe);
+
+            return recipe;
         }
 
-        public async Task DeleteRecipe(int recipeId)
+        public async Task<Recipe> DeleteRecipe(int recipeId)
         {
             var recipe = _recipes.FirstOrDefault(x => x.Id == recipeId);
             _recipes.Remove(recipe);
+
+            return recipe;
         }
 
         public async Task<Recipe> GetRecipeById(int recipeId)
@@ -56,6 +60,11 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
         }
 
         public Task UpdateRecipe(Recipe newRecipe)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Recipe> CreateRecipe(Recipe recipe, List<RecipeIngredient> recipeIngredients)
         {
             throw new NotImplementedException();
         }
