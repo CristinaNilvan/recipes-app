@@ -19,7 +19,7 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext.Recipes.Add(recipe);
             await _dataContext.SaveChangesAsync();
 
-            var recipeAfterInsertion = await GetRecipeByName(recipe.Name);
+            /*var recipeAfterInsertion = await GetRecipeByName(recipe.Name);
 
             foreach (var recipeIngredient in recipeIngredients)
             {
@@ -35,7 +35,7 @@ namespace RecipesApp.Infrastructure.Repositories
 
                 _dataContext.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
                 await _dataContext.SaveChangesAsync();
-            }
+            }*/
 
             return recipe;
         }
