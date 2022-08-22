@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace RecipesApp.Domain.Models
+﻿namespace RecipesApp.Domain.Models
 {
     public class MealPlan
     {

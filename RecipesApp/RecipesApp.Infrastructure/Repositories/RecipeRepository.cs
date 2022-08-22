@@ -1,6 +1,4 @@
-﻿using Bogus.DataSets;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
@@ -139,7 +137,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 join ingredient in _dataContext.Ingredients
                     on recipeIngredient.IngredientId equals ingredient.Id
                 where recipe.Approved == true &&
-                    recipeIngredient.Quantity <= ingredientQuantity && 
+                    recipeIngredient.Quantity <= ingredientQuantity &&
                     ingredient.Name == ingredientName
                 select recipe;
 

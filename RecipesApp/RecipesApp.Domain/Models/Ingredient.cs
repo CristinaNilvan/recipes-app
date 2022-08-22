@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RecipesApp.Domain.Enums;
+﻿using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 

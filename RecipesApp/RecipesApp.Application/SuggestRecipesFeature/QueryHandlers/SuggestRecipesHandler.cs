@@ -19,7 +19,7 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
             var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
             var allRecipes = await _repository.GetRecipesByApprovedStatus(true);
-            var recipesWithIngredient = await _repository.GetRecipesWithInredientAndQuantity(quantityTwoDecimals, 
+            var recipesWithIngredient = await _repository.GetRecipesWithInredientAndQuantity(quantityTwoDecimals,
                 request.IngredientName);
             var bestMatches = await _repository.GetBestMatchRecipesWithInredientAndQuantity(quantityTwoDecimals,
                 request.IngredientName);

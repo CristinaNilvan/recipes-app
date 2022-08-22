@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Infrastructure.Context;
-using RecipesApp.Infrastructure.InMemoryRepositories;
 using RecipesApp.Infrastructure.Repositories;
 
 namespace RecipesApp.Console.InputHandling.Utils

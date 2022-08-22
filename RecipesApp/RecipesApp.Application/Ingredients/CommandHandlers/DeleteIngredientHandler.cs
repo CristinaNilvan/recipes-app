@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Domain.Models;
