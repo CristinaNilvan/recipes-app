@@ -14,5 +14,6 @@ namespace RecipesApp.Application.Abstractions
         Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved);
         Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName);
         Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName);
+        Task<List<int>> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor);
     }
 }

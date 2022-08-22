@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.SuggestRecipesFeature.Commands
+namespace RecipesApp.Application.SuggestRecipesFeature.Queries
 {
     public class SuggestRecipes : IRequest<List<Recipe>>
     {

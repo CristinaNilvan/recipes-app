@@ -5,7 +5,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.CommandHandlers
 {
-    public class UpdateRecipeHandler : IRequestHandler<UpdateRecipe>
+    public class UpdateRecipeHandler : IRequestHandler<UpdateRecipe, Recipe>
     {
         private readonly IRecipeRepository _repository;
 
@@ -14,14 +14,12 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateRecipe request, CancellationToken cancellationToken)
+        public async Task<Recipe> Handle(UpdateRecipe request, CancellationToken cancellationToken)
         {
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
-                request.Servings, request.Ingredients);
+                request.Servings);
 
-            await _repository.UpdateRecipe(request.RecipeId, recipe);
-
-            return new Unit();
+            return await _repository.UpdateRecipe(recipe, request.RecipeIngredients);
         }
     }
 }

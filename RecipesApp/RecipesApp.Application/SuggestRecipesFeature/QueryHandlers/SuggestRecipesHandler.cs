@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
-using RecipesApp.Application.SuggestRecipesFeature.Commands;
+using RecipesApp.Application.SuggestRecipesFeature.Queries;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.SuggestRecipesFeature.CommandHandlers
+namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 {
     public class SuggestRecipesHandler : IRequestHandler<SuggestRecipes, List<Recipe>>
     {

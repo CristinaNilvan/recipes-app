@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
-using RecipesApp.Application.FindRecipesByIngredientsFeature.Commands;
+using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.FindRecipesByIngredientsFeature.CommandHandlers
+namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 {
     public class FindRecipesByIngredientsHandler : IRequestHandler<FindRecipesByIngredients, List<Recipe>>
     {
@@ -19,9 +19,12 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.CommandHandlers
             var approvedRecipes = await _repository.GetRecipesByApprovedStatus(true);
             var filteredRecipes = new List<Recipe>();
 
+            var ingredientIds = RecipesFinderUtils.GetIngredientIds(request.Ingredients);
+
             foreach (var recipe in approvedRecipes)
             {
-                var containsAll = CheckIfRecipeContainsAllIngredients(recipe.Ingredients, request.Ingredients);
+                var recipeIngredientsIds = await _repository.GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
+                var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, ingredientIds);
 
                 if (containsAll)
                 {
@@ -30,11 +33,6 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.CommandHandlers
             }
 
             return filteredRecipes;
-        }
-
-        private bool CheckIfRecipeContainsAllIngredients(List<Ingredient> recipeIngredientList, List<Ingredient> givenIngredientList)
-        {
-            return givenIngredientList.All(x => recipeIngredientList.Any(y => x.Id == y.Id));
         }
     }
 }
