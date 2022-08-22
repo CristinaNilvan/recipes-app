@@ -7,11 +7,11 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 {
     public class UpdateRecipeHandler : IRequestHandler<UpdateRecipe, Recipe>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateRecipeHandler(IRecipeRepository repository)
+        public UpdateRecipeHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Recipe> Handle(UpdateRecipe request, CancellationToken cancellationToken)
@@ -19,7 +19,7 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
                 request.Servings);
 
-            return await _repository.UpdateRecipe(recipe, request.RecipeIngredients);
+            return await _unitOfWork.RecipeRepository.UpdateRecipe(recipe, request.RecipeIngredients);
         }
     }
 }

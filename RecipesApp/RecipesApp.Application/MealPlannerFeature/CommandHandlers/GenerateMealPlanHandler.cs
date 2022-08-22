@@ -8,22 +8,22 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 {
     public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
     {
-        private readonly IMealPlanRepository _mealPlanRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         private List<Recipe> _allRecipes;
         private List<Recipe> _breakfastRecipes;
         private List<Recipe> _lunchRecipes;
         private List<Recipe> _dinnerRecipes;
 
-        public GenerateMealPlanHandler(IMealPlanRepository mealPlanRepository)
+        public GenerateMealPlanHandler(IUnitOfWork unitOfWork)
         {
-            _mealPlanRepository = mealPlanRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
         {
             var mealPlan = GenerateMealPlan(request.MealType, request.Calories, request.Recipes);
-            await _mealPlanRepository.CreateMealPlan(mealPlan);
+            await _unitOfWork.MealPlanRepository.CreateMealPlan(mealPlan);
 
             return mealPlan;
         }

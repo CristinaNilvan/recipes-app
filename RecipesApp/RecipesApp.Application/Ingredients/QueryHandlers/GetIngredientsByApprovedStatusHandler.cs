@@ -7,16 +7,16 @@ namespace RecipesApp.Application.Ingredients.QueryHandlers
 {
     public class GetIngredientsByApprovedStatusHandler : IRequestHandler<GetIngredientsByApprovedStatus, List<Ingredient>>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetIngredientsByApprovedStatusHandler(IIngredientRepository repository)
+        public GetIngredientsByApprovedStatusHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<Ingredient>> Handle(GetIngredientsByApprovedStatus request, CancellationToken cancellationToken)
         {
-            return await _repository.GetIngredientsByApprovedStatus(request.ApprovedStatus);
+            return await _unitOfWork.IngredientRepository.GetIngredientsByApprovedStatus(request.ApprovedStatus);
         }
     }
 }

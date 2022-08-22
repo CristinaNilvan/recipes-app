@@ -7,11 +7,11 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
 {
     public class CreateIngredientHandler : IRequestHandler<CreateIngredient, Ingredient>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateIngredientHandler(IIngredientRepository repository)
+        public CreateIngredientHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Ingredient> Handle(CreateIngredient request, CancellationToken cancellationToken)
@@ -19,7 +19,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             var ingredient = new Ingredient(request.Name, request.Category, request.Calories, request.Fats, request.Carbs,
                 request.Proteins);
 
-            return await _repository.CreateIngredient(ingredient);
+            return await _unitOfWork.IngredientRepository.CreateIngredient(ingredient);
         }
     }
 }

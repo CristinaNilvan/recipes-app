@@ -7,16 +7,16 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
 {
     public class DeleteIngredientHandler : IRequestHandler<DeleteIngredient, Ingredient>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteIngredientHandler(IIngredientRepository repository)
+        public DeleteIngredientHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Ingredient> Handle(DeleteIngredient request, CancellationToken cancellationToken)
         {
-            return await _repository.DeleteIngredient(request.IngredientId);
+            return await _unitOfWork.IngredientRepository.DeleteIngredient(request.IngredientId);
         }
     }
 }

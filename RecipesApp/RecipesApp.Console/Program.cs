@@ -240,10 +240,10 @@ static bool CheckIfRecipeContainsAllIngredients(List<int> recipeIngredientList,
     => givenIngredientList.All(x => recipeIngredientList.Any(y => x == y));
 */
 
-/*using RecipesApp.Console.InputHandling;
+using RecipesApp.Console.InputHandling;
 
-Menu.RunApp();*/
+Menu.RunApp();
 
-using RecipesApp.Assignments.Queries;
+/*using RecipesApp.Assignments.Queries;
 
-await Queries.DoQueries();
+await Queries.DoQueries();*/

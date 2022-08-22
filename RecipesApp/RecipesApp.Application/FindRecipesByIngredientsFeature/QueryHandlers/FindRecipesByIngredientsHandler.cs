@@ -7,23 +7,23 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 {
     public class FindRecipesByIngredientsHandler : IRequestHandler<FindRecipesByIngredients, List<Recipe>>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public FindRecipesByIngredientsHandler(IRecipeRepository repository)
+        public FindRecipesByIngredientsHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<Recipe>> Handle(FindRecipesByIngredients request, CancellationToken cancellationToken)
         {
-            var approvedRecipes = await _repository.GetRecipesByApprovedStatus(true);
+            var approvedRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
             var filteredRecipes = new List<Recipe>();
 
             var ingredientIds = RecipesFinderUtils.GetIngredientIds(request.Ingredients);
 
             foreach (var recipe in approvedRecipes)
             {
-                var recipeIngredientsIds = await _repository.GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
+                var recipeIngredientsIds = await _unitOfWork.RecipeRepository.GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
                 var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, ingredientIds);
 
                 if (containsAll)

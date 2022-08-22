@@ -7,22 +7,22 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 {
     public class SuggestRecipesHandler : IRequestHandler<SuggestRecipes, List<Recipe>>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SuggestRecipesHandler(IRecipeRepository repository)
+        public SuggestRecipesHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
             var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
-            var allRecipes = await _repository.GetRecipesByApprovedStatus(true);
-            var recipesWithIngredient = await _repository.GetRecipesWithInredientAndQuantity(quantityTwoDecimals,
-                request.IngredientName);
-            var bestMatches = await _repository.GetBestMatchRecipesWithInredientAndQuantity(quantityTwoDecimals,
-                request.IngredientName);
+            var allRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
+            var recipesWithIngredient = await _unitOfWork.RecipeRepository.GetRecipesWithInredientAndQuantity(
+                quantityTwoDecimals, request.IngredientName);
+            var bestMatches = await _unitOfWork.RecipeRepository.GetBestMatchRecipesWithInredientAndQuantity(
+                quantityTwoDecimals, request.IngredientName);
 
             if (bestMatches.Count != 0)
             {

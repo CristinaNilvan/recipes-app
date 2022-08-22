@@ -7,16 +7,16 @@ namespace RecipesApp.Application.Ingredients.QueryHandlers
 {
     public class GetIngredientByIdHandler : IRequestHandler<GetIngredientById, Ingredient>
     {
-        private readonly IIngredientRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetIngredientByIdHandler(IIngredientRepository repository)
+        public GetIngredientByIdHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Ingredient> Handle(GetIngredientById request, CancellationToken cancellationToken)
         {
-            return await _repository.GetIngredientById(request.IngredientId);
+            return await _unitOfWork.IngredientRepository.GetIngredientById(request.IngredientId);
         }
     }
 }

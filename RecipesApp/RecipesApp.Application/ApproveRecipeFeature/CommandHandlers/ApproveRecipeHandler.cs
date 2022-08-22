@@ -7,16 +7,16 @@ namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
 {
     public class ApproveRecipeHandler : IRequestHandler<ApproveRecipe, Recipe>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ApproveRecipeHandler(IRecipeRepository repository)
+        public ApproveRecipeHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Recipe> Handle(ApproveRecipe request, CancellationToken cancellationToken)
         {
-            return await _repository.UpdateRecipeStatus(request.RecipeId, true);
+            return await _unitOfWork.RecipeRepository.UpdateRecipeStatus(request.RecipeId, true);
         }
     }
 }

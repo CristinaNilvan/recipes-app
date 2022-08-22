@@ -7,16 +7,16 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
 {
     public class GetRecipeByIdHandler : IRequestHandler<GetRecipeById, Recipe>
     {
-        private readonly IRecipeRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetRecipeByIdHandler(IRecipeRepository repository)
+        public GetRecipeByIdHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Recipe> Handle(GetRecipeById request, CancellationToken cancellationToken)
         {
-            return await _repository.GetRecipeById(request.RecipeId);
+            return await _unitOfWork.RecipeRepository.GetRecipeById(request.RecipeId);
         }
     }
 }
