@@ -1,10 +1,9 @@
-﻿using RecipesApp.Application.FindRecipesByIngredientsFeature.Commands;
+﻿using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.MealPlannerFeature.Commands;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
-using RecipesApp.Application.SuggestRecipesFeature.Commands;
 using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Models;
 

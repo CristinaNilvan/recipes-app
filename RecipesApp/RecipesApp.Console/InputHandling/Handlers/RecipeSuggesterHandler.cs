@@ -1,4 +1,4 @@
-﻿using RecipesApp.Application.SuggestRecipesFeature.Commands;
+﻿using RecipesApp.Application.SuggestRecipesFeature.Queries;
 using RecipesApp.Console.InputHandling.Utils;
 
 namespace RecipesApp.Console.InputHandling.Handlers
