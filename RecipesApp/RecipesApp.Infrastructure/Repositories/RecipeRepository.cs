@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Bogus.DataSets;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
@@ -76,14 +77,45 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.Recipes.Where(x => x.Approved == isApproved).ToListAsync();
         }
 
-        public Task UpdateRecipe(Recipe newRecipe)
+        //to update
+        public async Task<Recipe> UpdateRecipe(Recipe newRecipe, List<RecipeIngredient> recipeIngredients)
         {
-            throw new NotImplementedException();
-        }
+            _dataContext.Recipes.Update(newRecipe);
+            await _dataContext.SaveChangesAsync();
 
-        public Task UpdateRecipe(int recipeId, Recipe newRecipe)
-        {
-            throw new NotImplementedException();
+            var recipeFromDb = await GetRecipeByName(newRecipe.Name);
+
+            var oldRecipeIngredients = _dataContext
+                .RecipeWithRecipeIngredients
+                .Where(x => x.RecipeId == recipeFromDb.Id)
+                .ToList();
+
+            foreach (var item in oldRecipeIngredients)
+            {
+                var auxItem = _dataContext.RecipeWithRecipeIngredients.Find(item.Id);
+                _dataContext.RecipeWithRecipeIngredients.Remove(auxItem);
+                await _dataContext.SaveChangesAsync();
+            }
+
+            await _dataContext.SaveChangesAsync();
+
+            foreach (var recipeIngredient in recipeIngredients)
+            {
+                var auxRecipeIng = _dataContext.RecipeIngredients.Find(recipeIngredient.Id);
+
+                var recipeWithRecipeIngredient = new RecipeWithRecipeIngredient
+                {
+                    RecipeId = recipeFromDb.Id,
+                    Recipe = newRecipe,
+                    RecipeIngredientId = auxRecipeIng.Id,
+                    RecipeIngredient = auxRecipeIng
+                };
+
+                _dataContext.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
+                await _dataContext.SaveChangesAsync();
+            }
+
+            return newRecipe;
         }
 
         public async Task<Recipe> UpdateRecipeStatus(int recipeId, bool status)
@@ -94,6 +126,42 @@ namespace RecipesApp.Infrastructure.Repositories
             await _dataContext.SaveChangesAsync();
 
             return recipe;
+        }
+
+        public async Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
+        {
+            var joinQuery =
+                from recipe in _dataContext.Recipes
+                join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
+                    on recipe.Id equals recipeWithRecipeIngredients.RecipeId
+                join recipeIngredient in _dataContext.RecipeIngredients
+                    on recipeWithRecipeIngredients.RecipeIngredientId equals recipeIngredient.Id
+                join ingredient in _dataContext.Ingredients
+                    on recipeIngredient.IngredientId equals ingredient.Id
+                where recipe.Approved == true &&
+                    recipeIngredient.Quantity <= ingredientQuantity && 
+                    ingredient.Name == ingredientName
+                select recipe;
+
+            return joinQuery.ToList();
+        }
+
+        public async Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
+        {
+            var joinQuery =
+                from recipe in _dataContext.Recipes
+                join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
+                    on recipe.Id equals recipeWithRecipeIngredients.RecipeId
+                join recipeIngredient in _dataContext.RecipeIngredients
+                    on recipeWithRecipeIngredients.RecipeIngredientId equals recipeIngredient.Id
+                join ingredient in _dataContext.Ingredients
+                    on recipeIngredient.IngredientId equals ingredient.Id
+                where recipe.Approved == true &&
+                    recipeIngredient.Quantity >= ingredientQuantity / 2 &&
+                    ingredient.Name == ingredientName
+                select recipe;
+
+            return joinQuery.ToList();
         }
     }
 }
