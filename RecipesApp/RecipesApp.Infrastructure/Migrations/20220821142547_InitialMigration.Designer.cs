@@ -12,7 +12,7 @@ using RecipesApp.Infrastructure.Context;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220820212757_InitialMigration")]
+    [Migration("20220821142547_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -22,9 +22,10 @@ namespace RecipesApp.Console.TestFunctionalities
                 var diContainer = new ServiceCollection()
                     .AddDbContext<DataContext>(options =>
                         options.UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesApplicationDB;User Id=admin;Password=admin"))
-                    .AddMediatR(typeof(CreateIngredient))
+                    .AddMediatR(typeof(IIngredientRepository))
                     .AddScoped<IIngredientRepository, IngredientRepository>()
                     .AddScoped<IRecipeRepository, RecipeRepository>()
+                    .AddScoped<IMealPlanRepository, MealPlanRepository>()
                     .BuildServiceProvider();
 
                 _mediator = diContainer.GetRequiredService<IMediator>();

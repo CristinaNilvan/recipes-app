@@ -25,19 +25,13 @@ namespace RecipesApp.Infrastructure.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-            .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesAppDB;User Id=admin;Password=admin")
-            .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
-            .EnableSensitiveDataLogging();
+                .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesAppDB;User Id=admin;Password=admin")
+                .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                .EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<RecipeIngredient>()
-                .HasKey(x => new { x.Id, x.Quantity, x.IngredientId });
-
-            modelBuilder.Entity<RecipeWithRecipeIngredient>()
-                .HasKey(x => new { x.Id, x.RecipeId, x.RecipeIngredientId });*/
-
             //until further updates
             modelBuilder.Entity<Ingredient>()
                 .Ignore(ingredient => ingredient.Quantity);

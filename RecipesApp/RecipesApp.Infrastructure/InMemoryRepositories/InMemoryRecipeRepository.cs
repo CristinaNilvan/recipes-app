@@ -68,5 +68,25 @@ namespace RecipesApp.Infrastructure.InMemoryRepositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<Recipe> UpdateRecipe(Recipe newRecipe, List<RecipeIngredient> recipeIngredients)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<int>> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

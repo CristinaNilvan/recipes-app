@@ -163,5 +163,19 @@ namespace RecipesApp.Infrastructure.Repositories
 
             return joinQuery.ToList();
         }
+
+        public async Task<List<int>> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor)
+        {
+            var joinQuery =
+                from recipe in _dataContext.Recipes
+                join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
+                    on recipe.Id equals recipeWithRecipeIngredients.RecipeId
+                join recipeIngredient in _dataContext.RecipeIngredients
+                    on recipeWithRecipeIngredients.RecipeIngredientId equals recipeIngredient.Id
+                where recipe.Name == recipeName && recipe.Author == recipeAuthor
+                select recipeIngredient.IngredientId;
+
+            return joinQuery.ToList();
+        }
     }
 }
