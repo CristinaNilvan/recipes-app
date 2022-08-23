@@ -10,7 +10,7 @@
             nutritionalValue = CalculateTwoDecimalFloat(nutritionalValue);
             quantity = CalculateTwoDecimalFloat(quantity);
 
-            return (nutritionalValue * quantity) / 100;
+            return CalculateTwoDecimalFloat((nutritionalValue * quantity) / 100);
         }
     }
 }

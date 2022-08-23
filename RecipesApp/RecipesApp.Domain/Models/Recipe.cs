@@ -11,37 +11,6 @@ namespace RecipesApp.Domain.Models
 
         }
 
-        //for dummy data
-        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            List<Ingredient> ingredients, float calories)
-        {
-            Id = id;
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Calories = ModelUtils.CalculateTwoDecimalFloat(calories);
-            Servings = 4;
-            Ingredients = new List<Ingredient>(ingredients);
-            Approved = true;
-        }
-
-        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            float servings, List<Ingredient> ingredients)
-        {
-            Id = id;
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
-            Ingredients = new List<Ingredient>(ingredients);
-            CalculateNutritionalValuesForRecipe();
-            Approved = false;
-        }
-
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
             float servings, List<Ingredient> ingredients)
         {
@@ -52,7 +21,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
             Ingredients = new List<Ingredient>(ingredients);
-            CalculateNutritionalValuesForRecipe();
+            //CalculateNutritionalValuesForRecipe(ingredients);
             Approved = false;
         }
 
@@ -79,6 +48,20 @@ namespace RecipesApp.Domain.Models
             Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
             Approved = false;
             RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
+        }
+
+        public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
+            float servings, List<RecipeIngredient> recipeIngredients, List<RecipeWithRecipeIngredient> recipeWithRecipeIngredients)
+        {
+            Name = name;
+            Author = author;
+            Description = description;
+            MealType = mealType;
+            ServingTime = servingTime;
+            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
+            Approved = false;
+            RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
+            CalculateNutritionalValuesForRecipe(recipeIngredients);
         }
 
         public int Id { get; set; }
@@ -117,14 +100,14 @@ namespace RecipesApp.Domain.Models
             return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";
         }
 
-        private void CalculateNutritionalValuesForRecipe()
+        private void CalculateNutritionalValuesForRecipe(List<RecipeIngredient> recipeIngredients)
         {
-            foreach (var ingredient in Ingredients)
+            foreach (var recipeIngredient in recipeIngredients)
             {
-                Calories += ModelUtils.CalculateNutritionalValue(ingredient.Calories, ingredient.Quantity);
-                Fats += ModelUtils.CalculateNutritionalValue(ingredient.Fats, ingredient.Quantity);
-                Carbs += ModelUtils.CalculateNutritionalValue(ingredient.Carbs, ingredient.Quantity);
-                Proteins += ModelUtils.CalculateNutritionalValue(ingredient.Proteins, ingredient.Quantity);
+                Calories += ModelUtils.CalculateNutritionalValue(recipeIngredient.Ingredient.Calories, recipeIngredient.Quantity);
+                Fats += ModelUtils.CalculateNutritionalValue(recipeIngredient.Ingredient.Fats, recipeIngredient.Quantity);
+                Carbs += ModelUtils.CalculateNutritionalValue(recipeIngredient.Ingredient.Carbs, recipeIngredient.Quantity);
+                Proteins += ModelUtils.CalculateNutritionalValue(recipeIngredient.Ingredient.Proteins, recipeIngredient.Quantity);
             }
         }
     }
