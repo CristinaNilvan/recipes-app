@@ -1,9 +1,4 @@
-﻿using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
-using RecipesApp.Application.Recipes.Commands;
-using RecipesApp.Console.InputHandling.Utils;
-using RecipesApp.Domain.Models;
-
-namespace RecipesApp.Console.TestFunctionalities
+﻿namespace RecipesApp.Console.TestFunctionalities
 {
     internal class TestFunctionalitiesWithDb
     {

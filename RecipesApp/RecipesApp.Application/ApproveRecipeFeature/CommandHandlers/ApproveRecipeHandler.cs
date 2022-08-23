@@ -17,7 +17,7 @@ namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
         public async Task<Recipe> Handle(ApproveRecipe request, CancellationToken cancellationToken)
         {
             var recipe = await _unitOfWork.RecipeRepository.GetRecipeById(request.RecipeId);
-                
+
             await _unitOfWork.RecipeRepository.UpdateRecipeStatus(recipe, true);
             await _unitOfWork.Save();
 
