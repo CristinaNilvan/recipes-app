@@ -17,13 +17,13 @@ namespace RecipesApp.Console.InputHandling
             appOptions = appOptions.Append("6 - approve ingredients\n");
             appOptions = appOptions.Append("7 - exit\n");
 
-            System.Console.WriteLine("Recipes App");
-
             while (true)
             {
                 System.Console.WriteLine(appOptions.ToString());
 
                 var nextOperation = Convert.ToInt32(System.Console.ReadLine());
+
+                System.Console.Clear();
 
                 if (nextOperation == 1)
                 {
@@ -76,10 +76,14 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
+                System.Console.Clear();
+
                 System.Console.WriteLine("Choose an entity: ");
                 System.Console.WriteLine(entities);
                 var chosenEntity = Convert.ToInt32(System.Console.ReadLine());
                 System.Console.WriteLine($"Chosen entity: {chosenEntity}");
+
+                System.Console.Clear();
 
                 while (true)
                 {
@@ -91,10 +95,14 @@ namespace RecipesApp.Console.InputHandling
                         break;
                     }
 
+                    System.Console.Clear();
+
                     System.Console.WriteLine("Choose an operation: ");
                     System.Console.WriteLine(operations);
                     var chosenOperation = Convert.ToInt32(System.Console.ReadLine());
                     System.Console.WriteLine($"Chosen operation: {chosenOperation}");
+
+                    System.Console.Clear();
 
                     await EntitiesHandler.HandleInputFromConsole(chosenEntity, chosenOperation);
                 }
@@ -113,6 +121,8 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
+                System.Console.Clear();
+
                 await MealPlannerHandler.HandleInputFromConsole();
             }
         }
@@ -128,6 +138,8 @@ namespace RecipesApp.Console.InputHandling
                 {
                     break;
                 }
+
+                System.Console.Clear();
 
                 await RecipeFinderHandler.HandleInputFromConsole();
             }
@@ -145,6 +157,8 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
+                System.Console.Clear();
+
                 await RecipeSuggesterHandler.HandleInputFromConsole();
             }
         }
@@ -161,6 +175,8 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
+                System.Console.Clear();
+
                 await RecipeApproverHandler.HandleInputFromConsole();
             }
         }
@@ -176,6 +192,8 @@ namespace RecipesApp.Console.InputHandling
                 {
                     break;
                 }
+
+                System.Console.Clear();
 
                 await IngredientApproverHandler.HandleInputFromConsole();
             }
