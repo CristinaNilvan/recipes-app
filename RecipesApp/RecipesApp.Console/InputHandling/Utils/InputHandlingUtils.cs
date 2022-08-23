@@ -143,17 +143,17 @@ namespace RecipesApp.Console.InputHandling.Utils
 
             while (true)
             {
-                IngredientHandler.HandleReadAllIngredients();
+                await IngredientHandler.HandleReadAllIngredients();
 
-                System.Console.WriteLine("Enter the id of the element you want to add: ");
+                System.Console.WriteLine("Enter the id of the ingredient you want to add: ");
                 var id = Convert.ToInt32(System.Console.ReadLine());
 
-                var element = await mediator.Send(new GetIngredientById()
+                var ingredient = await mediator.Send(new GetIngredientById()
                 {
                     IngredientId = id
                 });
 
-                ingredients.Add(element);
+                ingredients.Add(ingredient);
 
                 System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients; 0 - exit");
                 var nextChoice = Convert.ToInt32(System.Console.ReadLine());

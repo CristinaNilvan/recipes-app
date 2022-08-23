@@ -9,7 +9,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
     {
         private static readonly IMediator _mediator = MediatorSetup.GetMediator();
 
-        public async static void HandleCreateRecipe()
+        public async static Task HandleCreateRecipe()
         {
             var recipe = InputHandlingUtils.CreateRecipeFromInput();
 
@@ -25,7 +25,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleReadRecipe()
+        public static async Task HandleReadRecipe()
         {
             System.Console.WriteLine("Please enter the id: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -38,9 +38,9 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine(recipe);
         }
 
-        public static async void HandleUpdateRecipe()
+        public static async Task HandleUpdateRecipe()
         {
-            HandleReadAllRecipes();
+            await HandleReadAllRecipes();
 
             System.Console.WriteLine("Enter the id of the element you want to update: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -60,9 +60,9 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleDeleteRecipe()
+        public static async Task HandleDeleteRecipe()
         {
-            HandleReadAllRecipes();
+            await HandleReadAllRecipes();
 
             System.Console.WriteLine("Enter the id of the element you want to delete: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -73,7 +73,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleReadAllRecipes()
+        public static async Task HandleReadAllRecipes()
         {
             System.Console.WriteLine("Here are the current recipes: ");
             var recipes = await _mediator.Send(new GetRecipesByApprovedStatus()

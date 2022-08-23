@@ -7,7 +7,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class MealPlannerHandler
     {
-        public static async void HandleInputFromConsole()
+        public static async Task HandleInputFromConsole()
         {
             System.Console.WriteLine("Please enter the following data: ");
 

@@ -9,7 +9,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
     {
         private static readonly IMediator _mediator = MediatorSetup.GetMediator();
 
-        public static async void HandleCreateIngredient()
+        public static async Task HandleCreateIngredient()
         {
             var ingredient = InputHandlingUtils.CreateIngredientFromInput();
 
@@ -24,7 +24,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleReadIngredient()
+        public static async Task HandleReadIngredient()
         {
             System.Console.WriteLine("Please enter the id: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -37,9 +37,9 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine(ingredient);
         }
 
-        public static async void HandleUpdateIngredient()
+        public static async Task HandleUpdateIngredient()
         {
-            HandleReadAllIngredients();
+            await HandleReadAllIngredients();
 
             System.Console.WriteLine("Enter the id of the element you want to update: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -58,9 +58,9 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleDeleteIngredient()
+        public static async Task HandleDeleteIngredient()
         {
-            HandleReadAllIngredients();
+            await HandleReadAllIngredients();
 
             System.Console.WriteLine("Enter the id of the element you want to delete: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
@@ -71,7 +71,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             });
         }
 
-        public static async void HandleReadAllIngredients()
+        public static async Task HandleReadAllIngredients()
         {
             System.Console.WriteLine("Here are the current ingredients: ");
             var ingredients = await _mediator.Send(new GetIngredientsByApprovedStatus()

@@ -2,15 +2,15 @@
 {
     internal class EntitiesHandler
     {
-        public static void HandleInputFromConsole(int entity, int operation)
+        public static async Task HandleInputFromConsole(int entity, int operation)
         {
             if (entity == 1)
             {
-                DoIngredientOperation(operation);
+                await DoIngredientOperation(operation);
             }
             else if (entity == 2)
             {
-                DoRecipeOperation(operation);
+                await DoRecipeOperation(operation);
             }
             else
             {
@@ -18,24 +18,24 @@
             }
         }
 
-        private static void DoIngredientOperation(int operation)
+        private static async Task DoIngredientOperation(int operation)
         {
             switch (operation)
             {
                 case 1:
-                    IngredientHandler.HandleCreateIngredient();
+                    await IngredientHandler.HandleCreateIngredient();
                     break;
                 case 2:
-                    IngredientHandler.HandleReadIngredient();
+                    await IngredientHandler.HandleReadIngredient();
                     break;
                 case 3:
-                    IngredientHandler.HandleUpdateIngredient();
+                    await IngredientHandler.HandleUpdateIngredient();
                     break;
                 case 4:
-                    IngredientHandler.HandleDeleteIngredient();
+                    await IngredientHandler.HandleDeleteIngredient();
                     break;
                 case 5:
-                    IngredientHandler.HandleReadAllIngredients();
+                    await IngredientHandler.HandleReadAllIngredients();
                     break;
                 default:
                     System.Console.WriteLine("Invalid number for operation!");
@@ -43,24 +43,24 @@
             }
         }
 
-        private static void DoRecipeOperation(int operation)
+        private static async Task DoRecipeOperation(int operation)
         {
             switch (operation)
             {
                 case 1:
-                    RecipeHandler.HandleCreateRecipe();
+                    await RecipeHandler.HandleCreateRecipe();
                     break;
                 case 2:
-                    RecipeHandler.HandleReadRecipe();
+                    await RecipeHandler.HandleReadRecipe();
                     break;
                 case 3:
-                    RecipeHandler.HandleUpdateRecipe();
+                    await RecipeHandler.HandleUpdateRecipe();
                     break;
                 case 4:
-                    RecipeHandler.HandleDeleteRecipe();
+                    await RecipeHandler.HandleDeleteRecipe();
                     break;
                 case 5:
-                    RecipeHandler.HandleReadAllRecipes();
+                    await RecipeHandler.HandleReadAllRecipes();
                     break;
                 default:
                     System.Console.WriteLine("Invalid number for operation!");

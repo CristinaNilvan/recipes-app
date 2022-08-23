@@ -5,10 +5,11 @@ namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class RecipeFinderHandler
     {
-        public static async void HandleInputFromConsole()
+        public static async Task HandleInputFromConsole()
         {
-            var ingredients = InputHandlingUtils.CreateIngredientListForRecipeFinder().Result;
+            var ingredients = await InputHandlingUtils.CreateIngredientListForRecipeFinder();
             var mediator = MediatorSetup.GetMediator();
+
             var recipes = await mediator.Send(new FindRecipesByIngredients()
             {
                 Ingredients = ingredients

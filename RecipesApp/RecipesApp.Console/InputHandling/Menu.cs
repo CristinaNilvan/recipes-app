@@ -27,19 +27,19 @@ namespace RecipesApp.Console.InputHandling
 
                 if (nextOperation == 1)
                 {
-                    DoCRUDOnEntities();
+                    await DoCRUDOnEntities();
                 }
                 else if (nextOperation == 2)
                 {
-                    FindMealPlan();
+                    await FindMealPlan();
                 }
                 else if (nextOperation == 3)
                 {
-                    FindRecipesByIngredients();
+                    await FindRecipesByIngredients();
                 }
                 else if (nextOperation == 4)
                 {
-                    FindBestMatchRecipesForIngredient();
+                    await FindBestMatchRecipesForIngredient();
                 }
                 else if (nextOperation == 5)
                 {
@@ -61,7 +61,7 @@ namespace RecipesApp.Console.InputHandling
             }
         }
 
-        static void DoCRUDOnEntities()
+        static async Task DoCRUDOnEntities()
         {
             var entities = "1 - Ingredient; 2 - Recipe";
             var operations = "1 - Create; 2 - Read; 3 - Update; 4 - Delete; 5 - Read all";
@@ -96,12 +96,12 @@ namespace RecipesApp.Console.InputHandling
                     var chosenOperation = Convert.ToInt32(System.Console.ReadLine());
                     System.Console.WriteLine($"Chosen operation: {chosenOperation}");
 
-                    EntitiesHandler.HandleInputFromConsole(chosenEntity, chosenOperation);
+                    await EntitiesHandler.HandleInputFromConsole(chosenEntity, chosenOperation);
                 }
             }
         }
 
-        static void FindMealPlan()
+        static async Task FindMealPlan()
         {
             while (true)
             {
@@ -113,11 +113,11 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
-                MealPlannerHandler.HandleInputFromConsole();
+                await MealPlannerHandler.HandleInputFromConsole();
             }
         }
 
-        static void FindRecipesByIngredients()
+        static async Task FindRecipesByIngredients()
         {
             while (true)
             {
@@ -129,11 +129,11 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
-                RecipeFinderHandler.HandleInputFromConsole();
+                await RecipeFinderHandler.HandleInputFromConsole();
             }
         }
 
-        static void FindBestMatchRecipesForIngredient()
+        static async Task FindBestMatchRecipesForIngredient()
         {
             while (true)
             {
@@ -145,7 +145,7 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
-                RecipeSuggesterHandler.HandleInputFromConsole();
+                await RecipeSuggesterHandler.HandleInputFromConsole();
             }
         }
 
