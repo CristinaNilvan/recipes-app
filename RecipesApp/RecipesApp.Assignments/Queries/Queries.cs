@@ -1,7 +1,5 @@
-﻿using Bogus.DataSets;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecipesApp.Infrastructure.Context;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RecipesApp.Assignments.Queries
 {

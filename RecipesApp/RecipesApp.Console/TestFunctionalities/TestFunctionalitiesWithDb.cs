@@ -1,4 +1,5 @@
 ﻿using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
+using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Models;
 
@@ -6,7 +7,7 @@ namespace RecipesApp.Console.TestFunctionalities
 {
     internal class TestFunctionalitiesWithDb
     {
-        public static void TestGetAllIngredientsWithNewMediator()
+        public static void TestMediators()
         {
             var mediator = NewMediatorSetup.GetMediator();
 
@@ -14,21 +15,15 @@ namespace RecipesApp.Console.TestFunctionalities
             {
                 new RecipeIngredient()
                 {
-                    Id = 3,
-                    Quantity = 200,
-                    IngredientId = 2
+                    Id = 1,
+                    Quantity = 500,
+                    IngredientId = 3
                 },
-                new RecipeIngredient()
-                {
-                    Id = 5,
-                    Quantity = 600,
-                    IngredientId = 8
-                }
             };
 
             var recipe = mediator.Send(new CreateRecipe()
             {
-                Name = "Rec15",
+                Name = "Rec16",
                 Author = "Cristina Nilvan",
                 Description = "Desc",
                 MealType = Domain.Enums.MealType.Normal,
@@ -37,8 +32,8 @@ namespace RecipesApp.Console.TestFunctionalities
                 RecipeIngredients = recIngList
             }).Result;
 
-            System.Console.WriteLine(recipe);*/
-
+            System.Console.WriteLine(recipe);
+*/
             //var recipe = mediator.Send(new DeleteRecipe() { RecipeId = 18 }).Result;
 
             /*var recipes = mediator.Send(new GetRecipesByApprovedStatus() { ApprovedStatus = true }).Result;
@@ -60,7 +55,7 @@ namespace RecipesApp.Console.TestFunctionalities
 
             ListPrinter.PrintList(suggestedRecipes);*/
 
-            var ingList = new List<Ingredient>()
+            /*var ingList = new List<Ingredient>()
             {
                 new Ingredient
                 {
@@ -77,7 +72,7 @@ namespace RecipesApp.Console.TestFunctionalities
                 Ingredients = ingList
             }).Result;
 
-            ListPrinter.PrintList(foundRecipes);
+            ListPrinter.PrintList(foundRecipes);*/
         }
     }
 }
