@@ -13,12 +13,9 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<RecipeIngredient> CreateRecipeIngredient(RecipeIngredient recipeIngredient)
+        public async Task CreateRecipeIngredient(RecipeIngredient recipeIngredient)
         {
-            _dataContext.RecipeIngredients.Add(recipeIngredient);
-            await _dataContext.SaveChangesAsync();
-
-            return recipeIngredient;
+            await _dataContext.RecipeIngredients.AddAsync(recipeIngredient);
         }
     }
 }

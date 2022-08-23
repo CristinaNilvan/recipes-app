@@ -14,27 +14,14 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<Recipe> CreateRecipe(Recipe recipe, List<RecipeIngredient> recipeIngredients)
+        public async Task CreateRecipe(Recipe recipe, List<RecipeIngredient> recipeIngredients)
         {
-            _dataContext.Recipes.Add(recipe);
-            await _dataContext.SaveChangesAsync();
-
-            return recipe;
+            await _dataContext.Recipes.AddAsync(recipe);
         }
 
-        public async Task<Recipe> DeleteRecipe(int recipeId)
+        public async Task DeleteRecipe(Recipe recipe)
         {
-            var recipe = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipeId);
-
-            if (recipe == null)
-            {
-                return null;
-            }
-
             _dataContext.Recipes.Remove(recipe);
-            await _dataContext.SaveChangesAsync();
-
-            return recipe;
         }
 
         public async Task<List<Recipe>> GetAllRecipes()
@@ -98,14 +85,9 @@ namespace RecipesApp.Infrastructure.Repositories
             return newRecipe;
         }
 
-        public async Task<Recipe> UpdateRecipeStatus(int recipeId, bool status)
+        public async Task UpdateRecipeStatus(Recipe recipe, bool status)
         {
-            var recipe = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipeId);
-
             recipe.Approved = status;
-            await _dataContext.SaveChangesAsync();
-
-            return recipe;
         }
 
         public async Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)

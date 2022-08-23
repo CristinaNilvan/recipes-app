@@ -14,27 +14,14 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<MealPlan> CreateMealPlan(MealPlan mealPlan)
+        public async Task CreateMealPlan(MealPlan mealPlan)
         {
-            _dataContext.MealPlans.Add(mealPlan);
-            await _dataContext.SaveChangesAsync();
-
-            return mealPlan;
+            await _dataContext.MealPlans.AddAsync(mealPlan);
         }
 
-        public async Task<MealPlan> DeleteMealPlan(int mealPlanId)
+        public async Task DeleteMealPlan(MealPlan mealPlan)
         {
-            var mealPlan = await _dataContext.MealPlans.SingleOrDefaultAsync(x => x.Id == mealPlanId);
-
-            if (mealPlan == null)
-            {
-                return null;
-            }
-
             _dataContext.MealPlans.Remove(mealPlan);
-            await _dataContext.SaveChangesAsync();
-
-            return mealPlan;
         }
 
         public async Task<List<MealPlan>> GetAllMealPlans()
@@ -47,22 +34,9 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.MealPlans.SingleOrDefaultAsync(x => x.Id == mealPlanId);
         }
 
-        public Task UpdateMealPlan(int mealPlanId, MealPlan newMealPlan)
+        public async Task UpdateMealPlan(MealPlan mealPlan)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<MealPlan> UpdateMealPlan(MealPlan newMealPlan)
-        {
-            if (newMealPlan == null)
-            {
-                return null;
-            }
-
-            _dataContext.MealPlans.Update(newMealPlan);
-            await _dataContext.SaveChangesAsync();
-
-            return newMealPlan;
+            _dataContext.MealPlans.Update(mealPlan);
         }
     }
 }

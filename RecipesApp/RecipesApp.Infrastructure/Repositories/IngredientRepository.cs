@@ -14,27 +14,14 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<Ingredient> CreateIngredient(Ingredient ingredient)
+        public async Task CreateIngredient(Ingredient ingredient)
         {
-            _dataContext.Ingredients.Add(ingredient);
-            await _dataContext.SaveChangesAsync();
-
-            return ingredient;
+            await _dataContext.Ingredients.AddAsync(ingredient);
         }
 
-        public async Task<Ingredient> DeleteIngredient(int ingredientId)
+        public async Task DeleteIngredient(Ingredient ingredient)
         {
-            var ingredient = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredientId);
-
-            if (ingredient == null)
-            {
-                return null;
-            }
-
             _dataContext.Ingredients.Remove(ingredient);
-            await _dataContext.SaveChangesAsync();
-
-            return ingredient;
         }
 
         public async Task<List<Ingredient>> GetAllIngredients()
@@ -57,27 +44,14 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.Ingredients.Where(x => x.Approved == isApproved).ToListAsync();
         }
 
-        public async Task<Ingredient> UpdateIngredient(Ingredient newIngredient)
+        public async Task UpdateIngredient(Ingredient ingredient)
         {
-            if (newIngredient == null)
-            {
-                return null;
-            }
-
-            _dataContext.Ingredients.Update(newIngredient);
-            await _dataContext.SaveChangesAsync();
-
-            return newIngredient;
+            _dataContext.Ingredients.Update(ingredient);
         }
 
-        public async Task<Ingredient> UpdateIngredientStatus(int ingredientId, bool status)
+        public async Task UpdateIngredientStatus(Ingredient ingredient, bool status)
         {
-            var ingredient = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredientId);
-
             ingredient.Approved = status;
-            await _dataContext.SaveChangesAsync();
-
-            return ingredient;
         }
     }
 }
