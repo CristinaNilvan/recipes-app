@@ -16,7 +16,12 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
 
         public async Task<Ingredient> Handle(DeleteIngredient request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.IngredientRepository.DeleteIngredient(request.IngredientId);
+            var ingredient = await _unitOfWork.IngredientRepository.GetIngredientById(request.IngredientId);
+
+            await _unitOfWork.IngredientRepository.DeleteIngredient(ingredient);
+            await _unitOfWork.Save();
+
+            return ingredient;
         }
     }
 }

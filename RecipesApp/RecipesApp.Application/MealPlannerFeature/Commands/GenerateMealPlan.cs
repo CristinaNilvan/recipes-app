@@ -8,6 +8,8 @@ namespace RecipesApp.Application.MealPlannerFeature.Commands
     {
         public MealType MealType { get; set; }
         public float Calories { get; set; }
+
+        //delete
         public List<Recipe> Recipes { get; set; }
     }
 }

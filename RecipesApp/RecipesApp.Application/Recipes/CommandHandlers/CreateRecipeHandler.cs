@@ -26,7 +26,10 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
                 request.Servings, recipesWithRecipeIngredients);
 
-            return await _unitOfWork.RecipeRepository.CreateRecipe(recipe, request.RecipeIngredients);
+            await _unitOfWork.RecipeRepository.CreateRecipe(recipe, request.RecipeIngredients);
+            await _unitOfWork.Save();
+
+            return recipe;
         }
     }
 }

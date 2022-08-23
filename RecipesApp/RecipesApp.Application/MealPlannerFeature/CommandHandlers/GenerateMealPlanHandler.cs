@@ -22,15 +22,16 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
         {
-            var mealPlan = GenerateMealPlan(request.MealType, request.Calories, request.Recipes);
+            var mealPlan = await GenerateMealPlan(request.MealType, request.Calories);
             await _unitOfWork.MealPlanRepository.CreateMealPlan(mealPlan);
+            await _unitOfWork.Save();
 
             return mealPlan;
         }
 
-        private MealPlan GenerateMealPlan(MealType mealType, float calories, List<Recipe> recipes)
+        private async Task<MealPlan> GenerateMealPlan(MealType mealType, float calories)
         {
-            InitializeLists(recipes);
+            await InitializeLists();
 
             float averageCalories = MealPlannerUtils.CalculateTwoDecimalFloat(calories / 3);
 
@@ -49,9 +50,9 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             return mealPlan;
         }
 
-        private void InitializeLists(List<Recipe> recipes)
+        private async Task InitializeLists()
         {
-            _allRecipes = new List<Recipe>(recipes);
+            _allRecipes = await _unitOfWork.RecipeRepository.GetAllRecipes();
             _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

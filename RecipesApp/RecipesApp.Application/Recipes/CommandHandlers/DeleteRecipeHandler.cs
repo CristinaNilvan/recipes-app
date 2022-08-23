@@ -16,7 +16,12 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
         public async Task<Recipe> Handle(DeleteRecipe request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.RecipeRepository.DeleteRecipe(request.RecipeId);
+            var recipe = await _unitOfWork.RecipeRepository.GetRecipeById(request.RecipeId);
+
+            await _unitOfWork.RecipeRepository.DeleteRecipe(recipe);
+            await _unitOfWork.Save();
+
+            return recipe;
         }
     }
 }
