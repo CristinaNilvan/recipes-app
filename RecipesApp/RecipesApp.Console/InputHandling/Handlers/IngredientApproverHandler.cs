@@ -6,7 +6,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class IngredientApproverHandler
     {
-        public static async void HandleInputFromConsole()
+        public static async Task HandleInputFromConsole()
         {
             var mediator = MediatorSetup.GetMediator();
             var unapprovedIngredients = await mediator.Send(new GetIngredientsByApprovedStatus()
@@ -26,7 +26,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine("Enter the id of the ingredient you want to approve: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
-            await mediator.Send(new ApproveIngredient()
+            var approvedIngredient = await mediator.Send(new ApproveIngredient()
             {
                 IngredientId = id
             });

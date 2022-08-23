@@ -5,7 +5,7 @@ namespace RecipesApp.Console.InputHandling
 {
     internal class Menu
     {
-        public static void RunApp()
+        public static async Task RunApp()
         {
             var appOptions = new StringBuilder();
             appOptions = appOptions.Append("What would you like to do?\n");
@@ -43,11 +43,11 @@ namespace RecipesApp.Console.InputHandling
                 }
                 else if (nextOperation == 5)
                 {
-                    ApproveRecipes();
+                    await ApproveRecipes();
                 }
                 else if (nextOperation == 6)
                 {
-                    ApproveIngredients();
+                    await ApproveIngredients();
                 }
                 else if (nextOperation == 7)
                 {
@@ -149,7 +149,7 @@ namespace RecipesApp.Console.InputHandling
             }
         }
 
-        static void ApproveRecipes()
+        static async Task ApproveRecipes()
         {
             while (true)
             {
@@ -161,11 +161,11 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
-                RecipeApproverHandler.HandleInputFromConsole();
+                await RecipeApproverHandler.HandleInputFromConsole();
             }
         }
 
-        static void ApproveIngredients()
+        static async Task ApproveIngredients()
         {
             while (true)
             {
@@ -177,7 +177,7 @@ namespace RecipesApp.Console.InputHandling
                     break;
                 }
 
-                IngredientApproverHandler.HandleInputFromConsole();
+                await IngredientApproverHandler.HandleInputFromConsole();
             }
         }
     }

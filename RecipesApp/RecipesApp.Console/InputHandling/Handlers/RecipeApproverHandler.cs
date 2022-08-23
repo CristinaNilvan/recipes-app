@@ -6,7 +6,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
 {
     internal class RecipeApproverHandler
     {
-        public static async void HandleInputFromConsole()
+        public static async Task HandleInputFromConsole()
         {
             var mediator = MediatorSetup.GetMediator();
             var unapprovedRecipes = await mediator.Send(new GetRecipesByApprovedStatus()
