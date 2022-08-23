@@ -4,6 +4,6 @@ namespace RecipesApp.Application.Abstractions
 {
     public interface IRecipeIngredientRepository
     {
-        Task<RecipeIngredient> CreateRecipeIngredient(RecipeIngredient recipeIngredient);
+        Task CreateRecipeIngredient(RecipeIngredient recipeIngredient);
     }
 }
