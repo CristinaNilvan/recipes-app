@@ -1,9 +1,7 @@
-﻿using Bogus.DataSets;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RecipesApp.Infrastructure.Repositories
 {
