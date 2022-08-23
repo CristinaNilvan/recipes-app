@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus.DataSets;
+using Microsoft.EntityFrameworkCore;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RecipesApp.Infrastructure.Repositories
 {
@@ -92,7 +94,7 @@ namespace RecipesApp.Infrastructure.Repositories
 
         public async Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
         {
-            var joinQuery =
+            /*var joinQuery =
                 from recipe in _dataContext.Recipes
                 join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
                     on recipe.Id equals recipeWithRecipeIngredients.RecipeId
@@ -103,14 +105,26 @@ namespace RecipesApp.Infrastructure.Repositories
                 where recipe.Approved == true &&
                     recipeIngredient.Quantity <= ingredientQuantity &&
                     ingredient.Name == ingredientName
-                select recipe;
+                select recipe;*/
+
+            var joinQuery = _dataContext
+                .RecipeWithRecipeIngredients
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.Ingredient)
+                .Where(recipeWithRecipeIngredients =>
+                    recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
+                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
+                .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe);
 
             return await joinQuery.ToListAsync();
         }
 
         public async Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
         {
-            var joinQuery =
+            var quantityLimit = ingredientQuantity / 2;
+
+            /*var joinQuery =
                 from recipe in _dataContext.Recipes
                 join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
                     on recipe.Id equals recipeWithRecipeIngredients.RecipeId
@@ -119,23 +133,44 @@ namespace RecipesApp.Infrastructure.Repositories
                 join ingredient in _dataContext.Ingredients
                     on recipeIngredient.IngredientId equals ingredient.Id
                 where recipe.Approved == true &&
-                    recipeIngredient.Quantity >= ingredientQuantity / 2 &&
+                    recipeIngredient.Quantity >= quantityLimit &&
+                    recipeIngredient.Quantity <= ingredientQuantity &&
                     ingredient.Name == ingredientName
-                select recipe;
+                select recipe;*/
+
+            var joinQuery = _dataContext
+                .RecipeWithRecipeIngredients
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.Ingredient)
+                .Where(recipeWithRecipeIngredients =>
+                    recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
+                    recipeWithRecipeIngredients.RecipeIngredient.Quantity >= quantityLimit &&
+                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
+                .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe);
 
             return await joinQuery.ToListAsync();
         }
 
         public async Task<List<int>> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor)
         {
-            var joinQuery =
+            /*var joinQuery =
                 from recipe in _dataContext.Recipes
                 join recipeWithRecipeIngredients in _dataContext.RecipeWithRecipeIngredients
                     on recipe.Id equals recipeWithRecipeIngredients.RecipeId
                 join recipeIngredient in _dataContext.RecipeIngredients
                     on recipeWithRecipeIngredients.RecipeIngredientId equals recipeIngredient.Id
                 where recipe.Name == recipeName && recipe.Author == recipeAuthor
-                select recipeIngredient.IngredientId;
+                select recipeIngredient.IngredientId;*/
+
+            var joinQuery = _dataContext
+                .RecipeWithRecipeIngredients
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
+                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
+                .Where(recipeWithRecipeIngredients => 
+                    recipeWithRecipeIngredients.Recipe.Name == recipeName &&
+                    recipeWithRecipeIngredients.Recipe.Author == recipeAuthor)
+                .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.IngredientId);
 
             return await joinQuery.ToListAsync();
         }
