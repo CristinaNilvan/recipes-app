@@ -19,24 +19,6 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext.Recipes.Add(recipe);
             await _dataContext.SaveChangesAsync();
 
-            /*var recipeAfterInsertion = await GetRecipeByName(recipe.Name);
-
-            foreach (var recipeIngredient in recipeIngredients)
-            {
-                var auxRecipeIng = _dataContext.RecipeIngredients.Find(recipeIngredient.Id);
-
-                var recipeWithRecipeIngredient = new RecipeWithRecipeIngredient
-                {
-                    RecipeId = recipeAfterInsertion.Id,
-                    Recipe = recipe,
-                    RecipeIngredientId = auxRecipeIng.Id,
-                    RecipeIngredient = auxRecipeIng
-                };
-
-                _dataContext.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
-                await _dataContext.SaveChangesAsync();
-            }*/
-
             return recipe;
         }
 
@@ -141,7 +123,7 @@ namespace RecipesApp.Infrastructure.Repositories
                     ingredient.Name == ingredientName
                 select recipe;
 
-            return joinQuery.ToList();
+            return await joinQuery.ToListAsync();
         }
 
         public async Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName)
@@ -159,7 +141,7 @@ namespace RecipesApp.Infrastructure.Repositories
                     ingredient.Name == ingredientName
                 select recipe;
 
-            return joinQuery.ToList();
+            return await joinQuery.ToListAsync();
         }
 
         public async Task<List<int>> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor)
@@ -173,7 +155,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 where recipe.Name == recipeName && recipe.Author == recipeAuthor
                 select recipeIngredient.IngredientId;
 
-            return joinQuery.ToList();
+            return await joinQuery.ToListAsync();
         }
     }
 }
