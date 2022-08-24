@@ -2,7 +2,6 @@
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
-using System.Linq;
 
 namespace RecipesApp.Infrastructure.Repositories
 {
@@ -25,7 +24,7 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.RecipeIngredients.SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
         }
 
-        public async Task<Ingredient> GetIngredientDetailsById(int ingredientId)
+        public async Task<Ingredient> GetRecipeIngredientDetailsByIngredientId(int ingredientId)
         {
             var joinQuery = _dataContext
                 .RecipeIngredients
@@ -37,14 +36,29 @@ namespace RecipesApp.Infrastructure.Repositories
             return joinQuery;
         }
 
-        public async Task<List<RecipeIngredient>> GetRecipeIngredietQuantitiesByIngredientId(int ingredientId)
+        public async Task<List<RecipeIngredient>> GetRecipeIngredietsByIngredientId(int ingredientId)
         {
-            var joinQuery = _dataContext
+            var query = _dataContext
                 .RecipeIngredients
                 .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
-                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Quantity, recipeIngredient.IngredientId));
+                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Id, recipeIngredient.Quantity, 
+                    recipeIngredient.IngredientId));
 
-            return await joinQuery.ToListAsync();
+            return await query.ToListAsync();
+        }
+
+        public async Task<RecipeIngredient> GetRecipeIngredientByQuantityAndIngredientId(float quantity, int ingredientId)
+        {
+            var twoDecimalQuantity = (float)Math.Round(quantity * 100f) / 100f;
+
+            var query = _dataContext
+                .RecipeIngredients
+                .Where(recipeIngredient =>
+                    (float)Math.Round(recipeIngredient.Quantity * 100f) / 100f == twoDecimalQuantity &&
+                    recipeIngredient.IngredientId == ingredientId)
+                .FirstOrDefault();
+
+            return query;
         }
     }
 }

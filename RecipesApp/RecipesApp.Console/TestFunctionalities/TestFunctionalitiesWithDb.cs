@@ -1,34 +1,59 @@
-﻿namespace RecipesApp.Console.TestFunctionalities
+﻿using RecipesApp.Application.Recipes.Commands;
+using RecipesApp.Domain.Models;
+
+namespace RecipesApp.Console.TestFunctionalities
 {
     internal class TestFunctionalitiesWithDb
     {
-        public static void TestMediators()
+        public static async Task TestMediators()
         {
             var mediator = NewMediatorSetup.GetMediator();
 
-            /*var recIngList = new List<RecipeIngredient>
+            var recIngList = new List<RecipeIngredient>
             {
                 new RecipeIngredient()
                 {
-                    Id = 1,
-                    Quantity = 500,
+                    Id = 2,
+                    Quantity = 300,
                     IngredientId = 3
+                },
+                new RecipeIngredient()
+                {
+                    Id = 3,
+                    Quantity = 200,
+                    IngredientId = 2
                 },
             };
 
-            var recipe = mediator.Send(new CreateRecipe()
+            /*var recIng1 = mediator.Send(new GetRecipeIngredientById()
             {
-                Name = "Rec16",
+                RecipeIngredientId = 4
+            }).Result;
+
+            var recIng2 = mediator.Send(new GetRecipeIngredientById()
+            {
+                RecipeIngredientId = 6
+            }).Result;
+
+            var recIngListNew = new List<RecipeIngredient>()
+            {
+                recIng2
+            };*/
+
+            var recipe = await mediator.Send(new UpdateRecipe()
+            {
+                RecipeId = 15,
+                Name = "Test Rec",
                 Author = "Cristina Nilvan",
                 Description = "Desc",
                 MealType = Domain.Enums.MealType.Normal,
-                ServingTime = Domain.Enums.ServingTime.Dinner,
+                ServingTime = Domain.Enums.ServingTime.Lunch,
                 Servings = 5,
                 RecipeIngredients = recIngList
-            }).Result;
+            });
 
             System.Console.WriteLine(recipe);
-*/
+
             //var recipe = mediator.Send(new DeleteRecipe() { RecipeId = 18 }).Result;
 
             /*var recipes = mediator.Send(new GetRecipesByApprovedStatus() { ApprovedStatus = true }).Result;

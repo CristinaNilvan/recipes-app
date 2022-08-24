@@ -130,7 +130,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .RecipeWithRecipeIngredients
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .Where(recipeWithRecipeIngredients => 
+                .Where(recipeWithRecipeIngredients =>
                     recipeWithRecipeIngredients.Recipe.Name == recipeName &&
                     recipeWithRecipeIngredients.Recipe.Author == recipeAuthor)
                 .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.IngredientId);

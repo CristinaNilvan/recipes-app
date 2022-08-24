@@ -13,8 +13,5 @@ namespace RecipesApp.Application.Recipes.Commands
         public ServingTime ServingTime { get; set; }
         public float Servings { get; set; }
         public List<RecipeIngredient> RecipeIngredients { get; set; }
-
-        //until further updates
-        public List<Ingredient> Ingredients { get; set; }
     }
 }

@@ -12,21 +12,7 @@ namespace RecipesApp.Domain.Models
         }
 
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
-            float servings, List<Ingredient> ingredients)
-        {
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
-            Ingredients = new List<Ingredient>(ingredients);
-            //CalculateNutritionalValuesForRecipe(ingredients);
-            Approved = false;
-        }
-
-        public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
-            float servings)
+            float servings, List<RecipeIngredient> recipeIngredients)
         {
             Name = name;
             Author = author;
@@ -35,19 +21,7 @@ namespace RecipesApp.Domain.Models
             ServingTime = servingTime;
             Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
             Approved = false;
-        }
-
-        public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
-            float servings, List<RecipeWithRecipeIngredient> recipeWithRecipeIngredients)
-        {
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
-            Approved = false;
-            RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
+            CalculateNutritionalValuesForRecipe(recipeIngredients);
         }
 
         // new used constructors

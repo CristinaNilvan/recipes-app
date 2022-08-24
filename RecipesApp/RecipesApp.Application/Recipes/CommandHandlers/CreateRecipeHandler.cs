@@ -21,7 +21,7 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             foreach (var item in request.RecipeIngredients)
             {
                 recipesWithRecipeIngredients.Add(new RecipeWithRecipeIngredient() { RecipeIngredientId = item.Id });
-                var ingredient = await _unitOfWork.RecipeIngredientRepository.GetIngredientDetailsById(item.IngredientId);
+                var ingredient = await _unitOfWork.RecipeIngredientRepository.GetRecipeIngredientDetailsByIngredientId(item.IngredientId);
                 item.Ingredient = ingredient;
             }
 
