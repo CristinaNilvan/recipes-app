@@ -2,6 +2,7 @@
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
+using System.Linq;
 
 namespace RecipesApp.Infrastructure.Repositories
 {
@@ -36,12 +37,12 @@ namespace RecipesApp.Infrastructure.Repositories
             return joinQuery;
         }
 
-        public async Task<List<float>> GetRecipeIngredietQuantitiesByIngredientId(int ingredientId)
+        public async Task<List<RecipeIngredient>> GetRecipeIngredietQuantitiesByIngredientId(int ingredientId)
         {
             var joinQuery = _dataContext
                 .RecipeIngredients
                 .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
-                .Select(recipeIngredient => recipeIngredient.Quantity);
+                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Quantity, recipeIngredient.IngredientId));
 
             return await joinQuery.ToListAsync();
         }
