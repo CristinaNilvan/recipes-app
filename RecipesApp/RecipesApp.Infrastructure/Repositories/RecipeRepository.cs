@@ -44,10 +44,26 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.Recipes.Where(x => x.Approved == isApproved).ToListAsync();
         }
 
-        //to update
         public async Task UpdateRecipe(Recipe recipe)
         {
-            _dataContext.Recipes.Update(recipe);
+            //_dataContext.ChangeTracker.Clear();
+            //_dataContext.Recipes.Update(recipe);
+
+            var recipeToUpdate = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipe.Id);
+
+            recipeToUpdate.Name = recipe.Name;
+            recipeToUpdate.Author = recipe.Author;
+            recipeToUpdate.Description = recipe.Description;
+            recipeToUpdate.MealType = recipe.MealType;
+            recipeToUpdate.ServingTime = recipe.ServingTime;
+            recipeToUpdate.Servings = recipe.Servings;
+            recipeToUpdate.Calories = recipe.Calories;
+            recipeToUpdate.Fats = recipe.Fats;
+            recipeToUpdate.Carbs = recipe.Carbs;
+            recipeToUpdate.Proteins = recipe.Proteins;
+            recipeToUpdate.Approved = recipe.Approved;
+            recipeToUpdate.RecipeWithRecipeIngredients = recipe.RecipeWithRecipeIngredients;
+
         }
 
         public async Task UpdateRecipeStatus(Recipe recipe, bool status)

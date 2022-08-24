@@ -65,7 +65,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
         {
             await HandleReadAllRecipes();
 
-            System.Console.WriteLine("Enter the id of the element you want to update: ");
+            System.Console.WriteLine("Enter the id of the recipe you want to update: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
             System.Console.WriteLine("Name: ");
@@ -107,7 +107,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
         {
             await HandleReadAllRecipes();
 
-            System.Console.WriteLine("Enter the id of the element you want to delete: ");
+            System.Console.WriteLine("Enter the id of the recipe you want to delete: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
             await _mediator.Send(new DeleteRecipe()

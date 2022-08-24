@@ -11,8 +11,8 @@ namespace RecipesApp.Domain.Models
 
         }
 
-        //for dummy data
-        public Ingredient(int id, string name, IngredientCategory category, float calories, float fats, float carbs, float proteins)
+        public Ingredient(int id, string name, IngredientCategory category, float calories, float fats, float carbs,
+            float proteins)
         {
             Id = id;
             Name = name;
@@ -21,7 +21,7 @@ namespace RecipesApp.Domain.Models
             Fats = ModelUtils.CalculateTwoDecimalFloat(fats);
             Carbs = ModelUtils.CalculateTwoDecimalFloat(carbs);
             Proteins = ModelUtils.CalculateTwoDecimalFloat(proteins);
-            Approved = true;
+            Approved = false;
         }
 
         public Ingredient(string name, IngredientCategory category, float calories, float fats, float carbs, float proteins)
@@ -54,8 +54,6 @@ namespace RecipesApp.Domain.Models
 
         //remove
         public float Quantity { get; set; }
-
-        //public List<Recipe> Recipes { get; set; }
 
         public List<RecipeIngredient> RecipeIngredients { get; set; }
 
