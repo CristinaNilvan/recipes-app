@@ -9,12 +9,13 @@ namespace RecipesApp.Infrastructure
 
         public UnitOfWork(DataContext dataContext, IIngredientRepository ingredientRepository,
             IRecipeIngredientRepository recipeIngredientRepository, IRecipeRepository recipeRepository,
-            IMealPlanRepository mealPlanRepository)
+            IRecipeWithRecipeIngredientsRepository recipeWithRecipeIngredientsRepository, IMealPlanRepository mealPlanRepository)
         {
             _dataContext = dataContext;
             IngredientRepository = ingredientRepository;
             RecipeIngredientRepository = recipeIngredientRepository;
             RecipeRepository = recipeRepository;
+            RecipeWithRecipeIngredientsRepository = recipeWithRecipeIngredientsRepository;
             MealPlanRepository = mealPlanRepository;
         }
 
@@ -25,6 +26,7 @@ namespace RecipesApp.Infrastructure
         public IRecipeRepository RecipeRepository { get; private set; }
 
         public IMealPlanRepository MealPlanRepository { get; private set; }
+        public IRecipeWithRecipeIngredientsRepository RecipeWithRecipeIngredientsRepository { get; private set; }
 
         public async Task Save()
         {

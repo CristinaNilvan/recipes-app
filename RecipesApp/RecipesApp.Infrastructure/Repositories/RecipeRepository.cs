@@ -14,7 +14,7 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task CreateRecipe(Recipe recipe, List<RecipeIngredient> recipeIngredients)
+        public async Task CreateRecipe(Recipe recipe)
         {
             await _dataContext.Recipes.AddAsync(recipe);
         }
@@ -45,44 +45,9 @@ namespace RecipesApp.Infrastructure.Repositories
         }
 
         //to update
-        public async Task<Recipe> UpdateRecipe(Recipe newRecipe, List<RecipeIngredient> recipeIngredients)
+        public async Task UpdateRecipe(Recipe recipe)
         {
-            _dataContext.Recipes.Update(newRecipe);
-            await _dataContext.SaveChangesAsync();
-
-            var recipeFromDb = await GetRecipeByName(newRecipe.Name);
-
-            var oldRecipeIngredients = _dataContext
-                .RecipeWithRecipeIngredients
-                .Where(x => x.RecipeId == recipeFromDb.Id)
-                .ToList();
-
-            foreach (var item in oldRecipeIngredients)
-            {
-                var auxItem = _dataContext.RecipeWithRecipeIngredients.Find(item.Id);
-                _dataContext.RecipeWithRecipeIngredients.Remove(auxItem);
-                await _dataContext.SaveChangesAsync();
-            }
-
-            await _dataContext.SaveChangesAsync();
-
-            foreach (var recipeIngredient in recipeIngredients)
-            {
-                var auxRecipeIng = _dataContext.RecipeIngredients.Find(recipeIngredient.Id);
-
-                var recipeWithRecipeIngredient = new RecipeWithRecipeIngredient
-                {
-                    RecipeId = recipeFromDb.Id,
-                    Recipe = newRecipe,
-                    RecipeIngredientId = auxRecipeIng.Id,
-                    RecipeIngredient = auxRecipeIng
-                };
-
-                _dataContext.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
-                await _dataContext.SaveChangesAsync();
-            }
-
-            return newRecipe;
+            _dataContext.Recipes.Update(recipe);
         }
 
         public async Task UpdateRecipeStatus(Recipe recipe, bool status)

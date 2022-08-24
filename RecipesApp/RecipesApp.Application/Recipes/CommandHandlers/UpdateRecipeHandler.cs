@@ -16,10 +16,23 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
         public async Task<Recipe> Handle(UpdateRecipe request, CancellationToken cancellationToken)
         {
-            var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
-                request.Servings);
+            var recipesWithRecipeIngredients = new List<RecipeWithRecipeIngredient>();
 
-            return await _unitOfWork.RecipeRepository.UpdateRecipe(recipe, request.RecipeIngredients);
+            foreach (var item in request.RecipeIngredients)
+            {
+                recipesWithRecipeIngredients.Add(new RecipeWithRecipeIngredient() { RecipeIngredientId = item.Id });
+                var ingredient = await _unitOfWork.RecipeIngredientRepository.GetIngredientDetailsById(item.IngredientId);
+                item.Ingredient = ingredient;
+            }
+
+            var recipe = new Recipe(request.RecipeId, request.Name, request.Author, request.Description, request.MealType,
+                request.ServingTime, request.Servings, request.RecipeIngredients, recipesWithRecipeIngredients);
+
+            await _unitOfWork.RecipeWithRecipeIngredientsRepository.DeleteRecipeIngredientsByRecipeId(request.RecipeId);
+            await _unitOfWork.RecipeRepository.UpdateRecipe(recipe);
+            await _unitOfWork.Save();
+
+            return recipe;
         }
     }
 }

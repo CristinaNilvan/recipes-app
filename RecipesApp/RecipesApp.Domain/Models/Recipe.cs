@@ -50,6 +50,22 @@ namespace RecipesApp.Domain.Models
             RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
         }
 
+        // new used constructors
+        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
+            float servings, List<RecipeIngredient> recipeIngredients, List<RecipeWithRecipeIngredient> recipeWithRecipeIngredients)
+        {
+            Id = id;
+            Name = name;
+            Author = author;
+            Description = description;
+            MealType = mealType;
+            ServingTime = servingTime;
+            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
+            Approved = false;
+            RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
+            CalculateNutritionalValuesForRecipe(recipeIngredients);
+        }
+
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
             float servings, List<RecipeIngredient> recipeIngredients, List<RecipeWithRecipeIngredient> recipeWithRecipeIngredients)
         {

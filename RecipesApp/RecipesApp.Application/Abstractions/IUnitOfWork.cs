@@ -5,6 +5,7 @@
         public IIngredientRepository IngredientRepository { get; }
         public IRecipeIngredientRepository RecipeIngredientRepository { get; }
         public IRecipeRepository RecipeRepository { get; }
+        public IRecipeWithRecipeIngredientsRepository RecipeWithRecipeIngredientsRepository { get; }
         public IMealPlanRepository MealPlanRepository { get; }
         Task Save();
     }
