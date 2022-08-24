@@ -26,6 +26,7 @@ namespace RecipesApp.Console.TestFunctionalities
                     .AddScoped<IRecipeRepository, RecipeRepository>()
                     .AddScoped<IMealPlanRepository, MealPlanRepository>()
                     .AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>()
+                    .AddScoped<IRecipeWithRecipeIngredientsRepository, RecipeWithRecipeIngredientsRepository>()
                     .BuildServiceProvider();
 
                 _mediator = diContainer.GetRequiredService<IMediator>();

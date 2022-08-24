@@ -25,6 +25,7 @@ namespace RecipesApp.Console.InputHandling.Utils
                     .AddScoped<IRecipeRepository, RecipeRepository>()
                     .AddScoped<IMealPlanRepository, MealPlanRepository>()
                     .AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>()
+                    .AddScoped<IRecipeWithRecipeIngredientsRepository, RecipeWithRecipeIngredientsRepository>()
                     .BuildServiceProvider();
 
                 _mediator = diContainer.GetRequiredService<IMediator>();
