@@ -35,5 +35,15 @@ namespace RecipesApp.Infrastructure.Repositories
 
             return joinQuery;
         }
+
+        public async Task<List<float>> GetRecipeIngredietQuantitiesByIngredientId(int ingredientId)
+        {
+            var joinQuery = _dataContext
+                .RecipeIngredients
+                .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
+                .Select(recipeIngredient => recipeIngredient.Quantity);
+
+            return await joinQuery.ToListAsync();
+        }
     }
 }

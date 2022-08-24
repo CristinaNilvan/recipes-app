@@ -7,5 +7,6 @@ namespace RecipesApp.Application.Abstractions
         Task CreateRecipeIngredient(RecipeIngredient recipeIngredient);
         Task<Ingredient> GetIngredientDetailsById(int ingredientId);
         Task<RecipeIngredient> GetRecipeIngredientById(int recipeIngredientId);
+        Task<List<float>> GetRecipeIngredietQuantitiesByIngredientId(int ingredientId);
     }
 }
