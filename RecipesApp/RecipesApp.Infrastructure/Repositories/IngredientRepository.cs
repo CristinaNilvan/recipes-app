@@ -46,16 +46,16 @@ namespace RecipesApp.Infrastructure.Repositories
 
         public async Task UpdateIngredient(Ingredient ingredient)
         {
-            //_dataContext.Ingredients.Update(ingredient);
+            _dataContext.Ingredients.Update(ingredient);
 
-            var ingredientToUpdate = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredient.Id);
+            /*var ingredientToUpdate = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredient.Id);
 
             ingredientToUpdate.Name = ingredient.Name;
             ingredientToUpdate.Calories = ingredient.Calories;
             ingredientToUpdate.Fats = ingredient.Fats;
             ingredientToUpdate.Carbs = ingredient.Carbs;
             ingredientToUpdate.Proteins = ingredient.Proteins;
-            ingredientToUpdate.Approved = ingredient.Approved;
+            ingredientToUpdate.Approved = ingredient.Approved;*/
         }
 
         public async Task UpdateIngredientStatus(Ingredient ingredient, bool status)

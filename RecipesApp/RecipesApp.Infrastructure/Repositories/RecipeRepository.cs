@@ -46,10 +46,9 @@ namespace RecipesApp.Infrastructure.Repositories
 
         public async Task UpdateRecipe(Recipe recipe)
         {
-            //_dataContext.ChangeTracker.Clear();
-            //_dataContext.Recipes.Update(recipe);
+            _dataContext.Recipes.Update(recipe);
 
-            var recipeToUpdate = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipe.Id);
+            /*var recipeToUpdate = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipe.Id);
 
             recipeToUpdate.Name = recipe.Name;
             recipeToUpdate.Author = recipe.Author;
@@ -62,8 +61,7 @@ namespace RecipesApp.Infrastructure.Repositories
             recipeToUpdate.Carbs = recipe.Carbs;
             recipeToUpdate.Proteins = recipe.Proteins;
             recipeToUpdate.Approved = recipe.Approved;
-            recipeToUpdate.RecipeWithRecipeIngredients = recipe.RecipeWithRecipeIngredients;
-
+            recipeToUpdate.RecipeWithRecipeIngredients = recipe.RecipeWithRecipeIngredients;*/
         }
 
         public async Task UpdateRecipeStatus(Recipe recipe, bool status)
