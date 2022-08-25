@@ -17,6 +17,12 @@ namespace RecipesApp.Console.TestFunctionalities
                     Quantity = 300,
                     IngredientId = 3
                 },
+                new RecipeIngredient()
+                {
+                    Id = 3,
+                    Quantity = 200,
+                    IngredientId = 2
+                },
             };
 
             /*var recIng1 = mediator.Send(new GetRecipeIngredientById()
@@ -36,7 +42,7 @@ namespace RecipesApp.Console.TestFunctionalities
 
             var recipe = await mediator.Send(new UpdateRecipe()
             {
-                RecipeId = 16,
+                RecipeId = 15,
                 Name = "Test Rec",
                 Author = "Cristina Nilvan",
                 Description = "Desc",
