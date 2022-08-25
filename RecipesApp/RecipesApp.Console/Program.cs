@@ -11,10 +11,6 @@ Seeder.SeedData();*/
 
 await TestFunctionalitiesWithDb.TestMediators();*/
 
-/*using RecipesApp.Assignments.Queries;
-
-await Queries.DoQueries();*/
-
 
 using RecipesApp.Console.InputHandling;
 
