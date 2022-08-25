@@ -52,7 +52,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         private async Task InitializeLists()
         {
-            _allRecipes = await _unitOfWork.RecipeRepository.GetAllRecipes();
+            _allRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
             _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

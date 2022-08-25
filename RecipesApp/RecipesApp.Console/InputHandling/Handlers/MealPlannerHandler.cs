@@ -19,16 +19,11 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var calories = float.Parse(System.Console.ReadLine());
 
             var mediator = MediatorSetup.GetMediator();
-            var allRecipes = await mediator.Send(new GetRecipesByApprovedStatus()
-            {
-                ApprovedStatus = true
-            });
 
             var mealPlan = await mediator.Send(new GenerateMealPlan()
             {
                 MealType = enumMealType,
                 Calories = calories,
-                Recipes = allRecipes
             });
 
             System.Console.WriteLine("The meal plan is: ");

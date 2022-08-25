@@ -9,7 +9,6 @@ namespace RecipesApp.Presentation.Profiles
         public IngredientProfile()
         {
             CreateMap<Ingredient, IngredientGetDto>();
-            //CreateMap<IngredientPutPostDto, Ingredient>();
         }
     }
 }
