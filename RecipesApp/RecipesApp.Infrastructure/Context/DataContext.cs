@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Infrastructure.Context
@@ -21,23 +20,5 @@ namespace RecipesApp.Infrastructure.Context
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesAppDB;User Id=admin;Password=admin")
-                .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
-                .EnableSensitiveDataLogging();
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //until further updates
-            modelBuilder.Entity<Ingredient>()
-                .Ignore(ingredient => ingredient.Quantity);
-
-            modelBuilder.Entity<Recipe>()
-                .Ignore(recipe => recipe.Ingredients);
-        }
     }
 }

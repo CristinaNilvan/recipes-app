@@ -52,9 +52,6 @@ namespace RecipesApp.Domain.Models
 
         public bool Approved { get; set; } = false;
 
-        //remove
-        public float Quantity { get; set; }
-
         public List<RecipeIngredient> RecipeIngredients { get; set; }
 
         public override string ToString()

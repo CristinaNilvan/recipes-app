@@ -81,8 +81,6 @@ namespace RecipesApp.Domain.Models
 
         public bool Approved { get; set; } = false;
 
-        public List<Ingredient> Ingredients { get; set; }
-
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
         public override string ToString()
