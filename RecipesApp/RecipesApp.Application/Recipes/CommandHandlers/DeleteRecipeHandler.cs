@@ -18,6 +18,11 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
         {
             var recipe = await _unitOfWork.RecipeRepository.GetRecipeById(request.RecipeId);
 
+            if (recipe == null)
+            {
+                return null;
+            }
+
             await _unitOfWork.RecipeRepository.DeleteRecipe(recipe);
             await _unitOfWork.Save();
 

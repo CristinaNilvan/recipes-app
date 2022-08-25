@@ -18,6 +18,11 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
         {
             var ingredient = await _unitOfWork.IngredientRepository.GetIngredientById(request.IngredientId);
 
+            if (ingredient == null)
+            {
+                return null;
+            }
+
             await _unitOfWork.IngredientRepository.DeleteIngredient(ingredient);
             await _unitOfWork.Save();
 
