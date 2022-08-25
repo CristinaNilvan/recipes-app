@@ -29,7 +29,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             System.Console.WriteLine("Please enter the id: ");
             var id = Convert.ToInt32(System.Console.ReadLine());
 
-            var ingredient = await _mediator.Send(new GetIngredientById()
+            var ingredient = await _mediator.Send(new GetRecipeIngredientById()
             {
                 IngredientId = id
             });

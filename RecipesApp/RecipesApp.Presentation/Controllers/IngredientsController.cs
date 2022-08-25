@@ -83,7 +83,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("ApprovedIngredients")] // => without route?
+        //[Route("ApprovedIngredients")] // => with/without route?
         public async Task<IActionResult> GetApprovedIngredients()
         {
             var query = new GetIngredientsByApprovedStatus { ApprovedStatus = true };
