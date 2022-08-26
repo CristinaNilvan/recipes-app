@@ -12,7 +12,7 @@ using RecipesApp.Infrastructure.Context;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220821142547_InitialMigration")]
+    [Migration("20220826081015_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,8 +121,8 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Fats")
                         .HasColumnType("real");

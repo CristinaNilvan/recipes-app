@@ -119,8 +119,8 @@ namespace RecipesApp.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Fats")
                         .HasColumnType("real");
