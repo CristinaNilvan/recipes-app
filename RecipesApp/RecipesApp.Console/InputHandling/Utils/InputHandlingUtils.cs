@@ -165,7 +165,7 @@ namespace RecipesApp.Console.InputHandling.Utils
                 System.Console.WriteLine("Enter the id of the ingredient you want to add: ");
                 var id = Convert.ToInt32(System.Console.ReadLine());
 
-                var ingredient = await mediator.Send(new Application.Ingredients.Queries.GetRecipeIngredientById()
+                var ingredient = await mediator.Send(new GetIngredientById()
                 {
                     IngredientId = id
                 });

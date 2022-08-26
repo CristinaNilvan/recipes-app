@@ -19,7 +19,7 @@ namespace RecipesApp.Console.TestFunctionalities
             {
                 var diContainer = new ServiceCollection()
                     .AddDbContext<DataContext>(options =>
-                        options.UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesApplicationDB;User Id=admin;Password=admin"))
+                        options.UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=RecipesAppDB;User Id=admin;Password=admin"))
                     .AddMediatR(typeof(IUnitOfWork))
                     .AddScoped<IUnitOfWork, UnitOfWork>()
                     .AddScoped<IIngredientRepository, IngredientRepository>()

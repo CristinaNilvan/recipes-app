@@ -13,26 +13,25 @@ namespace RecipesApp.Console.TestFunctionalities
             {
                 new RecipeIngredient()
                 {
-                    Id = 2,
-                    Quantity = 300,
-                    IngredientId = 3
+                    Id = 4,
+                    Quantity = 100,
+                    IngredientId = 5
                 },
-                new RecipeIngredient()
+                /*new RecipeIngredient()
                 {
                     Id = 3,
                     Quantity = 200,
                     IngredientId = 2
-                },
+                },*/
             };
 
-            var recipe = await mediator.Send(new UpdateRecipe()
+            var recipe = await mediator.Send(new CreateRecipe()
             {
-                RecipeId = 15,
-                Name = "Test Rec",
+                Name = "Rec18",
                 Author = "Cristina Nilvan",
                 Description = "Desc",
                 MealType = Domain.Enums.MealType.Normal,
-                ServingTime = Domain.Enums.ServingTime.Lunch,
+                ServingTime = Domain.Enums.ServingTime.Dinner,
                 Servings = 5,
                 RecipeIngredients = recIngList
             });
