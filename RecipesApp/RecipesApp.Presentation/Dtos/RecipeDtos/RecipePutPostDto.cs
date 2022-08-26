@@ -30,9 +30,5 @@ namespace RecipesApp.Presentation.Dtos.RecipeDtos
         [Required]
         [Range(1, 25)]
         public float Servings { get; set; }
-        //public List<RecipeIngredient> RecipeIngredients { get; set; }
-
-        [Required]
-        public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
     }
 }

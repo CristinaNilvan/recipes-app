@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
+using RecipesApp.Application.Ingredients.Commands;
+using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
@@ -24,6 +26,25 @@ namespace RecipesApp.Presentation.Controllers
         {
             _mediator = mediator;
             _mapper = mapper;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRecipe([FromBody] RecipePutPostDto recipe)
+        {
+            var command = new CreateRecipe
+            {
+                Name = recipe.Name,
+                Author = recipe.Author,
+                Description = recipe.Description,
+                MealType = recipe.MealType,
+                ServingTime = recipe.ServingTime,
+                Servings = recipe.Servings,
+            };
+
+            var result = await _mediator.Send(command);
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return CreatedAtAction(nameof(GetRecipeById), new { recipeId = mappedResult.Id }, mappedResult);
         }
 
         [HttpGet]
@@ -142,6 +163,46 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        [Route("{recipeId}/recipeIngredients/{recipeIngredientId}")]
+        public async Task<IActionResult> AddRecipeIngredientToRecipe(int recipeId, int recipeIngredientId)
+        {
+            var command = new AddRecipeIngredientToRecipe
+            {
+                RecipeId = recipeId,
+                RecipeIngredientId = recipeIngredientId
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpDelete]
+        [Route("{recipeId}/recipeIngredients/{recipeIngredientId}")]
+        public async Task<IActionResult> RemoveRecipeIngredientFromRecipe(int recipeId, int recipeIngredientId)
+        {
+            var command = new RemoveRecipeIngredientFromRecipe
+            {
+                RecipeId = recipeId,
+                RecipeIngredientId = recipeIngredientId
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
         }
     }
 }

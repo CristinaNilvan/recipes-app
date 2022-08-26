@@ -31,9 +31,10 @@ namespace RecipesApp.Infrastructure.Repositories
 
         public async Task<Recipe> GetRecipeById(int recipeId)
         {
-            return await _dataContext.Recipes
+            return await _dataContext
+                .Recipes
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
-                .ThenInclude(recipe => recipe.RecipeIngredient)
+                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .SingleOrDefaultAsync(x => x.Id == recipeId);
         }
 

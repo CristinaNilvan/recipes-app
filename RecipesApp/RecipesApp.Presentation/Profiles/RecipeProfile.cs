@@ -13,8 +13,6 @@ namespace RecipesApp.Presentation.Profiles
                 .ForMember(recipeGetDto => recipeGetDto.RecipeIngredients, recipe => recipe
                 .MapFrom(recipe => recipe.RecipeWithRecipeIngredients
                 .Select(recipeWithIngredient => recipeWithIngredient.RecipeIngredient)));
-
-            CreateMap<RecipeIngredient, RecipeIngredientGetDto>();
         }
     }
 }
