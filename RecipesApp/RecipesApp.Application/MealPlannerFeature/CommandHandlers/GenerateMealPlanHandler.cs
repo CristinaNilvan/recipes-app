@@ -23,6 +23,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
         public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
         {
             var mealPlan = await GenerateMealPlan(request.MealType, request.Calories);
+
             await _unitOfWork.MealPlanRepository.CreateMealPlan(mealPlan);
             await _unitOfWork.Save();
 
