@@ -1,7 +1,7 @@
 ﻿using RecipesApp.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace RecipesApp.Presentation.Dtos
+namespace RecipesApp.Presentation.Dtos.MealPlanDtos
 {
     public class MealPlanPostDto
     {

@@ -1,6 +1,6 @@
 ﻿using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Presentation.Dtos
+namespace RecipesApp.Presentation.Dtos.MealPlanDtos
 {
     public class MealPlanGetDto
     {

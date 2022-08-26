@@ -1,6 +1,6 @@
 ﻿using RecipesApp.Domain.Enums;
 
-namespace RecipesApp.Presentation.Dtos
+namespace RecipesApp.Presentation.Dtos.IngredientDtos
 {
     public class IngredientGetDto
     {

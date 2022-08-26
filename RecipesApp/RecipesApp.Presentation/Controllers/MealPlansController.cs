@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.MealPlannerFeature.Commands;
-using RecipesApp.Presentation.Dtos;
+using RecipesApp.Presentation.Dtos.MealPlanDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {

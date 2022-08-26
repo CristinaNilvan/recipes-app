@@ -1,13 +1,13 @@
 ﻿using RecipesApp.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace RecipesApp.Presentation.Dtos
+namespace RecipesApp.Presentation.Dtos.IngredientDtos
 {
     public class IngredientPutPostDto
     {
         [Required]
         [MaxLength(50)]
-        [MinLength(0)]
+        [MinLength(2)]
         public string Name { get; set; }
 
         [Required]

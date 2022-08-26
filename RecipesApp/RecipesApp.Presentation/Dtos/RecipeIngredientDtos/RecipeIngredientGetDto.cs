@@ -1,4 +1,4 @@
-﻿namespace RecipesApp.Presentation.Dtos
+﻿namespace RecipesApp.Presentation.Dtos.RecipeIngredientDtos
 {
     public class RecipeIngredientGetDto
     {

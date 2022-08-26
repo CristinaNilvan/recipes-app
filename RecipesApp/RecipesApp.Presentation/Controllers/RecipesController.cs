@@ -3,9 +3,13 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
+using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
-using RecipesApp.Presentation.Dtos;
+using RecipesApp.Application.SuggestRecipesFeature.Queries;
+using RecipesApp.Domain.Models;
+using RecipesApp.Presentation.Dtos.IngredientDtos;
+using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
@@ -85,9 +89,37 @@ namespace RecipesApp.Presentation.Controllers
             return Ok(mappedResult);
         }
 
+        [HttpGet]
+        [Route("RecipesFinder")] // => ok?
+        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] List<IngredientPutPostDto> ingredientPutPostDto)
+        {
+            var ingredients = _mapper.Map<List<Ingredient>>(ingredientPutPostDto);
+            var query = new FindRecipesByIngredients { Ingredients = ingredients };
+            var result = await _mediator.Send(query);
+            var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpGet]
+        [Route("RecipesSuggester")]
+        public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto)
+        {
+            var query = new SuggestRecipes
+            {
+                IngredientName = recipesSuggesterDto.IngredientName,
+                IngredientQuantity = recipesSuggesterDto.IngredientQuantity
+            };
+
+            var result = await _mediator.Send(query);
+            var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
+
+            return Ok(mappedResult);
+        }
+
         [HttpPut]
         [Route("UnapprovedRecipes/{recipeId}")]
-        public async Task<IActionResult> ApproveIngredient(int recipeId)
+        public async Task<IActionResult> ApproveRecipe(int recipeId)
         {
             var command = new ApproveRecipe { RecipeId = recipeId };
 
@@ -101,7 +133,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpDelete]
         [Route("{recipeId}")]
-        public async Task<IActionResult> DeleteIngredient(int recipeId)
+        public async Task<IActionResult> DeleteRecipe(int recipeId)
         {
             var command = new DeleteRecipe { RecipeId = recipeId };
             var result = await _mediator.Send(command);

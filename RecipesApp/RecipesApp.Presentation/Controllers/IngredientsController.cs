@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
-using RecipesApp.Presentation.Dtos;
+using RecipesApp.Presentation.Dtos.IngredientDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {

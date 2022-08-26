@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.RecipeIngredients.Commands;
 using RecipesApp.Application.RecipeIngredients.Queries;
-using RecipesApp.Presentation.Dtos;
+using RecipesApp.Presentation.Dtos.RecipeIngredientDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
@@ -22,14 +22,14 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("Ingredients/{ingredientId}")] // sau Route[{ingredientId}")] ??
+        [Route("{ingredientId}")] // ok?
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, 
-            [FromBody] RecipeIngredientPostDto recipeIngredient)
+            [FromBody] float quantity)
         {
             var command = new CreateRecipeIngredient
             {
-                Quantity = recipeIngredient.Quantity,
-                IngredientId = ingredientId // recipeIngredient.IngredientId
+                Quantity = quantity,
+                IngredientId = ingredientId 
             };
 
             var result = await _mediator.Send(command);
@@ -54,7 +54,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("Ingredients/{ingredientId}")] // sau Route[{ingredientId}")] ??
+        [Route("{ingredientId}")] // ok ?
         public async Task<IActionResult> GetRecipeIngredientsByIgredientId(int ingredientId)
         {
             var query = new GetRecipeIngredientsByIngredientId { IngredientId = ingredientId };
