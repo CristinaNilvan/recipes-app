@@ -16,7 +16,7 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
 
         public async Task<List<Recipe>> Handle(GetAllRecipes request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.RecipeRepository.GetAllRecipes();
+            return await _unitOfWork.RecipeRepository.GetAll();
         }
     }
 }

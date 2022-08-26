@@ -19,7 +19,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             var ingredient = new Ingredient(request.IngredientId, request.Name, request.Category, request.Calories, request.Fats,
                 request.Carbs, request.Proteins);
 
-            await _unitOfWork.IngredientRepository.UpdateIngredient(ingredient);
+            await _unitOfWork.IngredientRepository.Update(ingredient);
             await _unitOfWork.Save();
 
             return ingredient;

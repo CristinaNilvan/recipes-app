@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.RecipeIngredients.Commands;
 using RecipesApp.Application.RecipeIngredients.Queries;
@@ -23,13 +22,13 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPost]
         [Route("{ingredientId}")] // ok?
-        public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, 
+        public async Task<IActionResult> CreateRecipeIngredient(int ingredientId,
             [FromBody] float quantity)
         {
             var command = new CreateRecipeIngredient
             {
                 Quantity = quantity,
-                IngredientId = ingredientId 
+                IngredientId = ingredientId
             };
 
             var result = await _mediator.Send(command);

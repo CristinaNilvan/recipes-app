@@ -24,7 +24,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
         {
             var mealPlan = await GenerateMealPlan(request.MealType, request.Calories);
 
-            await _unitOfWork.MealPlanRepository.CreateMealPlan(mealPlan);
+            await _unitOfWork.MealPlanRepository.Create(mealPlan);
             await _unitOfWork.Save();
 
             return mealPlan;
@@ -53,7 +53,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         private async Task InitializeLists()
         {
-            _allRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
+            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(true);
             _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

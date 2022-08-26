@@ -4,10 +4,10 @@ namespace RecipesApp.Application.Abstractions
 {
     public interface IRecipeIngredientRepository
     {
-        Task CreateRecipeIngredient(RecipeIngredient recipeIngredient);
-        Task<Ingredient> GetRecipeIngredientDetailsByIngredientId(int ingredientId);
-        Task<RecipeIngredient> GetRecipeIngredientById(int recipeIngredientId);
-        Task<List<RecipeIngredient>> GetRecipeIngredietsByIngredientId(int ingredientId);
-        Task<RecipeIngredient> GetRecipeIngredientByQuantityAndIngredientId(float quantity, int ingredientId);
+        Task Create(RecipeIngredient recipeIngredient);
+        Task<Ingredient> GetDetailsByIngredientId(int ingredientId);
+        Task<RecipeIngredient> GetById(int recipeIngredientId);
+        Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId);
+        Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId);
     }
 }

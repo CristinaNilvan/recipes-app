@@ -16,9 +16,9 @@ namespace RecipesApp.Application.ApproveIngredientFeature.CommandHandlers
 
         public async Task<Ingredient> Handle(ApproveIngredient request, CancellationToken cancellationToken)
         {
-            var ingredient = await _unitOfWork.IngredientRepository.GetIngredientById(request.IngredientId);
+            var ingredient = await _unitOfWork.IngredientRepository.GetById(request.IngredientId);
 
-            await _unitOfWork.IngredientRepository.UpdateIngredientStatus(ingredient, true);
+            await _unitOfWork.IngredientRepository.UpdateApprovedStatus(ingredient, true);
             await _unitOfWork.Save();
 
             return ingredient;

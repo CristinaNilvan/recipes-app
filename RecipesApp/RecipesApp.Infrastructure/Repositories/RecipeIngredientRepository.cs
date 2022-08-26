@@ -14,12 +14,14 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task CreateRecipeIngredient(RecipeIngredient recipeIngredient)
+        public async Task Create(RecipeIngredient recipeIngredient)
         {
-            await _dataContext.RecipeIngredients.AddAsync(recipeIngredient);
+            await _dataContext
+                .RecipeIngredients
+                .AddAsync(recipeIngredient);
         }
 
-        public async Task<RecipeIngredient> GetRecipeIngredientById(int recipeIngredientId)
+        public async Task<RecipeIngredient> GetById(int recipeIngredientId)
         {
             return await _dataContext
                 .RecipeIngredients
@@ -27,39 +29,38 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
         }
 
-        public async Task<Ingredient> GetRecipeIngredientDetailsByIngredientId(int ingredientId)
+        public async Task<Ingredient> GetDetailsByIngredientId(int ingredientId)
         {
-            var joinQuery = _dataContext
+            var joinQuery = await _dataContext
                 .RecipeIngredients
                 .Include(recipeIngredient => recipeIngredient.Ingredient)
                 .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
                 .Select(recipeIngredient => recipeIngredient.Ingredient)
-                .FirstOrDefault();
+                .SingleOrDefaultAsync();
 
             return joinQuery;
         }
 
-        public async Task<List<RecipeIngredient>> GetRecipeIngredietsByIngredientId(int ingredientId)
+        public async Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId)
         {
             var query = _dataContext
                 .RecipeIngredients
                 .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
-                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Id, recipeIngredient.Quantity, 
+                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Id, recipeIngredient.Quantity,
                     recipeIngredient.IngredientId));
 
             return await query.ToListAsync();
         }
 
-        public async Task<RecipeIngredient> GetRecipeIngredientByQuantityAndIngredientId(float quantity, int ingredientId)
+        public async Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId)
         {
             var twoDecimalQuantity = (float)Math.Round(quantity * 100f) / 100f;
 
-            var query = _dataContext
+            var query = await _dataContext
                 .RecipeIngredients
-                .Where(recipeIngredient =>
+                .SingleOrDefaultAsync(recipeIngredient =>
                     (float)Math.Round(recipeIngredient.Quantity * 100f) / 100f == twoDecimalQuantity &&
-                    recipeIngredient.IngredientId == ingredientId)
-                .FirstOrDefault();
+                    recipeIngredient.IngredientId == ingredientId);
 
             return query;
         }

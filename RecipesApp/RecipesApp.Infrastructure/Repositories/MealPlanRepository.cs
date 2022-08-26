@@ -14,29 +14,39 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task CreateMealPlan(MealPlan mealPlan)
+        public async Task Create(MealPlan mealPlan)
         {
-            await _dataContext.MealPlans.AddAsync(mealPlan);
+            await _dataContext
+                .MealPlans
+                .AddAsync(mealPlan);
         }
 
-        public async Task DeleteMealPlan(MealPlan mealPlan)
+        public async Task Delete(MealPlan mealPlan)
         {
-            _dataContext.MealPlans.Remove(mealPlan);
+            _dataContext
+                .MealPlans
+                .Remove(mealPlan);
         }
 
-        public async Task<List<MealPlan>> GetAllMealPlans()
+        public async Task<List<MealPlan>> GetAll()
         {
-            return await _dataContext.MealPlans.ToListAsync();
+            return await _dataContext
+                .MealPlans
+                .ToListAsync();
         }
 
-        public async Task<MealPlan> GetMealPlanById(int mealPlanId)
+        public async Task<MealPlan> GetById(int mealPlanId)
         {
-            return await _dataContext.MealPlans.SingleOrDefaultAsync(x => x.Id == mealPlanId);
+            return await _dataContext
+                .MealPlans
+                .SingleOrDefaultAsync(x => x.Id == mealPlanId);
         }
 
-        public async Task UpdateMealPlan(MealPlan mealPlan)
+        public async Task Update(MealPlan mealPlan)
         {
-            _dataContext.MealPlans.Update(mealPlan);
+            _dataContext
+                .MealPlans
+                .Update(mealPlan);
         }
     }
 }

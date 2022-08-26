@@ -19,7 +19,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             var ingredient = new Ingredient(request.Name, request.Category, request.Calories, request.Fats, request.Carbs,
                 request.Proteins);
 
-            await _unitOfWork.IngredientRepository.CreateIngredient(ingredient);
+            await _unitOfWork.IngredientRepository.Create(ingredient);
             await _unitOfWork.Save();
 
             return ingredient;

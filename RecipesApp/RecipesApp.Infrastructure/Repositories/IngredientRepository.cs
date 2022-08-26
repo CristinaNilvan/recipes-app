@@ -14,51 +14,57 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task CreateIngredient(Ingredient ingredient)
+        public async Task Create(Ingredient ingredient)
         {
-            await _dataContext.Ingredients.AddAsync(ingredient);
+            await _dataContext
+                .Ingredients
+                .AddAsync(ingredient);
         }
 
-        public async Task DeleteIngredient(Ingredient ingredient)
+        public async Task Delete(Ingredient ingredient)
         {
-            _dataContext.Ingredients.Remove(ingredient);
+            _dataContext
+                .Ingredients
+                .Remove(ingredient);
         }
 
-        public async Task<List<Ingredient>> GetAllIngredients()
+        public async Task<List<Ingredient>> GetAll()
         {
-            return await _dataContext.Ingredients.ToListAsync();
+            return await _dataContext
+                .Ingredients
+                .ToListAsync();
         }
 
-        public async Task<Ingredient> GetIngredientById(int ingredientId)
+        public async Task<Ingredient> GetById(int ingredientId)
         {
-            return await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredientId);
+            return await _dataContext
+                .Ingredients
+                .SingleOrDefaultAsync(x => x.Id == ingredientId);
         }
 
-        public async Task<Ingredient> GetIngredientByName(string ingredientName)
+        public async Task<Ingredient> GetByName(string ingredientName)
         {
-            return await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Name == ingredientName);
+            return await _dataContext
+                .Ingredients
+                .SingleOrDefaultAsync(x => x.Name == ingredientName);
         }
 
-        public async Task<List<Ingredient>> GetIngredientsByApprovedStatus(bool isApproved)
+        public async Task<List<Ingredient>> GetByApprovedStatus(bool approvedStatus)
         {
-            return await _dataContext.Ingredients.Where(x => x.Approved == isApproved).ToListAsync();
+            return await _dataContext
+                .Ingredients
+                .Where(x => x.Approved == approvedStatus)
+                .ToListAsync();
         }
 
-        public async Task UpdateIngredient(Ingredient ingredient)
+        public async Task Update(Ingredient ingredient)
         {
-            _dataContext.Ingredients.Update(ingredient);
-
-            /*var ingredientToUpdate = await _dataContext.Ingredients.SingleOrDefaultAsync(x => x.Id == ingredient.Id);
-
-            ingredientToUpdate.Name = ingredient.Name;
-            ingredientToUpdate.Calories = ingredient.Calories;
-            ingredientToUpdate.Fats = ingredient.Fats;
-            ingredientToUpdate.Carbs = ingredient.Carbs;
-            ingredientToUpdate.Proteins = ingredient.Proteins;
-            ingredientToUpdate.Approved = ingredient.Approved;*/
+            _dataContext
+                .Ingredients
+                .Update(ingredient);
         }
 
-        public async Task UpdateIngredientStatus(Ingredient ingredient, bool status)
+        public async Task UpdateApprovedStatus(Ingredient ingredient, bool status)
         {
             ingredient.Approved = status;
         }

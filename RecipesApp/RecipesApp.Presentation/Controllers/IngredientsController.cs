@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
 using RecipesApp.Application.Ingredients.Commands;

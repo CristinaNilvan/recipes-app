@@ -1,4 +1,5 @@
-﻿using RecipesApp.Application.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
 
@@ -13,7 +14,7 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task DeleteRecipeIngredientsByRecipeId(int recipeId)
+        public async Task DeleteByRecipeId(int recipeId)
         {
             var query = _dataContext
                 .RecipeWithRecipeIngredients
@@ -23,14 +24,13 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext.RemoveRange(query);
         }
 
-        public async Task<RecipeWithRecipeIngredient> GetByRecipeIdAndRecipeIngredientId(int recipeId, 
+        public async Task<RecipeWithRecipeIngredient> GetByRecipeIdAndRecipeIngredientId(int recipeId,
             int recipeIngredientId)
         {
-            var query =  _dataContext
+            var query = await _dataContext
                 .RecipeWithRecipeIngredients
-                .Where(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeId == recipeId &&
-                    recipeWithRecipeIngredients.RecipeIngredientId == recipeIngredientId)
-                .FirstOrDefault();
+                .SingleOrDefaultAsync(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeId == recipeId &&
+                    recipeWithRecipeIngredients.RecipeIngredientId == recipeIngredientId);
 
             return query;
         }

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RecipesApp.Application.Ingredients.Commands;
-using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.MealPlannerFeature.Commands;
 using RecipesApp.Presentation.Dtos.MealPlanDtos;
 

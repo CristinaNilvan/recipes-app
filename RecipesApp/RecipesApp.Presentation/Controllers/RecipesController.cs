@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
-using RecipesApp.Application.Ingredients.Commands;
-using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
@@ -100,7 +97,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("UnapprovedRecipes")] 
+        [Route("UnapprovedRecipes")]
         public async Task<IActionResult> GetUnapprovedRecipes()
         {
             var query = new GetRecipesByApprovedStatus { ApprovedStatus = false };

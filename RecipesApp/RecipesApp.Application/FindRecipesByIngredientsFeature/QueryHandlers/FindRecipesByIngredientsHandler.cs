@@ -16,14 +16,17 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(FindRecipesByIngredients request, CancellationToken cancellationToken)
         {
-            var approvedRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
+            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(true);
             var filteredRecipes = new List<Recipe>();
 
             var ingredientIds = RecipesFinderUtils.GetIngredientIds(request.Ingredients);
 
             foreach (var recipe in approvedRecipes)
             {
-                var recipeIngredientsIds = await _unitOfWork.RecipeRepository.GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
+                var recipeIngredientsIds = await _unitOfWork
+                    .RecipeRepository
+                    .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
+
                 var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, ingredientIds);
 
                 if (containsAll)

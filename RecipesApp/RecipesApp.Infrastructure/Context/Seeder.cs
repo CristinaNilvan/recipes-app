@@ -122,15 +122,6 @@ namespace RecipesApp.Infrastructure.Context
                 }
             };
         }
-
-        /*public static IEnumerable<MealPlan> GetPreconfiguredMealPlans()
-        {
-            var recipes = GetPreconfiguredRecipes();
-
-            return new Faker<MealPlan>()
-                .RuleFor(mealPlan => mealPlan.Breakfast, faker => faker.PickRandom(recipes))
-                .Generate();
-        }*/
     }
 }
 

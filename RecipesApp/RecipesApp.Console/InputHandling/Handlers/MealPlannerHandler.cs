@@ -1,5 +1,4 @@
 ﻿using RecipesApp.Application.MealPlannerFeature.Commands;
-using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Enums;
 

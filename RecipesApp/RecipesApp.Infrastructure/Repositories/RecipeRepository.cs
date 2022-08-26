@@ -14,22 +14,28 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task CreateRecipe(Recipe recipe)
+        public async Task Create(Recipe recipe)
         {
-            await _dataContext.Recipes.AddAsync(recipe);
+            await _dataContext
+                .Recipes
+                .AddAsync(recipe);
         }
 
-        public async Task DeleteRecipe(Recipe recipe)
+        public async Task Delete(Recipe recipe)
         {
-            _dataContext.Recipes.Remove(recipe);
+            _dataContext
+                .Recipes
+                .Remove(recipe);
         }
 
-        public async Task<List<Recipe>> GetAllRecipes()
+        public async Task<List<Recipe>> GetAll()
         {
-            return await _dataContext.Recipes.ToListAsync();
+            return await _dataContext
+                .Recipes
+                .ToListAsync();
         }
 
-        public async Task<Recipe> GetRecipeById(int recipeId)
+        public async Task<Recipe> GetById(int recipeId)
         {
             return await _dataContext
                 .Recipes
@@ -38,37 +44,28 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(x => x.Id == recipeId);
         }
 
-        public async Task<List<Recipe>> GetRecipesByName(string recipeName)
+        public async Task<List<Recipe>> GetByName(string recipeName)
         {
-            return await _dataContext.Recipes.Where(x => x.Name == recipeName).ToListAsync(); ;
+            return await _dataContext
+                .Recipes
+                .Where(x => x.Name == recipeName)
+                .ToListAsync(); ;
         }
 
-        public async Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved)
+        public async Task<List<Recipe>> GetByApprovedStatus(bool approvedStatus)
         {
-            return await _dataContext.Recipes.Where(x => x.Approved == isApproved).ToListAsync();
+            return await _dataContext
+                .Recipes
+                .Where(x => x.Approved == approvedStatus)
+                .ToListAsync();
         }
 
-        public async Task UpdateRecipe(Recipe recipe)
+        public async Task Update(Recipe recipe)
         {
             _dataContext.Recipes.Update(recipe);
-
-            /*var recipeToUpdate = await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipe.Id);
-
-            recipeToUpdate.Name = recipe.Name;
-            recipeToUpdate.Author = recipe.Author;
-            recipeToUpdate.Description = recipe.Description;
-            recipeToUpdate.MealType = recipe.MealType;
-            recipeToUpdate.ServingTime = recipe.ServingTime;
-            recipeToUpdate.Servings = recipe.Servings;
-            recipeToUpdate.Calories = recipe.Calories;
-            recipeToUpdate.Fats = recipe.Fats;
-            recipeToUpdate.Carbs = recipe.Carbs;
-            recipeToUpdate.Proteins = recipe.Proteins;
-            recipeToUpdate.Approved = recipe.Approved;
-            recipeToUpdate.RecipeWithRecipeIngredients = recipe.RecipeWithRecipeIngredients;*/
         }
 
-        public async Task UpdateRecipeStatus(Recipe recipe, bool status)
+        public async Task UpdateApprovedStatus(Recipe recipe, bool status)
         {
             recipe.Approved = status;
         }

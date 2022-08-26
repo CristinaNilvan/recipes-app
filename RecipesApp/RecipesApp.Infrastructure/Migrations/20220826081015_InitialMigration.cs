@@ -91,7 +91,7 @@ namespace RecipesApp.Infrastructure.Migrations
                         name: "FK_MealPlans_Recipes_BreakfastId",
                         column: x => x.BreakfastId,
                         principalTable: "Recipes",
-                        principalColumn: "Id", 
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_MealPlans_Recipes_DinnerId",

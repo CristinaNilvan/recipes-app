@@ -18,8 +18,9 @@ namespace RecipesApp.Application.RecipeIngredients.QueryHandlers
         public async Task<RecipeIngredient> Handle(GetRecipeIngredientByQuantityAndIngredientId request,
             CancellationToken cancellationToken)
         {
-            return await _unitOfWork.RecipeIngredientRepository.GetRecipeIngredientByQuantityAndIngredientId(request.Quantity,
-                request.IngredientId);
+            return await _unitOfWork
+                .RecipeIngredientRepository
+                .GetByQuantityAndIngredientId(request.Quantity, request.IngredientId);
         }
     }
 }

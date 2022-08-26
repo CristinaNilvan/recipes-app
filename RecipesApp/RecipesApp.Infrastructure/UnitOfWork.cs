@@ -9,7 +9,8 @@ namespace RecipesApp.Infrastructure
 
         public UnitOfWork(DataContext dataContext, IIngredientRepository ingredientRepository,
             IRecipeIngredientRepository recipeIngredientRepository, IRecipeRepository recipeRepository,
-            IRecipeWithRecipeIngredientsRepository recipeWithRecipeIngredientsRepository, IMealPlanRepository mealPlanRepository)
+            IRecipeWithRecipeIngredientsRepository recipeWithRecipeIngredientsRepository,
+            IMealPlanRepository mealPlanRepository)
         {
             _dataContext = dataContext;
             IngredientRepository = ingredientRepository;

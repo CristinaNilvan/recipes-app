@@ -4,13 +4,13 @@ namespace RecipesApp.Application.Abstractions
 {
     public interface IIngredientRepository
     {
-        Task CreateIngredient(Ingredient ingredient);
-        Task<Ingredient> GetIngredientById(int ingredientId);
-        Task<Ingredient> GetIngredientByName(string ingredientName);
-        Task UpdateIngredient(Ingredient ingredient);
-        Task UpdateIngredientStatus(Ingredient ingredient, bool status);
-        Task DeleteIngredient(Ingredient ingredient);
-        Task<List<Ingredient>> GetAllIngredients();
-        Task<List<Ingredient>> GetIngredientsByApprovedStatus(bool isApproved);
+        Task Create(Ingredient ingredient);
+        Task<Ingredient> GetById(int ingredientId);
+        Task<Ingredient> GetByName(string ingredientName);
+        Task Update(Ingredient ingredient);
+        Task UpdateApprovedStatus(Ingredient ingredient, bool status);
+        Task Delete(Ingredient ingredient);
+        Task<List<Ingredient>> GetAll();
+        Task<List<Ingredient>> GetByApprovedStatus(bool approvedStatus);
     }
 }

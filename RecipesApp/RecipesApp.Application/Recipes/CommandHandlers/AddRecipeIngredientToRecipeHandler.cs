@@ -16,11 +16,10 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
         public async Task<Recipe> Handle(AddRecipeIngredientToRecipe request, CancellationToken cancellationToken)
         {
-            var recipe = await _unitOfWork.RecipeRepository.GetRecipeById(request.RecipeId);
-            var recipeIngredient = await _unitOfWork.RecipeIngredientRepository.GetRecipeIngredientById(
-                request.RecipeIngredientId);
-            /*recipeIngredient.Ingredient = await _unitOfWork.RecipeIngredientRepository.GetRecipeIngredientDetailsByIngredientId(
-                recipeIngredient.IngredientId);*/
+            var recipe = await _unitOfWork.RecipeRepository.GetById(request.RecipeId);
+            var recipeIngredient = await _unitOfWork
+                .RecipeIngredientRepository
+                .GetById(request.RecipeIngredientId);
 
             if (recipe == null || recipeIngredient == null)
             {

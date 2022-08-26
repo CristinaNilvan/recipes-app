@@ -18,7 +18,7 @@ namespace RecipesApp.Application.RecipeIngredients.CommandHandlers
         {
             var recipeIngredient = new RecipeIngredient(request.Quantity, request.IngredientId);
 
-            await _unitOfWork.RecipeIngredientRepository.CreateRecipeIngredient(recipeIngredient);
+            await _unitOfWork.RecipeIngredientRepository.Create(recipeIngredient);
             await _unitOfWork.Save();
 
             return recipeIngredient;

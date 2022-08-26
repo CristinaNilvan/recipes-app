@@ -18,11 +18,15 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
         {
             var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
-            var allRecipes = await _unitOfWork.RecipeRepository.GetRecipesByApprovedStatus(true);
-            var recipesWithIngredient = await _unitOfWork.RecipeRepository.GetRecipesWithInredientAndQuantity(
-                quantityTwoDecimals, request.IngredientName);
-            var bestMatches = await _unitOfWork.RecipeRepository.GetBestMatchRecipesWithInredientAndQuantity(
-                quantityTwoDecimals, request.IngredientName);
+            var allRecipes = await _unitOfWork
+                .RecipeRepository
+                .GetByApprovedStatus(true);
+            var recipesWithIngredient = await _unitOfWork
+                .RecipeRepository
+                .GetRecipesWithInredientAndQuantity(quantityTwoDecimals, request.IngredientName);
+            var bestMatches = await _unitOfWork
+                .RecipeRepository
+                .GetBestMatchRecipesWithInredientAndQuantity(quantityTwoDecimals, request.IngredientName);
 
             if (bestMatches.Count != 0)
             {

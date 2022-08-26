@@ -16,23 +16,10 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
         public async Task<Recipe> Handle(CreateRecipe request, CancellationToken cancellationToken)
         {
-            /*var recipesWithRecipeIngredients = new List<RecipeWithRecipeIngredient>();
-
-            foreach (var item in request.RecipeIngredients)
-            {
-                recipesWithRecipeIngredients.Add(new RecipeWithRecipeIngredient()
-                { 
-                    RecipeIngredientId = item.Id,
-                });
-
-                var ingredient = await _unitOfWork.RecipeIngredientRepository.GetRecipeIngredientDetailsByIngredientId(item.IngredientId);
-                item.Ingredient = ingredient;
-            }*/
-
             var recipe = new Recipe(request.Name, request.Author, request.Description, request.MealType, request.ServingTime,
                 request.Servings);
 
-            await _unitOfWork.RecipeRepository.CreateRecipe(recipe);
+            await _unitOfWork.RecipeRepository.Create(recipe);
             await _unitOfWork.Save();
 
             return recipe;
