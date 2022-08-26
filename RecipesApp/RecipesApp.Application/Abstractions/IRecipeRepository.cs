@@ -6,11 +6,11 @@ namespace RecipesApp.Application.Abstractions
     {
         Task CreateRecipe(Recipe recipe);
         Task<Recipe> GetRecipeById(int recipeId);
-        Task<Recipe> GetRecipeByName(string recipeName);
         Task UpdateRecipe(Recipe recipe);
         Task UpdateRecipeStatus(Recipe recipe, bool status);
         Task DeleteRecipe(Recipe recipe);
         Task<List<Recipe>> GetAllRecipes();
+        Task<List<Recipe>> GetRecipesByName(string recipeName);
         Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved);
         Task<List<Recipe>> GetRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName);
         Task<List<Recipe>> GetBestMatchRecipesWithInredientAndQuantity(float ingredientQuantity, string ingredientName);

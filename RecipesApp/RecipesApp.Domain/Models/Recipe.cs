@@ -62,7 +62,7 @@ namespace RecipesApp.Domain.Models
         [MaxLength(70)]
         public string Author { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(10000)] // modified
         public string Description { get; set; }
 
         public MealType MealType { get; set; }

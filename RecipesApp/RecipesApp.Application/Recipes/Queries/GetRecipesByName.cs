@@ -3,7 +3,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.Queries
 {
-    public class GetRecipeByName : IRequest<Recipe>
+    public class GetRecipesByName : IRequest<List<Recipe>>
     {
         public string RecipeName { get; set; }
     }

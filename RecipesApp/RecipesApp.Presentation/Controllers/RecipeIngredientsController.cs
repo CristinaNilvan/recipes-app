@@ -22,7 +22,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("Ingredients/{ingredientId}")]
+        [Route("Ingredients/{ingredientId}")] // sau Route[{ingredientId}")] ??
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, 
             [FromBody] RecipeIngredientPostDto recipeIngredient)
         {
@@ -49,6 +49,21 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
 
             var mappedResult = _mapper.Map<RecipeIngredientGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpGet]
+        [Route("Ingredients/{ingredientId}")] // sau Route[{ingredientId}")] ??
+        public async Task<IActionResult> GetRecipeIngredientsByIgredientId(int ingredientId)
+        {
+            var query = new GetRecipeIngredientsByIngredientId { IngredientId = ingredientId };
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<List<RecipeIngredientGetDto>>(result);
 
             return Ok(mappedResult);
         }

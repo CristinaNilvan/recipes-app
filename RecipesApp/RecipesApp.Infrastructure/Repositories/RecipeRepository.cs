@@ -34,9 +34,9 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Id == recipeId);
         }
 
-        public async Task<Recipe> GetRecipeByName(string recipeName)
+        public async Task<List<Recipe>> GetRecipesByName(string recipeName)
         {
-            return await _dataContext.Recipes.SingleOrDefaultAsync(x => x.Name == recipeName);
+            return await _dataContext.Recipes.Where(x => x.Name == recipeName).ToListAsync(); ;
         }
 
         public async Task<List<Recipe>> GetRecipesByApprovedStatus(bool isApproved)
