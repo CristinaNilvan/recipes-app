@@ -11,6 +11,19 @@ namespace RecipesApp.Domain.Models
 
         }
 
+        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
+            float servings)
+        {
+            Id = id;
+            Name = name;
+            Author = author;
+            Description = description;
+            MealType = mealType;
+            ServingTime = servingTime;
+            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
+            Approved = false;
+        }
+
         public Recipe(string name, string author, string description, MealType mealType, ServingTime servingTime,
             float servings)
         {

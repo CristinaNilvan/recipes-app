@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
+using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
@@ -35,7 +36,7 @@ namespace RecipesApp.Presentation.Controllers
                 Description = recipe.Description,
                 MealType = recipe.MealType,
                 ServingTime = recipe.ServingTime,
-                Servings = recipe.Servings,
+                Servings = recipe.Servings
             };
 
             var result = await _mediator.Send(command);
@@ -133,6 +134,29 @@ namespace RecipesApp.Presentation.Controllers
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
+        }
+
+        [HttpPut]
+        [Route("{recipeId}")]
+        public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePutPostDto recipe)
+        {
+            var command = new UpdateRecipe
+            {
+                RecipeId = recipeId,
+                Name = recipe.Name,
+                Author = recipe.Author,
+                Description = recipe.Description,
+                MealType = recipe.MealType,
+                ServingTime = recipe.ServingTime,
+                Servings = recipe.Servings
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
         }
 
         [HttpPut]
