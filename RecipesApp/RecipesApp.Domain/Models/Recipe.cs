@@ -6,6 +6,12 @@ namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
+        private float _servings;
+        private float _calories;
+        private float _fats;
+        private float _carbs;
+        private float _proteins;
+
         public Recipe()
         {
 
@@ -20,7 +26,7 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
+            Servings = servings;
             Approved = false;
         }
 
@@ -32,23 +38,8 @@ namespace RecipesApp.Domain.Models
             Description = description;
             MealType = mealType;
             ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
+            Servings = servings;
             Approved = false;
-        }
-
-        // new used constructors
-        public Recipe(int id, string name, string author, string description, MealType mealType, ServingTime servingTime,
-            float servings, List<RecipeIngredient> recipeIngredients, List<RecipeWithRecipeIngredient> recipeWithRecipeIngredients)
-        {
-            Id = id;
-            Name = name;
-            Author = author;
-            Description = description;
-            MealType = mealType;
-            ServingTime = servingTime;
-            Servings = ModelUtils.CalculateTwoDecimalFloat(servings);
-            Approved = false;
-            RecipeWithRecipeIngredients = new List<RecipeWithRecipeIngredient>(recipeWithRecipeIngredients);
         }
 
         public int Id { get; set; }
@@ -66,15 +57,15 @@ namespace RecipesApp.Domain.Models
 
         public ServingTime ServingTime { get; set; }
 
-        public float Servings { get; set; }
+        public float Servings { get => _servings; set => _servings = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Calories { get; set; } = 0;
+        public float Calories { get => _calories; set => _calories = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Fats { get; set; } = 0;
+        public float Fats { get => _fats; set => _fats = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Carbs { get; set; } = 0;
+        public float Carbs { get => _carbs; set => _carbs = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Proteins { get; set; } = 0;
+        public float Proteins { get => _proteins; set => _proteins = ModelUtils.CalculateTwoDecimalFloat(value); }
 
         public bool Approved { get; set; } = false;
 

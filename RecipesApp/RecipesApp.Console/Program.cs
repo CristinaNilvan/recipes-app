@@ -7,11 +7,11 @@ context.Database.EnsureCreated();
 
 Seeder.SeedData();*/
 
-using RecipesApp.Console.TestFunctionalities;
+/*using RecipesApp.Console.TestFunctionalities;
 
-await TestFunctionalitiesWithDb.TestMediators();
+await TestFunctionalitiesWithDb.TestMediators();*/
 
 
-/*using RecipesApp.Console.InputHandling;
+using RecipesApp.Console.InputHandling;
 
-await Menu.RunApp();*/
+await Menu.RunApp();

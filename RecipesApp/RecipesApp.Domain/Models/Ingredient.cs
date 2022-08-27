@@ -6,6 +6,11 @@ namespace RecipesApp.Domain.Models
 {
     public class Ingredient
     {
+        private float _calories;
+        private float _fats;
+        private float _carbs;
+        private float _proteins;
+
         public Ingredient()
         {
 
@@ -17,10 +22,10 @@ namespace RecipesApp.Domain.Models
             Id = id;
             Name = name;
             Category = category;
-            Calories = ModelUtils.CalculateTwoDecimalFloat(calories);
-            Fats = ModelUtils.CalculateTwoDecimalFloat(fats);
-            Carbs = ModelUtils.CalculateTwoDecimalFloat(carbs);
-            Proteins = ModelUtils.CalculateTwoDecimalFloat(proteins);
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
             Approved = false;
         }
 
@@ -28,10 +33,10 @@ namespace RecipesApp.Domain.Models
         {
             Name = name;
             Category = category;
-            Calories = ModelUtils.CalculateTwoDecimalFloat(calories);
-            Fats = ModelUtils.CalculateTwoDecimalFloat(fats);
-            Carbs = ModelUtils.CalculateTwoDecimalFloat(carbs);
-            Proteins = ModelUtils.CalculateTwoDecimalFloat(proteins);
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
             Approved = false;
         }
 
@@ -42,13 +47,13 @@ namespace RecipesApp.Domain.Models
 
         public IngredientCategory Category { get; set; }
 
-        public float Calories { get; set; }
+        public float Calories { get => _calories; set => _calories = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Fats { get; set; }
+        public float Fats { get => _fats; set => _fats = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Carbs { get; set; }
+        public float Carbs { get => _carbs; set => _carbs = ModelUtils.CalculateTwoDecimalFloat(value); }
 
-        public float Proteins { get; set; }
+        public float Proteins { get => _proteins; set => _proteins = ModelUtils.CalculateTwoDecimalFloat(value); }
 
         public bool Approved { get; set; } = false;
 

@@ -1,7 +1,11 @@
-﻿namespace RecipesApp.Domain.Models
+﻿using RecipesApp.Domain.Utils;
+
+namespace RecipesApp.Domain.Models
 {
     public class RecipeIngredient
     {
+        private float _quantity;
+
         public RecipeIngredient()
         {
 
@@ -21,7 +25,7 @@
         }
 
         public int Id { get; set; }
-        public float Quantity { get; set; }
+        public float Quantity { get => _quantity; set => _quantity = ModelUtils.CalculateTwoDecimalFloat(value); }
         public int IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
