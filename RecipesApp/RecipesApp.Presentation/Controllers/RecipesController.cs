@@ -76,7 +76,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("AllRecipes")]
+        [Route("allRecipes")]
         public async Task<IActionResult> GetAllRecipes()
         {
             var query = new GetAllRecipes();
@@ -87,7 +87,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        //[Route("ApprovedRecipes")] // => with/without route?
+        //[Route("approvedRecipes")] // => with/without route?
         public async Task<IActionResult> GetApprovedRecipes()
         {
             var query = new GetRecipesByApprovedStatus { ApprovedStatus = true };
@@ -98,7 +98,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("UnapprovedRecipes")]
+        [Route("unapprovedRecipes")]
         public async Task<IActionResult> GetUnapprovedRecipes()
         {
             var query = new GetRecipesByApprovedStatus { ApprovedStatus = false };
@@ -109,10 +109,12 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("RecipesFinder")] // => ok?
-        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] List<IngredientPutPostDto> ingredientPutPostDto)
+        [Route("recipesFinder")] // => ok? [fromQuery]
+        public async Task<IActionResult> FindRecipesByIngredients([FromQuery(Name = "ingredientsGetDto")] 
+            IngredientGetDto[] ingredientsGetDto)
         {
-            var ingredients = _mapper.Map<List<Ingredient>>(ingredientPutPostDto);
+            var toList = ingredientsGetDto.ToList();
+            var ingredients = _mapper.Map<List<Ingredient>>(ingredientsGetDto);
             var query = new FindRecipesByIngredients { Ingredients = ingredients };
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
@@ -121,7 +123,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("RecipesSuggester")]
+        [Route("recipesSuggester")]
         public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto)
         {
             var query = new SuggestRecipes
@@ -160,7 +162,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("UnapprovedRecipes/{recipeId}")]
+        [Route("unapprovedRecipes/{recipeId}")]
         public async Task<IActionResult> ApproveRecipe(int recipeId)
         {
             var command = new ApproveRecipe { RecipeId = recipeId };

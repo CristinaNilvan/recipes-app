@@ -71,7 +71,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("AllIngredients")]
+        [Route("allIngredients")]
         public async Task<IActionResult> GetAllIngredients()
         {
             var query = new GetAllIngredients();
@@ -82,7 +82,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        //[Route("ApprovedIngredients")] // => with/without route?
+        //[Route("approvedIngredients")] // => with/without route?
         public async Task<IActionResult> GetApprovedIngredients()
         {
             var query = new GetIngredientsByApprovedStatus { ApprovedStatus = true };
@@ -93,7 +93,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("UnapprovedIngredients")]
+        [Route("unapprovedIngredients")]
         public async Task<IActionResult> GetUnapprovedIngredients()
         {
             var query = new GetIngredientsByApprovedStatus { ApprovedStatus = false };
@@ -127,7 +127,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("UnapprovedIngredients/{ingredientId}")]
+        [Route("unapprovedIngredients/{ingredientId}")]
         public async Task<IActionResult> ApproveIngredient(int ingredientId)
         {
             var command = new ApproveIngredient { IngredientId = ingredientId };

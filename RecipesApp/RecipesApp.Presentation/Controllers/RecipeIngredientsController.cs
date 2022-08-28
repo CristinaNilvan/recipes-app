@@ -21,7 +21,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{ingredientId}")] // ok?
+        [Route("{ingredientId}")] 
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId,
             [FromBody] float quantity)
         {
@@ -53,7 +53,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("{ingredientId}")] // ok ?
+        [Route("{ingredientId}")] 
         public async Task<IActionResult> GetRecipeIngredientsByIgredientId(int ingredientId)
         {
             var query = new GetRecipeIngredientsByIngredientId { IngredientId = ingredientId };
