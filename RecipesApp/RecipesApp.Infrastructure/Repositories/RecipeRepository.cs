@@ -32,6 +32,8 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .ToListAsync();
         }
 
@@ -48,6 +50,8 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(x => x.Name == recipeName)
                 .ToListAsync(); ;
         }
@@ -56,6 +60,8 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(x => x.Approved == approvedStatus)
                 .ToListAsync();
         }
@@ -80,7 +86,11 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Where(recipeWithRecipeIngredients =>
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
                     recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
-                .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe);
+                .Select(recipeWithRecipeIngredientsOuter => _dataContext
+                    .Recipes
+                    .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                    .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
+                    .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));
 
             return await joinQuery.ToListAsync();
         }
@@ -98,7 +108,11 @@ namespace RecipesApp.Infrastructure.Repositories
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity >= quantityLimit &&
                     recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
-                .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe);
+                .Select(recipeWithRecipeIngredientsOuter => _dataContext
+                    .Recipes
+                    .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                    .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
+                    .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));
 
             return await joinQuery.ToListAsync();
         }
