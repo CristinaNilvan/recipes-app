@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
 using RecipesApp.Application.Recipes.Commands;
@@ -16,11 +18,13 @@ namespace RecipesApp.Presentation.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly IBlobService _blobService;
 
-        public RecipesController(IMediator mediator, IMapper mapper)
+        public RecipesController(IMediator mediator, IMapper mapper, IBlobService blobService)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _blobService = blobService;
         }
 
         [HttpPost]
@@ -210,6 +214,27 @@ namespace RecipesApp.Presentation.Controllers
             {
                 RecipeId = recipeId,
                 RecipeIngredientId = recipeIngredientId
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpPost]
+        [Route("{recipeId}/image")]
+        public async Task<IActionResult> AddImageToRecipe(int recipeId, IFormFile File)
+        {
+            var command = new AddImageToRecipe
+            {
+                RecipeId = recipeId,
+                File = File,
+                ContainerName = "recipeimages"
             };
 
             var result = await _mediator.Send(command);
