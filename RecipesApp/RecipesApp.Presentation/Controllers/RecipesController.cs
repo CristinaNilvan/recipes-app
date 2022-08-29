@@ -109,13 +109,10 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipesFinder")] // => ok? [fromQuery]
-        public async Task<IActionResult> FindRecipesByIngredients([FromQuery(Name = "ingredientsGetDto")] 
-            IngredientGetDto[] ingredientsGetDto)
+        [Route("recipesFinder")] 
+        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
         {
-            var toList = ingredientsGetDto.ToList();
-            var ingredients = _mapper.Map<List<Ingredient>>(ingredientsGetDto);
-            var query = new FindRecipesByIngredients { Ingredients = ingredients };
+            var query = new FindRecipesByIngredients { IngredientIds = ingredientIds.ToList() };
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 

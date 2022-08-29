@@ -183,5 +183,8 @@ namespace RecipesApp.Console.InputHandling.Utils
 
             return ingredients;
         }
+
+        public static List<int> GetIngredientIds(List<Ingredient> ingredients)
+            => ingredients.Select(x => x.Id).ToList();
     }
 }

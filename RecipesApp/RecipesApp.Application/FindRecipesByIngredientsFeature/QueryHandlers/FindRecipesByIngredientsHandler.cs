@@ -19,15 +19,13 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
             var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(true);
             var filteredRecipes = new List<Recipe>();
 
-            var ingredientIds = RecipesFinderUtils.GetIngredientIds(request.Ingredients);
-
             foreach (var recipe in approvedRecipes)
             {
                 var recipeIngredientsIds = await _unitOfWork
                     .RecipeRepository
                     .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
 
-                var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, ingredientIds);
+                var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
                 if (containsAll)
                 {

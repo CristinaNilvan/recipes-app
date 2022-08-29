@@ -53,7 +53,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("{ingredientId}")] 
+        [Route("Ingredients/{ingredientId}")] // => ??
         public async Task<IActionResult> GetRecipeIngredientsByIgredientId(int ingredientId)
         {
             var query = new GetRecipeIngredientsByIngredientId { IngredientId = ingredientId };
