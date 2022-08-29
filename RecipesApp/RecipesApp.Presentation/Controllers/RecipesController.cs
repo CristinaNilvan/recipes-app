@@ -3,17 +3,14 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
-using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
-using RecipesApp.Domain.Models;
-using RecipesApp.Presentation.Dtos.IngredientDtos;
 using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/recipes")]
     [ApiController]
     public class RecipesController : ControllerBase
     {
@@ -109,7 +106,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipesFinder")] 
+        [Route("recipesFinder")]
         public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
         {
             var query = new FindRecipesByIngredients { IngredientIds = ingredientIds.ToList() };

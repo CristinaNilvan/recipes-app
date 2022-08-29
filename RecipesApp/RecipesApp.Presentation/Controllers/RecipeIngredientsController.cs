@@ -7,7 +7,7 @@ using RecipesApp.Presentation.Dtos.RecipeIngredientDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/recipeIngredients")]
     [ApiController]
     public class RecipeIngredientsController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{ingredientId}")] 
+        [Route("{ingredientId}")]
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId,
             [FromBody] float quantity)
         {

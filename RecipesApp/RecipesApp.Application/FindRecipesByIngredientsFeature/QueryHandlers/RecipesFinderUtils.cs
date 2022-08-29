@@ -1,6 +1,4 @@
-﻿using RecipesApp.Domain.Models;
-
-namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
+﻿namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 {
     internal class RecipesFinderUtils
     {

@@ -8,7 +8,7 @@ using RecipesApp.Presentation.Dtos.IngredientDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/ingredients")]
     [ApiController]
     public class IngredientsController : ControllerBase
     {
