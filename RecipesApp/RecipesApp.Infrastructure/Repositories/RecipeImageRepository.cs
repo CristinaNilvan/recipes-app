@@ -1,4 +1,5 @@
-﻿using RecipesApp.Application.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipesApp.Application.Abstractions;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
 
@@ -25,6 +26,13 @@ namespace RecipesApp.Infrastructure.Repositories
             _dataContext
                 .RecipeImages
                 .Remove(recipeImage);
+        }
+
+        public async Task<RecipeImage> GetByRecipeId(int recipeId)
+        {
+            return await _dataContext
+                .RecipeImages
+                .SingleOrDefaultAsync(x => x.RecipeId == recipeId);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .ToListAsync();
@@ -41,6 +42,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .SingleOrDefaultAsync(x => x.Id == recipeId);
@@ -50,6 +52,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(x => x.Name == recipeName)
@@ -60,6 +63,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Recipes
+                .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(x => x.Approved == approvedStatus)
@@ -88,6 +92,7 @@ namespace RecipesApp.Infrastructure.Repositories
                     recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
                 .Select(recipeWithRecipeIngredientsOuter => _dataContext
                     .Recipes
+                    .Include(recipe => recipe.RecipeImage)
                     .Include(recipe => recipe.RecipeWithRecipeIngredients)
                     .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
                     .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));
@@ -110,6 +115,7 @@ namespace RecipesApp.Infrastructure.Repositories
                     recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
                 .Select(recipeWithRecipeIngredientsOuter => _dataContext
                     .Recipes
+                    .Include(recipe => recipe.RecipeImage)
                     .Include(recipe => recipe.RecipeWithRecipeIngredients)
                     .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
                     .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));

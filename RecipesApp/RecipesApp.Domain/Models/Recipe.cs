@@ -69,6 +69,8 @@ namespace RecipesApp.Domain.Models
 
         public bool Approved { get; set; } = false;
 
+        public RecipeImage RecipeImage { get; set; }
+
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
         public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)

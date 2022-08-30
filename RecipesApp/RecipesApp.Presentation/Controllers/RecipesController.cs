@@ -18,13 +18,11 @@ namespace RecipesApp.Presentation.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly IBlobService _blobService;
 
-        public RecipesController(IMediator mediator, IMapper mapper, IBlobService blobService)
+        public RecipesController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;
-            _blobService = blobService;
         }
 
         [HttpPost]
@@ -234,6 +232,26 @@ namespace RecipesApp.Presentation.Controllers
             {
                 RecipeId = recipeId,
                 File = File,
+                ContainerName = "recipeimages"
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpDelete]
+        [Route("{recipeId}/image")]
+        public async Task<IActionResult> RemoveImageFromRecipe(int recipeId)
+        {
+            var command = new RemoveImageFromRecipe
+            {
+                RecipeId = recipeId,
                 ContainerName = "recipeimages"
             };
 

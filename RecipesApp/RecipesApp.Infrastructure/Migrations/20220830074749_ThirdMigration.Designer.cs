@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipesApp.Infrastructure.Context;
 
@@ -11,9 +12,10 @@ using RecipesApp.Infrastructure.Context;
 namespace RecipesApp.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220830074749_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,8 +75,7 @@ namespace RecipesApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientId")
-                        .IsUnique();
+                    b.HasIndex("IngredientId");
 
                     b.ToTable("IngredientImages");
                 });
@@ -184,8 +185,7 @@ namespace RecipesApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId")
-                        .IsUnique();
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("RecipeImages");
                 });
@@ -237,8 +237,8 @@ namespace RecipesApp.Infrastructure.Migrations
             modelBuilder.Entity("RecipesApp.Domain.Models.IngredientImage", b =>
                 {
                     b.HasOne("RecipesApp.Domain.Models.Ingredient", "Ingredient")
-                        .WithOne("IngredientImages")
-                        .HasForeignKey("RecipesApp.Domain.Models.IngredientImage", "IngredientId")
+                        .WithMany("IngredientImages")
+                        .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -269,8 +269,8 @@ namespace RecipesApp.Infrastructure.Migrations
             modelBuilder.Entity("RecipesApp.Domain.Models.RecipeImage", b =>
                 {
                     b.HasOne("RecipesApp.Domain.Models.Recipe", "Recipe")
-                        .WithOne("RecipeImage")
-                        .HasForeignKey("RecipesApp.Domain.Models.RecipeImage", "RecipeId")
+                        .WithMany("RecipeImages")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -316,7 +316,7 @@ namespace RecipesApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RecipesApp.Domain.Models.Recipe", b =>
                 {
-                    b.Navigation("RecipeImage");
+                    b.Navigation("RecipeImages");
 
                     b.Navigation("RecipeWithRecipeIngredients");
                 });

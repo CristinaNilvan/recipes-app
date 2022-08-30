@@ -32,6 +32,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Ingredients
+                .Include(ingredient => ingredient.IngredientImage)
                 .ToListAsync();
         }
 
@@ -39,6 +40,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Ingredients
+                .Include(ingredient => ingredient.IngredientImage)
                 .SingleOrDefaultAsync(x => x.Id == ingredientId);
         }
 
@@ -46,6 +48,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Ingredients
+                .Include(ingredient => ingredient.IngredientImage)
                 .SingleOrDefaultAsync(x => x.Name == ingredientName);
         }
 
@@ -53,6 +56,7 @@ namespace RecipesApp.Infrastructure.Repositories
         {
             return await _dataContext
                 .Ingredients
+                .Include(ingredient => ingredient.IngredientImage)
                 .Where(x => x.Approved == approvedStatus)
                 .ToListAsync();
         }
