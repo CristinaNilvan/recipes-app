@@ -1,4 +1,5 @@
 ﻿using RecipesApp.Domain.Enums;
+using RecipesApp.Presentation.Dtos.IngredientImageDtos;
 
 namespace RecipesApp.Presentation.Dtos.IngredientDtos
 {
@@ -11,5 +12,6 @@ namespace RecipesApp.Presentation.Dtos.IngredientDtos
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
+        public IngredientImageGetDto IngredientImage { get; set; }
     }
 }

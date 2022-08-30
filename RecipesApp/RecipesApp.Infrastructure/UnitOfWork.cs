@@ -8,12 +8,14 @@ namespace RecipesApp.Infrastructure
         private readonly DataContext _dataContext;
 
         public UnitOfWork(DataContext dataContext, IIngredientRepository ingredientRepository,
+            IIngredientImageRepository ingredientImageRepository,
             IRecipeIngredientRepository recipeIngredientRepository, IRecipeRepository recipeRepository,
             IRecipeWithRecipeIngredientsRepository recipeWithRecipeIngredientsRepository,
             IRecipeImageRepository recipeImageRepository, IMealPlanRepository mealPlanRepository)
         {
             _dataContext = dataContext;
             IngredientRepository = ingredientRepository;
+            IngredientImageRepository = ingredientImageRepository;
             RecipeIngredientRepository = recipeIngredientRepository;
             RecipeRepository = recipeRepository;
             RecipeWithRecipeIngredientsRepository = recipeWithRecipeIngredientsRepository;
@@ -22,6 +24,8 @@ namespace RecipesApp.Infrastructure
         }
 
         public IIngredientRepository IngredientRepository { get; private set; }
+
+        public IIngredientImageRepository IngredientImageRepository { get; private set; }
 
         public IRecipeIngredientRepository RecipeIngredientRepository { get; private set; }
 

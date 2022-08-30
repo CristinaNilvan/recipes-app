@@ -21,11 +21,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
-builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
-builder.Services.AddScoped<IMealPlanRepository, MealPlanRepository>();
+builder.Services.AddScoped<IIngredientImageRepository, IngredientImageRepository>();
 builder.Services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
+builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 builder.Services.AddScoped<IRecipeWithRecipeIngredientsRepository, RecipeWithRecipeIngredientsRepository>();
 builder.Services.AddScoped<IRecipeImageRepository, RecipeImageRepository>();
+builder.Services.AddScoped<IMealPlanRepository, MealPlanRepository>();
 builder.Services.AddSingleton<IBlobService, BlobService>();     // review!!!! addScoped?
 
 builder.Services.AddDbContext<DataContext>(options =>

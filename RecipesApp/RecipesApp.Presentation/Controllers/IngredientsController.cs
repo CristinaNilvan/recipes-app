@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
+using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Presentation.Dtos.IngredientDtos;
+using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
@@ -151,6 +153,47 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        [Route("{ingredientId}/image")]
+        public async Task<IActionResult> AddImageToIngredient(int ingredientId, IFormFile File)
+        {
+            var command = new AddImageToIngredient
+            {
+                IngredientId = ingredientId,
+                File = File,
+                ContainerName = "ingredientimages"
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<IngredientGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpDelete]
+        [Route("{ingredientId}/image")]
+        public async Task<IActionResult> RemoveImageFromIngredient(int ingredientId)
+        {
+            var command = new RemoveImageFromIngredient
+            {
+                IngredientId = ingredientId,
+                ContainerName = "ingredientimages"
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            var mappedResult = _mapper.Map<IngredientGetDto>(result);
+
+            return Ok(mappedResult);
         }
     }
 }

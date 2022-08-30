@@ -2,9 +2,10 @@
 
 namespace RecipesApp.Application.Abstractions
 {
-    internal interface IIngredientImageRepository
+    public interface IIngredientImageRepository
     {
         Task Create(IngredientImage ingredientImage);
+        Task<IngredientImage> GetByIngredientId(int ingredientId);
         Task Delete(IngredientImage ingredientImage);
     }
 }
