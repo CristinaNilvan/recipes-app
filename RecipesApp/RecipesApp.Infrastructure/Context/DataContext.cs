@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Infrastructure.Context
@@ -25,12 +26,12 @@ namespace RecipesApp.Infrastructure.Context
         public DbSet<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
         // ??
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseSqlServer(@"Server=DESKTOP-37GIORL\SQLEXPRESS;Database=AppDB;User Id=admin;Password=admin")
                 .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                 .EnableSensitiveDataLogging();
-        }
+        }*/
     }
 }
