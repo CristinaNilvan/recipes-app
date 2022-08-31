@@ -18,6 +18,11 @@ namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
         {
             var recipe = await _unitOfWork.RecipeRepository.GetById(request.RecipeId);
 
+            if (recipe == null)
+            {
+                return null;
+            }
+
             await _unitOfWork.RecipeRepository.UpdateApprovedStatus(recipe, true);
             await _unitOfWork.Save();
 

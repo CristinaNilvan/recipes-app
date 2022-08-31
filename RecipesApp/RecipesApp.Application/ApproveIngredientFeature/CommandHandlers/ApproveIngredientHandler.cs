@@ -18,6 +18,11 @@ namespace RecipesApp.Application.ApproveIngredientFeature.CommandHandlers
         {
             var ingredient = await _unitOfWork.IngredientRepository.GetById(request.IngredientId);
 
+            if (ingredient == null)
+            {
+                return null;
+            }
+
             await _unitOfWork.IngredientRepository.UpdateApprovedStatus(ingredient, true);
             await _unitOfWork.Save();
 
