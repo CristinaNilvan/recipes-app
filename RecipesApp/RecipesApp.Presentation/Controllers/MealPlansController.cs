@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.MealPlannerFeature.Commands;
+using RecipesApp.Domain.Models;
 using RecipesApp.Presentation.Dtos.MealPlanDtos;
 
 namespace RecipesApp.Presentation.Controllers
@@ -12,16 +13,20 @@ namespace RecipesApp.Presentation.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public MealPlansController(IMediator mediator, IMapper mapper)
+        public MealPlansController(IMediator mediator, IMapper mapper, ILogger<MealPlansController> logger)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost]
         public async Task<IActionResult> GenerateMealPlan([FromBody] MealPlanPostDto mealPlanPostDto)
         {
+            _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
+
             var command = new GenerateMealPlan
             {
                 MealType = mealPlanPostDto.MealType,

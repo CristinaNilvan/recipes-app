@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-
-namespace RecipesApp.Presentation.Middleware
+﻿namespace RecipesApp.Presentation.Middleware
 {
     public class RequestLoggingMiddleware
     {
