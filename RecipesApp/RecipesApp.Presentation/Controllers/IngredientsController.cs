@@ -27,18 +27,18 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateIngredient([FromBody] IngredientPutPostDto ingredient)
+        public async Task<IActionResult> CreateIngredient([FromBody] IngredientPutPostDto ingredientDto)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating ingredient");
 
             var command = new CreateIngredient
             {
-                Name = ingredient.Name,
-                Category = ingredient.Category,
-                Calories = ingredient.Calories,
-                Fats = ingredient.Fats,
-                Carbs = ingredient.Carbs,
-                Proteins = ingredient.Proteins
+                Name = ingredientDto.Name,
+                Category = ingredientDto.Category,
+                Calories = ingredientDto.Calories,
+                Fats = ingredientDto.Fats,
+                Carbs = ingredientDto.Carbs,
+                Proteins = ingredientDto.Proteins
             };
 
             var result = await _mediator.Send(command);
@@ -128,19 +128,19 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPut]
         [Route("{ingredientId}")]
-        public async Task<IActionResult> UpdateIngredient(int ingredientId, [FromBody] IngredientPutPostDto ingredient)
+        public async Task<IActionResult> UpdateIngredient(int ingredientId, [FromBody] IngredientPutPostDto ingredientDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating ingredient {id}", ingredientId);
 
             var command = new UpdateIngredient
             {
-                IngredientId = ingredientId,
-                Name = ingredient.Name,
-                Category = ingredient.Category,
-                Calories = ingredient.Calories,
-                Fats = ingredient.Fats,
-                Carbs = ingredient.Carbs,
-                Proteins = ingredient.Proteins
+                Id = ingredientId,
+                Name = ingredientDto.Name,
+                Category = ingredientDto.Category,
+                Calories = ingredientDto.Calories,
+                Fats = ingredientDto.Fats,
+                Carbs = ingredientDto.Carbs,
+                Proteins = ingredientDto.Proteins
             };
 
             var result = await _mediator.Send(command);

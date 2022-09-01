@@ -23,14 +23,14 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GenerateMealPlan([FromBody] MealPlanPostDto mealPlanPostDto)
+        public async Task<IActionResult> GenerateMealPlan([FromBody] MealPlanPostDto mealPlanDto)
         {
             _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
 
             var command = new GenerateMealPlan
             {
-                MealType = mealPlanPostDto.MealType,
-                Calories = mealPlanPostDto.Calories
+                MealType = mealPlanDto.MealType,
+                Calories = mealPlanDto.Calories
             };
 
             var result = await _mediator.Send(command);

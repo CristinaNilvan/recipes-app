@@ -29,18 +29,18 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRecipe([FromBody] RecipePutPostDto recipe)
+        public async Task<IActionResult> CreateRecipe([FromBody] RecipePutPostDto recipeDto)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating recipe");
 
             var command = new CreateRecipe
             {
-                Name = recipe.Name,
-                Author = recipe.Author,
-                Description = recipe.Description,
-                MealType = recipe.MealType,
-                ServingTime = recipe.ServingTime,
-                Servings = recipe.Servings
+                Name = recipeDto.Name,
+                Author = recipeDto.Author,
+                Description = recipeDto.Description,
+                MealType = recipeDto.MealType,
+                ServingTime = recipeDto.ServingTime,
+                Servings = recipeDto.Servings
             };
 
             var result = await _mediator.Send(command);
@@ -161,19 +161,19 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPut]
         [Route("{recipeId}")]
-        public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePutPostDto recipe)
+        public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePutPostDto recipeDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating recipe {id}", recipeId);
 
             var command = new UpdateRecipe
             {
-                RecipeId = recipeId,
-                Name = recipe.Name,
-                Author = recipe.Author,
-                Description = recipe.Description,
-                MealType = recipe.MealType,
-                ServingTime = recipe.ServingTime,
-                Servings = recipe.Servings
+                Id = recipeId,
+                Name = recipeDto.Name,
+                Author = recipeDto.Author,
+                Description = recipeDto.Description,
+                MealType = recipeDto.MealType,
+                ServingTime = recipeDto.ServingTime,
+                Servings = recipeDto.Servings
             };
 
             var result = await _mediator.Send(command);
