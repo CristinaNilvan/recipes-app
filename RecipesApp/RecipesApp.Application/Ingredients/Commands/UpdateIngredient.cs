@@ -6,7 +6,7 @@ namespace RecipesApp.Application.Ingredients.Commands
 {
     public class UpdateIngredient : IRequest<Ingredient>
     {
-        public int IngredientId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public IngredientCategory Category { get; set; }
         public float Calories { get; set; }
