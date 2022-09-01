@@ -92,7 +92,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
 
             await _mediator.Send(new UpdateRecipe()
             {
-                RecipeId = id,
+                Id = id,
                 Name = name,
                 Author = author,
                 Description = description,

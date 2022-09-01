@@ -48,7 +48,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
 
             await _mediator.Send(new UpdateIngredient()
             {
-                IngredientId = id,
+                Id = id,
                 Name = ingredient.Name,
                 Category = ingredient.Category,
                 Calories = ingredient.Calories,
