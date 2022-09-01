@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Assignments", "RecipesApp.Assignments\RecipesApp.Assignments.csproj", "{B15E2BD8-3DFC-43BA-B9EE-7BBFF62EA4B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesApp.Presentation", "RecipesApp.Presentation\RecipesApp.Presentation.csproj", "{AF687A4B-51C9-4814-B8AE-395A6F2BABF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesApp.Presentation", "RecipesApp.Presentation\RecipesApp.Presentation.csproj", "{AF687A4B-51C9-4814-B8AE-395A6F2BABF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
