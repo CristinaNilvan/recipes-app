@@ -5,7 +5,6 @@ namespace RecipesApp.Application.Abstractions
     public interface IRecipeIngredientRepository
     {
         Task Create(RecipeIngredient recipeIngredient);
-        Task<Ingredient> GetDetailsByIngredientId(int ingredientId);
         Task<RecipeIngredient> GetById(int recipeIngredientId);
         Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId);
         Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId);

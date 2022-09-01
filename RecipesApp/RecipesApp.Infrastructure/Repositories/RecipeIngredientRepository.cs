@@ -29,22 +29,11 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
         }
 
-        public async Task<Ingredient> GetDetailsByIngredientId(int ingredientId)
-        {
-            var joinQuery = await _dataContext
-                .RecipeIngredients
-                .Include(recipeIngredient => recipeIngredient.Ingredient)
-                .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
-                .Select(recipeIngredient => recipeIngredient.Ingredient)
-                .SingleOrDefaultAsync();
-
-            return joinQuery;
-        }
-
         public async Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId)
         {
             var query = _dataContext
                 .RecipeIngredients
+                .Include(recipeIngredient => recipeIngredient.Ingredient)
                 .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
                 .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Id, recipeIngredient.Quantity,
                     recipeIngredient.IngredientId));
