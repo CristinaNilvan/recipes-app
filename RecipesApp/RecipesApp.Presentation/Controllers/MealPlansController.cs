@@ -7,7 +7,7 @@ using RecipesApp.Presentation.Dtos.MealPlanDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
-    [Route("api/mealPlans")]
+    [Route("api/meal-plans")]
     [ApiController]
     public class MealPlansController : ControllerBase
     {

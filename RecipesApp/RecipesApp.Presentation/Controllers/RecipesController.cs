@@ -90,7 +90,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("allRecipes")]
+        [Route("all-recipes")]
         public async Task<IActionResult> GetAllRecipes()
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting all recipes");
@@ -116,7 +116,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("unapprovedRecipes")]
+        [Route("unapproved-recipes")]
         public async Task<IActionResult> GetUnapprovedRecipes()
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved recipes");
@@ -129,7 +129,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipesFinder")]
+        [Route("recipes-finder")]
         public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredients");
@@ -142,7 +142,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipesSuggester")]
+        [Route("recipes-suggester")]
         public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredient and quantity");
@@ -188,7 +188,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("unapprovedRecipes/{recipeId}")]
+        [Route("unapproved-recipes/{recipeId}")]
         public async Task<IActionResult> ApproveRecipe(int recipeId)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Approving recipe {id}", recipeId);
@@ -224,7 +224,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{recipeId}/recipeIngredients/{recipeIngredientId}")]
+        [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
         public async Task<IActionResult> AddRecipeIngredientToRecipe(int recipeId, int recipeIngredientId)
         {
             _logger.LogInformation(LogEvents.AddToItem,
@@ -252,7 +252,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpDelete]
-        [Route("{recipeId}/recipeIngredients/{recipeIngredientId}")]
+        [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
         public async Task<IActionResult> RemoveRecipeIngredientFromRecipe(int recipeId, int recipeIngredientId)
         {
             _logger.LogInformation(LogEvents.RemoveFromItem, 

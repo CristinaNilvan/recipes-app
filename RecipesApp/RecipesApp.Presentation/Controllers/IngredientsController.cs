@@ -88,7 +88,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("allIngredients")]
+        [Route("all-ingredients")]
         public async Task<IActionResult> GetAllIngredients()
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting all ingredients");
@@ -101,7 +101,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        //[Route("approvedIngredients")] // => with/without route?
+        //[Route("approved-ingredients")] // => with/without route?
         public async Task<IActionResult> GetApprovedIngredients()
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved ingredients");
@@ -114,7 +114,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("unapprovedIngredients")]
+        [Route("unapproved-ingredients")]
         public async Task<IActionResult> GetUnapprovedIngredients()
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved ingredients");
@@ -155,7 +155,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("unapprovedIngredients/{ingredientId}")]
+        [Route("unapproved-ingredients/{ingredientId}")]
         public async Task<IActionResult> ApproveIngredient(int ingredientId)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Approving ingredient {id}", ingredientId);

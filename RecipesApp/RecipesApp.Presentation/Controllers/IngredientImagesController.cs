@@ -6,7 +6,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Presentation.Controllers
 {
-    [Route("api/ingredientImages")]
+    [Route("api/ingredient-images")]
     [ApiController]
     public class IngredientImagesController : ControllerBase
     {

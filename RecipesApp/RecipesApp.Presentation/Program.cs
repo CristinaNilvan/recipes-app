@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RecipesApp.Application;
 using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Repositories;
+using RecipesApp.Application.Abstractions.Services;
 using RecipesApp.Application.Settings;
 using RecipesApp.Infrastructure;
 using RecipesApp.Infrastructure.Context;
@@ -30,7 +32,7 @@ builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 builder.Services.AddScoped<IRecipeWithRecipeIngredientsRepository, RecipeWithRecipeIngredientsRepository>();
 builder.Services.AddScoped<IRecipeImageRepository, RecipeImageRepository>();
 builder.Services.AddScoped<IMealPlanRepository, MealPlanRepository>();
-builder.Services.AddScoped<IBlobService, BlobService>();
+builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
