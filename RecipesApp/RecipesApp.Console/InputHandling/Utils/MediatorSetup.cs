@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Repositories;
 using RecipesApp.Infrastructure;
 using RecipesApp.Infrastructure.Context;
 using RecipesApp.Infrastructure.Repositories;
