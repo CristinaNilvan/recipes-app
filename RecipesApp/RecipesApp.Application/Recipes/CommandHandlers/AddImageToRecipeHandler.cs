@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Services;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Domain.Models;
 
@@ -8,9 +9,9 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
     public class AddImageToRecipeHandler : IRequestHandler<AddImageToRecipe, Recipe>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IBlobService _blobService;
+        private readonly IImageStorageService _blobService;
 
-        public AddImageToRecipeHandler(IUnitOfWork unitOfWork, IBlobService blobService)
+        public AddImageToRecipeHandler(IUnitOfWork unitOfWork, IImageStorageService blobService)
         {
             _unitOfWork = unitOfWork;
             _blobService = blobService;
@@ -27,7 +28,7 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
             var recipeNameAndAuthor = recipe.Name + " " + recipe.Author;
             var fileName = recipeNameAndAuthor.Replace(" ", "_").ToLower();
-            var imageUrl = await _blobService.UploadBlob(fileName, request.File, request.ContainerName);
+            var imageUrl = await _blobService.UploadImage(fileName, request.File, request.ContainerName);
 
             var recipeImage = new RecipeImage
             {

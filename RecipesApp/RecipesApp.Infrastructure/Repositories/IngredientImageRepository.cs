@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Repositories;
 using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure.Context;
 

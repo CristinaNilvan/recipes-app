@@ -1,20 +1,20 @@
 ﻿using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
-using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Services;
 
 namespace RecipesApp.Infrastructure.Services
 {
-    public class BlobService : IBlobService
+    public class ImageStorageService : IImageStorageService
     {
         private readonly BlobServiceClient _blobClient;
 
-        public BlobService(BlobServiceClient blobClient)
+        public ImageStorageService(BlobServiceClient blobClient)
         {
             _blobClient = blobClient;
         }
 
-        public async Task DeleteBlob(string name, string containerName)
+        public async Task DeleteImage(string name, string containerName)
         {
             var containerClient = _blobClient.GetBlobContainerClient(containerName);
             var blobClient = containerClient.GetBlobClient(name);
@@ -22,7 +22,7 @@ namespace RecipesApp.Infrastructure.Services
             await blobClient.DeleteIfExistsAsync();
         }
 
-        public async Task<string> UploadBlob(string name, IFormFile file, string containerName)
+        public async Task<string> UploadImage(string name, IFormFile file, string containerName)
         {
             var containerClient = _blobClient.GetBlobContainerClient(containerName);
             var blobClient = containerClient.GetBlobClient(name);

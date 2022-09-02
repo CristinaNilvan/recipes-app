@@ -1,4 +1,6 @@
-﻿namespace RecipesApp.Application.Abstractions
+﻿using RecipesApp.Application.Abstractions.Repositories;
+
+namespace RecipesApp.Application.Abstractions
 {
     public interface IUnitOfWork : IDisposable
     {

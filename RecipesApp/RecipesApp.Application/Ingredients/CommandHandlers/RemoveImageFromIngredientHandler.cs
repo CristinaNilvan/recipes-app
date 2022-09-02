@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Services;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Domain.Models;
 
@@ -8,9 +9,9 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
     public class RemoveImageFromIngredientHandler : IRequestHandler<RemoveImageFromIngredient, Ingredient>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IBlobService _blobService;
+        private readonly IImageStorageService _blobService;
 
-        public RemoveImageFromIngredientHandler(IUnitOfWork unitOfWork, IBlobService blobService)
+        public RemoveImageFromIngredientHandler(IUnitOfWork unitOfWork, IImageStorageService blobService)
         {
             _unitOfWork = unitOfWork;
             _blobService = blobService;
@@ -28,7 +29,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
 
             var fileName = ingredient.Name.Replace(" ", "_").ToLower();
 
-            await _blobService.DeleteBlob(fileName, request.ContainerName);
+            await _blobService.DeleteImage(fileName, request.ContainerName);
             await _unitOfWork.IngredientImageRepository.Delete(ingredientImage);
             await _unitOfWork.Save();
 

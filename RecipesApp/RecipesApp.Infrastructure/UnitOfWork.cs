@@ -1,4 +1,5 @@
 ﻿using RecipesApp.Application.Abstractions;
+using RecipesApp.Application.Abstractions.Repositories;
 using RecipesApp.Infrastructure.Context;
 
 namespace RecipesApp.Infrastructure

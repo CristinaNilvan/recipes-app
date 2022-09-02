@@ -1,6 +1,6 @@
 ﻿using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.Abstractions
+namespace RecipesApp.Application.Abstractions.Repositories
 {
     public interface IRecipeRepository
     {
