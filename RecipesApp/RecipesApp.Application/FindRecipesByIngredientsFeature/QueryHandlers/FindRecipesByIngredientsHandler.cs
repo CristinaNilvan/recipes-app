@@ -38,11 +38,11 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 
             if (filteredRecipes.Count != 0)
             {
-                return filteredRecipes;
+                return FeaturesUtils.DoPaginationOnRecipes(filteredRecipes, request.PaginationParameters);
             }
             else
             {
-                return approvedRecipes;
+                return FeaturesUtils.DoPaginationOnRecipes(approvedRecipes, request.PaginationParameters);
             }
         }
     }

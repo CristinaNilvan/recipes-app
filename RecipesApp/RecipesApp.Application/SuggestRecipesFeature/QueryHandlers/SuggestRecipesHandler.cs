@@ -32,15 +32,15 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 
             if (bestMatches.Count != 0)
             {
-                return bestMatches;
+                return FeaturesUtils.DoPaginationOnRecipes(bestMatches, request.PaginationParameters);
             }
             else if (recipesWithIngredient.Count != 0)
             {
-                return recipesWithIngredient;
+                return FeaturesUtils.DoPaginationOnRecipes(recipesWithIngredient, request.PaginationParameters);
             }
             else
             {
-                return allRecipes;
+                return FeaturesUtils.DoPaginationOnRecipes(allRecipes, request.PaginationParameters);
             }
         }
     }

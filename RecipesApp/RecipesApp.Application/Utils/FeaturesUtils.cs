@@ -41,5 +41,13 @@ namespace RecipesApp.Application.Utils
             => givenIngredientList
                 .All(givenItem => recipeIngredientList
                 .Any(recipeIngredientItem => givenItem == recipeIngredientItem));
+
+        public static List<Recipe> DoPaginationOnRecipes(List<Recipe> recipes, PaginationParameters paginationParameters)
+        {
+            return recipes
+                .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                .Take(paginationParameters.PageSize)
+                .ToList();
+        }
     }
 }

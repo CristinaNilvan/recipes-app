@@ -146,11 +146,17 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("recipes-finder")]
-        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
+        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds,
+            [FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredients");
 
-            var query = new FindRecipesByIngredients { IngredientIds = ingredientIds.ToList() };
+            var query = new FindRecipesByIngredients
+            { 
+                PaginationParameters = paginationParameters,
+                IngredientIds = ingredientIds.ToList()
+            };
+
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
@@ -159,12 +165,14 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("recipes-suggester")]
-        public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto)
+        public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto,
+            [FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredient and quantity");
 
             var query = new SuggestRecipes
             {
+                PaginationParameters = paginationParameters,
                 IngredientName = recipesSuggesterDto.IngredientName,
                 IngredientQuantity = recipesSuggesterDto.IngredientQuantity
             };
