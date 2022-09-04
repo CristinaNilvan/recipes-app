@@ -71,16 +71,22 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("{recipeName}")]
-        public async Task<IActionResult> GetRecipesByName(string recipeName)
+        public async Task<IActionResult> GetRecipesByName(string recipeName, 
+            [FromQuery] PaginationParameters paginationParameters)
         {
-            _logger.LogInformation(LogEvents.GetItem, "Getting recipe {id}", recipeName);
+            _logger.LogInformation(LogEvents.GetItem, "Getting recipes with name {name}", recipeName);
 
-            var query = new GetRecipesByName { RecipeName = recipeName };
+            var query = new GetRecipesByName
+            {
+                PaginationParameters = paginationParameters,
+                RecipeName = recipeName
+            };
+
             var result = await _mediator.Send(query);
 
             if (result == null)
             {
-                _logger.LogWarning(LogEvents.GetItemNotFound, "Recipe {id} not found", recipeName);
+                _logger.LogWarning(LogEvents.GetItemNotFound, "Recipes with name {name} not found", recipeName);
                 return NotFound();
             }
 
@@ -91,11 +97,11 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("all-recipes")]
-        public async Task<IActionResult> GetAllRecipes()
+        public async Task<IActionResult> GetAllRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting all recipes");
 
-            var query = new GetAllRecipes();
+            var query = new GetAllRecipes() { PaginationParameters = paginationParameters };
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
@@ -104,11 +110,16 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         //[Route("approvedRecipes")] // => with/without route?
-        public async Task<IActionResult> GetApprovedRecipes()
+        public async Task<IActionResult> GetApprovedRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved recipes");
 
-            var query = new GetRecipesByApprovedStatus { ApprovedStatus = true };
+            var query = new GetRecipesByApprovedStatus
+            {
+                PaginationParameters = paginationParameters,
+                ApprovedStatus = true
+            };
+
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
@@ -117,11 +128,16 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("unapproved-recipes")]
-        public async Task<IActionResult> GetUnapprovedRecipes()
+        public async Task<IActionResult> GetUnapprovedRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved recipes");
 
-            var query = new GetRecipesByApprovedStatus { ApprovedStatus = false };
+            var query = new GetRecipesByApprovedStatus
+            {
+                PaginationParameters = paginationParameters,
+                ApprovedStatus = false
+            };
+
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 

@@ -28,13 +28,6 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Remove(mealPlan);
         }
 
-        public async Task<List<MealPlan>> GetAll()
-        {
-            return await _dataContext
-                .MealPlans
-                .ToListAsync();
-        }
-
         public async Task<MealPlan> GetById(int mealPlanId)
         {
             return await _dataContext

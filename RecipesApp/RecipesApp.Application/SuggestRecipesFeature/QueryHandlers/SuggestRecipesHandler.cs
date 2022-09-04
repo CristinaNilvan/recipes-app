@@ -16,11 +16,12 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
+            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
             var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
             var allRecipes = await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatus(true);
+                .GetByApprovedStatus(getByPaginationParameters, true);
             var recipesWithIngredient = await _unitOfWork
                 .RecipeRepository
                 .GetRecipesWithInredientAndQuantity(quantityTwoDecimals, request.IngredientName);

@@ -89,11 +89,11 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("all-ingredients")]
-        public async Task<IActionResult> GetAllIngredients()
+        public async Task<IActionResult> GetAllIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting all ingredients");
 
-            var query = new GetAllIngredients();
+            var query = new GetAllIngredients() { PaginationParameters = paginationParameters };
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 
@@ -102,11 +102,16 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         //[Route("approved-ingredients")] // => with/without route?
-        public async Task<IActionResult> GetApprovedIngredients()
+        public async Task<IActionResult> GetApprovedIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved ingredients");
 
-            var query = new GetIngredientsByApprovedStatus { ApprovedStatus = true };
+            var query = new GetIngredientsByApprovedStatus
+            {
+                PaginationParameters = paginationParameters,
+                ApprovedStatus = true 
+            };
+
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 
@@ -115,11 +120,16 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("unapproved-ingredients")]
-        public async Task<IActionResult> GetUnapprovedIngredients()
+        public async Task<IActionResult> GetUnapprovedIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved ingredients");
 
-            var query = new GetIngredientsByApprovedStatus { ApprovedStatus = false };
+            var query = new GetIngredientsByApprovedStatus
+            {
+                PaginationParameters = paginationParameters,
+                ApprovedStatus = false
+            };
+
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 

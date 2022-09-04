@@ -10,7 +10,7 @@ namespace RecipesApp.Application.Abstractions.Repositories
         Task Update(Ingredient ingredient);
         Task UpdateApprovedStatus(Ingredient ingredient, bool status);
         Task Delete(Ingredient ingredient);
-        Task<List<Ingredient>> GetAll();
-        Task<List<Ingredient>> GetByApprovedStatus(bool approvedStatus);
+        Task<List<Ingredient>> GetAll(PaginationParameters paginationParameters);
+        Task<List<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus);
     }
 }

@@ -28,32 +28,5 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Include(recipeIngredient => recipeIngredient.Ingredient)
                 .SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
         }
-
-        // to delete
-        public async Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId)
-        {
-            var query = _dataContext
-                .RecipeIngredients
-                .Include(recipeIngredient => recipeIngredient.Ingredient)
-                .Where(recipeIngredient => recipeIngredient.IngredientId == ingredientId)
-                .Select(recipeIngredient => new RecipeIngredient(recipeIngredient.Id, recipeIngredient.Quantity,
-                    recipeIngredient.IngredientId));
-
-            return await query.ToListAsync();
-        }
-
-        // to delete
-        public async Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId)
-        {
-            var twoDecimalQuantity = (float)Math.Round(quantity * 100f) / 100f;
-
-            var query = await _dataContext
-                .RecipeIngredients
-                .SingleOrDefaultAsync(recipeIngredient =>
-                    (float)Math.Round(recipeIngredient.Quantity * 100f) / 100f == twoDecimalQuantity &&
-                    recipeIngredient.IngredientId == ingredientId);
-
-            return query;
-        }
     }
 }

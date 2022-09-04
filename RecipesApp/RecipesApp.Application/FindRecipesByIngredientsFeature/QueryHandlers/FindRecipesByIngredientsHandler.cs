@@ -16,8 +16,9 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(FindRecipesByIngredients request, CancellationToken cancellationToken)
         {
-            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(true);
+            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
             var filteredRecipes = new List<Recipe>();
+            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(getByPaginationParameters, true);
 
             foreach (var recipe in approvedRecipes)
             {
@@ -25,7 +26,8 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                     .RecipeRepository
                     .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
 
-                var containsAll = RecipesFinderUtils.CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
+                var containsAll = RecipesFinderUtils
+                    .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
                 if (containsAll)
                 {

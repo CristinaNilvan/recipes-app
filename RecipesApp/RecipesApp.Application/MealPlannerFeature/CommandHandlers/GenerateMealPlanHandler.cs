@@ -9,7 +9,6 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
     public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
     {
         private readonly IUnitOfWork _unitOfWork;
-
         private List<Recipe> _allRecipes;
         private List<Recipe> _breakfastRecipes;
         private List<Recipe> _lunchRecipes;
@@ -53,7 +52,9 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         private async Task InitializeLists()
         {
-            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(true);
+            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
+
+            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(getByPaginationParameters, true);
             _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

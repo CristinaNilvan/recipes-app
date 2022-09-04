@@ -16,7 +16,9 @@ namespace RecipesApp.Application.Ingredients.QueryHandlers
 
         public async Task<List<Ingredient>> Handle(GetIngredientsByApprovedStatus request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.IngredientRepository.GetByApprovedStatus(request.ApprovedStatus);
+            return await _unitOfWork
+                .IngredientRepository
+                .GetByApprovedStatus(request.PaginationParameters, request.ApprovedStatus);
         }
     }
 }

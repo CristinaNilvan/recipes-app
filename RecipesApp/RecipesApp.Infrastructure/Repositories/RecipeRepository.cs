@@ -28,13 +28,15 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Remove(recipe);
         }
 
-        public async Task<List<Recipe>> GetAll()
+        public async Task<List<Recipe>> GetAll(PaginationParameters paginationParameters)
         {
             return await _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
+                .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                .Take(paginationParameters.PageSize)
                 .ToListAsync();
         }
 
@@ -45,29 +47,39 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .SingleOrDefaultAsync(x => x.Id == recipeId);
+                .SingleOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
-        public async Task<List<Recipe>> GetByName(string recipeName)
+        public async Task<List<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName)
         {
             return await _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .Where(x => x.Name == recipeName)
+                .Where(recipe => recipe.Name == recipeName)
+                .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                .Take(paginationParameters.PageSize)
                 .ToListAsync(); ;
         }
 
-        public async Task<List<Recipe>> GetByApprovedStatus(bool approvedStatus)
+        public async Task<List<Recipe>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus)
         {
-            return await _dataContext
+            var getByApproveStatusQuery = _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .Where(x => x.Approved == approvedStatus)
-                .ToListAsync();
+                .Where(recipe => recipe.Approved == approvedStatus);
+
+            if (paginationParameters.PageNumber > 0)
+            {
+                getByApproveStatusQuery = getByApproveStatusQuery
+                    .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                    .Take(paginationParameters.PageSize);
+            }
+
+            return await getByApproveStatusQuery.ToListAsync();
         }
 
         public async Task Update(Recipe recipe)

@@ -8,6 +8,5 @@ namespace RecipesApp.Application.Abstractions.Repositories
         Task<MealPlan> GetById(int mealPlanId);
         Task Update(MealPlan mealPlan);
         Task Delete(MealPlan mealPlan);
-        Task<List<MealPlan>> GetAll();
     }
 }

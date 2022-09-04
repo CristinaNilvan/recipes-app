@@ -28,11 +28,13 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Remove(ingredient);
         }
 
-        public async Task<List<Ingredient>> GetAll()
+        public async Task<List<Ingredient>> GetAll(PaginationParameters paginationParameters)
         {
             return await _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
+                .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                .Take(paginationParameters.PageSize)
                 .ToListAsync();
         }
 
@@ -42,7 +44,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
                 .Include(ingredient => ingredient.RecipeIngredients)
-                .SingleOrDefaultAsync(x => x.Id == ingredientId);
+                .SingleOrDefaultAsync(ingredient => ingredient.Id == ingredientId);
         }
 
         public async Task<Ingredient> GetByName(string ingredientName)
@@ -50,15 +52,17 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
-                .SingleOrDefaultAsync(x => x.Name == ingredientName);
+                .SingleOrDefaultAsync(ingredient => ingredient.Name == ingredientName);
         }
 
-        public async Task<List<Ingredient>> GetByApprovedStatus(bool approvedStatus)
+        public async Task<List<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus)
         {
             return await _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
-                .Where(x => x.Approved == approvedStatus)
+                .Where(ingredient => ingredient.Approved == approvedStatus)
+                .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
+                .Take(paginationParameters.PageSize)
                 .ToListAsync();
         }
 
