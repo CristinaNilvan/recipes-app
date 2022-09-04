@@ -24,7 +24,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{ingredientId}")] // => ??
+        [Route("{ingredientId}")] 
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, [FromBody] float quantity)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating recipe ingredient");
@@ -57,28 +57,6 @@ namespace RecipesApp.Presentation.Controllers
             }
 
             var mappedResult = _mapper.Map<RecipeIngredientGetDto>(result);
-
-            return Ok(mappedResult);
-        }
-
-        [HttpGet]
-        [Route("ingredients/{ingredientId}")] // => ??
-        public async Task<IActionResult> GetRecipeIngredientsByIgredientId(int ingredientId)
-        {
-            _logger.LogInformation(LogEvents.GetItem, "Getting recipe ingredient by ingredient id {id}", ingredientId);
-
-            var query = new GetRecipeIngredientsByIngredientId { IngredientId = ingredientId };
-            var result = await _mediator.Send(query);
-
-            if (result == null)
-            {
-                _logger.LogWarning(LogEvents.GetItemNotFound, 
-                    "Recipe ingredient with ingredient id {id} not found", ingredientId);
-
-                return NotFound();
-            }
-
-            var mappedResult = _mapper.Map<List<RecipeIngredientGetDto>>(result);
 
             return Ok(mappedResult);
         }

@@ -41,6 +41,7 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
+                .Include(ingredient => ingredient.RecipeIngredients)
                 .SingleOrDefaultAsync(x => x.Id == ingredientId);
         }
 

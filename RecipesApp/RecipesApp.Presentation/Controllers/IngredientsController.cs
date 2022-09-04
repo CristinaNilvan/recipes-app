@@ -62,7 +62,7 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
             }
 
-            var mappedResult = _mapper.Map<IngredientGetDto>(result);
+            var mappedResult = _mapper.Map<IngredientGetByIdDto>(result);
 
             return Ok(mappedResult);
         }

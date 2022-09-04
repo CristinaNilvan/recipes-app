@@ -29,6 +29,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
         }
 
+        // to delete
         public async Task<List<RecipeIngredient>> GetByIngredientId(int ingredientId)
         {
             var query = _dataContext
@@ -41,6 +42,7 @@ namespace RecipesApp.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
+        // to delete
         public async Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId)
         {
             var twoDecimalQuantity = (float)Math.Round(quantity * 100f) / 100f;
