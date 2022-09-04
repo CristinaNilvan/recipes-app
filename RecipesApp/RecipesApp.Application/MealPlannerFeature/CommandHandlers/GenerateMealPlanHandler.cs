@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.MealPlannerFeature.Commands;
+using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
@@ -33,11 +34,11 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
         {
             await InitializeLists();
 
-            float averageCalories = MealPlannerUtils.CalculateTwoDecimalFloat(calories / 3);
+            float averageCalories = FeaturesUtils.CalculateTwoDecimalFloat(calories / 3);
 
-            var breakfastRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _breakfastRecipes);
-            var lunchRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _lunchRecipes);
-            var dinnerRecipes = MealPlannerUtils.GetRecipes(averageCalories, mealType, _dinnerRecipes);
+            var breakfastRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _breakfastRecipes);
+            var lunchRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _lunchRecipes);
+            var dinnerRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _dinnerRecipes);
 
             var random = new Random();
 
@@ -55,9 +56,9 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
             var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
 
             _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(getByPaginationParameters, true);
-            _breakfastRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
-            _lunchRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
-            _dinnerRecipes = MealPlannerUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);
+            _breakfastRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
+            _lunchRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
+            _dinnerRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);
         }
     }
 }

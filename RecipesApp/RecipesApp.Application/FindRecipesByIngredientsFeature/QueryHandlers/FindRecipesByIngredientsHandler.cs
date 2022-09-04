@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
+using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
@@ -26,7 +27,7 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                     .RecipeRepository
                     .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
 
-                var containsAll = RecipesFinderUtils
+                var containsAll = FeaturesUtils
                     .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
                 if (containsAll)
@@ -35,7 +36,14 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                 }
             }
 
-            return filteredRecipes;
+            if (filteredRecipes.Count != 0)
+            {
+                return filteredRecipes;
+            }
+            else
+            {
+                return approvedRecipes;
+            }
         }
     }
 }

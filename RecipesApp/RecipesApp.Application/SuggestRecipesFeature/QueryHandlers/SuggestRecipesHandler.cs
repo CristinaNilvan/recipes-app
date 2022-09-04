@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
+using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
@@ -17,7 +18,7 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
             var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
-            var quantityTwoDecimals = RecipesSuggesterUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
+            var quantityTwoDecimals = FeaturesUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
             var allRecipes = await _unitOfWork
                 .RecipeRepository

@@ -1,9 +1,9 @@
 ﻿using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
+namespace RecipesApp.Application.Utils
 {
-    public class MealPlannerUtils
+    internal class FeaturesUtils
     {
         public static float CalculateTwoDecimalFloat(float number)
             => (float)Math.Round(number * 100f) / 100f;
@@ -17,7 +17,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
         public static List<Recipe> FilterByServingTime(ServingTime servingTime, List<Recipe> recipes)
             => recipes.Where(recipe => recipe.ServingTime == servingTime).ToList();
 
-        public static List<Recipe> GetRecipes(float calories, MealType mealType, List<Recipe> recipes)
+        public static List<Recipe> GetRecipesForMealPlan(float calories, MealType mealType, List<Recipe> recipes)
         {
             var bestMatches = FilterByCaloriesAndMealType(calories, mealType, recipes);
             var recipesByMealType = FilterByMealType(mealType, recipes);
@@ -35,5 +35,11 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
                 return recipes;
             }
         }
+
+        public static bool CheckIfRecipeContainsAllIngredients(List<int> recipeIngredientList,
+            List<int> givenIngredientList)
+            => givenIngredientList
+                .All(givenItem => recipeIngredientList
+                .Any(recipeIngredientItem => givenItem == recipeIngredientItem));
     }
 }
