@@ -16,20 +16,13 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
 
         public async Task<Ingredient> Handle(UpdateIngredient request, CancellationToken cancellationToken)
         {
-            var previousIngredient = await _unitOfWork.IngredientRepository.GetById(request.Id);
+            var ingredient = new Ingredient(request.Id, request.Name, request.Category, request.Calories, request.Fats,
+                request.Carbs, request.Proteins);
 
-            if (previousIngredient == null)
-            {
-                return null;
-            }
-
-            var updatedIngredient = new Ingredient(request.Id, request.Name, request.Category, request.Calories, 
-                request.Fats, request.Carbs, request.Proteins);
-
-            await _unitOfWork.IngredientRepository.Update(updatedIngredient);
+            await _unitOfWork.IngredientRepository.Update(ingredient);
             await _unitOfWork.Save();
 
-            return updatedIngredient;
+            return ingredient;
         }
     }
 }
