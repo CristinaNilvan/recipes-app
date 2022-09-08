@@ -16,11 +16,21 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
         public async Task<Recipe> Handle(UpdateRecipe request, CancellationToken cancellationToken)
         {
-            var recipe = new Recipe(request.Id, request.Name, request.Author, request.Description, request.MealType,
-                request.ServingTime, request.Servings);
+            var recipe = await _unitOfWork.RecipeRepository.GetById(request.Id);
 
-            await _unitOfWork.RecipeWithRecipeIngredientsRepository.DeleteByRecipeId(request.Id);
-            await _unitOfWork.RecipeRepository.Update(recipe);
+            if (recipe == null)
+            {
+                return null;
+            }
+
+            recipe.Name = request.Name ?? recipe.Name;
+            recipe.Author = request.Author ?? recipe.Author;
+            recipe.Description = request.Description ?? recipe.Description;
+            recipe.MealType = request.MealType ?? recipe.MealType;
+            recipe.ServingTime = request.ServingTime ?? recipe.ServingTime;
+            recipe.Servings = request.Servings ?? recipe.Servings;
+            recipe.Approved = false;
+
             await _unitOfWork.Save();
 
             return recipe;

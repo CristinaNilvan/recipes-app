@@ -66,6 +66,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        // to delete
         public async Task Update(Ingredient ingredient)
         {
             _dataContext
@@ -73,6 +74,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Update(ingredient);
         }
 
+        // to delete
         public async Task UpdateApprovedStatus(Ingredient ingredient, bool status)
         {
             ingredient.Approved = status;

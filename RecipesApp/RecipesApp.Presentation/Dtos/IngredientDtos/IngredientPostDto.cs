@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Presentation.Dtos.IngredientDtos
 {
-    public class IngredientPutPostDto
+    public class IngredientPostDto
     {
         [Required]
         [MaxLength(50)]

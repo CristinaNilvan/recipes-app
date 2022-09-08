@@ -27,7 +27,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateIngredient([FromBody] IngredientPutPostDto ingredientDto)
+        public async Task<IActionResult> CreateIngredient([FromBody] IngredientPostDto ingredientDto)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating ingredient");
 
@@ -136,9 +136,9 @@ namespace RecipesApp.Presentation.Controllers
             return Ok(mappedResult);
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("{ingredientId}")]
-        public async Task<IActionResult> UpdateIngredient(int ingredientId, [FromBody] IngredientPutPostDto ingredientDto)
+        public async Task<IActionResult> UpdateIngredient(int ingredientId, [FromBody] IngredientPatchDto ingredientDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating ingredient {id}", ingredientId);
 
@@ -164,7 +164,7 @@ namespace RecipesApp.Presentation.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("unapproved-ingredients/{ingredientId}")]
         public async Task<IActionResult> ApproveIngredient(int ingredientId)
         {

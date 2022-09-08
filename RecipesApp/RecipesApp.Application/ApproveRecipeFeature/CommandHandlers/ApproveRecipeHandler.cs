@@ -23,7 +23,7 @@ namespace RecipesApp.Application.ApproveRecipeFeature.CommandHandlers
                 return null;
             }
 
-            await _unitOfWork.RecipeRepository.UpdateApprovedStatus(recipe, true);
+            recipe.Approved = true;
             await _unitOfWork.Save();
 
             return recipe;

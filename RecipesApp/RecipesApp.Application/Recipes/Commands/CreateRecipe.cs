@@ -12,6 +12,8 @@ namespace RecipesApp.Application.Recipes.Commands
         public MealType MealType { get; set; }
         public ServingTime ServingTime { get; set; }
         public float Servings { get; set; }
+
+        // to delete
         public List<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

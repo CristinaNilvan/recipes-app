@@ -82,11 +82,25 @@ namespace RecipesApp.Infrastructure.Repositories
             return await getByApproveStatusQuery.ToListAsync();
         }
 
+        public async Task<List<Recipe>> GetByApprovedStatus2(PaginationParameters paginationParameters, bool approvedStatus)
+        {
+            var getByApproveStatusQuery = _dataContext
+                .Recipes
+                .Include(recipe => recipe.RecipeImage)
+                .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
+                .Where(recipe => recipe.Approved == approvedStatus);
+
+            return await getByApproveStatusQuery.ToListAsync();
+        }
+
+        // to delete
         public async Task Update(Recipe recipe)
         {
             _dataContext.Recipes.Update(recipe);
         }
 
+        // to delete
         public async Task UpdateApprovedStatus(Recipe recipe, bool status)
         {
             recipe.Approved = status;

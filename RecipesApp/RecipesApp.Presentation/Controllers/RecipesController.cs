@@ -29,7 +29,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRecipe([FromBody] RecipePutPostDto recipeDto)
+        public async Task<IActionResult> CreateRecipe([FromBody] RecipePostDto recipeDto)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating recipe");
 
@@ -183,9 +183,9 @@ namespace RecipesApp.Presentation.Controllers
             return Ok(mappedResult);
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("{recipeId}")]
-        public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePutPostDto recipeDto)
+        public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePatchDto recipeDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating recipe {id}", recipeId);
 
@@ -211,7 +211,7 @@ namespace RecipesApp.Presentation.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("unapproved-recipes/{recipeId}")]
         public async Task<IActionResult> ApproveRecipe(int recipeId)
         {
