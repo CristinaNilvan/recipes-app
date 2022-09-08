@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RecipesApp.Application.MealPlannerFeature.Commands;
+using RecipesApp.Application.MealPlans.Commands;
 using RecipesApp.Domain.Models;
 using RecipesApp.Presentation.Dtos.MealPlanDtos;
 
@@ -22,7 +22,7 @@ namespace RecipesApp.Presentation.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> GenerateMealPlan([FromBody] MealPlanPostDto mealPlanDto)
         {
             _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
@@ -31,6 +31,24 @@ namespace RecipesApp.Presentation.Controllers
             {
                 MealType = mealPlanDto.MealType,
                 Calories = mealPlanDto.Calories
+            };
+
+            var result = await _mediator.Send(command);
+            var mappedResult = _mapper.Map<MealPlanGetDto>(result);
+
+            return Ok(mappedResult);
+        }*/
+
+        [HttpPost]
+        public async Task<IActionResult> CreateMealPlan([FromBody] MealPlanPostDto mealPlanDto)
+        {
+            _logger.LogInformation(LogEvents.CreateItem, "Creating meal plan");
+
+            var command = new CreateMealPlan
+            {
+                Breakfast = mealPlanDto.Breakfast,
+                Lunch = mealPlanDto.Lunch,
+                Dinner = mealPlanDto.Dinner
             };
 
             var result = await _mediator.Send(command);

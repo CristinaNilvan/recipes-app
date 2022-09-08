@@ -12,6 +12,8 @@ namespace RecipesApp.Presentation.Profiles
                 .ForMember(recipeGetDto => recipeGetDto.RecipeIngredients, recipe => recipe
                 .MapFrom(recipe => recipe.RecipeWithRecipeIngredients
                 .Select(recipeWithIngredient => recipeWithIngredient.RecipeIngredient)));
+            CreateMap<RecipeGetDto, Recipe>();
+            CreateMap<MealPlan, MealPlannerGetDto>(); // delete if not needed for meal planner
         }
     }
 }

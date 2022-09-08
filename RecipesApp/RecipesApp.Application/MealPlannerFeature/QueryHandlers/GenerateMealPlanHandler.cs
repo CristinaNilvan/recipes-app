@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
-using RecipesApp.Application.MealPlannerFeature.Commands;
+using RecipesApp.Application.MealPlannerFeature.Queries;
 using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
+namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
 {
     public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
     {
@@ -22,12 +22,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
         {
-            var mealPlan = await GenerateMealPlan(request.MealType, request.Calories);
-
-            await _unitOfWork.MealPlanRepository.Create(mealPlan);
-            await _unitOfWork.Save();
-
-            return mealPlan;
+            return await GenerateMealPlan(request.MealType, request.Calories);
         }
 
         private async Task<MealPlan> GenerateMealPlan(MealType mealType, float calories)

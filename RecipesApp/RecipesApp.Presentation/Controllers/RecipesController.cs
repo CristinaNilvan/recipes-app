@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
+using RecipesApp.Application.MealPlannerFeature.Queries;
 using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
 using RecipesApp.Domain.Models;
+using RecipesApp.Presentation.Dtos.MealPlanDtos;
 using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
@@ -179,6 +181,24 @@ namespace RecipesApp.Presentation.Controllers
 
             var result = await _mediator.Send(query);
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpGet]
+        [Route("meal-plan-generator")]
+        public async Task<IActionResult> GenerateMealPlan([FromQuery] MealPlannerPostDto mealPlannerDto)
+        {
+            _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
+
+            var query = new GenerateMealPlan
+            {
+                MealType = mealPlannerDto.MealType,
+                Calories = mealPlannerDto.Calories
+            };
+
+            var result = await _mediator.Send(query);
+            var mappedResult = _mapper.Map<MealPlannerGetDto>(result);
 
             return Ok(mappedResult);
         }

@@ -1,4 +1,5 @@
 ﻿using RecipesApp.Domain.Enums;
+using RecipesApp.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Presentation.Dtos.MealPlanDtos
@@ -6,10 +7,12 @@ namespace RecipesApp.Presentation.Dtos.MealPlanDtos
     public class MealPlanPostDto
     {
         [Required]
-        public MealType MealType { get; set; }
+        public Recipe Breakfast { get; set; }
 
         [Required]
-        [Range(1000, 3000)]
-        public float Calories { get; set; }
+        public Recipe Lunch { get; set; }
+
+        [Required]
+        public Recipe Dinner { get; set; }
     }
 }

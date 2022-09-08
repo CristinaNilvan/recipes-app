@@ -2,7 +2,7 @@
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.MealPlannerFeature.Commands
+namespace RecipesApp.Application.MealPlannerFeature.Queries
 {
     public class GenerateMealPlan : IRequest<MealPlan>
     {
