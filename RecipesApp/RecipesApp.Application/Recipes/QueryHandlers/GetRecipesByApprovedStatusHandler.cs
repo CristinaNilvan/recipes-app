@@ -18,7 +18,7 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
         {
             return await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatus(request.PaginationParameters, request.ApprovedStatus);
+                .GetByApprovedStatusWithPagination(request.PaginationParameters, request.ApprovedStatus);
         }
     }
 }

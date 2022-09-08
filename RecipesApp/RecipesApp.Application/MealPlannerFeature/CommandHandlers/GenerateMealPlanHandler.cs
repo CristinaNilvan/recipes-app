@@ -53,9 +53,7 @@ namespace RecipesApp.Application.MealPlannerFeature.CommandHandlers
 
         private async Task InitializeLists()
         {
-            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
-
-            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(getByPaginationParameters, true);
+            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatusWithoutPagination(true);
             _breakfastRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

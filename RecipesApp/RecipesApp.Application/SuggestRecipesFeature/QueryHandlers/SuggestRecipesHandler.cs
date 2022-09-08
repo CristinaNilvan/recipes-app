@@ -17,30 +17,29 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
-            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
             var quantityTwoDecimals = FeaturesUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
             var allRecipes = await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatus(getByPaginationParameters, true);
+                .GetByApprovedStatusWithPagination(request.PaginationParameters, true);
             var recipesWithIngredient = await _unitOfWork
                 .RecipeRepository
-                .GetRecipesWithInredientAndQuantity(quantityTwoDecimals, request.IngredientName);
+                .GetRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName);
             var bestMatches = await _unitOfWork
                 .RecipeRepository
-                .GetBestMatchRecipesWithInredientAndQuantity(quantityTwoDecimals, request.IngredientName);
+                .GetBestMatchRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName);
 
             if (bestMatches.Count != 0)
             {
-                return FeaturesUtils.DoPaginationOnRecipes(bestMatches, request.PaginationParameters);
+                return bestMatches;
             }
             else if (recipesWithIngredient.Count != 0)
             {
-                return FeaturesUtils.DoPaginationOnRecipes(recipesWithIngredient, request.PaginationParameters);
+                return recipesWithIngredient;
             }
             else
             {
-                return FeaturesUtils.DoPaginationOnRecipes(allRecipes, request.PaginationParameters);
+                return allRecipes;
             }
         }
     }

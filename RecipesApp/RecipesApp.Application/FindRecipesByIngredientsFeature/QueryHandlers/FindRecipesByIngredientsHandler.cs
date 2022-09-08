@@ -19,30 +19,34 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
         {
             var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
             var filteredRecipes = new List<Recipe>();
-            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatus(getByPaginationParameters, true);
+            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatusWithPagination(getByPaginationParameters, true);
 
-            foreach (var recipe in approvedRecipes)
-            {
-                var recipeIngredientsIds = await _unitOfWork
-                    .RecipeRepository
-                    .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
+            /*            foreach (var recipe in approvedRecipes)
+                        {
+                            var recipeIngredientsIds = await _unitOfWork
+                                .RecipeRepository
+                                .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
 
-                var containsAll = FeaturesUtils
-                    .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
+                            var containsAll = FeaturesUtils
+                                .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
-                if (containsAll)
-                {
-                    filteredRecipes.Add(recipe);
-                }
-            }
+                            if (containsAll)
+                            {
+                                filteredRecipes.Add(recipe);
+                            }
+                        }*/
+
+            filteredRecipes = await _unitOfWork.RecipeRepository.GetRecipesByIngredients(request.IngredientIds);
 
             if (filteredRecipes.Count != 0)
             {
-                return FeaturesUtils.DoPaginationOnRecipes(filteredRecipes, request.PaginationParameters);
+                //return FeaturesUtils.DoPaginationOnRecipes(filteredRecipes, request.PaginationParameters);
+                return filteredRecipes;
             }
             else
             {
-                return FeaturesUtils.DoPaginationOnRecipes(approvedRecipes, request.PaginationParameters);
+                //return FeaturesUtils.DoPaginationOnRecipes(approvedRecipes, request.PaginationParameters);
+                return approvedRecipes;
             }
         }
     }
