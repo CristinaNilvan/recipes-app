@@ -111,7 +111,8 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.Ingredient)
                 .Where(recipeWithRecipeIngredients =>
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
-                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
+                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName &&
+                    recipeWithRecipeIngredients.Recipe.Approved == true)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
                 .Take(paginationParameters.PageSize)
                 .Select(recipeWithRecipeIngredientsOuter => _dataContext
@@ -137,7 +138,8 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Where(recipeWithRecipeIngredients =>
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity <= ingredientQuantity &&
                     recipeWithRecipeIngredients.RecipeIngredient.Quantity >= quantityLimit &&
-                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName)
+                    recipeWithRecipeIngredients.RecipeIngredient.Ingredient.Name == ingredientName &&
+                    recipeWithRecipeIngredients.Recipe.Approved == true)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
                 .Take(paginationParameters.PageSize)
                 .Select(recipeWithRecipeIngredientsOuter => _dataContext
