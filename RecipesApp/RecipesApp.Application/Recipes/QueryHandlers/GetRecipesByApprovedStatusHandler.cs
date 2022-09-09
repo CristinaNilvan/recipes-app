@@ -16,9 +16,10 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
 
         public async Task<List<Recipe>> Handle(GetRecipesByApprovedStatus request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork
+            return (await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatusWithPagination(request.PaginationParameters, request.ApprovedStatus);
+                .GetByApprovedStatusWithPagination(request.PaginationParameters, request.ApprovedStatus))
+                .ToList();
         }
     }
 }

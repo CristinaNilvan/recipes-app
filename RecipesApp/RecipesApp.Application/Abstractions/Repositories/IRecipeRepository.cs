@@ -9,13 +9,13 @@ namespace RecipesApp.Application.Abstractions.Repositories
         Task Update(Recipe recipe);
         Task UpdateApprovedStatus(Recipe recipe, bool status);
         Task Delete(Recipe recipe);
-        Task<List<Recipe>> GetAll(PaginationParameters paginationParameters);
-        Task<List<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName);
-        Task<List<Recipe>> GetByApprovedStatusWithPagination(PaginationParameters paginationParameters, bool approvedStatus);
-        Task<List<Recipe>> GetByApprovedStatusWithoutPagination(bool approvedStatus);
-        Task<List<Recipe>> GetRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters, float ingredientQuantity, string ingredientName);
-        Task<List<Recipe>> GetBestMatchRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters, float ingredientQuantity, string ingredientName);
-        Task<List<Recipe>> GetRecipesByIngredients(List<int> ingredientIds);
-        //IQueryable<int> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor);
+        Task<IQueryable<Recipe>> GetAll(PaginationParameters paginationParameters);
+        Task<IQueryable<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName);
+        Task<IQueryable<Recipe>> GetByApprovedStatusWithPagination(PaginationParameters paginationParameters, bool approvedStatus);
+        Task<IQueryable<Recipe>> GetByApprovedStatusWithoutPagination(bool approvedStatus);
+        Task<IQueryable<Recipe>> GetRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters, float ingredientQuantity, string ingredientName);
+        Task<IQueryable<Recipe>> GetBestMatchRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters, float ingredientQuantity, string ingredientName);
+        Task<IQueryable<Recipe>> GetRecipesContainingIngredients(List<int> ingredientIds);
+        Task<IQueryable<int>> GetIngredientIdsByRecipeId(int recipeId);
     }
 }

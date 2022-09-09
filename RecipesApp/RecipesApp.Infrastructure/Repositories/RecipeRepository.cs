@@ -28,16 +28,15 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Remove(recipe);
         }
 
-        public async Task<List<Recipe>> GetAll(PaginationParameters paginationParameters)
+        public async Task<IQueryable<Recipe>> GetAll(PaginationParameters paginationParameters)
         {
-            return await _dataContext
+            return _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
-                .Take(paginationParameters.PageSize)
-                .ToListAsync();
+                .Take(paginationParameters.PageSize);
         }
 
         public async Task<Recipe> GetById(int recipeId)
@@ -50,22 +49,21 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
-        public async Task<List<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName)
+        public async Task<IQueryable<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName)
         {
-            return await _dataContext
+            return _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(recipe => recipe.Name == recipeName)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
-                .Take(paginationParameters.PageSize)
-                .ToListAsync(); ;
+                .Take(paginationParameters.PageSize);
         }
 
-        public async Task<List<Recipe>> GetByApprovedStatusWithPagination(PaginationParameters paginationParameters, bool approvedStatus)
+        public async Task<IQueryable<Recipe>> GetByApprovedStatusWithPagination(PaginationParameters paginationParameters, bool approvedStatus)
         {
-            var joinQuery = _dataContext
+            return _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
@@ -73,20 +71,16 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Where(recipe => recipe.Approved == approvedStatus)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
                 .Take(paginationParameters.PageSize);
-
-            return await joinQuery.ToListAsync();
         }
 
-        public async Task<List<Recipe>> GetByApprovedStatusWithoutPagination(bool approvedStatus)
+        public async Task<IQueryable<Recipe>> GetByApprovedStatusWithoutPagination(bool approvedStatus)
         {
-            var joinQuery = _dataContext
+            return _dataContext
                 .Recipes
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(recipe => recipe.Approved == approvedStatus);
-
-            return await joinQuery.ToListAsync();
         }
 
         // to delete
@@ -101,9 +95,10 @@ namespace RecipesApp.Infrastructure.Repositories
             recipe.Approved = status;
         }
 
-        public async Task<List<Recipe>> GetRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters,
+        public async Task<IQueryable<Recipe>> GetRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters,
             float ingredientQuantity, string ingredientName)
         {
+            //remove includes
             var joinQuery = _dataContext
                 .RecipeWithRecipeIngredients
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
@@ -122,14 +117,15 @@ namespace RecipesApp.Infrastructure.Repositories
                     .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
                     .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));
 
-            return await joinQuery.ToListAsync();
+            return joinQuery;
         }
 
-        public async Task<List<Recipe>> GetBestMatchRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters,
+        public async Task<IQueryable<Recipe>> GetBestMatchRecipesWithIngredientAndQuantity(PaginationParameters paginationParameters,
             float ingredientQuantity, string ingredientName)
         {
             var quantityLimit = ingredientQuantity / 2;
 
+            //remove includes
             var joinQuery = _dataContext
                 .RecipeWithRecipeIngredients
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
@@ -149,57 +145,33 @@ namespace RecipesApp.Infrastructure.Repositories
                     .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
                     .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));
 
-            return await joinQuery.ToListAsync();
+            return joinQuery;
         }
 
-
-        /*Find recipes by ingredient list feature
-        Where(recipe => allIngredientsList.ForAll(ingredientId => recipe.Ingredientids.Contains(ingredientId)))*/
-
-        public async Task<List<Recipe>> GetRecipesByIngredients(List<int> ingredientIds)
+        public async Task<IQueryable<Recipe>> GetRecipesContainingIngredients(List<int> ingredientIds)
         {
-            /*var joinQuery = _dataContext
+            var joinQuery = _dataContext
                 .RecipeWithRecipeIngredients
-                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
-                .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .Where(recipeWithRecipeIngredients => ingredientIds.TrueForAll(ingredientId =>
-                       GetIngredientIdsOfRecipe(recipeWithRecipeIngredients.Recipe.Name, recipeWithRecipeIngredients.Recipe.Author)
-                       .Contains(ingredientId)))
-                .Select(recipeWithRecipeIngredientsOuter => _dataContext
+                .Include(recWithRecIng => recWithRecIng.Recipe)
+                .Where(recWithRecIng => ingredientIds.Contains(recWithRecIng.RecipeIngredient.IngredientId))
+                .Select(recWithRecIngOut => _dataContext
                     .Recipes
                     .Include(recipe => recipe.RecipeImage)
                     .Include(recipe => recipe.RecipeWithRecipeIngredients)
                     .ThenInclude(recipeWithRecipeIngredientInner => recipeWithRecipeIngredientInner.RecipeIngredient)
-                    .SingleOrDefault(recipe => recipe.Id == recipeWithRecipeIngredientsOuter.Recipe.Id));*/
+                    .SingleOrDefault(recipe => recipe.Id == recWithRecIngOut.Recipe.Id));
 
-            var joinQuery = _dataContext
-                .Recipes
-                .Include(recipe => recipe.RecipeImage)
-                .Include(recipe => recipe.RecipeWithRecipeIngredients)
-                .ThenInclude(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
-                .Where(recipe => ingredientIds.All(ingredientId =>
-                    recipe.RecipeWithRecipeIngredients.Any(rec => rec.RecipeIngredient.IngredientId == ingredientId)));
-                /*.Where(recipe =>
-                    recipe.RecipeWithRecipeIngredients.Any(rec => rec.RecipeIngredient.IngredientId == 1));*/
-
-            return await joinQuery.ToListAsync();
+            return joinQuery;
         }
 
-        public bool CheckIfRecipeContainsAllIngredients(List<int> recipeIngredientList,
-            List<int> givenIngredientList)
-            => givenIngredientList
-                .All(givenItem => recipeIngredientList
-                .Any(recipeIngredientItem => givenItem == recipeIngredientItem));
-
-        public IQueryable<int> GetIngredientIdsOfRecipe(string recipeName, string recipeAuthor)
+        public async Task<IQueryable<int>> GetIngredientIdsByRecipeId(int recipeId)
         {
             var joinQuery = _dataContext
                 .RecipeWithRecipeIngredients
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.Recipe)
                 .Include(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient)
                 .Where(recipeWithRecipeIngredients =>
-                    recipeWithRecipeIngredients.Recipe.Name == recipeName &&
-                    recipeWithRecipeIngredients.Recipe.Author == recipeAuthor)
+                    recipeWithRecipeIngredients.RecipeId == recipeId)
                 .Select(recipeWithRecipeIngredients => recipeWithRecipeIngredients.RecipeIngredient.IngredientId);
 
             return joinQuery;

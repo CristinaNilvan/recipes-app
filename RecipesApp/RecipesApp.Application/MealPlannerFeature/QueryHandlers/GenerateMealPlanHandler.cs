@@ -48,7 +48,7 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
 
         private async Task InitializeLists()
         {
-            _allRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatusWithoutPagination(true);
+            _allRecipes = (await _unitOfWork.RecipeRepository.GetByApprovedStatusWithoutPagination(true)).ToList();
             _breakfastRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
             _lunchRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
             _dinnerRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);

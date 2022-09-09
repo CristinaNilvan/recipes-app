@@ -17,36 +17,42 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(FindRecipesByIngredients request, CancellationToken cancellationToken)
         {
-            var getByPaginationParameters = new PaginationParameters { PageNumber = 0 };
-            var filteredRecipes = new List<Recipe>();
-            var approvedRecipes = await _unitOfWork.RecipeRepository.GetByApprovedStatusWithPagination(getByPaginationParameters, true);
+            var recipesWithAllIngredients = new List<Recipe>();
+            var recipesContainingIngredients = (await _unitOfWork
+                .RecipeRepository
+                .GetRecipesContainingIngredients(request.IngredientIds))
+                .ToList();
 
-            /*            foreach (var recipe in approvedRecipes)
-                        {
-                            var recipeIngredientsIds = await _unitOfWork
-                                .RecipeRepository
-                                .GetIngredientIdsOfRecipe(recipe.Name, recipe.Author);
-
-                            var containsAll = FeaturesUtils
-                                .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
-
-                            if (containsAll)
-                            {
-                                filteredRecipes.Add(recipe);
-                            }
-                        }*/
-
-            filteredRecipes = await _unitOfWork.RecipeRepository.GetRecipesByIngredients(request.IngredientIds);
-
-            if (filteredRecipes.Count != 0)
+            foreach (var recipe in recipesContainingIngredients)
             {
-                //return FeaturesUtils.DoPaginationOnRecipes(filteredRecipes, request.PaginationParameters);
-                return filteredRecipes;
+                var recipeIngredientsIds = (await _unitOfWork
+                    .RecipeRepository
+                    .GetIngredientIdsByRecipeId(recipe.Id))
+                    .ToList();
+
+                var containsAll = FeaturesUtils
+                    .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
+
+                if (containsAll)
+                {
+                    recipesWithAllIngredients.Add(recipe);
+                }
+            }
+
+            if (recipesWithAllIngredients.Count != 0)
+            {
+                return recipesWithAllIngredients;
+            }
+            else if (recipesContainingIngredients.Count != 0)
+            {
+                return recipesContainingIngredients;
             }
             else
             {
-                //return FeaturesUtils.DoPaginationOnRecipes(approvedRecipes, request.PaginationParameters);
-                return approvedRecipes;
+                return (await _unitOfWork
+                    .RecipeRepository
+                    .GetByApprovedStatusWithPagination(request.PaginationParameters, true))
+                    .ToList();
             }
         }
     }

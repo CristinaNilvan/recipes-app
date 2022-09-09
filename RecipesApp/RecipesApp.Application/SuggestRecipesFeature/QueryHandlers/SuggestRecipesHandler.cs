@@ -19,15 +19,18 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
         {
             var quantityTwoDecimals = FeaturesUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
 
-            var allRecipes = await _unitOfWork
+            var allRecipes = (await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatusWithPagination(request.PaginationParameters, true);
-            var recipesWithIngredient = await _unitOfWork
+                .GetByApprovedStatusWithPagination(request.PaginationParameters, true))
+                .ToList();
+            var recipesWithIngredient = (await _unitOfWork
                 .RecipeRepository
-                .GetRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName);
-            var bestMatches = await _unitOfWork
+                .GetRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
+                .ToList();
+            var bestMatches = (await _unitOfWork
                 .RecipeRepository
-                .GetBestMatchRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName);
+                .GetBestMatchRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
+                .ToList();
 
             if (bestMatches.Count != 0)
             {
