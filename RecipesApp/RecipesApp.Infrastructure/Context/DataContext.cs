@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Infrastructure.Context

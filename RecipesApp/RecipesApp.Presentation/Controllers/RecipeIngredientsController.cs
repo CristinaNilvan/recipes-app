@@ -24,7 +24,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{ingredientId}")] 
+        [Route("{ingredientId}")]
         public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, [FromBody] float quantity)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating recipe ingredient");

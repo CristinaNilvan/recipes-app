@@ -1,5 +1,4 @@
-﻿using RecipesApp.Application.MealPlannerFeature.Commands;
-using RecipesApp.Console.InputHandling.Utils;
+﻿using RecipesApp.Console.InputHandling.Utils;
 using RecipesApp.Domain.Enums;
 
 namespace RecipesApp.Console.InputHandling.Handlers

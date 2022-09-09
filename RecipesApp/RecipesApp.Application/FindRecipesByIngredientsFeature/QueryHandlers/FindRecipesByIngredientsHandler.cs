@@ -20,7 +20,7 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
             var recipesWithAllIngredients = new List<Recipe>();
             var recipesContainingIngredients = (await _unitOfWork
                 .RecipeRepository
-                .GetRecipesContainingIngredients(request.IngredientIds))
+                .GetByContainingOneOfGivenIngredients(request.IngredientIds))
                 .ToList();
 
             foreach (var recipe in recipesContainingIngredients)
@@ -49,10 +49,7 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
             }
             else
             {
-                return (await _unitOfWork
-                    .RecipeRepository
-                    .GetByApprovedStatusWithPagination(request.PaginationParameters, true))
-                    .ToList();
+                return null;
             }
         }
     }

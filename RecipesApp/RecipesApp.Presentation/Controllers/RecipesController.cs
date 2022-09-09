@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
 using RecipesApp.Application.MealPlannerFeature.Queries;
@@ -10,7 +8,6 @@ using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Application.Recipes.Queries;
 using RecipesApp.Application.SuggestRecipesFeature.Queries;
 using RecipesApp.Domain.Models;
-using RecipesApp.Presentation.Dtos.MealPlanDtos;
 using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
@@ -73,7 +70,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("{recipeName}")]
-        public async Task<IActionResult> GetRecipesByName(string recipeName, 
+        public async Task<IActionResult> GetRecipesByName(string recipeName,
             [FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItem, "Getting recipes with name {name}", recipeName);
@@ -88,7 +85,7 @@ namespace RecipesApp.Presentation.Controllers
 
             if (result == null)
             {
-                _logger.LogWarning(LogEvents.GetItemNotFound, "Recipes with name {name} not found", recipeName);
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Recipes with name {name} not found", recipeName);
                 return NotFound();
             }
 
@@ -105,6 +102,13 @@ namespace RecipesApp.Presentation.Controllers
 
             var query = new GetAllRecipes() { PaginationParameters = paginationParameters };
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Recipes not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
@@ -123,6 +127,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Approved recipes not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
@@ -141,6 +152,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Unapproved recipes not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
@@ -148,18 +166,23 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("recipes-finder")]
-        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds,
-            [FromQuery] PaginationParameters paginationParameters)
+        public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredients");
 
             var query = new FindRecipesByIngredients
-            { 
-                PaginationParameters = paginationParameters,
+            {
                 IngredientIds = ingredientIds.ToList()
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Can't find recipes with at least one of the ingredients");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
@@ -180,6 +203,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Can't find recipes with a matching quantity");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<RecipeGetDto>>(result);
 
             return Ok(mappedResult);
@@ -198,6 +228,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GenerateItemNotFound, "Can't find recipes to generate meal plan");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<MealPlannerGetDto>(result);
 
             return Ok(mappedResult);
@@ -284,7 +321,7 @@ namespace RecipesApp.Presentation.Controllers
 
             if (result == null)
             {
-                _logger.LogWarning(LogEvents.AddToItemNotFound, 
+                _logger.LogWarning(LogEvents.AddToItemNotFound,
                     "Recipe {recipeId} or recipe ingredient {recipeIngredientId} not found", recipeId, recipeIngredientId);
 
                 return NotFound();
@@ -299,7 +336,7 @@ namespace RecipesApp.Presentation.Controllers
         [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
         public async Task<IActionResult> RemoveRecipeIngredientFromRecipe(int recipeId, int recipeIngredientId)
         {
-            _logger.LogInformation(LogEvents.RemoveFromItem, 
+            _logger.LogInformation(LogEvents.RemoveFromItem,
                 "Removing recipe ingredient {recipeIngredientId} from recipe {id}", recipeIngredientId, recipeId);
 
             var command = new RemoveRecipeIngredientFromRecipe

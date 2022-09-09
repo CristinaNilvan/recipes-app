@@ -1,7 +1,6 @@
 using Azure.Storage.Blobs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using RecipesApp.Application;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Abstractions.Repositories;

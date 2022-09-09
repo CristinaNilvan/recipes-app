@@ -1,5 +1,5 @@
-﻿using Azure.Storage.Blobs.Models;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
 using RecipesApp.Application.Abstractions.Services;
 
@@ -31,7 +31,7 @@ namespace RecipesApp.Infrastructure.Services
             {
                 ContentType = file.ContentType
             };
-            
+
             await blobClient.UploadAsync(file.OpenReadStream(), httpHeaders);
             var blobUrl = blobClient.Uri.AbsoluteUri;
 

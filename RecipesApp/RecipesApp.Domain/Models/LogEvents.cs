@@ -12,9 +12,11 @@
         public const int RemoveFromItem = 1007;
 
         public const int GetItemNotFound = 4000;
-        public const int UpdateItemNotFound = 4001;
-        public const int DeleteItemNotFound = 4002;
-        public const int AddToItemNotFound = 4003;
-        public const int RemoveFromItemNotFound = 4004;
+        public const int GetItemsNotFound = 4001;
+        public const int UpdateItemNotFound = 4002;
+        public const int DeleteItemNotFound = 4003;
+        public const int GenerateItemNotFound = 4004;
+        public const int AddToItemNotFound = 4005;
+        public const int RemoveFromItemNotFound = 4006;
     }
 }

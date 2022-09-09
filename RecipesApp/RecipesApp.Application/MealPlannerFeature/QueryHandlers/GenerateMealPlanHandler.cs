@@ -10,7 +10,6 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
     public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private List<Recipe> _allRecipes;
         private List<Recipe> _breakfastRecipes;
         private List<Recipe> _lunchRecipes;
         private List<Recipe> _dinnerRecipes;
@@ -27,31 +26,58 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
 
         private async Task<MealPlan> GenerateMealPlan(MealType mealType, float calories)
         {
-            await InitializeLists();
-
             float averageCalories = FeaturesUtils.CalculateTwoDecimalFloat(calories / 3);
+            await InitializeLists(averageCalories, mealType);
 
-            var breakfastRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _breakfastRecipes);
-            var lunchRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _lunchRecipes);
-            var dinnerRecipes = FeaturesUtils.GetRecipesForMealPlan(averageCalories, mealType, _dinnerRecipes);
+            if (_breakfastRecipes == null || _lunchRecipes == null || _dinnerRecipes == null)
+            {
+                return null;
+            }
 
             var random = new Random();
 
-            var breakfast = breakfastRecipes.ElementAt(random.Next(0, breakfastRecipes.Count));
-            var lunch = lunchRecipes.ElementAt(random.Next(0, lunchRecipes.Count));
-            var dinner = dinnerRecipes.ElementAt(random.Next(0, dinnerRecipes.Count));
+            var breakfast = _breakfastRecipes.ElementAt(random.Next(0, _breakfastRecipes.Count));
+            var lunch = _lunchRecipes.ElementAt(random.Next(0, _lunchRecipes.Count));
+            var dinner = _dinnerRecipes.ElementAt(random.Next(0, _dinnerRecipes.Count));
 
             var mealPlan = new MealPlan(breakfast, lunch, dinner);
 
             return mealPlan;
         }
 
-        private async Task InitializeLists()
+        private async Task InitializeLists(float averageCalories, MealType mealType)
         {
-            _allRecipes = (await _unitOfWork.RecipeRepository.GetByApprovedStatusWithoutPagination(true)).ToList();
-            _breakfastRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Breakfast, _allRecipes);
-            _lunchRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Lunch, _allRecipes);
-            _dinnerRecipes = FeaturesUtils.FilterByServingTime(ServingTime.Dinner, _allRecipes);
+            _breakfastRecipes = await GetRecipeList(averageCalories, mealType, ServingTime.Breakfast);
+            _lunchRecipes = await GetRecipeList(averageCalories, mealType, ServingTime.Lunch);
+            _dinnerRecipes = await GetRecipeList(averageCalories, mealType, ServingTime.Dinner);
+        }
+
+        private async Task<List<Recipe>> GetRecipeList(float averageCalories, MealType mealType, ServingTime servingTime)
+        {
+            var recipeList = (await _unitOfWork
+                .RecipeRepository
+                .GetByMealPlannerCriteria(averageCalories, mealType, servingTime))
+                .ToList();
+
+            if (recipeList.Count != 0)
+            {
+                return recipeList;
+            }
+
+            var newAverageCalories = averageCalories + (averageCalories / 2);
+            newAverageCalories = FeaturesUtils.CalculateTwoDecimalFloat(newAverageCalories);
+
+            recipeList = (await _unitOfWork
+                .RecipeRepository
+                .GetByMealPlannerCriteria(newAverageCalories, mealType, servingTime))
+                .ToList();
+
+            if (recipeList.Count != 0)
+            {
+                return recipeList;
+            }
+
+            return null;
         }
     }
 }

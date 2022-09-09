@@ -1,7 +1,6 @@
 ﻿using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
 using RecipesApp.Application.RecipeIngredients.Commands;
-using RecipesApp.Application.RecipeIngredients.Queries;
 using RecipesApp.Console.InputHandling.Handlers;
 using RecipesApp.Domain.Enums;
 using RecipesApp.Domain.Models;

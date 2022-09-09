@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
 using RecipesApp.Application.Ingredients.Commands;
 using RecipesApp.Application.Ingredients.Queries;
-using RecipesApp.Application.Recipes.Commands;
 using RecipesApp.Domain.Models;
 using RecipesApp.Presentation.Dtos.IngredientDtos;
-using RecipesApp.Presentation.Dtos.RecipeDtos;
 
 namespace RecipesApp.Presentation.Controllers
 {
@@ -109,7 +107,7 @@ namespace RecipesApp.Presentation.Controllers
             var query = new GetIngredientsByApprovedStatus
             {
                 PaginationParameters = paginationParameters,
-                ApprovedStatus = true 
+                ApprovedStatus = true
             };
 
             var result = await _mediator.Send(query);

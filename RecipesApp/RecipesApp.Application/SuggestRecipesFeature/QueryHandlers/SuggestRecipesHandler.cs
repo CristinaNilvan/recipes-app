@@ -18,32 +18,27 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
             var quantityTwoDecimals = FeaturesUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
-
-            var allRecipes = (await _unitOfWork
-                .RecipeRepository
-                .GetByApprovedStatusWithPagination(request.PaginationParameters, true))
-                .ToList();
-            var recipesWithIngredient = (await _unitOfWork
-                .RecipeRepository
-                .GetRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
-                .ToList();
             var bestMatches = (await _unitOfWork
                 .RecipeRepository
-                .GetBestMatchRecipesWithIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
+                .GetBestMatchByIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
                 .ToList();
 
             if (bestMatches.Count != 0)
             {
                 return bestMatches;
             }
-            else if (recipesWithIngredient.Count != 0)
+
+            var recipesWithIngredient = (await _unitOfWork
+                .RecipeRepository
+                .GetByIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))
+                .ToList();
+
+            if (recipesWithIngredient.Count != 0)
             {
                 return recipesWithIngredient;
             }
-            else
-            {
-                return allRecipes;
-            }
+
+            return null;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Models;
+﻿using RecipesApp.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Presentation.Dtos.MealPlanDtos
