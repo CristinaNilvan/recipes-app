@@ -28,14 +28,13 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Remove(ingredient);
         }
 
-        public async Task<List<Ingredient>> GetAll(PaginationParameters paginationParameters)
+        public async Task<IQueryable<Ingredient>> GetAll(PaginationParameters paginationParameters)
         {
-            return await _dataContext
+            return _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
-                .Take(paginationParameters.PageSize)
-                .ToListAsync();
+                .Take(paginationParameters.PageSize);
         }
 
         public async Task<Ingredient> GetById(int ingredientId)
@@ -55,29 +54,14 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(ingredient => ingredient.Name == ingredientName);
         }
 
-        public async Task<List<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus)
+        public async Task<IQueryable<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus)
         {
-            return await _dataContext
+            return _dataContext
                 .Ingredients
                 .Include(ingredient => ingredient.IngredientImage)
                 .Where(ingredient => ingredient.Approved == approvedStatus)
                 .Skip((paginationParameters.PageNumber - 1) * paginationParameters.PageSize)
-                .Take(paginationParameters.PageSize)
-                .ToListAsync();
-        }
-
-        // to delete
-        public async Task Update(Ingredient ingredient)
-        {
-            _dataContext
-                .Ingredients
-                .Update(ingredient);
-        }
-
-        // to delete
-        public async Task UpdateApprovedStatus(Ingredient ingredient, bool status)
-        {
-            ingredient.Approved = status;
+                .Take(paginationParameters.PageSize);
         }
     }
 }

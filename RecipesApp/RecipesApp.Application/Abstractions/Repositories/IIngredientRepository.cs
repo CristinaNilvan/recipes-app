@@ -7,10 +7,8 @@ namespace RecipesApp.Application.Abstractions.Repositories
         Task Create(Ingredient ingredient);
         Task<Ingredient> GetById(int ingredientId);
         Task<Ingredient> GetByName(string ingredientName);
-        Task Update(Ingredient ingredient);
-        Task UpdateApprovedStatus(Ingredient ingredient, bool status);
         Task Delete(Ingredient ingredient);
-        Task<List<Ingredient>> GetAll(PaginationParameters paginationParameters);
-        Task<List<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus);
+        Task<IQueryable<Ingredient>> GetAll(PaginationParameters paginationParameters);
+        Task<IQueryable<Ingredient>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus);
     }
 }

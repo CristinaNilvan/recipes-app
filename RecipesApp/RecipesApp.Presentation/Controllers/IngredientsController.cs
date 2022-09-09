@@ -93,6 +93,13 @@ namespace RecipesApp.Presentation.Controllers
 
             var query = new GetAllIngredients() { PaginationParameters = paginationParameters };
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Ingredients not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 
             return Ok(mappedResult);
@@ -111,6 +118,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Approved ingredients not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 
             return Ok(mappedResult);
@@ -129,6 +143,13 @@ namespace RecipesApp.Presentation.Controllers
             };
 
             var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemsNotFound, "Unapproved ingredients not found");
+                return NotFound();
+            }
+
             var mappedResult = _mapper.Map<List<IngredientGetDto>>(result);
 
             return Ok(mappedResult);

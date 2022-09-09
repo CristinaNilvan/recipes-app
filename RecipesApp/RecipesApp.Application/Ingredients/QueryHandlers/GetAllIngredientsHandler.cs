@@ -16,7 +16,17 @@ namespace RecipesApp.Application.Ingredients.QueryHandlers
 
         public async Task<List<Ingredient>> Handle(GetAllIngredients request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.IngredientRepository.GetAll(request.PaginationParameters);
+            var ingredients = (await _unitOfWork
+                .IngredientRepository
+                .GetAll(request.PaginationParameters))
+                .ToList();
+
+            if (ingredients.Count != 0)
+            {
+                return ingredients;
+            }
+
+            return null;
         }
     }
 }
