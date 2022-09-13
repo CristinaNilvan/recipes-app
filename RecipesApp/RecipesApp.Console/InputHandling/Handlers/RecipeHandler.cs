@@ -44,7 +44,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
                 MealType = enumMealType,
                 ServingTime = enumServingTime,
                 Servings = servings,
-                RecipeIngredients = recipeIngredients
+                //RecipeIngredients = recipeIngredients
             });
         }
 
@@ -99,7 +99,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
                 MealType = enumMealType,
                 ServingTime = enumServingTime,
                 Servings = servings,
-                RecipeIngredients = recipeIngredients
+                //RecipeIngredients = recipeIngredients
             });
         }
 

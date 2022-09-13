@@ -57,12 +57,12 @@ namespace RecipesApp.Console.InputHandling.Utils
 
                     System.Console.WriteLine("Here are the recipe ingredients using this ingredient: ");
 
-                    var recipeIngredientsByIngredientId = await mediator.Send(new GetRecipeIngredientsByIngredientId()
+                    var recipeIngredientsByIngredientId = await mediator.Send(new GetIngredientById()
                     {
                         IngredientId = ingredientId
                     });
 
-                    ListPrinter.PrintList(recipeIngredientsByIngredientId);
+                    ListPrinter.PrintList(recipeIngredientsByIngredientId.RecipeIngredients);
 
                     System.Console.WriteLine("1 - add from current recipe ingredients");
                     System.Console.WriteLine("2 - create new recipe ingredient");
@@ -86,19 +86,13 @@ namespace RecipesApp.Console.InputHandling.Utils
                         System.Console.WriteLine("Enter the quantity of the ingredient: ");
                         var quantity = float.Parse(System.Console.ReadLine());
 
-                        await mediator.Send(new CreateRecipeIngredient()
+                        var recipeIngredient = await mediator.Send(new CreateRecipeIngredient()
                         {
                             Quantity = quantity,
                             IngredientId = ingredientId
                         });
 
-                        var recipeIngredientFromDb = await mediator.Send(new GetRecipeIngredientByQuantityAndIngredientId()
-                        {
-                            Quantity = quantity,
-                            IngredientId = ingredientId
-                        });
-
-                        recipeIngredients.Add(recipeIngredientFromDb);
+                        recipeIngredients.Add(recipeIngredient);
                     }
                 }
                 else if (choice == 2)
@@ -123,19 +117,13 @@ namespace RecipesApp.Console.InputHandling.Utils
                     System.Console.WriteLine("Enter the quantity of the ingredient: ");
                     var quantity = float.Parse(System.Console.ReadLine());
 
-                    await mediator.Send(new CreateRecipeIngredient()
+                    var recipeIngredient = await mediator.Send(new CreateRecipeIngredient()
                     {
                         Quantity = quantity,
                         IngredientId = ingredientFromDb.Id
                     });
 
-                    var recipeIngredientFromDb = await mediator.Send(new GetRecipeIngredientByQuantityAndIngredientId()
-                    {
-                        Quantity = quantity,
-                        IngredientId = ingredientFromDb.Id
-                    });
-
-                    recipeIngredients.Add(recipeIngredientFromDb);
+                    recipeIngredients.Add(recipeIngredient);
                 }
 
                 System.Console.WriteLine("What do you want to do next? 1 - continue to add ingredients to recipe; 0 - exit");
