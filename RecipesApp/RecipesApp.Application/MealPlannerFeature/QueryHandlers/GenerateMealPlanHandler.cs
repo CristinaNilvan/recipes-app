@@ -26,7 +26,7 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
 
         private async Task<MealPlan> GenerateMealPlan(MealType mealType, float calories)
         {
-            float averageCalories = FeaturesUtils.CalculateTwoDecimalFloat(calories / 3);
+            float averageCalories = UsedFunctions.CalculateTwoDecimalFloat(calories / 3);
             await InitializeLists(averageCalories, mealType);
 
             if (_breakfastRecipes == null || _lunchRecipes == null || _dinnerRecipes == null)
@@ -65,7 +65,7 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
             }
 
             var newAverageCalories = averageCalories + (averageCalories / 2);
-            newAverageCalories = FeaturesUtils.CalculateTwoDecimalFloat(newAverageCalories);
+            newAverageCalories = UsedFunctions.CalculateTwoDecimalFloat(newAverageCalories);
 
             recipeList = (await _unitOfWork
                 .RecipeRepository

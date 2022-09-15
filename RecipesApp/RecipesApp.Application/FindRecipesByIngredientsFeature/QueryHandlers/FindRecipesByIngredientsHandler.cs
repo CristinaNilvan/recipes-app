@@ -30,7 +30,7 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                     .GetIngredientIdsByRecipeId(recipe.Id))
                     .ToList();
 
-                var containsAll = FeaturesUtils
+                var containsAll = UsedFunctions
                     .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
                 if (containsAll)

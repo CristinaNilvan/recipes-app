@@ -17,7 +17,7 @@ namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 
         public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
         {
-            var quantityTwoDecimals = FeaturesUtils.CalculateTwoDecimalFloat(request.IngredientQuantity);
+            var quantityTwoDecimals = UsedFunctions.CalculateTwoDecimalFloat(request.IngredientQuantity);
             var bestMatches = (await _unitOfWork
                 .RecipeRepository
                 .GetBestMatchByIngredientAndQuantity(request.PaginationParameters, quantityTwoDecimals, request.IngredientName))

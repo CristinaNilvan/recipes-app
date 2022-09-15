@@ -6,11 +6,11 @@ namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
-        private float _servings;
+        /*private float _servings;
         private float _calories;
         private float _fats;
         private float _carbs;
-        private float _proteins;
+        private float _proteins;*/
 
         public Recipe()
         {
@@ -57,15 +57,15 @@ namespace RecipesApp.Domain.Models
 
         public ServingTime ServingTime { get; set; }
 
-        public float Servings { get => _servings; set => _servings = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Servings { get; set; }
 
-        public float Calories { get => _calories; set => _calories = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Calories { get; set; }
 
-        public float Fats { get => _fats; set => _fats = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Fats { get; set; }
 
-        public float Carbs { get => _carbs; set => _carbs = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Carbs { get; set; }
 
-        public float Proteins { get => _proteins; set => _proteins = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Proteins { get; set; }
 
         public bool Approved { get; set; } = false;
 
@@ -73,7 +73,7 @@ namespace RecipesApp.Domain.Models
 
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
-        public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
+        /*public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
         {
             RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
 
@@ -105,7 +105,7 @@ namespace RecipesApp.Domain.Models
 
             Proteins -= ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Proteins,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-        }
+        }*/
 
         public override string ToString()
         {

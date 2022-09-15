@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Recipes.Commands;
+using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.CommandHandlers
@@ -30,7 +31,10 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
                 .RecipeWithRecipeIngredientsRepository
                 .GetByRecipeIdAndRecipeIngredientId(request.RecipeId, request.RecipeIngredientId);
 
-            recipe.RemoveRecipeWithRecipeIngredient(recipeWithRecipeIngredient);
+            var nutritionalValuesCalculator = new RecipeNutritionalValuesCalculator(recipe);
+            nutritionalValuesCalculator.RemoveRecipeWithRecipeIngredient(recipeWithRecipeIngredient);
+
+            //recipe.RemoveRecipeWithRecipeIngredient(recipeWithRecipeIngredient);
             await _unitOfWork.Save();
 
             return recipe;
