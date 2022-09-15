@@ -22,23 +22,6 @@ namespace RecipesApp.Presentation.Controllers
             _logger = logger;
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> GenerateMealPlan([FromBody] MealPlanPostDto mealPlanDto)
-        {
-            _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
-
-            var command = new GenerateMealPlan
-            {
-                MealType = mealPlanDto.MealType,
-                Calories = mealPlanDto.Calories
-            };
-
-            var result = await _mediator.Send(command);
-            var mappedResult = _mapper.Map<MealPlanGetDto>(result);
-
-            return Ok(mappedResult);
-        }*/
-
         [HttpPost]
         public async Task<IActionResult> CreateMealPlan([FromBody] MealPlanPostDto mealPlanDto)
         {
@@ -48,7 +31,11 @@ namespace RecipesApp.Presentation.Controllers
             {
                 Breakfast = mealPlanDto.Breakfast,
                 Lunch = mealPlanDto.Lunch,
-                Dinner = mealPlanDto.Dinner
+                Dinner = mealPlanDto.Dinner,
+                Calories = mealPlanDto.Calories,
+                Fats = mealPlanDto.Fats,
+                Carbs = mealPlanDto.Carbs,
+                Proteins = mealPlanDto.Proteins
             };
 
             var result = await _mediator.Send(command);

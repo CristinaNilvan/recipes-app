@@ -41,8 +41,10 @@ namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
             var dinner = _dinnerRecipes.ElementAt(random.Next(0, _dinnerRecipes.Count));
 
             var mealPlan = new MealPlan(breakfast, lunch, dinner);
+            var nutritionalValuesCalculator = new MealPlanNutritionalValuesCalculator(mealPlan);
+            nutritionalValuesCalculator.CalculateNutritionalValues();
 
-            return mealPlan;
+            return nutritionalValuesCalculator.MealPlan;
         }
 
         private async Task InitializeLists(float averageCalories, MealType mealType)

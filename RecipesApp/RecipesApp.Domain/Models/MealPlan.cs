@@ -7,12 +7,22 @@
 
         }
 
+        public MealPlan(Recipe breakfast, Recipe lunch, Recipe dinner, float calories, float fats, float carbs, float proteins)
+        {
+            Breakfast = breakfast;
+            Lunch = lunch;
+            Dinner = dinner;
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
+        }
+
         public MealPlan(Recipe breakfast, Recipe lunch, Recipe dinner)
         {
             Breakfast = breakfast;
             Lunch = lunch;
             Dinner = dinner;
-            CalculateNutritionalValues();
         }
 
         public int Id { get; set; }
@@ -23,21 +33,13 @@
 
         public Recipe Dinner { get; set; }
 
-        public float Calories { get; set; } = 0;
+        public float Calories { get; set; }
 
-        public float Fats { get; set; } = 0;
+        public float Fats { get; set; }
 
-        public float Carbs { get; set; } = 0;
+        public float Carbs { get; set; }
 
-        public float Proteins { get; set; } = 0;
-
-        private void CalculateNutritionalValues()
-        {
-            Calories = Breakfast.Calories + Lunch.Calories + Dinner.Calories;
-            Fats = Breakfast.Fats + Lunch.Fats + Dinner.Fats;
-            Carbs = Breakfast.Carbs + Lunch.Carbs + Dinner.Carbs;
-            Proteins = Breakfast.Proteins + Lunch.Proteins + Dinner.Proteins;
-        }
+        public float Proteins { get; set; }
 
         public override string ToString()
         {

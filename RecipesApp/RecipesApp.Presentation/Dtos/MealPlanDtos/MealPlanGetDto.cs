@@ -4,8 +4,6 @@ namespace RecipesApp.Presentation.Dtos.MealPlanDtos
 {
     public class MealPlanGetDto
     {
-        public int Id { get; set; }
-
         public Recipe Breakfast { get; set; }
 
         public Recipe Lunch { get; set; }

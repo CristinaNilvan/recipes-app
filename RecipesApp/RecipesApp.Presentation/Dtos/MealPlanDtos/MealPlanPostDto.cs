@@ -13,5 +13,17 @@ namespace RecipesApp.Presentation.Dtos.MealPlanDtos
 
         [Required]
         public Recipe Dinner { get; set; }
+
+        [Required]
+        public float Calories { get; set; }
+
+        [Required]
+        public float Fats { get; set; }
+
+        [Required]
+        public float Carbs { get; set; }
+
+        [Required]
+        public float Proteins { get; set; }
     }
 }
