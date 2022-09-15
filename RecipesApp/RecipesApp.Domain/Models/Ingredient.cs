@@ -6,10 +6,10 @@ namespace RecipesApp.Domain.Models
 {
     public class Ingredient
     {
-        private float _calories;
+        /*private float _calories;
         private float _fats;
         private float _carbs;
-        private float _proteins;
+        private float _proteins;*/
 
         public Ingredient()
         {
@@ -47,13 +47,13 @@ namespace RecipesApp.Domain.Models
 
         public IngredientCategory Category { get; set; }
 
-        public float Calories { get => _calories; set => _calories = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Calories { get; set; }
 
-        public float Fats { get => _fats; set => _fats = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Fats { get; set; }
 
-        public float Carbs { get => _carbs; set => _carbs = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Carbs { get; set; }
 
-        public float Proteins { get => _proteins; set => _proteins = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Proteins { get; set; }
 
         public bool Approved { get; set; } = false;
 

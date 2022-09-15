@@ -4,18 +4,11 @@ namespace RecipesApp.Domain.Models
 {
     public class RecipeIngredient
     {
-        private float _quantity;
+        //private float _quantity;
 
         public RecipeIngredient()
         {
 
-        }
-
-        public RecipeIngredient(int id, float quantity, int ingredientId)
-        {
-            Id = id;
-            Quantity = quantity;
-            IngredientId = ingredientId;
         }
 
         public RecipeIngredient(float quantity, int ingredientId)
@@ -25,7 +18,7 @@ namespace RecipesApp.Domain.Models
         }
 
         public int Id { get; set; }
-        public float Quantity { get => _quantity; set => _quantity = ModelUtils.CalculateTwoDecimalFloat(value); }
+        public float Quantity { get; set; }
         public int IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
