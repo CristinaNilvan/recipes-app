@@ -9,12 +9,12 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
     public class RemoveImageFromRecipeHandler : IRequestHandler<RemoveImageFromRecipe, Recipe>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IImageStorageService _blobService;
+        private readonly IImageStorageService _imageStorageService;
 
-        public RemoveImageFromRecipeHandler(IUnitOfWork unitOfWork, IImageStorageService blobService)
+        public RemoveImageFromRecipeHandler(IUnitOfWork unitOfWork, IImageStorageService imageStorageService)
         {
             _unitOfWork = unitOfWork;
-            _blobService = blobService;
+            _imageStorageService = imageStorageService;
         }
 
         public async Task<Recipe> Handle(RemoveImageFromRecipe request, CancellationToken cancellationToken)
@@ -30,7 +30,7 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
             var recipeNameAndAuthor = recipe.Name + " " + recipe.Author;
             var fileName = recipeNameAndAuthor.Replace(" ", "_").ToLower();
 
-            await _blobService.DeleteImage(fileName, request.ContainerName);
+            await _imageStorageService.DeleteImage(fileName, request.ContainerName);
             await _unitOfWork.RecipeImageRepository.Delete(recipeImage);
             await _unitOfWork.Save();
 

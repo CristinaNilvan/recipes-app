@@ -9,12 +9,12 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
     public class AddImageToIngredientHandler : IRequestHandler<AddImageToIngredient, Ingredient>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IImageStorageService _blobService;
+        private readonly IImageStorageService _imageStorageService;
 
-        public AddImageToIngredientHandler(IUnitOfWork unitOfWork, IImageStorageService blobService)
+        public AddImageToIngredientHandler(IUnitOfWork unitOfWork, IImageStorageService imageStorageService)
         {
             _unitOfWork = unitOfWork;
-            _blobService = blobService;
+            _imageStorageService = imageStorageService;
         }
 
         public async Task<Ingredient> Handle(AddImageToIngredient request, CancellationToken cancellationToken)
@@ -27,7 +27,7 @@ namespace RecipesApp.Application.Ingredients.CommandHandlers
             }
 
             var fileName = ingredient.Name.Replace(" ", "_").ToLower();
-            var imageUrl = await _blobService.UploadImage(fileName, request.File, request.ContainerName);
+            var imageUrl = await _imageStorageService.UploadImage(fileName, request.File, request.ContainerName);
 
             var ingredientImage = new IngredientImage
             {
