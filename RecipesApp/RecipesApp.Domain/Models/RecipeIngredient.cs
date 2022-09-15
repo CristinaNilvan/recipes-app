@@ -1,11 +1,7 @@
-﻿using RecipesApp.Domain.Utils;
-
-namespace RecipesApp.Domain.Models
+﻿namespace RecipesApp.Domain.Models
 {
     public class RecipeIngredient
     {
-        //private float _quantity;
-
         public RecipeIngredient()
         {
 

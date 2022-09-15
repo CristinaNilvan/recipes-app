@@ -1,17 +1,10 @@
 ﻿using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Domain.Models
 {
     public class Recipe
     {
-        /*private float _servings;
-        private float _calories;
-        private float _fats;
-        private float _carbs;
-        private float _proteins;*/
-
         public Recipe()
         {
 
@@ -72,40 +65,6 @@ namespace RecipesApp.Domain.Models
         public RecipeImage RecipeImage { get; set; }
 
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
-
-        /*public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
-        {
-            RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
-
-            Calories += ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Calories,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Fats += ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Fats,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Carbs += ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Carbs,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Proteins += ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Proteins,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-        }
-
-        public void RemoveRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
-        {
-            RecipeWithRecipeIngredients.Remove(recipeWithRecipeIngredient);
-
-            Calories -= ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Calories,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Fats -= ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Fats,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Carbs -= ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Carbs,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-
-            Proteins -= ModelUtils.CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Proteins,
-                recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-        }*/
 
         public override string ToString()
         {

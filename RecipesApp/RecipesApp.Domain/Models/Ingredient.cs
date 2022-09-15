@@ -1,16 +1,10 @@
 ﻿using RecipesApp.Domain.Enums;
-using RecipesApp.Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipesApp.Domain.Models
 {
     public class Ingredient
     {
-        /*private float _calories;
-        private float _fats;
-        private float _carbs;
-        private float _proteins;*/
-
         public Ingredient()
         {
 

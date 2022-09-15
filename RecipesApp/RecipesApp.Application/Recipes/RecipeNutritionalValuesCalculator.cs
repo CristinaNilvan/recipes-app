@@ -1,6 +1,7 @@
-﻿using RecipesApp.Domain.Models;
+﻿using RecipesApp.Application.Utils;
+using RecipesApp.Domain.Models;
 
-namespace RecipesApp.Application.Utils
+namespace RecipesApp.Application.Recipes
 {
     internal class RecipeNutritionalValuesCalculator
     {
@@ -58,7 +59,7 @@ namespace RecipesApp.Application.Utils
             nutritionalValue = UsedFunctions.CalculateTwoDecimalFloat(nutritionalValue);
             quantity = UsedFunctions.CalculateTwoDecimalFloat(quantity);
 
-            return UsedFunctions.CalculateTwoDecimalFloat((nutritionalValue * quantity) / 100);
+            return UsedFunctions.CalculateTwoDecimalFloat(nutritionalValue * quantity / 100);
         }
     }
 }

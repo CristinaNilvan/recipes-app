@@ -30,8 +30,7 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                     .GetIngredientIdsByRecipeId(recipe.Id))
                     .ToList();
 
-                var containsAll = UsedFunctions
-                    .CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
+                var containsAll = CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
 
                 if (containsAll)
                 {
@@ -52,5 +51,11 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                 return null;
             }
         }
+
+        private bool CheckIfRecipeContainsAllIngredients(List<int> recipeIngredientList,
+            List<int> givenIngredientList)
+            => givenIngredientList
+                .All(givenItem => recipeIngredientList
+                .Any(recipeIngredientItem => givenItem == recipeIngredientItem));
     }
 }
