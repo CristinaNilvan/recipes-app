@@ -6,16 +6,16 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 {
-    public class FindRecipesByIngredientsHandler : IRequestHandler<FindRecipesByIngredients, List<Recipe>>
+    public class GetFoundRecipesByIngredientsHandler : IRequestHandler<GetFoundRecipesByIngredients, List<Recipe>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public FindRecipesByIngredientsHandler(IUnitOfWork unitOfWork)
+        public GetFoundRecipesByIngredientsHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Recipe>> Handle(FindRecipesByIngredients request, CancellationToken cancellationToken)
+        public async Task<List<Recipe>> Handle(GetFoundRecipesByIngredients request, CancellationToken cancellationToken)
         {
             var recipesWithAllIngredients = new List<Recipe>();
             var recipesContainingIngredients = (await _unitOfWork

@@ -10,7 +10,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var ingredients = await InputHandlingUtils.CreateIngredientListForRecipeFinder();
             var mediator = MediatorSetup.GetMediator();
 
-            var recipes = await mediator.Send(new FindRecipesByIngredients()
+            var recipes = await mediator.Send(new GetFoundRecipesByIngredients()
             {
                 IngredientIds = InputHandlingUtils.GetIngredientIds(ingredients)
             });

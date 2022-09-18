@@ -170,7 +170,7 @@ namespace RecipesApp.Presentation.Controllers
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredients");
 
-            var query = new FindRecipesByIngredients
+            var query = new GetFoundRecipesByIngredients
             {
                 IngredientIds = ingredientIds.ToList()
             };
@@ -195,7 +195,7 @@ namespace RecipesApp.Presentation.Controllers
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredient and quantity");
 
-            var query = new SuggestRecipes
+            var query = new GetSuggestedRecipes
             {
                 PaginationParameters = paginationParameters,
                 IngredientName = recipesSuggesterDto.IngredientName,

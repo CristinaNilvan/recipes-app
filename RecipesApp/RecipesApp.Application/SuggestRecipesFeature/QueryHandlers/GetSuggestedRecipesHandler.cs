@@ -6,16 +6,16 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.SuggestRecipesFeature.QueryHandlers
 {
-    public class SuggestRecipesHandler : IRequestHandler<SuggestRecipes, List<Recipe>>
+    public class GetSuggestedRecipesHandler : IRequestHandler<GetSuggestedRecipes, List<Recipe>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public SuggestRecipesHandler(IUnitOfWork unitOfWork)
+        public GetSuggestedRecipesHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Recipe>> Handle(SuggestRecipes request, CancellationToken cancellationToken)
+        public async Task<List<Recipe>> Handle(GetSuggestedRecipes request, CancellationToken cancellationToken)
         {
             var quantityTwoDecimals = UsedFunctions.CalculateTwoDecimalFloat(request.IngredientQuantity);
             var bestMatches = (await _unitOfWork

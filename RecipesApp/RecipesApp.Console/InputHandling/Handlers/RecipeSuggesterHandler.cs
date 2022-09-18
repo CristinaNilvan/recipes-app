@@ -16,7 +16,7 @@ namespace RecipesApp.Console.InputHandling.Handlers
             var quantity = float.Parse(System.Console.ReadLine());
 
             var mediator = MediatorSetup.GetMediator();
-            var recipes = await mediator.Send(new SuggestRecipes()
+            var recipes = await mediator.Send(new GetSuggestedRecipes()
             {
                 IngredientName = name,
                 IngredientQuantity = quantity
