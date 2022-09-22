@@ -31,8 +31,9 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
                     .ToList();
 
                 var containsAll = CheckIfRecipeContainsAllIngredients(recipeIngredientsIds, request.IngredientIds);
+                var added = CheckIfRecipesIsAdded(recipesWithAllIngredients, recipe);
 
-                if (containsAll)
+                if (containsAll && !added)
                 {
                     recipesWithAllIngredients.Add(recipe);
                 }
@@ -57,5 +58,9 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
             => givenIngredientList
                 .All(givenItem => recipeIngredientList
                 .Any(recipeIngredientItem => givenItem == recipeIngredientItem));
+
+        private bool CheckIfRecipesIsAdded(List<Recipe> recipes, Recipe recipe)
+            => recipes.Any(recipeFromList => recipeFromList.Id == recipe.Id);
+        
     }
 }
