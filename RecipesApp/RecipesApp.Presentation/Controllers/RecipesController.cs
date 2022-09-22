@@ -217,11 +217,11 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("generate-meal-plan")]
-        public async Task<IActionResult> GenerateMealPlan([FromQuery] MealPlannerPostDto mealPlannerDto)
+        public async Task<IActionResult> GetMealPlanFromRecipes([FromQuery] MealPlannerPostDto mealPlannerDto)
         {
-            _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
+            _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan from recipes");
 
-            var query = new GenerateMealPlan
+            var query = new GetMealPlanFromRecipes
             {
                 MealType = mealPlannerDto.MealType,
                 Calories = mealPlannerDto.Calories

@@ -7,19 +7,19 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.MealPlannerFeature.QueryHandlers
 {
-    public class GenerateMealPlanHandler : IRequestHandler<GenerateMealPlan, MealPlan>
+    public class GetMealPlanFromRecipesHandler : IRequestHandler<GetMealPlanFromRecipes, MealPlan>
     {
         private readonly IUnitOfWork _unitOfWork;
         private List<Recipe> _breakfastRecipes;
         private List<Recipe> _lunchRecipes;
         private List<Recipe> _dinnerRecipes;
 
-        public GenerateMealPlanHandler(IUnitOfWork unitOfWork)
+        public GetMealPlanFromRecipesHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<MealPlan> Handle(GenerateMealPlan request, CancellationToken cancellationToken)
+        public async Task<MealPlan> Handle(GetMealPlanFromRecipes request, CancellationToken cancellationToken)
         {
             return await GenerateMealPlan(request.MealType, request.Calories);
         }
