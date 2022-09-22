@@ -165,7 +165,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipes-finder")]
+        [Route("find-recipes")]
         public async Task<IActionResult> FindRecipesByIngredients([FromQuery] IEnumerable<int> ingredientIds)
         {
             _logger.LogInformation(LogEvents.GetItems, "Finding recipes by ingredients");
@@ -189,7 +189,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("recipes-suggester")]
+        [Route("suggest-recipes")]
         public async Task<IActionResult> SuggestRecipes([FromQuery] RecipesSuggesterDto recipesSuggesterDto,
             [FromQuery] PaginationParameters paginationParameters)
         {
@@ -216,7 +216,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("meal-plan-generator")]
+        [Route("generate-meal-plan")]
         public async Task<IActionResult> GenerateMealPlan([FromQuery] MealPlannerPostDto mealPlannerDto)
         {
             _logger.LogInformation(LogEvents.GenerateItem, "Generating meal plan");
