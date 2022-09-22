@@ -47,6 +47,8 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Include(recipe => recipe.RecipeImage)
                 .Include(recipe => recipe.RecipeWithRecipeIngredients)
                 .ThenInclude(recWithRecIngs => recWithRecIngs.RecipeIngredient)
+                .ThenInclude(recIng => recIng.Ingredient)
+                .ThenInclude(ingredient => ingredient.IngredientImage)
                 .SingleOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
