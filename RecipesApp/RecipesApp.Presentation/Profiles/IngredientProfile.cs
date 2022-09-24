@@ -9,7 +9,7 @@ namespace RecipesApp.Presentation.Profiles
         public IngredientProfile()
         {
             CreateMap<Ingredient, IngredientGetDto>().ReverseMap(); //?
-            CreateMap<Ingredient, IngredientGetByIdDto>();
+            CreateMap<Ingredient, IngredientGetByDto>();
         }
     }
 }

@@ -4,7 +4,7 @@ using RecipesApp.Presentation.Dtos.RecipeIngredientDtos;
 
 namespace RecipesApp.Presentation.Dtos.IngredientDtos
 {
-    public class IngredientGetByIdDto
+    public class IngredientGetByDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
