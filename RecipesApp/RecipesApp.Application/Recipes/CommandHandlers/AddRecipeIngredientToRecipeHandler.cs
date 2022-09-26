@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Recipes.Commands;
-using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.Recipes.CommandHandlers

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
-using RecipesApp.Application.Utils;
 using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
@@ -61,6 +60,6 @@ namespace RecipesApp.Application.FindRecipesByIngredientsFeature.QueryHandlers
 
         private bool CheckIfRecipesIsAdded(List<Recipe> recipes, Recipe recipe)
             => recipes.Any(recipeFromList => recipeFromList.Id == recipe.Id);
-        
+
     }
 }
