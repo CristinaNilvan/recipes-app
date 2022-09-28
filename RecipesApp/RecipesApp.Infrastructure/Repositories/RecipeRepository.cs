@@ -52,6 +52,16 @@ namespace RecipesApp.Infrastructure.Repositories
                 .SingleOrDefaultAsync(recipe => recipe.Id == recipeId);
         }
 
+        public async Task<Recipe> GetByNameAndAuthor(string name, string author)
+        {
+            return await _dataContext
+                .Recipes
+                .Include(recipe => recipe.RecipeImage)
+                .Include(recipe => recipe.RecipeWithRecipeIngredients)
+                .ThenInclude(recWithRecIngs => recWithRecIngs.RecipeIngredient)
+                .SingleOrDefaultAsync(recipe => recipe.Name == name && recipe.Author == author);
+        }
+
         public async Task<IQueryable<Recipe>> GetByName(PaginationParameters paginationParameters, string recipeName)
         {
             return _dataContext
@@ -64,7 +74,7 @@ namespace RecipesApp.Infrastructure.Repositories
                 .Take(paginationParameters.PageSize);
         }
 
-        public async Task<IQueryable<Recipe>> GetByApprovedStatusWithPagination(PaginationParameters paginationParameters, bool approvedStatus)
+        public async Task<IQueryable<Recipe>> GetByApprovedStatus(PaginationParameters paginationParameters, bool approvedStatus)
         {
             return _dataContext
                 .Recipes

@@ -18,7 +18,7 @@ namespace RecipesApp.Application.Recipes.QueryHandlers
         {
             var recipes = (await _unitOfWork
                 .RecipeRepository
-                .GetByApprovedStatusWithPagination(request.PaginationParameters, request.ApprovedStatus))
+                .GetByApprovedStatus(request.PaginationParameters, request.ApprovedStatus))
                 .ToList();
 
             if (recipes.Count == 0)

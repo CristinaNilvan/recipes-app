@@ -69,6 +69,31 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
+        [Route("{name}&{author}")]
+        public async Task<IActionResult> GetRecipeByNameAndAuthor(string name, string author)
+        {
+            _logger.LogInformation(LogEvents.GetItem, "Getting recipe {name} with author {author}", name, author);
+
+            var query = new GetRecipeByNameAndAuthor
+            {
+                Name = name,
+                Author = author
+            };
+
+            var result = await _mediator.Send(query);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.GetItemNotFound, "recipe {name} with author {author} not found", name, author);
+                return NotFound();
+            }
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        [HttpGet]
         [Route("{recipeName}")]
         public async Task<IActionResult> GetRecipesByName(string recipeName,
             [FromQuery] PaginationParameters paginationParameters)
