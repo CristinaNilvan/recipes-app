@@ -18,6 +18,16 @@ namespace RecipesApp.Application.RecipeIngredients.CommandHandlers
         public async Task<RecipeIngredient> Handle(CreateRecipeIngredient request, CancellationToken cancellationToken)
         {
             request.Quantity = UsedFunctions.CalculateTwoDecimalFloat(request.Quantity);
+
+            var searchedRecipeIngredient = await _unitOfWork
+                .RecipeIngredientRepository
+                .GetByQuantityAndIngredientId(request.Quantity, request.IngredientId);
+
+            if (searchedRecipeIngredient != null)
+            {
+                return searchedRecipeIngredient;
+            }
+
             var recipeIngredient = new RecipeIngredient(request.Quantity, request.IngredientId);
 
             await _unitOfWork.RecipeIngredientRepository.Create(recipeIngredient);

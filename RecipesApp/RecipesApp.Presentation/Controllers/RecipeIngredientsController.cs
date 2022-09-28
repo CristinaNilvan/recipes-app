@@ -24,15 +24,15 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("{ingredientId}")]
-        public async Task<IActionResult> CreateRecipeIngredient(int ingredientId, [FromBody] float quantity)
+        //[Route("{ingredientId}")]
+        public async Task<IActionResult> CreateRecipeIngredient([FromBody] RecipeIngredientPostDto recipeIngredientDto)
         {
             _logger.LogInformation(LogEvents.CreateItem, "Creating recipe ingredient");
 
             var command = new CreateRecipeIngredient
             {
-                Quantity = quantity,
-                IngredientId = ingredientId
+                Quantity = recipeIngredientDto.Quantity,
+                IngredientId = recipeIngredientDto.IngredientId
             };
 
             var result = await _mediator.Send(command);

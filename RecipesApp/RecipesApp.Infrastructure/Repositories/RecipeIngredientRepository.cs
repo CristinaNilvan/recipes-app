@@ -26,7 +26,17 @@ namespace RecipesApp.Infrastructure.Repositories
             return await _dataContext
                 .RecipeIngredients
                 .Include(recipeIngredient => recipeIngredient.Ingredient)
+                .ThenInclude(ingredient => ingredient.IngredientImage)
                 .SingleOrDefaultAsync(x => x.Id == recipeIngredientId);
+        }
+
+        public async Task<RecipeIngredient> GetByQuantityAndIngredientId(float quantity, int ingredientId)
+        {
+            return await _dataContext
+                .RecipeIngredients
+                .SingleOrDefaultAsync(recipeIngredient =>
+                    recipeIngredient.Quantity == quantity &&
+                    recipeIngredient.IngredientId == ingredientId);
         }
     }
 }

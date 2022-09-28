@@ -9,6 +9,7 @@ namespace RecipesApp.Presentation.Dtos.RecipeIngredientDtos
         public float Quantity { get; set; }
 
         // ??
-        //public int IngredientId { get; set; }
+        [Required]
+        public int IngredientId { get; set; }
     }
 }
