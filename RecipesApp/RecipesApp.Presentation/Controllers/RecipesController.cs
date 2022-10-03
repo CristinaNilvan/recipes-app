@@ -395,7 +395,7 @@ namespace RecipesApp.Presentation.Controllers
             {
                 RecipeId = recipeId,
                 File = File,
-                ContainerName = "recipeimages"
+                ContainerName = "recipes"
             };
 
             var result = await _mediator.Send(command);
@@ -420,7 +420,7 @@ namespace RecipesApp.Presentation.Controllers
             var command = new RemoveImageFromRecipe
             {
                 RecipeId = recipeId,
-                ContainerName = "recipeimages"
+                ContainerName = "recipes"
             };
 
             var result = await _mediator.Send(command);

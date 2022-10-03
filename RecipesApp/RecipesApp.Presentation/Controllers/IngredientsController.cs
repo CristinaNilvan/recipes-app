@@ -60,7 +60,7 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
             }
 
-            var mappedResult = _mapper.Map<IngredientGetByDto>(result);
+            var mappedResult = _mapper.Map<IngredientGetDto>(result);
 
             return Ok(mappedResult);
         }
@@ -80,7 +80,7 @@ namespace RecipesApp.Presentation.Controllers
                 return NotFound();
             }
 
-            var mappedResult = _mapper.Map<IngredientGetByDto>(result);
+            var mappedResult = _mapper.Map<IngredientGetDto>(result);
 
             return Ok(mappedResult);
         }
@@ -229,7 +229,7 @@ namespace RecipesApp.Presentation.Controllers
             {
                 IngredientId = ingredientId,
                 File = File,
-                ContainerName = "ingredientimages"
+                ContainerName = "ingredients"
             };
 
             var result = await _mediator.Send(command);
@@ -254,7 +254,7 @@ namespace RecipesApp.Presentation.Controllers
             var command = new RemoveImageFromIngredient
             {
                 IngredientId = ingredientId,
-                ContainerName = "ingredientimages"
+                ContainerName = "ingredients"
             };
 
             var result = await _mediator.Send(command);
