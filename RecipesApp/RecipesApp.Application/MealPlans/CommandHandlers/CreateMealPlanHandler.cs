@@ -5,7 +5,7 @@ using RecipesApp.Domain.Models;
 
 namespace RecipesApp.Application.MealPlans.CommandHandlers
 {
-    internal class CreateMealPlanHandler : IRequestHandler<CreateMealPlan, MealPlan>
+    public class CreateMealPlanHandler : IRequestHandler<CreateMealPlan, MealPlan>
     {
         private readonly IUnitOfWork _unitOfWork;
 
