@@ -11,7 +11,7 @@ using RecipesApp.Presentation.Dtos.AuthDtos;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using static RecipesApp.Presentation.Dtos.AuthDtos.ResponseDto;
+using static RecipesApp.Presentation.Dtos.AuthDtos.RegisterResponseDto;
 
 namespace RecipesApp.Presentation.Controllers
 {
@@ -59,38 +59,20 @@ namespace RecipesApp.Presentation.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterDto registerDto)
         {
-            var userExists = await _userManager.FindByNameAsync(registerDto.Username);
-            if (userExists != null)
+            var command = new RegisterAdmin
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new Response { Status = "Error", Message = "User already exists!" });
-            }
-
-            User user = new User()
-            {
-                Email = registerDto.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = registerDto.Username
+                Username = registerDto.Username,
+                Password = registerDto.Password,
             };
 
-            var result = await _userManager.CreateAsync(user, registerDto.Password);
-            if (!result.Succeeded)
+            var result = await _mediator.Send(command);
+
+            if (result.Status == "Error")
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
             }
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-            }
-
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
-
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok(result);
         }
     }
 }

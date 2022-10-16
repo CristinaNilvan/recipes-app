@@ -1,6 +1,6 @@
 ﻿namespace RecipesApp.Presentation.Dtos.AuthDtos
 {
-    public class ResponseDto
+    public class RegisterResponseDto
     {
         public class Response
         {
