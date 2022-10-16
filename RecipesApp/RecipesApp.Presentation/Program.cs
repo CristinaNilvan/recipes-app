@@ -28,6 +28,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Repositories and Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 builder.Services.AddScoped<IIngredientImageRepository, IngredientImageRepository>();
@@ -38,19 +39,27 @@ builder.Services.AddScoped<IRecipeImageRepository, RecipeImageRepository>();
 builder.Services.AddScoped<IMealPlanRepository, MealPlanRepository>();
 builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
 
+// Data Context
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+// Indentity Data Context
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
+// Blob Storage Settings
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(nameof(JwtSettings)));
+var jwtSettings = builder.Configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>();
+
+// Authentication  
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+// Jwt Bearer  
 .AddJwtBearer(options =>
 {
     options.SaveToken = true;
@@ -59,26 +68,28 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = false,
-        ValidAudience = "audience",
-        ValidIssuer = "https://localhost:7212",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"))
+        ValidAudience = jwtSettings.ValidAudience,
+        ValidIssuer = jwtSettings.ValidIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
     };
 });
 
+// Authorization Policy
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy =>
           policy.RequireRole("Admin"));
 });
 
+// MediarR and AutoMapper
 builder.Services.AddMediatR(typeof(IApplicationAssemblyMarker));
 builder.Services.AddAutoMapper(typeof(IPresentationAssemblyMarker));
 
-builder.Services.Configure<BlobStorageSettings>(
-    builder.Configuration.GetSection(nameof(BlobStorageSettings)));
+// Blob Storage Settings
+builder.Services.Configure<BlobStorageSettings>(builder.Configuration.GetSection(nameof(BlobStorageSettings)));
+var blobStorageSettings = builder.Configuration.GetSection(nameof(BlobStorageSettings)).Get<BlobStorageSettings>();
 
-var blobStorageSettings = builder.Configuration.GetSection(nameof(BlobStorageSettings))
-    .Get<BlobStorageSettings>();
+// Blob Storage Service
 builder.Services.AddSingleton(blobService => new BlobServiceClient(blobStorageSettings.ConnectionString));
 
 var app = builder.Build();
