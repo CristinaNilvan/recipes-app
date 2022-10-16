@@ -17,7 +17,6 @@ namespace RecipesApp.Presentation.Dtos.RecipeDtos
 
         [Required]
         [MaxLength(10000)]
-        [MinLength(0)]
         public string Description { get; set; }
 
         [Required]

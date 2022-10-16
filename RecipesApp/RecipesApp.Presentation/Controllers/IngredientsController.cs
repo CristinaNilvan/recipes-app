@@ -106,7 +106,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        //[Route("approved-ingredients")] // => with/without route?
+        [Route("approved-ingredients")]
         public async Task<IActionResult> GetApprovedIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved ingredients");

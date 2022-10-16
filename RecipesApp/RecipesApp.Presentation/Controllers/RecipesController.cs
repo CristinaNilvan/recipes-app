@@ -140,7 +140,7 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpGet]
-        //[Route("approvedRecipes")] // => with/without route?
+        [Route("approved-recipes")]
         public async Task<IActionResult> GetApprovedRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved recipes");

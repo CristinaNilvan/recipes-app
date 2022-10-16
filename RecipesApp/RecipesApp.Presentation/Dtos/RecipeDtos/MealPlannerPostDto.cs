@@ -9,7 +9,7 @@ namespace RecipesApp.Presentation.Dtos.RecipeDtos
         public MealType MealType { get; set; }
 
         [Required]
-        [Range(1000, 3000)]
+        [Range(1000, 5000)]
         public float Calories { get; set; }
     }
 }

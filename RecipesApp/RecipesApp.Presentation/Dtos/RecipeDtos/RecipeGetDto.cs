@@ -17,6 +17,7 @@ namespace RecipesApp.Presentation.Dtos.RecipeDtos
         public float Fats { get; set; }
         public float Carbs { get; set; }
         public float Proteins { get; set; }
+        public bool Approved { get; set; }
         public RecipeImageGetDto RecipeImage { get; set; }
         public List<RecipeIngredientGetDto> RecipeIngredients { get; set; }
     }
