@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveIngredientFeature.Commands;
 using RecipesApp.Application.Ingredients.Commands;
@@ -107,6 +108,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("approved-ingredients")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetApprovedIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved ingredients");
@@ -132,6 +134,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("unapproved-ingredients")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetUnapprovedIngredients([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved ingredients");
@@ -157,6 +160,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPatch]
         [Route("{ingredientId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> UpdateIngredient(int ingredientId, [FromBody] IngredientPatchDto ingredientDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating ingredient {id}", ingredientId);
@@ -185,6 +189,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPatch]
         [Route("unapproved-ingredients/{ingredientId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ApproveIngredient(int ingredientId)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Approving ingredient {id}", ingredientId);
@@ -203,6 +208,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpDelete]
         [Route("{ingredientId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeleteIngredient(int ingredientId)
         {
             _logger.LogInformation(LogEvents.DeleteItem, "Deleting ingredient {id}", ingredientId);

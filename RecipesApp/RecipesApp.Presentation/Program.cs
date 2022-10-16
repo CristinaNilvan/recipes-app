@@ -1,17 +1,22 @@
 using Azure.Storage.Blobs;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RecipesApp.Application;
 using RecipesApp.Application.Abstractions;
 using RecipesApp.Application.Abstractions.Repositories;
 using RecipesApp.Application.Abstractions.Services;
 using RecipesApp.Application.Settings;
+using RecipesApp.Domain.Models;
 using RecipesApp.Infrastructure;
 using RecipesApp.Infrastructure.Context;
 using RecipesApp.Infrastructure.Repositories;
 using RecipesApp.Infrastructure.Services;
 using RecipesApp.Presentation;
 using RecipesApp.Presentation.Middleware;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +41,36 @@ builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = false,
+        ValidAudience = "audience",
+        ValidIssuer = "https://localhost:7212",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"))
+    };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+          policy.RequireRole("Admin"));
+});
+
 builder.Services.AddMediatR(typeof(IApplicationAssemblyMarker));
 builder.Services.AddAutoMapper(typeof(IPresentationAssemblyMarker));
 
@@ -58,6 +93,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseRequestLoggingMiddleware();
 
