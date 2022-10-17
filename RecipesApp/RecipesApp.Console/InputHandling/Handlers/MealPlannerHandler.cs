@@ -18,14 +18,14 @@ namespace RecipesApp.Console.InputHandling.Handlers
 
             var mediator = MediatorSetup.GetMediator();
 
-            var mealPlan = await mediator.Send(new GenerateMealPlan()
+            /*var mealPlan = await mediator.Send(new GenerateMealPlan()
             {
                 MealType = enumMealType,
                 Calories = calories,
             });
 
             System.Console.WriteLine("The meal plan is: ");
-            System.Console.WriteLine(mealPlan);
+            System.Console.WriteLine(mealPlan);*/
         }
     }
 }

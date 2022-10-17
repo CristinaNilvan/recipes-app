@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.Application.ApproveRecipeFeature.Commands;
 using RecipesApp.Application.FindRecipesByIngredientsFeature.Queries;
@@ -141,6 +142,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("approved-recipes")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetApprovedRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting approved recipes");
@@ -166,6 +168,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpGet]
         [Route("unapproved-recipes")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetUnapprovedRecipes([FromQuery] PaginationParameters paginationParameters)
         {
             _logger.LogInformation(LogEvents.GetItems, "Getting unapproved recipes");
@@ -267,6 +270,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPatch]
         [Route("{recipeId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> UpdateRecipe(int recipeId, [FromBody] RecipePatchDto recipeDto)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Updating recipe {id}", recipeId);
@@ -295,6 +299,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpPatch]
         [Route("unapproved-recipes/{recipeId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ApproveRecipe(int recipeId)
         {
             _logger.LogInformation(LogEvents.UpdateItem, "Approving recipe {id}", recipeId);
@@ -313,6 +318,7 @@ namespace RecipesApp.Presentation.Controllers
 
         [HttpDelete]
         [Route("{recipeId}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeleteRecipe(int recipeId)
         {
             _logger.LogInformation(LogEvents.DeleteItem, "Deleting recipe {id}", recipeId);
