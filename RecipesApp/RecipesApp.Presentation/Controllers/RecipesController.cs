@@ -335,17 +335,46 @@ namespace RecipesApp.Presentation.Controllers
             return NoContent();
         }
 
+        /* [HttpPost]
+         [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
+         public async Task<IActionResult> AddRecipeIngredientToRecipe(int recipeId, int recipeIngredientId)
+         {
+             _logger.LogInformation(LogEvents.AddToItem,
+                 "Adding recipe ingredient {recipeIngredientId} to recipe {id}", recipeIngredientId, recipeId);
+
+             var command = new AddRecipeIngredientToRecipe
+             {
+                 RecipeId = recipeId,
+                 RecipeIngredientId = recipeIngredientId
+             };
+
+             var result = await _mediator.Send(command);
+
+             if (result == null)
+             {
+                 _logger.LogWarning(LogEvents.AddToItemNotFound,
+                     "Recipe {recipeId} or recipe ingredient {recipeIngredientId} not found", recipeId, recipeIngredientId);
+
+                 return NotFound();
+             }
+
+             var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+             return Ok(mappedResult);
+         }*/
+
         [HttpPost]
-        [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
-        public async Task<IActionResult> AddRecipeIngredientToRecipe(int recipeId, int recipeIngredientId)
+        [Route("{recipeId}/recipe-ingredients")]
+        public async Task<IActionResult> AddRecipeIngredientsToRecipe(int recipeId,
+            [FromBody] IEnumerable<int> recipeIngredientIds)
         {
             _logger.LogInformation(LogEvents.AddToItem,
-                "Adding recipe ingredient {recipeIngredientId} to recipe {id}", recipeIngredientId, recipeId);
+                 "Adding recipe ingredients to recipe {id}", recipeId);
 
-            var command = new AddRecipeIngredientToRecipe
+            var command = new AddRecipeIngredientsToRecipe
             {
                 RecipeId = recipeId,
-                RecipeIngredientId = recipeIngredientId
+                RecipeIngredientIds = recipeIngredientIds.ToList()
             };
 
             var result = await _mediator.Send(command);
@@ -353,7 +382,7 @@ namespace RecipesApp.Presentation.Controllers
             if (result == null)
             {
                 _logger.LogWarning(LogEvents.AddToItemNotFound,
-                    "Recipe {recipeId} or recipe ingredient {recipeIngredientId} not found", recipeId, recipeIngredientId);
+                    "Recipe {recipeId} or recipe ingredients not found", recipeId);
 
                 return NotFound();
             }
@@ -364,13 +393,42 @@ namespace RecipesApp.Presentation.Controllers
         }
 
         [HttpDelete]
+        [Route("{recipeId}/recipe-ingredients")]
+        public async Task<IActionResult> RemoveRecipeIngredientsFromRecipe(int recipeId,
+            [FromBody] IEnumerable<int> recipeIngredientIds)
+        {
+            _logger.LogInformation(LogEvents.RemoveFromItem,
+                 "Deleting recipe ingredients from recipe {id}", recipeId);
+
+            var command = new RemoveRecipeIngredientsFromRecipe
+            {
+                RecipeId = recipeId,
+                RecipeIngredientIds = recipeIngredientIds.ToList()
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+            {
+                _logger.LogWarning(LogEvents.RemoveFromItem,
+                    "Recipe {recipeId} or recipe ingredients not found", recipeId);
+
+                return NotFound();
+            }
+
+            var mappedResult = _mapper.Map<RecipeGetDto>(result);
+
+            return Ok(mappedResult);
+        }
+
+        /*[HttpDelete]
         [Route("{recipeId}/recipe-ingredients/{recipeIngredientId}")]
         public async Task<IActionResult> RemoveRecipeIngredientFromRecipe(int recipeId, int recipeIngredientId)
         {
             _logger.LogInformation(LogEvents.RemoveFromItem,
                 "Removing recipe ingredient {recipeIngredientId} from recipe {id}", recipeIngredientId, recipeId);
 
-            var command = new RemoveRecipeIngredientFromRecipe
+            var command = new RemoveRecipeIngredientsFromRecipe
             {
                 RecipeId = recipeId,
                 RecipeIngredientId = recipeIngredientId
@@ -389,7 +447,7 @@ namespace RecipesApp.Presentation.Controllers
             var mappedResult = _mapper.Map<RecipeGetDto>(result);
 
             return Ok(mappedResult);
-        }
+        }*/
 
         [HttpPost]
         [Route("{recipeId}/image")]

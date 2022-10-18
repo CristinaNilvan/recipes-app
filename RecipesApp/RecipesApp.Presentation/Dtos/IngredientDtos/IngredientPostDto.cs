@@ -14,19 +14,19 @@ namespace RecipesApp.Presentation.Dtos.IngredientDtos
         public IngredientCategory Category { get; set; }
 
         [Required]
-        [Range(1, 1000)]
+        [Range(0, 1000)]
         public float Calories { get; set; }
 
         [Required]
-        [Range(1, 500)]
+        [Range(0, 500)]
         public float Fats { get; set; }
 
         [Required]
-        [Range(1, 500)]
+        [Range(0, 500)]
         public float Carbs { get; set; }
 
         [Required]
-        [Range(1, 500)]
+        [Range(0, 500)]
         public float Proteins { get; set; }
     }
 }

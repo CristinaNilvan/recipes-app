@@ -66,6 +66,16 @@ namespace RecipesApp.Domain.Models
 
         public List<RecipeWithRecipeIngredient> RecipeWithRecipeIngredients { get; set; }
 
+        public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
+        {
+            RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
+        }
+
+        public void RemoveRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
+        {
+            RecipeWithRecipeIngredients.Remove(recipeWithRecipeIngredient);
+        }
+
         public override string ToString()
         {
             return $"Id : {Id}; Name : {Name}; Type : {MealType}-{ServingTime}; Calories : {Calories}";

@@ -5,53 +5,59 @@ namespace RecipesApp.Application.Recipes
 {
     internal class RecipeNutritionalValuesCalculator
     {
-        public RecipeNutritionalValuesCalculator(Recipe recipe)
+        public RecipeNutritionalValuesCalculator(float calories, float fats, float carbs, float proteins)
         {
-            Recipe = recipe;
+            Calories = calories;
+            Fats = fats;
+            Carbs = carbs;
+            Proteins = proteins;
         }
 
-        public Recipe Recipe { get; set; }
+        public float Calories { get; set; }
 
-        public void AddRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
+        public float Fats { get; set; }
+
+        public float Carbs { get; set; }
+
+        public float Proteins { get; set; }
+
+
+        public void AddRecipeIngredientNutritionalValues(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
         {
-            Recipe.RecipeWithRecipeIngredients.Add(recipeWithRecipeIngredient);
-
             var calories = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Calories,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Calories += UsedFunctions.CalculateTwoDecimalFloat(calories);
+            Calories += UsedFunctions.CalculateTwoDecimalFloat(calories);
 
             var fats = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Fats,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Fats += UsedFunctions.CalculateTwoDecimalFloat(fats);
+            Fats += UsedFunctions.CalculateTwoDecimalFloat(fats);
 
             var carbs = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Carbs,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Carbs += UsedFunctions.CalculateTwoDecimalFloat(carbs);
+            Carbs += UsedFunctions.CalculateTwoDecimalFloat(carbs);
 
             var proteins = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Proteins,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Proteins += UsedFunctions.CalculateTwoDecimalFloat(proteins);
+            Proteins += UsedFunctions.CalculateTwoDecimalFloat(proteins);
         }
 
-        public void RemoveRecipeWithRecipeIngredient(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
+        public void RemoveRecipeIngredientNutritionalValues(RecipeWithRecipeIngredient recipeWithRecipeIngredient)
         {
-            Recipe.RecipeWithRecipeIngredients.Remove(recipeWithRecipeIngredient);
-
             var calories = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Calories,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Calories -= UsedFunctions.CalculateTwoDecimalFloat(calories);
+            Calories -= UsedFunctions.CalculateTwoDecimalFloat(calories);
 
             var fats = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Fats,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Fats -= UsedFunctions.CalculateTwoDecimalFloat(fats);
+            Fats -= UsedFunctions.CalculateTwoDecimalFloat(fats);
 
             var carbs = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Carbs,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Carbs -= UsedFunctions.CalculateTwoDecimalFloat(carbs);
+            Carbs -= UsedFunctions.CalculateTwoDecimalFloat(carbs);
 
             var proteins = CalculateNutritionalValue(recipeWithRecipeIngredient.RecipeIngredient.Ingredient.Proteins,
                 recipeWithRecipeIngredient.RecipeIngredient.Quantity);
-            Recipe.Proteins -= UsedFunctions.CalculateTwoDecimalFloat(proteins);
+            Proteins -= UsedFunctions.CalculateTwoDecimalFloat(proteins);
         }
 
         private float CalculateNutritionalValue(float nutritionalValue, float quantity)
