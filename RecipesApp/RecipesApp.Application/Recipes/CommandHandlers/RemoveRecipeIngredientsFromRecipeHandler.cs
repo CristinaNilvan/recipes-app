@@ -47,14 +47,13 @@ namespace RecipesApp.Application.Recipes.CommandHandlers
 
             foreach (var recipeWithRecipeIngredient in recipeWithRecipeIngredients)
             {
-                var nutritionalValuesCalculator = new RecipeNutritionalValuesCalculator(recipe.Calories, recipe.Fats,
-                recipe.Carbs, recipe.Proteins);
+                var nutritionalValuesCalculator = new RecipeNutritionalValuesCalculator(recipe);
                 nutritionalValuesCalculator.RemoveRecipeIngredientNutritionalValues(recipeWithRecipeIngredient);
 
-                recipe.Calories = nutritionalValuesCalculator.Calories;
-                recipe.Fats = nutritionalValuesCalculator.Fats;
-                recipe.Carbs = nutritionalValuesCalculator.Carbs;
-                recipe.Proteins = nutritionalValuesCalculator.Proteins;
+                recipe.Calories = nutritionalValuesCalculator.Recipe.Calories;
+                recipe.Fats = nutritionalValuesCalculator.Recipe.Fats;
+                recipe.Carbs = nutritionalValuesCalculator.Recipe.Carbs;
+                recipe.Proteins = nutritionalValuesCalculator.Recipe.Proteins;
 
                 recipe.RemoveRecipeWithRecipeIngredient(recipeWithRecipeIngredient);
             }
